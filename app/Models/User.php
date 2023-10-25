@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
@@ -25,7 +26,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property integer $referred_by_user_id
  * @property string|\Carbon\Carbon $email_verified_at
  */
-class User extends Model
+class User extends Authenticatable
 {
     use SoftDeletes;
 

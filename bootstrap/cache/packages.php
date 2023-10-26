@@ -31,6 +31,13 @@
       0 => '\\InfyOm\\Generator\\InfyOmGeneratorServiceProvider',
     ),
   ),
+  'kitloong/laravel-migrations-generator' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'KitLoong\\MigrationsGenerator\\MigrationsGeneratorServiceProvider',
+    ),
+  ),
   'laracasts/flash' => 
   array (
     'providers' => 

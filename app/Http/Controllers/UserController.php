@@ -17,7 +17,9 @@ class UserController extends AppBaseController
 
     public function __construct(UserRepository $userRepo)
     {
+        $this->middleware('can:admin')->except('index', 'show');
         $this->userRepository = $userRepo;
+
     }
 
     /**

@@ -1,2 +1,23 @@
-node_modules
+# Ignore the vendor directory, as it is usually installed via Composer
+/vendor
 
+# Ignore the storage directory, where temporary and cached files are stored
+/storage/*
+
+# Ignore the public/uploads directory, where uploaded files may be stored
+/public/uploads
+
+# Ignore environment-specific files
+.env
+
+# Ignore the node_modules directory, as it is usually installed via npm or Yarn
+/node_modules
+
+# Ignore the Homestead.yaml file, which is used by Laravel Homestead
+Homestead.yaml
+
+# Ignore the Homestead.json file, which is used by Laravel Homestead
+Homestead.json
+
+# Ignore the .DS_Store files on macOS
+.DS_Store

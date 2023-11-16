@@ -1,160 +1,375 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- @stack('third_party_stylesheets')
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap4-toggle/3.6.1/bootstrap4-toggle.min.css"
-          integrity="sha512-EzrsULyNzUc4xnMaqTrB4EpGvudqpetxG/WNjCpG6ZyyAGxeB6OBF9o246+mwx3l/9Cn838iLIcrxpPHTiygAA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @stack('page_css') --}}
+    <!-- plugin css -->
+    <link href="{{ asset('lineone/css/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
 
-    <!-- AdminLTE -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css"
-          integrity="sha512-mxrUXSjrxl8vm5GwafxcqTrEwO1/oBNU25l20GODsysHReZo4uhVISzAKzaABH6/tTfAxZrY2FprmeAP5UZY8A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- preloader css -->
+    <link rel="stylesheet" href="{{ asset('lineone/css/preloader.min.css') }}" type="text/css" />
 
-    <!-- iCheck -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
-          integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg=="
-          crossorigin="anonymous"/>
+    <!-- Bootstrap Css -->
+    <link href="{{ asset('lineone/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ asset('lineone/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ asset('lineone/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
-          integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
-          crossorigin="anonymous"/>
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
-          integrity="sha512-aEe/ZxePawj0+G2R+AaIxgrQuKT68I28qh+wgLrcAJOz3rxCP+TwrK5SPN+E5I+1IQjNtcfvb96HDagwrKRdBw=="
-          crossorigin="anonymous"/>
-
-    @stack('third_party_stylesheets')
-
-    @stack('page_css')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-    <!-- Main Header -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
+<body data-topbar="dark">
+    <div id="layout-wrapper">
 
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown user-menu">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
-                         class="user-image img-circle elevation-2" alt="User Image">
-                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <!-- User image -->
-                    <li class="user-header bg-primary">
-                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
-                             class="img-circle elevation-2"
-                             alt="User Image">
-                        <p>
-                            {{ Auth::user()->name }}
-                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
-                        </p>
-                    </li>
-                    <!-- Menu Footer-->
-                    <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                        <a href="#" class="btn btn-default btn-flat float-right"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Sign out
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="index.html" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="30">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="24"> <span
+                                    class="logo-txt">Dason</span>
+                            </span>
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
 
-    <!-- Left side column. contains the logo and sidebar -->
-@include('layouts.sidebar')
+                        <a href="index.html" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="30">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="24"> <span
+                                    class="logo-txt">Dason</span>
+                            </span>
+                        </a>
+                    </div>
 
-<!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <section class="content">
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                    <!-- App Search-->
+                    <form class="app-search d-none d-lg-block">
+                        <div class="position-relative">
+                            <input type="search" class="form-control" placeholder="Search...">
+                            <button class="btn btn-primary" type="button"><i
+                                    class="bx bx-search-alt align-middle"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="d-flex">
+
+                    <div class="dropdown d-inline-block d-lg-none ms-2">
+                        <button type="button" class="btn header-item" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i data-feather="search" class="icon-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..."
+                                            aria-label="Search Result">
+
+                                        <button class="btn btn-primary" type="submit"><i
+                                                class="mdi mdi-magnify"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-none d-sm-inline-block">
+                        <button type="button" class="btn header-item" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img id="header-lang-img" src="{{ asset('lineone/images/flags/us.jpg')}}" alt="Header Language"
+                                height="16">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
+                                <img src="{{ asset('lineone/images/flags/us.jpg')}}" alt="user-image" class="me-1"
+                                    height="12"> <span class="align-middle">English</span>
+                            </a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
+                                <img src="{{ asset('lineone/images/flags/spain.jpg')}}" alt="user-image" class="me-1"
+                                    height="12"> <span class="align-middle">Spanish</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
+                                <img src="{{ asset('lineone/images/flags/germany.jpg')}}" alt="user-image" class="me-1"
+                                    height="12"> <span class="align-middle">German</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
+                                <img src="{{ asset('lineone/images/flags/italy.jpg')}}" alt="user-image" class="me-1"
+                                    height="12"> <span class="align-middle">Italian</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
+                                <img src="{{ asset('lineone/images/flags/russia.jpg')}}" alt="user-image" class="me-1"
+                                    height="12"> <span class="align-middle">Russian</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-none d-sm-inline-block">
+                        <button type="button" class="btn header-item" id="mode-setting-btn">
+                            <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
+                            <i data-feather="sun" class="icon-lg layout-mode-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown d-none d-lg-inline-block ms-1">
+                        <button type="button" class="btn header-item" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i data-feather="grid" class="icon-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                            <div class="p-2">
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="{{ asset('lineone/images/brands/github.png')}}" alt="Github">
+                                            <span>GitHub</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="{{ asset('lineone/images/brands/bitbucket.png')}}" alt="bitbucket">
+                                            <span>Bitbucket</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="{{ asset('lineone/images/brands/dribbble.png')}}" alt="dribbble">
+                                            <span>Dribbble</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="{{ asset('lineone/images/brands/dropbox.png')}}" alt="dropbox">
+                                            <span>Dropbox</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="{{ asset('lineone/images/brands/mail_chimp.png')}}" alt="mail_chimp">
+                                            <span>Mail Chimp</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="{{ asset('lineone/images/brands/slack.png')}}" alt="slack">
+                                            <span>Slack</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item noti-icon position-relative"
+                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i data-feather="bell" class="icon-lg"></i>
+                            <span class="badge bg-success rounded-pill">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"> Notifications </h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="#!" class="small text-reset text-decoration-underline"> Unread
+                                            (3)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img src="{{ asset('lineone/images/users/avatar-3.jpg')}}"
+                                                class="rounded-circle avatar-sm" alt="user-pic">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">James Lemire</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">It will seem like simplified English.</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 avatar-sm me-3">
+                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                <i class="bx bx-cart"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Your order is placed</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">If several languages coalesce the grammar</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 avatar-sm me-3">
+                                            <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                <i class="bx bx-badge-check"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Your item is shipped</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">If several languages coalesce the grammar</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img src="{{ asset('lineone/images/users/avatar-6.jpg')}}"
+                                                class="rounded-circle avatar-sm" alt="user-pic">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Salena Layfield</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">As a skeptical Cambridge friend of mine occidental.
+                                                </p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top d-grid">
+                                <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                                    <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item right-bar-toggle me-2">
+                            <i data-feather="settings" class="icon-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item bg-light-subtle border-start border-end"
+                            id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="{{ asset('lineone/images/users/avatar-1.jpg')}}"
+                                alt="Header Avatar">
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">Paul K.</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a class="dropdown-item" href="apps-contacts-profile.html"><i
+                                    class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
+                            <a class="dropdown-item" href="auth-lock-screen.html"><i
+                                    class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="auth-logout.html"><i
+                                    class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== Left Sidebar Start ========== -->
+
+        @include('layouts.sidebar')
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
             @yield('content')
-        </section>
-    </div>
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.1.0
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> {{config('app.name')}}.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Maintained by <a href="#!"
+                                    class="text-decoration-underline">{{config('app.name')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <strong>
-           Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.
-        </strong>
-        All rights reserved.
-    </footer>
-</div>
+        <!-- end main content-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-        crossorigin="anonymous"></script>
+    </div>
+    <!-- END layout-wrapper -->
 
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
+ <!-- JAVASCRIPT -->
+        <script src="{{asset('lineone/js/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('lineone/js/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('lineone/js/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{asset('lineone/js/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('lineone/js/libs/node-waves/waves.min.js')}}"></script>
+        <script src="{{asset('lineone/js/libs/feather-icons/feather.min.js')}}"></script>
+        <!-- pace js -->
+        <script src="{{asset('lineone/js/libs/pace-js/pace.min.js')}}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-        crossorigin="anonymous"></script>
+        <!-- nouisliderribute js -->
+        <script src="{{asset('lineone/js/libs/nouislider/nouislider.min.js')}}"></script>
+        <script src="{{asset('lineone/js/libs/wnumb/wNumb.min.js')}}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+        <!-- init js -->
+        <script src="{{asset('lineone/js/js/pages/product-filter-range.init.js')}}"></script>
 
-<!-- AdminLTE App -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"
-        integrity="sha512-AJUWwfMxFuQLv1iPZOTZX0N/jTCIrLxyZjTRKQostNU71MzZTEPHjajSK20Kj1TwJELpP7gl+ShXw5brpnKwEg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{asset('lineone/js/js/app.js')}}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"
-        integrity="sha512-GDey37RZAxFkpFeJorEUwNoIbkTwsyC736KNSYucu1WJWFK9qTdzYub8ATxktr6Dwke7nbFaioypzbDOQykoRg=="
-        crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
-        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
-        crossorigin="anonymous"></script>
-        
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/1.3/bootstrapSwitch.min.js"
-        integrity="sha512-DAc/LqVY2liDbikmJwUS1MSE3pIH0DFprKHZKPcJC7e3TtAOzT55gEMTleegwyuIWgCfOPOM8eLbbvFaG9F/cA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-    $(function () {
-        bsCustomFileInput.init();
-    });
-
-    $("input[data-bootstrap-switch]").each(function () {
-        $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    });
-</script>
-
-@stack('third_party_scripts')
-
-@stack('page_scripts')
-</body>
+    </body>
 </html>

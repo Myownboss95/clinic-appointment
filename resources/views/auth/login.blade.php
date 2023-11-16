@@ -1,4 +1,3 @@
-
 @extends('layouts.auth')
 
 @section('content')
@@ -11,9 +10,9 @@
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
                                 <div class="mb-4 mb-md-5 text-center">
-                                    <a href="{{ url('/')}}" class="d-block auth-logo">
-                                        <img src="{{asset('lineone/images/logo-sm.svg')}}" alt="" height="28"> <span
-                                            class="logo-txt">{{ config('app.name') }}</span>
+                                    <a href="{{ url('/') }}" class="d-block auth-logo">
+                                        <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="28">
+                                        <span class="logo-txt">{{ config('app.name') }}</span>
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
@@ -24,8 +23,9 @@
                                     <form class="mt-4 pt-2" method="post" action="{{ url('/login') }}">
                                         @csrf
                                         <div class="form-floating form-floating-custom mb-4">
-                                            <input type="text" class="form-control  @error('email') is-invalid @enderror" id="input-email"
-                                                placeholder="Enter User Name" value="{{ old('email') }}" name="email">
+                                            <input type="text" class="form-control  @error('email') is-invalid @enderror"
+                                                id="input-email" placeholder="Enter User Name" value="{{ old('email') }}"
+                                                name="email">
                                             <label for="input-email">Email</label>
                                             <div class="form-floating-icon">
                                                 <i data-feather="mail"></i>
@@ -40,8 +40,7 @@
                                                 class="form-control pe-5 @error('password') is-invalid @enderror"
                                                 id="password-input" placeholder="Enter Password" name="password">
 
-                                            <button type="button"
-                                                class="btn btn-link position-absolute h-100 end-0 top-0"
+                                            <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
                                                 id="password-addon">
                                                 <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
                                             </button>
@@ -57,8 +56,7 @@
                                         <div class="row mb-4">
                                             <div class="col">
                                                 <div class="form-check font-size-15">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="remember-check">
+                                                    <input class="form-check-input" type="checkbox" id="remember-check">
                                                     <label class="form-check-label font-size-13" for="remember-check">
                                                         Remember me
                                                     </label>
@@ -105,8 +103,8 @@
                                                 Forgot Password?</a> </p>
                                     </div>
                                     <div class="mt-1 text-center">
-                                        <p class="text-muted mb-0">Don't have an account ? <a
-                                                href="{{ route('register') }}" class="text-primary fw-semibold">
+                                        <p class="text-muted mb-0">Don't have an account ? <a href="{{ route('register') }}"
+                                                class="text-primary fw-semibold">
                                                 Signup now </a> </p>
                                     </div>
                                 </div>
@@ -130,6 +128,3 @@
         <!-- end container fluid -->
     </div>
 @endsection
-
-
-

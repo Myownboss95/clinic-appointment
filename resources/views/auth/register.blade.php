@@ -21,24 +21,25 @@
                                     </div>
                                     <form class="mt-4 pt-2" method="post" action="{{ route('register') }}">
                                         @csrf
-                                         <div class="form-floating form-floating-custom mb-4">
-                                                <input type="text" class="form-control  @error('name') is-invalid @enderror"
-                    value="{{ old('name') }}"  id="input-name" placeholder="Enter User Name" name="name" required>
-                                                <div class="invalid-feedback">
-                                                    Please Enter Full Name
-                                                </div> 
-                                                <label for="input-name">Full Name</label>
-                                                <div class="form-floating-icon">
-                                                   <i data-feather="users"></i>
-                                                </div>
-                                                @error('name')
+                                        <div class="form-floating form-floating-custom mb-4">
+                                            <input type="text" class="form-control  @error('name') is-invalid @enderror"
+                                                value="{{ old('name') }}" id="input-name" placeholder="Enter User Name"
+                                                name="name" required>
+                                            <div class="invalid-feedback">
+                                                Please Enter Full Name
+                                            </div>
+                                            <label for="input-name">Full Name</label>
+                                            <div class="form-floating-icon">
+                                                <i data-feather="users"></i>
+                                            </div>
+                                            @error('name')
                                                 <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
-                                            </div>
+                                        </div>
                                         <div class="form-floating form-floating-custom mb-4">
                                             <input type="text" class="form-control  @error('email') is-invalid @enderror"
-                                                id="input-email" placeholder="Enter Email"
-                                                value="{{ old('email') }}" name="email">
+                                                id="input-email" placeholder="Enter Email" value="{{ old('email') }}"
+                                                name="email">
                                             <label for="input-email">Email</label>
                                             <div class="form-floating-icon">
                                                 <i data-feather="mail"></i>
@@ -68,7 +69,8 @@
                                         <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
                                             <input type="password"
                                                 class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
-                                                id="password-input_confirmation" placeholder="Confirm Password" name="password_confirmation">
+                                                id="password-input_confirmation" placeholder="Confirm Password"
+                                                name="password_confirmation">
 
                                             <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
                                                 id="password-addon">
@@ -86,7 +88,8 @@
                                         <div class="row mb-4">
                                             <div class="col">
                                                 <div class="form-check font-size-15">
-                                                    <input class="form-check-input" type="checkbox" id="remember-check" name="terms" value="agree">
+                                                    <input class="form-check-input" type="checkbox" id="remember-check"
+                                                        name="terms" value="agree">
                                                     <label class="form-check-label font-size-13" for="remember-check">
                                                         I agree to the <a href="#">terms</a>
                                                     </label>
@@ -127,8 +130,8 @@
                                         </ul>
                                     </div>
                                     <div class="mt-1 text-center">
-                                        <p class="text-muted mb-0">Have an account ? <a
-                                                href="{{ route('login') }}" class="text-primary fw-semibold">
+                                        <p class="text-muted mb-0">Have an account ? <a href="{{ route('login') }}"
+                                                class="text-primary fw-semibold">
                                                 Login </a> </p>
                                     </div>
                                 </div>

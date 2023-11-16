@@ -6,37 +6,9 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    {{-- <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- @stack('third_party_stylesheets')
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap4-toggle/3.6.1/bootstrap4-toggle.min.css"
-        integrity="sha512-EzrsULyNzUc4xnMaqTrB4EpGvudqpetxG/WNjCpG6ZyyAGxeB6OBF9o246+mwx3l/9Cn838iLIcrxpPHTiygAA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- AdminLTE -->
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css"
-          integrity="sha512-mxrUXSjrxl8vm5GwafxcqTrEwO1/oBNU25l20GODsysHReZo4uhVISzAKzaABH6/tTfAxZrY2FprmeAP5UZY8A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-
-    <!-- iCheck -->
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
-        integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg=="
-        crossorigin="anonymous" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
-        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
-        crossorigin="anonymous" />
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
-        integrity="sha512-aEe/ZxePawj0+G2R+AaIxgrQuKT68I28qh+wgLrcAJOz3rxCP+TwrK5SPN+E5I+1IQjNtcfvb96HDagwrKRdBw=="
-        crossorigin="anonymous" />
-
-    @stack('third_party_stylesheets')
-
-    @stack('page_css')  --}}
+    @stack('page_css') --}}
     <!-- plugin css -->
     <link href="{{ asset('lineone/css/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
 
@@ -63,20 +35,20 @@
                     <div class="navbar-brand-box">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="assets/images/logo-sm.svg" alt="" height="30">
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="30">
                             </span>
                             <span class="logo-lg">
-                                <img src="assets/images/logo-sm.svg" alt="" height="24"> <span
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="24"> <span
                                     class="logo-txt">Dason</span>
                             </span>
                         </a>
 
                         <a href="index.html" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="assets/images/logo-sm.svg" alt="" height="30">
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="30">
                             </span>
                             <span class="logo-lg">
-                                <img src="assets/images/logo-sm.svg" alt="" height="24"> <span
+                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="24"> <span
                                     class="logo-txt">Dason</span>
                             </span>
                         </a>
@@ -123,37 +95,37 @@
                     <div class="dropdown d-none d-sm-inline-block">
                         <button type="button" class="btn header-item" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <img id="header-lang-img" src="assets/images/flags/us.jpg" alt="Header Language"
+                            <img id="header-lang-img" src="{{ asset('lineone/images/flags/us.jpg')}}" alt="Header Language"
                                 height="16">
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
-                                <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1"
+                                <img src="{{ asset('lineone/images/flags/us.jpg')}}" alt="user-image" class="me-1"
                                     height="12"> <span class="align-middle">English</span>
                             </a>
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                                <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1"
+                                <img src="{{ asset('lineone/images/flags/spain.jpg')}}" alt="user-image" class="me-1"
                                     height="12"> <span class="align-middle">Spanish</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                                <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1"
+                                <img src="{{ asset('lineone/images/flags/germany.jpg')}}" alt="user-image" class="me-1"
                                     height="12"> <span class="align-middle">German</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                                <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1"
+                                <img src="{{ asset('lineone/images/flags/italy.jpg')}}" alt="user-image" class="me-1"
                                     height="12"> <span class="align-middle">Italian</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                                <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1"
+                                <img src="{{ asset('lineone/images/flags/russia.jpg')}}" alt="user-image" class="me-1"
                                     height="12"> <span class="align-middle">Russian</span>
                             </a>
                         </div>
@@ -176,19 +148,19 @@
                                 <div class="row g-0">
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="assets/images/brands/github.png" alt="Github">
+                                            <img src="{{ asset('lineone/images/brands/github.png')}}" alt="Github">
                                             <span>GitHub</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
+                                            <img src="{{ asset('lineone/images/brands/bitbucket.png')}}" alt="bitbucket">
                                             <span>Bitbucket</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="assets/images/brands/dribbble.png" alt="dribbble">
+                                            <img src="{{ asset('lineone/images/brands/dribbble.png')}}" alt="dribbble">
                                             <span>Dribbble</span>
                                         </a>
                                     </div>
@@ -197,19 +169,19 @@
                                 <div class="row g-0">
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="assets/images/brands/dropbox.png" alt="dropbox">
+                                            <img src="{{ asset('lineone/images/brands/dropbox.png')}}" alt="dropbox">
                                             <span>Dropbox</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="assets/images/brands/mail_chimp.png" alt="mail_chimp">
+                                            <img src="{{ asset('lineone/images/brands/mail_chimp.png')}}" alt="mail_chimp">
                                             <span>Mail Chimp</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="assets/images/brands/slack.png" alt="slack">
+                                            <img src="{{ asset('lineone/images/brands/slack.png')}}" alt="slack">
                                             <span>Slack</span>
                                         </a>
                                     </div>
@@ -242,7 +214,7 @@
                                 <a href="#!" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
-                                            <img src="assets/images/users/avatar-3.jpg"
+                                            <img src="{{ asset('lineone/images/users/avatar-3.jpg')}}"
                                                 class="rounded-circle avatar-sm" alt="user-pic">
                                         </div>
                                         <div class="flex-grow-1">
@@ -293,7 +265,7 @@
                                 <a href="#!" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
-                                            <img src="assets/images/users/avatar-6.jpg"
+                                            <img src="{{ asset('lineone/images/users/avatar-6.jpg')}}"
                                                 class="rounded-circle avatar-sm" alt="user-pic">
                                         </div>
                                         <div class="flex-grow-1">
@@ -326,7 +298,7 @@
                         <button type="button" class="btn header-item bg-light-subtle border-start border-end"
                             id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
+                            <img class="rounded-circle header-profile-user" src="{{ asset('lineone/images/users/avatar-1.jpg')}}"
                                 alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1 fw-medium">Paul K.</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>

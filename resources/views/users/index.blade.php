@@ -7,12 +7,14 @@
                 <div class="col-sm-6">
                     <h1>Users</h1>
                 </div>
+                @admin
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('users.create') }}">
                         Add New
                     </a>
                 </div>
+                @endadmin
             </div>
         </div>
     </section>

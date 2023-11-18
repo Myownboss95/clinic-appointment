@@ -35,21 +35,21 @@
                     <div class="navbar-brand-box">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="30">
+                                <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="30">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="24"> <span
-                                    class="logo-txt">Dason</span>
+                                <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
+                                <span class="logo-txt">Dason</span>
                             </span>
                         </a>
 
                         <a href="index.html" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="30">
+                                <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="30">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('lineone/images/logo-sm.svg')}}" alt="" height="24"> <span
-                                    class="logo-txt">Dason</span>
+                                <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
+                                <span class="logo-txt">Dason</span>
                             </span>
                         </a>
                     </div>
@@ -93,40 +93,40 @@
                     </div>
 
                     <div class="dropdown d-none d-sm-inline-block">
-                        <button type="button" class="btn header-item" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <img id="header-lang-img" src="{{ asset('lineone/images/flags/us.jpg')}}" alt="Header Language"
-                                height="16">
+                        <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img id="header-lang-img" src="{{ asset('lineone/images/flags/us.jpg') }}"
+                                alt="Header Language" height="16">
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
-                                <img src="{{ asset('lineone/images/flags/us.jpg')}}" alt="user-image" class="me-1"
+                                <img src="{{ asset('lineone/images/flags/us.jpg') }}" alt="user-image" class="me-1"
                                     height="12"> <span class="align-middle">English</span>
                             </a>
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                                <img src="{{ asset('lineone/images/flags/spain.jpg')}}" alt="user-image" class="me-1"
-                                    height="12"> <span class="align-middle">Spanish</span>
+                                <img src="{{ asset('lineone/images/flags/spain.jpg') }}" alt="user-image"
+                                    class="me-1" height="12"> <span class="align-middle">Spanish</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                                <img src="{{ asset('lineone/images/flags/germany.jpg')}}" alt="user-image" class="me-1"
-                                    height="12"> <span class="align-middle">German</span>
+                                <img src="{{ asset('lineone/images/flags/germany.jpg') }}" alt="user-image"
+                                    class="me-1" height="12"> <span class="align-middle">German</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                                <img src="{{ asset('lineone/images/flags/italy.jpg')}}" alt="user-image" class="me-1"
-                                    height="12"> <span class="align-middle">Italian</span>
+                                <img src="{{ asset('lineone/images/flags/italy.jpg') }}" alt="user-image"
+                                    class="me-1" height="12"> <span class="align-middle">Italian</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                                <img src="{{ asset('lineone/images/flags/russia.jpg')}}" alt="user-image" class="me-1"
-                                    height="12"> <span class="align-middle">Russian</span>
+                                <img src="{{ asset('lineone/images/flags/russia.jpg') }}" alt="user-image"
+                                    class="me-1" height="12"> <span class="align-middle">Russian</span>
                             </a>
                         </div>
                     </div>
@@ -148,19 +148,22 @@
                                 <div class="row g-0">
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{ asset('lineone/images/brands/github.png')}}" alt="Github">
+                                            <img src="{{ asset('lineone/images/brands/github.png') }}"
+                                                alt="Github">
                                             <span>GitHub</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{ asset('lineone/images/brands/bitbucket.png')}}" alt="bitbucket">
+                                            <img src="{{ asset('lineone/images/brands/bitbucket.png') }}"
+                                                alt="bitbucket">
                                             <span>Bitbucket</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{ asset('lineone/images/brands/dribbble.png')}}" alt="dribbble">
+                                            <img src="{{ asset('lineone/images/brands/dribbble.png') }}"
+                                                alt="dribbble">
                                             <span>Dribbble</span>
                                         </a>
                                     </div>
@@ -169,19 +172,21 @@
                                 <div class="row g-0">
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{ asset('lineone/images/brands/dropbox.png')}}" alt="dropbox">
+                                            <img src="{{ asset('lineone/images/brands/dropbox.png') }}"
+                                                alt="dropbox">
                                             <span>Dropbox</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{ asset('lineone/images/brands/mail_chimp.png')}}" alt="mail_chimp">
+                                            <img src="{{ asset('lineone/images/brands/mail_chimp.png') }}"
+                                                alt="mail_chimp">
                                             <span>Mail Chimp</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{ asset('lineone/images/brands/slack.png')}}" alt="slack">
+                                            <img src="{{ asset('lineone/images/brands/slack.png') }}" alt="slack">
                                             <span>Slack</span>
                                         </a>
                                     </div>
@@ -214,7 +219,7 @@
                                 <a href="#!" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
-                                            <img src="{{ asset('lineone/images/users/avatar-3.jpg')}}"
+                                            <img src="{{ asset('lineone/images/users/avatar-3.jpg') }}"
                                                 class="rounded-circle avatar-sm" alt="user-pic">
                                         </div>
                                         <div class="flex-grow-1">
@@ -265,7 +270,7 @@
                                 <a href="#!" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
-                                            <img src="{{ asset('lineone/images/users/avatar-6.jpg')}}"
+                                            <img src="{{ asset('lineone/images/users/avatar-6.jpg') }}"
                                                 class="rounded-circle avatar-sm" alt="user-pic">
                                         </div>
                                         <div class="flex-grow-1">
@@ -298,8 +303,8 @@
                         <button type="button" class="btn header-item bg-light-subtle border-start border-end"
                             id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="{{ asset('lineone/images/users/avatar-1.jpg')}}"
-                                alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user"
+                                src="{{ asset('lineone/images/users/avatar-1.jpg') }}" alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1 fw-medium">Paul K.</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
@@ -310,8 +315,11 @@
                             <a class="dropdown-item" href="auth-lock-screen.html"><i
                                     class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="auth-logout.html"><i
-                                    class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item"><i
+                                        class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</button>
+                            </form>
                         </div>
                     </div>
 
@@ -335,12 +343,12 @@
                         <div class="col-sm-6">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> {{config('app.name')}}.
+                            </script> {{ config('app.name') }}.
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
                                 Maintained by <a href="#!"
-                                    class="text-decoration-underline">{{config('app.name')}}</a>
+                                    class="text-decoration-underline">{{ config('app.name') }}</a>
                             </div>
                         </div>
                     </div>
@@ -352,24 +360,25 @@
     </div>
     <!-- END layout-wrapper -->
 
- <!-- JAVASCRIPT -->
-        <script src="{{asset('lineone/js/libs/jquery/jquery.min.js')}}"></script>
-        <script src="{{asset('lineone/js/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('lineone/js/libs/metismenu/metisMenu.min.js')}}"></script>
-        <script src="{{asset('lineone/js/libs/simplebar/simplebar.min.js')}}"></script>
-        <script src="{{asset('lineone/js/libs/node-waves/waves.min.js')}}"></script>
-        <script src="{{asset('lineone/js/libs/feather-icons/feather.min.js')}}"></script>
-        <!-- pace js -->
-        <script src="{{asset('lineone/js/libs/pace-js/pace.min.js')}}"></script>
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('lineone/js/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('lineone/js/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('lineone/js/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('lineone/js/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('lineone/js/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('lineone/js/libs/feather-icons/feather.min.js') }}"></script>
+    <!-- pace js -->
+    <script src="{{ asset('lineone/js/libs/pace-js/pace.min.js') }}"></script>
 
-        <!-- nouisliderribute js -->
-        <script src="{{asset('lineone/js/libs/nouislider/nouislider.min.js')}}"></script>
-        <script src="{{asset('lineone/js/libs/wnumb/wNumb.min.js')}}"></script>
+    <!-- nouisliderribute js -->
+    <script src="{{ asset('lineone/js/libs/nouislider/nouislider.min.js') }}"></script>
+    <script src="{{ asset('lineone/js/libs/wnumb/wNumb.min.js') }}"></script>
 
-        <!-- init js -->
-        <script src="{{asset('lineone/js/js/pages/product-filter-range.init.js')}}"></script>
+    <!-- init js -->
+    <script src="{{ asset('lineone/js/js/pages/product-filter-range.init.js') }}"></script>
 
-        <script src="{{asset('lineone/js/js/app.js')}}"></script>
+    <script src="{{ asset('lineone/js/js/app.js') }}"></script>
 
-    </body>
+</body>
+
 </html>

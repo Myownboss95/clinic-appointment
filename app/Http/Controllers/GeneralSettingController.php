@@ -58,8 +58,7 @@ class GeneralSettingController extends AppBaseController
 
         $generalSetting = $this->generalSettingRepository->create($input);
 
-        Flash::success('General Setting saved successfully.');
-
+        toastr()->addSuccess('Appointment saved successfully.');
         return redirect(route('generalSettings.index'));
     }
 
@@ -75,7 +74,7 @@ class GeneralSettingController extends AppBaseController
         $generalSetting = $this->generalSettingRepository->find($id);
 
         if (empty($generalSetting)) {
-            Flash::error('General Setting not found');
+            toastr()->addError('General Setting not found');
 
             return redirect(route('generalSettings.index'));
         }
@@ -95,7 +94,7 @@ class GeneralSettingController extends AppBaseController
         $generalSetting = $this->generalSettingRepository->find($id);
 
         if (empty($generalSetting)) {
-            Flash::error('General Setting not found');
+            toastr()->addError('General Setting not found');
 
             return redirect(route('generalSettings.index'));
         }
@@ -116,14 +115,14 @@ class GeneralSettingController extends AppBaseController
         $generalSetting = $this->generalSettingRepository->find($id);
 
         if (empty($generalSetting)) {
-            Flash::error('General Setting not found');
+            toastr()->addError('General Setting not found');
 
             return redirect(route('generalSettings.index'));
         }
 
         $generalSetting = $this->generalSettingRepository->update($request->all(), $id);
 
-        Flash::success('General Setting updated successfully.');
+        toastr()->addSuccess('General Setting updated successfully.');
 
         return redirect(route('generalSettings.index'));
     }
@@ -142,14 +141,15 @@ class GeneralSettingController extends AppBaseController
         $generalSetting = $this->generalSettingRepository->find($id);
 
         if (empty($generalSetting)) {
-            Flash::error('General Setting not found');
+            toastr()->addError('General Setting not found');
+
 
             return redirect(route('generalSettings.index'));
         }
 
         $this->generalSettingRepository->delete($id);
 
-        Flash::success('General Setting deleted successfully.');
+        toastr()->addSuccess('General Setting deleted successfully.');
 
         return redirect(route('generalSettings.index'));
     }

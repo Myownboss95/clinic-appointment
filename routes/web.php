@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +20,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
+Route::get('/register/google', [RegisterController::class, 'redirectToGoogle'])->name('register.google');
+Route::get('/register/google/callback', [RegisterController::class, 'handleGoogleCallback']);
+Route::middleware('auth')->group(function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::resource('roles', App\Http\Controllers\RoleController::class);
@@ -70,3 +77,6 @@ Route::resource('cities', App\Http\Controllers\CityController::class);
 
 
 Route::resource('appointments', App\Http\Controllers\AppointmentController::class);
+
+});
+

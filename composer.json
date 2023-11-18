@@ -13,10 +13,13 @@
         "infyomlabs/laravel-generator": "^3.0",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
+        "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.2",
-        "livewire/livewire": "^2.12"
+        "livewire/livewire": "^2.12",
+        "php-flasher/flasher-laravel": "^1.15",
+        "php-flasher/flasher-toastr-laravel": "^1.15"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

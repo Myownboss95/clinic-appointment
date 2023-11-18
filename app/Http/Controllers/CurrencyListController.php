@@ -57,8 +57,7 @@ class CurrencyListController extends AppBaseController
         $input = $request->all();
 
         $currencyList = $this->currencyListRepository->create($input);
-
-        Flash::success('Currency List saved successfully.');
+        toastr()->addSuccess('Currency List saved successfully.');
 
         return redirect(route('currencyLists.index'));
     }

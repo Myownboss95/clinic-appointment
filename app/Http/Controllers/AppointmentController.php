@@ -58,7 +58,7 @@ class AppointmentController extends AppBaseController
 
         $appointment = $this->appointmentRepository->create($input);
 
-        Flash::success('Appointment saved successfully.');
+        toastr()->addSuccess('Appointment saved successfully.');
 
         return redirect(route('appointments.index'));
     }
@@ -75,7 +75,7 @@ class AppointmentController extends AppBaseController
         $appointment = $this->appointmentRepository->find($id);
 
         if (empty($appointment)) {
-            Flash::error('Appointment not found');
+            toastr()->addError('Appointment not found');
 
             return redirect(route('appointments.index'));
         }
@@ -95,7 +95,7 @@ class AppointmentController extends AppBaseController
         $appointment = $this->appointmentRepository->find($id);
 
         if (empty($appointment)) {
-            Flash::error('Appointment not found');
+            toastr()->addError('Appointment not found');
 
             return redirect(route('appointments.index'));
         }
@@ -116,14 +116,15 @@ class AppointmentController extends AppBaseController
         $appointment = $this->appointmentRepository->find($id);
 
         if (empty($appointment)) {
-            Flash::error('Appointment not found');
+            
 
+            toastr()->addError('urrency List saved successfully.');
             return redirect(route('appointments.index'));
         }
 
         $appointment = $this->appointmentRepository->update($request->all(), $id);
 
-        Flash::success('Appointment updated successfully.');
+        toastr()->addSuccess('Appointment updated successfully.');
 
         return redirect(route('appointments.index'));
     }
@@ -142,14 +143,13 @@ class AppointmentController extends AppBaseController
         $appointment = $this->appointmentRepository->find($id);
 
         if (empty($appointment)) {
-            Flash::error('Appointment not found');
-
+            toastr()->addError('Appointment not found');
             return redirect(route('appointments.index'));
         }
 
         $this->appointmentRepository->delete($id);
 
-        Flash::success('Appointment deleted successfully.');
+        toastr()->addSuccess('Appointment saved successfully.');
 
         return redirect(route('appointments.index'));
     }

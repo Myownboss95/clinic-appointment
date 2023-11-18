@@ -122,7 +122,7 @@
                                                 </a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a href="javascript:void()"
+                                                <a href="{{ route('register.google')}}"
                                                     class="social-list-item bg-danger text-white border-danger">
                                                     <i class="mdi mdi-google"></i>
                                                 </a>

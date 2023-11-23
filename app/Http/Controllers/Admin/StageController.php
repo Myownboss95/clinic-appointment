@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateStageRequest;
 use App\Http\Requests\UpdateStageRequest;
@@ -58,7 +58,7 @@ class StageController extends AppBaseController
 
         $stage = $this->stageRepository->create($input);
 
-        Flash::success('Stage saved successfully.');
+        toastr()->addSuccess('Stage saved successfully.');
 
         return redirect(route('stages.index'));
     }
@@ -75,7 +75,7 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
             return redirect(route('stages.index'));
         }
@@ -95,7 +95,7 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
             return redirect(route('stages.index'));
         }
@@ -116,14 +116,14 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
             return redirect(route('stages.index'));
         }
 
         $stage = $this->stageRepository->update($request->all(), $id);
 
-        Flash::success('Stage updated successfully.');
+        toastr()->addSuccess('Stage updated successfully.');
 
         return redirect(route('stages.index'));
     }
@@ -142,14 +142,14 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
             return redirect(route('stages.index'));
         }
 
         $this->stageRepository->delete($id);
 
-        Flash::success('Stage deleted successfully.');
+        toastr()->addSuccess('Stage deleted successfully.');
 
         return redirect(route('stages.index'));
     }

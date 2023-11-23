@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
@@ -52,4 +53,17 @@ class LoginController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->route(
+            $user->role_id == 3
+            ? 'admin.index'
+            : ($user->role_id == 2
+                ? 'staff.index'
+                : 'user.index')
+
+        );
+    }
+
 }

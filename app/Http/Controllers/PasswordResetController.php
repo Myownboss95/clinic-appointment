@@ -58,7 +58,7 @@ class PasswordResetController extends AppBaseController
 
         $passwordReset = $this->passwordResetRepository->create($input);
 
-        Flash::success('Password Reset saved successfully.');
+        toastr()->addSuccess('Password Reset saved successfully.');
 
         return redirect(route('passwordResets.index'));
     }
@@ -75,7 +75,7 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            Flash::error('Password Reset not found');
+            toastr()->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
@@ -95,7 +95,7 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            Flash::error('Password Reset not found');
+            toastr()->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
@@ -116,14 +116,14 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            Flash::error('Password Reset not found');
+            toastr()->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
 
         $passwordReset = $this->passwordResetRepository->update($request->all(), $id);
 
-        Flash::success('Password Reset updated successfully.');
+        toastr()->addSuccess('Password Reset updated successfully.');
 
         return redirect(route('passwordResets.index'));
     }
@@ -142,14 +142,14 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            Flash::error('Password Reset not found');
+            toastr()->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
 
         $this->passwordResetRepository->delete($id);
 
-        Flash::success('Password Reset deleted successfully.');
+        toastr()->addSuccess('Password Reset deleted successfully.');
 
         return redirect(route('passwordResets.index'));
     }

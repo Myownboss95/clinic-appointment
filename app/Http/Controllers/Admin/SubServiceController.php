@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateSubServiceRequest;
 use App\Http\Requests\UpdateSubServiceRequest;
@@ -58,7 +58,7 @@ class SubServiceController extends AppBaseController
 
         $subService = $this->subServiceRepository->create($input);
 
-        Flash::success('Sub Service saved successfully.');
+        toastr()->addSuccess('Sub Service saved successfully.');
 
         return redirect(route('subServices.index'));
     }
@@ -75,7 +75,7 @@ class SubServiceController extends AppBaseController
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
-            Flash::error('Sub Service not found');
+            toastr()->addError('Sub Service not found');
 
             return redirect(route('subServices.index'));
         }
@@ -95,7 +95,7 @@ class SubServiceController extends AppBaseController
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
-            Flash::error('Sub Service not found');
+            toastr()->addError('Sub Service not found');
 
             return redirect(route('subServices.index'));
         }
@@ -116,14 +116,14 @@ class SubServiceController extends AppBaseController
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
-            Flash::error('Sub Service not found');
+            toastr()->addError('Sub Service not found');
 
             return redirect(route('subServices.index'));
         }
 
         $subService = $this->subServiceRepository->update($request->all(), $id);
 
-        Flash::success('Sub Service updated successfully.');
+        toastr()->addSuccess('Sub Service updated successfully.');
 
         return redirect(route('subServices.index'));
     }
@@ -142,14 +142,14 @@ class SubServiceController extends AppBaseController
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
-            Flash::error('Sub Service not found');
+            toastr()->addError('Sub Service not found');
 
             return redirect(route('subServices.index'));
         }
 
         $this->subServiceRepository->delete($id);
 
-        Flash::success('Sub Service deleted successfully.');
+        toastr()->addSuccess('Sub Service deleted successfully.');
 
         return redirect(route('subServices.index'));
     }

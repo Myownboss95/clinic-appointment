@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -60,7 +60,7 @@ class UserController extends AppBaseController
 
         $user = $this->userRepository->create($input);
 
-        Flash::success('User saved successfully.');
+        toastr()->addSuccess('User saved successfully.');
 
         return redirect(route('users.index'));
     }
@@ -77,7 +77,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            toastr()->addError('User not found');
 
             return redirect(route('users.index'));
         }
@@ -97,7 +97,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            toastr()->addError('User not found');
 
             return redirect(route('users.index'));
         }
@@ -118,14 +118,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            toastr()->addError('User not found');
 
             return redirect(route('users.index'));
         }
 
         $user = $this->userRepository->update($request->all(), $id);
 
-        Flash::success('User updated successfully.');
+        toastr()->addSuccess('User updated successfully.');
 
         return redirect(route('users.index'));
     }
@@ -144,14 +144,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            toastr()->addError('User not found');
 
             return redirect(route('users.index'));
         }
 
         $this->userRepository->delete($id);
 
-        Flash::success('User deleted successfully.');
+        toastr()->addSuccess('User deleted successfully.');
 
         return redirect(route('users.index'));
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
@@ -58,7 +58,7 @@ class CommentController extends AppBaseController
 
         $comment = $this->commentRepository->create($input);
 
-        Flash::success('Comment saved successfully.');
+        toastr()->addSuccess('Comment saved successfully.');
 
         return redirect(route('comments.index'));
     }
@@ -75,7 +75,7 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            Flash::error('Comment not found');
+            toastr()->addError('Comment not found');
 
             return redirect(route('comments.index'));
         }
@@ -95,7 +95,7 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            Flash::error('Comment not found');
+            toastr()->addError('Comment not found');
 
             return redirect(route('comments.index'));
         }
@@ -116,14 +116,14 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            Flash::error('Comment not found');
+            toastr()->addError('Comment not found');
 
             return redirect(route('comments.index'));
         }
 
         $comment = $this->commentRepository->update($request->all(), $id);
 
-        Flash::success('Comment updated successfully.');
+        toastr()->addSuccess('Comment updated successfully.');
 
         return redirect(route('comments.index'));
     }
@@ -142,14 +142,14 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            Flash::error('Comment not found');
+            toastr()->addError('Comment not found');
 
             return redirect(route('comments.index'));
         }
 
         $this->commentRepository->delete($id);
 
-        Flash::success('Comment deleted successfully.');
+        toastr()->addSuccess('Comment deleted successfully.');
 
         return redirect(route('comments.index'));
     }

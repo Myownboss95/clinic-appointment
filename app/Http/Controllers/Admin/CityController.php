@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateCityRequest;
 use App\Http\Requests\UpdateCityRequest;
@@ -57,8 +57,7 @@ class CityController extends AppBaseController
         $input = $request->all();
 
         $city = $this->cityRepository->create($input);
-
-        Flash::success('City saved successfully.');
+        toastr()->addSuccess('City saved successfully.');
 
         return redirect(route('cities.index'));
     }
@@ -75,7 +74,7 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error('City not found');
+            toastr()->addError('City not found');
 
             return redirect(route('cities.index'));
         }
@@ -95,7 +94,7 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error('City not found');
+            toastr()->addError('City not found');
 
             return redirect(route('cities.index'));
         }
@@ -116,14 +115,14 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error('City not found');
+            toastr()->addError('City not found');
 
             return redirect(route('cities.index'));
         }
 
         $city = $this->cityRepository->update($request->all(), $id);
 
-        Flash::success('City updated successfully.');
+        toastr()->addSuccess('City updated successfully.');
 
         return redirect(route('cities.index'));
     }
@@ -142,14 +141,14 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error('City not found');
+            toastr()->addError('City not found');
 
             return redirect(route('cities.index'));
         }
 
         $this->cityRepository->delete($id);
 
-        Flash::success('City deleted successfully.');
+        toastr()->addSuccess('City deleted successfully.');
 
         return redirect(route('cities.index'));
     }

@@ -61,9 +61,9 @@ class SubService extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required|integer',
+        'name' => 'required|integer|unique:sub_services',
         'service_id' => 'required|integer',
-        'price' => 'nullable|integer',
+        'price' => 'nullable|number',
         'description' => 'nullable|string',
         'image' => 'nullable|string|max:255',
         'created_at' => 'nullable',

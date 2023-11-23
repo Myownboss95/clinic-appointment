@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Service
@@ -49,11 +50,16 @@ class Service extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required|string|max:255',
+        'name' => 'required|string|max:255|unique',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
+
+    public function sub_service(): HasMany
+    {
+        return $this->hasMany(SubService::class);
+    }
 
     
 }

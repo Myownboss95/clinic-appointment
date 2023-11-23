@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -105,6 +106,11 @@ class User extends Authenticatable
         'referred_by_user_id' => 'nullable|integer',
         'email_verified_at' => 'nullable'
     ];
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 
     
 }

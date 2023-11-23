@@ -22,7 +22,7 @@ class UserStageFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->randomDigitNotNull,
+        'user_id' => $this->faker->randomDigitNotNull,
         'sub_service_id' => $this->faker->randomDigitNotNull,
         'service_id' => $this->faker->randomDigitNotNull,
         'log' => $this->faker->text,

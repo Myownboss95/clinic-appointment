@@ -1,5 +1,7 @@
 <?php 
 
+use Illuminate\Support\Str;
+
 
     function roleBasedRoute($routeName)
     {
@@ -26,3 +28,9 @@
             
         return "Customer";
     }
+
+    function user_name()
+    {
+        return Str::substr(auth()->user()->name, 0, 9);
+    }
+

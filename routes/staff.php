@@ -18,11 +18,12 @@ use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\CurrencyListController;
 use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\CountryPhoneCodeController;
-
+use App\Http\Controllers\Admin\CustomerController;
 
 Route::get('/', DashboardController::class)->name('index');
 
 Route::resource('users', UserController::class);
+Route::get('customers', CustomerController::class)->name('customers.index');
 Route::resource('userStages', UserStageController::class);
 Route::resource('subServices', SubServiceController::class);
 Route::resource('states', StateController::class);

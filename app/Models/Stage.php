@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+// use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Stage
@@ -56,4 +59,8 @@ class Stage extends Model
     ];
 
     
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

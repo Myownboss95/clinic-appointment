@@ -8,8 +8,7 @@
                     <h1>Country Phone Code Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('countryPhoneCodes.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('staff.countryPhoneCodes.index') }}">
                         Back
                     </a>
                 </div>

@@ -60,7 +60,7 @@ class CountryController extends AppBaseController
 
         toastr()->addSuccess('Country saved successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(roleBasedRoute('countries.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         return view('countries.show')->with('country', $country);
@@ -97,7 +97,7 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         return view('countries.edit')->with('country', $country);
@@ -118,14 +118,14 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         $country = $this->countryRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Country updated successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(roleBasedRoute('countries.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class CountryController extends AppBaseController
         if (empty($country)) {
             toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         $this->countryRepository->delete($id);
 
         toastr()->addSuccess('Country deleted successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(roleBasedRoute('countries.index'));
     }
 }

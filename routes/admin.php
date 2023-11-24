@@ -19,11 +19,14 @@ use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\CurrencyListController;
 use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\CountryPhoneCodeController;
-
+use App\Http\Controllers\Admin\StaffController;
 
 Route::get('/', DashboardController::class)->name('index');
 Route::resource('roles', RoleController::class); 
 Route::resource('users', UserController::class);
+Route::resource('staff', StaffController::class);
+Route::get('staff/{id}/set-admin', [StaffController::class, 'setAdmin'])->name('set-admin');
+Route::get('staff/{id}/remove-admin', [StaffController::class, 'removeAdmin'])->name('remove-admin');
 Route::resource('userStages', UserStageController::class);
 Route::resource('subServices', SubServiceController::class);
 Route::resource('states', StateController::class);

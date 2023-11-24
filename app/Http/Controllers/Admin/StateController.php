@@ -60,7 +60,7 @@ class StateController extends AppBaseController
 
         toastr()->addSuccess('State saved successfully.');
 
-        return redirect(route('states.index'));
+        return redirect(roleBasedRoute('states.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class StateController extends AppBaseController
         if (empty($state)) {
             toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         return view('states.show')->with('state', $state);
@@ -97,7 +97,7 @@ class StateController extends AppBaseController
         if (empty($state)) {
             toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         return view('states.edit')->with('state', $state);
@@ -118,14 +118,14 @@ class StateController extends AppBaseController
         if (empty($state)) {
             toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         $state = $this->stateRepository->update($request->all(), $id);
 
         toastr()->addSuccess('State updated successfully.');
 
-        return redirect(route('states.index'));
+        return redirect(roleBasedRoute('states.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class StateController extends AppBaseController
         if (empty($state)) {
             toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         $this->stateRepository->delete($id);
 
         toastr()->addSuccess('State deleted successfully.');
 
-        return redirect(route('states.index'));
+        return redirect(roleBasedRoute('states.index'));
     }
 }

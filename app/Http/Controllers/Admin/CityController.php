@@ -59,7 +59,7 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->create($input);
         toastr()->addSuccess('City saved successfully.');
 
-        return redirect(route('cities.index'));
+        return redirect(roleBasedRoute('cities.index'));
     }
 
     /**
@@ -76,7 +76,7 @@ class CityController extends AppBaseController
         if (empty($city)) {
             toastr()->addError('City not found');
 
-            return redirect(route('cities.index'));
+            return redirect(roleBasedRoute('cities.index'));
         }
 
         return view('cities.show')->with('city', $city);
@@ -96,7 +96,7 @@ class CityController extends AppBaseController
         if (empty($city)) {
             toastr()->addError('City not found');
 
-            return redirect(route('cities.index'));
+            return redirect(roleBasedRoute('cities.index'));
         }
 
         return view('cities.edit')->with('city', $city);
@@ -117,14 +117,14 @@ class CityController extends AppBaseController
         if (empty($city)) {
             toastr()->addError('City not found');
 
-            return redirect(route('cities.index'));
+            return redirect(roleBasedRoute('cities.index'));
         }
 
         $city = $this->cityRepository->update($request->all(), $id);
 
         toastr()->addSuccess('City updated successfully.');
 
-        return redirect(route('cities.index'));
+        return redirect(roleBasedRoute('cities.index'));
     }
 
     /**
@@ -143,13 +143,13 @@ class CityController extends AppBaseController
         if (empty($city)) {
             toastr()->addError('City not found');
 
-            return redirect(route('cities.index'));
+            return redirect(roleBasedRoute('cities.index'));
         }
 
         $this->cityRepository->delete($id);
 
         toastr()->addSuccess('City deleted successfully.');
 
-        return redirect(route('cities.index'));
+        return redirect(roleBasedRoute('cities.index'));
     }
 }

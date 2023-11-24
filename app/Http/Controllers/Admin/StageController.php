@@ -60,7 +60,7 @@ class StageController extends AppBaseController
 
         toastr()->addSuccess('Stage saved successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(roleBasedRoute('stages.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class StageController extends AppBaseController
         if (empty($stage)) {
             toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
         return view('stages.show')->with('stage', $stage);
@@ -97,7 +97,7 @@ class StageController extends AppBaseController
         if (empty($stage)) {
             toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
         return view('stages.edit')->with('stage', $stage);
@@ -118,14 +118,14 @@ class StageController extends AppBaseController
         if (empty($stage)) {
             toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
         $stage = $this->stageRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Stage updated successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(roleBasedRoute('stages.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class StageController extends AppBaseController
         if (empty($stage)) {
             toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
         $this->stageRepository->delete($id);
 
         toastr()->addSuccess('Stage deleted successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(roleBasedRoute('stages.index'));
     }
 }

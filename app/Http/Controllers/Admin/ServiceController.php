@@ -60,7 +60,7 @@ class ServiceController extends AppBaseController
 
         toastr()->addSuccess('Service saved successfully.');
 
-        return redirect(route('services.index'));
+        return redirect(roleBasedRoute('services.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class ServiceController extends AppBaseController
         if (empty($service)) {
             toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         return view('services.show')->with('service', $service);
@@ -97,7 +97,7 @@ class ServiceController extends AppBaseController
         if (empty($service)) {
             toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         return view('services.edit')->with('service', $service);
@@ -118,14 +118,14 @@ class ServiceController extends AppBaseController
         if (empty($service)) {
             toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         $service = $this->serviceRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Service updated successfully.');
 
-        return redirect(route('services.index'));
+        return redirect(roleBasedRoute('services.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class ServiceController extends AppBaseController
         if (empty($service)) {
             toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         $this->serviceRepository->delete($id);
 
         toastr()->addSuccess('Service deleted successfully.');
 
-        return redirect(route('services.index'));
+        return redirect(roleBasedRoute('services.index'));
     }
 }

@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class UserController extends AppBaseController
@@ -62,7 +61,7 @@ class UserController extends AppBaseController
 
         toastr()->addSuccess('User saved successfully.');
 
-        return redirect(route('users.index'));
+        return redirect(roleBasedRoute('users.index'));
     }
 
     /**
@@ -79,7 +78,7 @@ class UserController extends AppBaseController
         if (empty($user)) {
             toastr()->addError('User not found');
 
-            return redirect(route('users.index'));
+            return redirect(roleBasedRoute('users.index'));
         }
 
         return view('users.show')->with('user', $user);
@@ -99,7 +98,7 @@ class UserController extends AppBaseController
         if (empty($user)) {
             toastr()->addError('User not found');
 
-            return redirect(route('users.index'));
+            return redirect(roleBasedRoute('users.index'));
         }
 
         return view('users.edit')->with('user', $user);
@@ -120,14 +119,14 @@ class UserController extends AppBaseController
         if (empty($user)) {
             toastr()->addError('User not found');
 
-            return redirect(route('users.index'));
+            return redirect(roleBasedRoute('users.index'));
         }
 
         $user = $this->userRepository->update($request->all(), $id);
 
         toastr()->addSuccess('User updated successfully.');
 
-        return redirect(route('users.index'));
+        return redirect(roleBasedRoute('users.index'));
     }
 
     /**
@@ -146,13 +145,13 @@ class UserController extends AppBaseController
         if (empty($user)) {
             toastr()->addError('User not found');
 
-            return redirect(route('users.index'));
+            return redirect(roleBasedRoute('users.index'));
         }
 
         $this->userRepository->delete($id);
 
         toastr()->addSuccess('User deleted successfully.');
 
-        return redirect(route('users.index'));
+        return redirect(roleBasedRoute('users.index'));
     }
 }

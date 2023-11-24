@@ -60,7 +60,7 @@ class SubServiceController extends AppBaseController
 
         toastr()->addSuccess('Sub Service saved successfully.');
 
-        return redirect(route('subServices.index'));
+        return redirect(roleBasedRoute('subServices.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class SubServiceController extends AppBaseController
         if (empty($subService)) {
             toastr()->addError('Sub Service not found');
 
-            return redirect(route('subServices.index'));
+            return redirect(roleBasedRoute('subServices.index'));
         }
 
         return view('sub_services.show')->with('subService', $subService);
@@ -97,7 +97,7 @@ class SubServiceController extends AppBaseController
         if (empty($subService)) {
             toastr()->addError('Sub Service not found');
 
-            return redirect(route('subServices.index'));
+            return redirect(roleBasedRoute('subServices.index'));
         }
 
         return view('sub_services.edit')->with('subService', $subService);
@@ -118,14 +118,14 @@ class SubServiceController extends AppBaseController
         if (empty($subService)) {
             toastr()->addError('Sub Service not found');
 
-            return redirect(route('subServices.index'));
+            return redirect(roleBasedRoute('subServices.index'));
         }
 
         $subService = $this->subServiceRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Sub Service updated successfully.');
 
-        return redirect(route('subServices.index'));
+        return redirect(roleBasedRoute('subServices.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class SubServiceController extends AppBaseController
         if (empty($subService)) {
             toastr()->addError('Sub Service not found');
 
-            return redirect(route('subServices.index'));
+            return redirect(roleBasedRoute('subServices.index'));
         }
 
         $this->subServiceRepository->delete($id);
 
         toastr()->addSuccess('Sub Service deleted successfully.');
 
-        return redirect(route('subServices.index'));
+        return redirect(roleBasedRoute('subServices.index'));
     }
 }

@@ -60,7 +60,7 @@ class RoleController extends AppBaseController
 
         toastr()->addSuccess('Role saved successfully.');
 
-        return redirect(route('roles.index'));
+        return redirect(roleBasedRoute('roles.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         return view('roles.show')->with('role', $role);
@@ -97,7 +97,7 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         return view('roles.edit')->with('role', $role);
@@ -118,14 +118,14 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         $role = $this->roleRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Role updated successfully.');
 
-        return redirect(route('roles.index'));
+        return redirect(roleBasedRoute('roles.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         $this->roleRepository->delete($id);
 
         toastr()->addSuccess('Role deleted successfully.');
 
-        return redirect(route('roles.index'));
+        return redirect(roleBasedRoute('roles.index'));
     }
 }

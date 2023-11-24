@@ -56,6 +56,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        $user->increment('login_count');
         return redirect()->route(
             $user->role_id == 3
             ? 'admin.index'

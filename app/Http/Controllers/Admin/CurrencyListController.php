@@ -59,7 +59,7 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->create($input);
         toastr()->addSuccess('Currency List saved successfully.');
 
-        return redirect(route('currencyLists.index'));
+        return redirect(roleBasedRoute('currencyLists.index'));
     }
 
     /**
@@ -76,7 +76,7 @@ class CurrencyListController extends AppBaseController
         if (empty($currencyList)) {
             toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         return view('currency_lists.show')->with('currencyList', $currencyList);
@@ -96,7 +96,7 @@ class CurrencyListController extends AppBaseController
         if (empty($currencyList)) {
             toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         return view('currency_lists.edit')->with('currencyList', $currencyList);
@@ -117,14 +117,14 @@ class CurrencyListController extends AppBaseController
         if (empty($currencyList)) {
             toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         $currencyList = $this->currencyListRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Currency List updated successfully.');
 
-        return redirect(route('currencyLists.index'));
+        return redirect(roleBasedRoute('currencyLists.index'));
     }
 
     /**
@@ -143,13 +143,13 @@ class CurrencyListController extends AppBaseController
         if (empty($currencyList)) {
             toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         $this->currencyListRepository->delete($id);
 
         toastr()->addSuccess('Currency List deleted successfully.');
 
-        return redirect(route('currencyLists.index'));
+        return redirect(roleBasedRoute('currencyLists.index'));
     }
 }

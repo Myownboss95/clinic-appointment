@@ -60,7 +60,7 @@ class CommentController extends AppBaseController
 
         toastr()->addSuccess('Comment saved successfully.');
 
-        return redirect(route('comments.index'));
+        return redirect(roleBasedRoute('comments.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class CommentController extends AppBaseController
         if (empty($comment)) {
             toastr()->addError('Comment not found');
 
-            return redirect(route('comments.index'));
+            return redirect(roleBasedRoute('comments.index'));
         }
 
         return view('comments.show')->with('comment', $comment);
@@ -97,7 +97,7 @@ class CommentController extends AppBaseController
         if (empty($comment)) {
             toastr()->addError('Comment not found');
 
-            return redirect(route('comments.index'));
+            return redirect(roleBasedRoute('comments.index'));
         }
 
         return view('comments.edit')->with('comment', $comment);
@@ -118,14 +118,14 @@ class CommentController extends AppBaseController
         if (empty($comment)) {
             toastr()->addError('Comment not found');
 
-            return redirect(route('comments.index'));
+            return redirect(roleBasedRoute('comments.index'));
         }
 
         $comment = $this->commentRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Comment updated successfully.');
 
-        return redirect(route('comments.index'));
+        return redirect(roleBasedRoute('comments.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class CommentController extends AppBaseController
         if (empty($comment)) {
             toastr()->addError('Comment not found');
 
-            return redirect(route('comments.index'));
+            return redirect(roleBasedRoute('comments.index'));
         }
 
         $this->commentRepository->delete($id);
 
         toastr()->addSuccess('Comment deleted successfully.');
 
-        return redirect(route('comments.index'));
+        return redirect(roleBasedRoute('comments.index'));
     }
 }

@@ -8,8 +8,7 @@
                     <h1>Currency List Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('currencyLists.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('staff.currencyLists.index') }}">
                         Back
                     </a>
                 </div>

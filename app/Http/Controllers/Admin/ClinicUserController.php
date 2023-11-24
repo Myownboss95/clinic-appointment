@@ -60,7 +60,7 @@ class ClinicUserController extends AppBaseController
 
         toastr()->addSuccess('Clinic User saved successfully.');
 
-        return redirect(route('clinicUsers.index'));
+        return redirect(roleBasedRoute('clinicUsers.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class ClinicUserController extends AppBaseController
         if (empty($clinicUser)) {
             toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         return view('clinic_users.show')->with('clinicUser', $clinicUser);
@@ -97,7 +97,7 @@ class ClinicUserController extends AppBaseController
         if (empty($clinicUser)) {
             toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         return view('clinic_users.edit')->with('clinicUser', $clinicUser);
@@ -118,14 +118,14 @@ class ClinicUserController extends AppBaseController
         if (empty($clinicUser)) {
             toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         $clinicUser = $this->clinicUserRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Clinic User updated successfully.');
 
-        return redirect(route('clinicUsers.index'));
+        return redirect(roleBasedRoute('clinicUsers.index'));
     }
 
     /**
@@ -144,7 +144,7 @@ class ClinicUserController extends AppBaseController
         if (empty($clinicUser)) {
             toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         $this->clinicUserRepository->delete($id);
@@ -152,6 +152,6 @@ class ClinicUserController extends AppBaseController
         toastr()->addSuccess('Clinic User deleted successfully.');
         
 
-        return redirect(route('clinicUsers.index'));
+        return redirect(roleBasedRoute('clinicUsers.index'));
     }
 }

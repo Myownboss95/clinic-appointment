@@ -5,10 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Country Phone Codes</h1>
+                    <h1>Staff</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right" href="{{ route('staff.countryPhoneCodes.create') }}">
+                    <a class="btn btn-primary float-right"
+                       href="{{ route('admin.staff.create') }}">
                         Add New
                     </a>
                 </div>
@@ -24,15 +25,17 @@
 
         <div class="card">
             <div class="card-body p-0">
-                @include('country_phone_codes.table')
+                @include('staff.table')
 
                 <div class="card-footer clearfix">
                     <div class="float-right">
-
+                        
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+
 @endsection
+

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Edit General Setting</h1>
+                    <h1>Edit Staff</h1>
                 </div>
             </div>
         </div>
@@ -17,20 +17,17 @@
 
         <div class="card">
 
-            {!! Form::model($generalSetting, [
-                'route' => ['generalSettings.update', $generalSetting->id],
-                'method' => 'patch',
-            ]) !!}
+            {!! Form::model($staff, ['route' => ['staff.update', $staff->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('general_settings.fields')
+                    @include('staff.fields')
                 </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('admin.generalSettings.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('staff.staff.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

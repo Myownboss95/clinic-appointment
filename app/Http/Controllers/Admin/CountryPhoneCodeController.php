@@ -60,7 +60,7 @@ class CountryPhoneCodeController extends AppBaseController
 
         toastr()->addSuccess('Country Phone Code saved successfully.');
 
-        return redirect(route('countryPhoneCodes.index'));
+        return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class CountryPhoneCodeController extends AppBaseController
         if (empty($countryPhoneCode)) {
             toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         return view('country_phone_codes.show')->with('countryPhoneCode', $countryPhoneCode);
@@ -97,7 +97,7 @@ class CountryPhoneCodeController extends AppBaseController
         if (empty($countryPhoneCode)) {
             toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         return view('country_phone_codes.edit')->with('countryPhoneCode', $countryPhoneCode);
@@ -118,14 +118,14 @@ class CountryPhoneCodeController extends AppBaseController
         if (empty($countryPhoneCode)) {
             toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         $countryPhoneCode = $this->countryPhoneCodeRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Country Phone Code updated successfully.');
 
-        return redirect(route('countryPhoneCodes.index'));
+        return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class CountryPhoneCodeController extends AppBaseController
         if (empty($countryPhoneCode)) {
             toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         $this->countryPhoneCodeRepository->delete($id);
 
         toastr()->addSuccess('Country Phone Code deleted successfully.');
 
-        return redirect(route('countryPhoneCodes.index'));
+        return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
 }

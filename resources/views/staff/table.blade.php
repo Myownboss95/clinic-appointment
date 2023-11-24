@@ -2,30 +2,29 @@
     <table class="table" id="appointments-table">
         <thead>
         <tr>
-            <th>User Id</th>
-        <th>Sub Service Id</th>
-        <th>Start Time</th>
-        <th>End Time</th>
-        <th>Stage Id</th>
-            <th colspan="3">Action</th>
+        <th>Staff</th>
+        <th colspan="3">Action</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($appointments as $appointment)
+        @foreach($staffs as $staff)
             <tr>
-                <td>{{ $appointment->user_id }}</td>
-            <td>{{ $appointment->sub_service_id }}</td>
-            <td>{{ $appointment->start_time }}</td>
-            <td>{{ $appointment->end_time }}</td>
-            <td>{{ $appointment->stage_id }}</td>
+                <td> 
+                    <p class="bold">
+                    {{ $staff->name }}
+                    </p>
+                    <small class="mute">
+                        {{ $staff->email }}
+                    </small>
+                </td>
                 <td width="120">
-                    {!! Form::open(['route' => ['staff.appointments.destroy', $appointment->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['admin.staff.destroy', $staff->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('staff.appointments.show', [$appointment->id]) }}"
+                        <a href="{{ route('admin.staff.show', [$staff->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-eye"></i>
                         </a>
-                        <a href="{{ route('staff.appointments.edit', [$appointment->id]) }}"
+                        <a href="{{ route('admin.staff.edit', [$staff->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-edit"></i>
                         </a>

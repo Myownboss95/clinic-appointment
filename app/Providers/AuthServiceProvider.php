@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
     private function registerGates()
     {
         Gate::define('is_admin', fn (User $user) => $user->role_id == 3);
-        Gate::define('is_staff', fn (User $user) => $user->role_id == 2);
+        Gate::define('is_staff', fn (User $user) => $user->role_id == 2 || $user->role_id == 3);
         Gate::define('is_user', fn (User $user) => $user->role_id == 1);
     }
 }

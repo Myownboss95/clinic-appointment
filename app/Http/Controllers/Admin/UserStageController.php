@@ -60,7 +60,7 @@ class UserStageController extends AppBaseController
 
         toastr()->addSuccess('User Stage saved successfully.');
 
-        return redirect(route('userStages.index'));
+        return redirect(roleBasedRoute('userStages.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class UserStageController extends AppBaseController
         if (empty($userStage)) {
             toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         return view('user_stages.show')->with('userStage', $userStage);
@@ -97,7 +97,7 @@ class UserStageController extends AppBaseController
         if (empty($userStage)) {
             toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         return view('user_stages.edit')->with('userStage', $userStage);
@@ -118,14 +118,14 @@ class UserStageController extends AppBaseController
         if (empty($userStage)) {
             toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         $userStage = $this->userStageRepository->update($request->all(), $id);
 
         toastr()->addSuccess('User Stage updated successfully.');
 
-        return redirect(route('userStages.index'));
+        return redirect(roleBasedRoute('userStages.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class UserStageController extends AppBaseController
         if (empty($userStage)) {
             toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         $this->userStageRepository->delete($id);
 
         toastr()->addSuccess('User Stage deleted successfully.');
 
-        return redirect(route('userStages.index'));
+        return redirect(roleBasedRoute('userStages.index'));
     }
 }

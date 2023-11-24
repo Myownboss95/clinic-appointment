@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Appointment Details</h1>
+                    <h1>Staff Details</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right"
-                       href="{{ route('staff.appointments.index') }}">
+                       href="{{ route('admin.staff.index') }}">
                         Back
                     </a>
                 </div>
@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('appointments.show_fields')
+                    @include('staff.show_fields')
                 </div>
             </div>
         </div>

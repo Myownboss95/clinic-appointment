@@ -8,8 +8,7 @@
                     <h1>Country Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('countries.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('staff.countries.index') }}">
                         Back
                     </a>
                 </div>

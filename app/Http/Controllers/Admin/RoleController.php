@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
@@ -58,9 +58,9 @@ class RoleController extends AppBaseController
 
         $role = $this->roleRepository->create($input);
 
-        Flash::success('Role saved successfully.');
+        toastr()->addSuccess('Role saved successfully.');
 
-        return redirect(route('roles.index'));
+        return redirect(roleBasedRoute('roles.index'));
     }
 
     /**
@@ -75,9 +75,9 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         return view('roles.show')->with('role', $role);
@@ -95,9 +95,9 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         return view('roles.edit')->with('role', $role);
@@ -116,16 +116,16 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         $role = $this->roleRepository->update($request->all(), $id);
 
-        Flash::success('Role updated successfully.');
+        toastr()->addSuccess('Role updated successfully.');
 
-        return redirect(route('roles.index'));
+        return redirect(roleBasedRoute('roles.index'));
     }
 
     /**
@@ -142,15 +142,15 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            toastr()->addError('Role not found');
 
-            return redirect(route('roles.index'));
+            return redirect(roleBasedRoute('roles.index'));
         }
 
         $this->roleRepository->delete($id);
 
-        Flash::success('Role deleted successfully.');
+        toastr()->addSuccess('Role deleted successfully.');
 
-        return redirect(route('roles.index'));
+        return redirect(roleBasedRoute('roles.index'));
     }
 }

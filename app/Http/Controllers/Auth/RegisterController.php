@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -101,5 +102,17 @@ class RegisterController extends Controller
         }
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->route(
+            $user->role_id == 3
+            ? 'admin.index'
+            : ($user->role_id == 2
+                ? 'staff.index'
+                : 'user.index')
+
+        );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateCurrencyListRequest;
 use App\Http\Requests\UpdateCurrencyListRequest;
@@ -59,7 +59,7 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->create($input);
         toastr()->addSuccess('Currency List saved successfully.');
 
-        return redirect(route('currencyLists.index'));
+        return redirect(roleBasedRoute('currencyLists.index'));
     }
 
     /**
@@ -74,9 +74,9 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            Flash::error('Currency List not found');
+            toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         return view('currency_lists.show')->with('currencyList', $currencyList);
@@ -94,9 +94,9 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            Flash::error('Currency List not found');
+            toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         return view('currency_lists.edit')->with('currencyList', $currencyList);
@@ -115,16 +115,16 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            Flash::error('Currency List not found');
+            toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         $currencyList = $this->currencyListRepository->update($request->all(), $id);
 
-        Flash::success('Currency List updated successfully.');
+        toastr()->addSuccess('Currency List updated successfully.');
 
-        return redirect(route('currencyLists.index'));
+        return redirect(roleBasedRoute('currencyLists.index'));
     }
 
     /**
@@ -141,15 +141,15 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            Flash::error('Currency List not found');
+            toastr()->addError('Currency List not found');
 
-            return redirect(route('currencyLists.index'));
+            return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         $this->currencyListRepository->delete($id);
 
-        Flash::success('Currency List deleted successfully.');
+        toastr()->addSuccess('Currency List deleted successfully.');
 
-        return redirect(route('currencyLists.index'));
+        return redirect(roleBasedRoute('currencyLists.index'));
     }
 }

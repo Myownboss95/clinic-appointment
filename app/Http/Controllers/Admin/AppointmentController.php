@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
@@ -60,7 +60,7 @@ class AppointmentController extends AppBaseController
 
         toastr()->addSuccess('Appointment saved successfully.');
 
-        return redirect(route('appointments.index'));
+        return redirect(roleBasedRoute('appointments.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class AppointmentController extends AppBaseController
         if (empty($appointment)) {
             toastr()->addError('Appointment not found');
 
-            return redirect(route('appointments.index'));
+            return redirect(roleBasedRoute('appointments.index'));
         }
 
         return view('appointments.show')->with('appointment', $appointment);
@@ -97,7 +97,7 @@ class AppointmentController extends AppBaseController
         if (empty($appointment)) {
             toastr()->addError('Appointment not found');
 
-            return redirect(route('appointments.index'));
+            return redirect(roleBasedRoute('appointments.index'));
         }
 
         return view('appointments.edit')->with('appointment', $appointment);
@@ -119,14 +119,14 @@ class AppointmentController extends AppBaseController
             
 
             toastr()->addError('urrency List saved successfully.');
-            return redirect(route('appointments.index'));
+            return redirect(roleBasedRoute('appointments.index'));
         }
 
         $appointment = $this->appointmentRepository->update($request->all(), $id);
 
         toastr()->addSuccess('Appointment updated successfully.');
 
-        return redirect(route('appointments.index'));
+        return redirect(roleBasedRoute('appointments.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class AppointmentController extends AppBaseController
 
         if (empty($appointment)) {
             toastr()->addError('Appointment not found');
-            return redirect(route('appointments.index'));
+            return redirect(roleBasedRoute('appointments.index'));
         }
 
         $this->appointmentRepository->delete($id);
 
         toastr()->addSuccess('Appointment saved successfully.');
 
-        return redirect(route('appointments.index'));
+        return redirect(roleBasedRoute('appointments.index'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateUserStageRequest;
 use App\Http\Requests\UpdateUserStageRequest;
@@ -58,9 +58,9 @@ class UserStageController extends AppBaseController
 
         $userStage = $this->userStageRepository->create($input);
 
-        Flash::success('User Stage saved successfully.');
+        toastr()->addSuccess('User Stage saved successfully.');
 
-        return redirect(route('userStages.index'));
+        return redirect(roleBasedRoute('userStages.index'));
     }
 
     /**
@@ -75,9 +75,9 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            Flash::error('User Stage not found');
+            toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         return view('user_stages.show')->with('userStage', $userStage);
@@ -95,9 +95,9 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            Flash::error('User Stage not found');
+            toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         return view('user_stages.edit')->with('userStage', $userStage);
@@ -116,16 +116,16 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            Flash::error('User Stage not found');
+            toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         $userStage = $this->userStageRepository->update($request->all(), $id);
 
-        Flash::success('User Stage updated successfully.');
+        toastr()->addSuccess('User Stage updated successfully.');
 
-        return redirect(route('userStages.index'));
+        return redirect(roleBasedRoute('userStages.index'));
     }
 
     /**
@@ -142,15 +142,15 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            Flash::error('User Stage not found');
+            toastr()->addError('User Stage not found');
 
-            return redirect(route('userStages.index'));
+            return redirect(roleBasedRoute('userStages.index'));
         }
 
         $this->userStageRepository->delete($id);
 
-        Flash::success('User Stage deleted successfully.');
+        toastr()->addSuccess('User Stage deleted successfully.');
 
-        return redirect(route('userStages.index'));
+        return redirect(roleBasedRoute('userStages.index'));
     }
 }

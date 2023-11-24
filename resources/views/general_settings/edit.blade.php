@@ -17,7 +17,10 @@
 
         <div class="card">
 
-            {!! Form::model($generalSetting, ['route' => ['generalSettings.update', $generalSetting->id], 'method' => 'patch']) !!}
+            {!! Form::model($generalSetting, [
+                'route' => ['generalSettings.update', $generalSetting->id],
+                'method' => 'patch',
+            ]) !!}
 
             <div class="card-body">
                 <div class="row">
@@ -27,7 +30,7 @@
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('generalSettings.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('admin.generalSettings.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

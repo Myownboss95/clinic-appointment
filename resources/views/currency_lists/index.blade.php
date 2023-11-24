@@ -8,8 +8,7 @@
                     <h1>Currency Lists</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('currencyLists.create') }}">
+                    <a class="btn btn-primary float-right" href="{{ route('staff.currencyLists.create') }}">
                         Add New
                     </a>
                 </div>
@@ -29,13 +28,11 @@
 
                 <div class="card-footer clearfix">
                     <div class="float-right">
-                        
+
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-
 @endsection
-

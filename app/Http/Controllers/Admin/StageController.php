@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CreateStageRequest;
-use App\Http\Requests\UpdateStageRequest;
-use App\Repositories\StageRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Repositories\StageRepository;
+use App\Http\Requests\CreateStageRequest;
+use App\Http\Requests\UpdateStageRequest;
+use App\Http\Controllers\AppBaseController;
 
 class StageController extends AppBaseController
 {
@@ -56,11 +57,14 @@ class StageController extends AppBaseController
     {
         $input = $request->all();
 
-        $stage = $this->stageRepository->create($input);
+        $stage = $this->stageRepository->create( array_merge($input, 
+            [
+                'slug' => Str::slug($request->input('name'))  
+            ]));
 
-        Flash::success('Stage saved successfully.');
+        toastr()->addSuccess('Stage saved successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(roleBasedRoute('stages.index'));
     }
 
     /**
@@ -75,9 +79,9 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
         return view('stages.show')->with('stage', $stage);
@@ -95,9 +99,9 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
         return view('stages.edit')->with('stage', $stage);
@@ -116,16 +120,20 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
-        $stage = $this->stageRepository->update($request->all(), $id);
+        $stage = $this->stageRepository->update(array_merge($request->all(), 
+        [
+            'slug' => Str::slug($request->input('name'))  
+        ]), 
+        $id);
 
-        Flash::success('Stage updated successfully.');
+        toastr()->addSuccess('Stage updated successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(roleBasedRoute('stages.index'));
     }
 
     /**
@@ -142,15 +150,15 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            Flash::error('Stage not found');
+            toastr()->addError('Stage not found');
 
-            return redirect(route('stages.index'));
+            return redirect(roleBasedRoute('stages.index'));
         }
 
         $this->stageRepository->delete($id);
 
-        Flash::success('Stage deleted successfully.');
+        toastr()->addSuccess('Stage deleted successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(roleBasedRoute('stages.index'));
     }
 }

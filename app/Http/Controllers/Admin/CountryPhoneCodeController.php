@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateCountryPhoneCodeRequest;
 use App\Http\Requests\UpdateCountryPhoneCodeRequest;
@@ -58,9 +58,9 @@ class CountryPhoneCodeController extends AppBaseController
 
         $countryPhoneCode = $this->countryPhoneCodeRepository->create($input);
 
-        Flash::success('Country Phone Code saved successfully.');
+        toastr()->addSuccess('Country Phone Code saved successfully.');
 
-        return redirect(route('countryPhoneCodes.index'));
+        return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
 
     /**
@@ -75,9 +75,9 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            Flash::error('Country Phone Code not found');
+            toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         return view('country_phone_codes.show')->with('countryPhoneCode', $countryPhoneCode);
@@ -95,9 +95,9 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            Flash::error('Country Phone Code not found');
+            toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         return view('country_phone_codes.edit')->with('countryPhoneCode', $countryPhoneCode);
@@ -116,16 +116,16 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            Flash::error('Country Phone Code not found');
+            toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         $countryPhoneCode = $this->countryPhoneCodeRepository->update($request->all(), $id);
 
-        Flash::success('Country Phone Code updated successfully.');
+        toastr()->addSuccess('Country Phone Code updated successfully.');
 
-        return redirect(route('countryPhoneCodes.index'));
+        return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
 
     /**
@@ -142,15 +142,15 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            Flash::error('Country Phone Code not found');
+            toastr()->addError('Country Phone Code not found');
 
-            return redirect(route('countryPhoneCodes.index'));
+            return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         $this->countryPhoneCodeRepository->delete($id);
 
-        Flash::success('Country Phone Code deleted successfully.');
+        toastr()->addSuccess('Country Phone Code deleted successfully.');
 
-        return redirect(route('countryPhoneCodes.index'));
+        return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
@@ -58,9 +58,9 @@ class ServiceController extends AppBaseController
 
         $service = $this->serviceRepository->create($input);
 
-        Flash::success('Service saved successfully.');
+        toastr()->addSuccess('Service saved successfully.');
 
-        return redirect(route('services.index'));
+        return redirect(roleBasedRoute('services.index'));
     }
 
     /**
@@ -75,9 +75,9 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            Flash::error('Service not found');
+            toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         return view('services.show')->with('service', $service);
@@ -95,9 +95,9 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            Flash::error('Service not found');
+            toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         return view('services.edit')->with('service', $service);
@@ -116,16 +116,16 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            Flash::error('Service not found');
+            toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         $service = $this->serviceRepository->update($request->all(), $id);
 
-        Flash::success('Service updated successfully.');
+        toastr()->addSuccess('Service updated successfully.');
 
-        return redirect(route('services.index'));
+        return redirect(roleBasedRoute('services.index'));
     }
 
     /**
@@ -142,15 +142,15 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            Flash::error('Service not found');
+            toastr()->addError('Service not found');
 
-            return redirect(route('services.index'));
+            return redirect(roleBasedRoute('services.index'));
         }
 
         $this->serviceRepository->delete($id);
 
-        Flash::success('Service deleted successfully.');
+        toastr()->addSuccess('Service deleted successfully.');
 
-        return redirect(route('services.index'));
+        return redirect(roleBasedRoute('services.index'));
     }
 }

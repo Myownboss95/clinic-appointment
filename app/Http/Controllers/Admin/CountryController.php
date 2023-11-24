@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
@@ -58,9 +58,9 @@ class CountryController extends AppBaseController
 
         $country = $this->countryRepository->create($input);
 
-        Flash::success('Country saved successfully.');
+        toastr()->addSuccess('Country saved successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(roleBasedRoute('countries.index'));
     }
 
     /**
@@ -75,9 +75,9 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            Flash::error('Country not found');
+            toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         return view('countries.show')->with('country', $country);
@@ -95,9 +95,9 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            Flash::error('Country not found');
+            toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         return view('countries.edit')->with('country', $country);
@@ -116,16 +116,16 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            Flash::error('Country not found');
+            toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         $country = $this->countryRepository->update($request->all(), $id);
 
-        Flash::success('Country updated successfully.');
+        toastr()->addSuccess('Country updated successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(roleBasedRoute('countries.index'));
     }
 
     /**
@@ -142,15 +142,15 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            Flash::error('Country not found');
+            toastr()->addError('Country not found');
 
-            return redirect(route('countries.index'));
+            return redirect(roleBasedRoute('countries.index'));
         }
 
         $this->countryRepository->delete($id);
 
-        Flash::success('Country deleted successfully.');
+        toastr()->addSuccess('Country deleted successfully.');
 
-        return redirect(route('countries.index'));
+        return redirect(roleBasedRoute('countries.index'));
     }
 }

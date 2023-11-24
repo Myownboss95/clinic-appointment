@@ -8,8 +8,7 @@
                     <h1>City Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('cities.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('staff.cities.index') }}">
                         Back
                     </a>
                 </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateGeneralSettingRequest;
 use App\Http\Requests\UpdateGeneralSettingRequest;
@@ -59,7 +59,7 @@ class GeneralSettingController extends AppBaseController
         $generalSetting = $this->generalSettingRepository->create($input);
 
         toastr()->addSuccess('Appointment saved successfully.');
-        return redirect(route('generalSettings.index'));
+        return redirect(roleBasedRoute('generalSettings.index'));
     }
 
     /**
@@ -76,7 +76,7 @@ class GeneralSettingController extends AppBaseController
         if (empty($generalSetting)) {
             toastr()->addError('General Setting not found');
 
-            return redirect(route('generalSettings.index'));
+            return redirect(roleBasedRoute('generalSettings.index'));
         }
 
         return view('general_settings.show')->with('generalSetting', $generalSetting);
@@ -96,7 +96,7 @@ class GeneralSettingController extends AppBaseController
         if (empty($generalSetting)) {
             toastr()->addError('General Setting not found');
 
-            return redirect(route('generalSettings.index'));
+            return redirect(roleBasedRoute('generalSettings.index'));
         }
 
         return view('general_settings.edit')->with('generalSetting', $generalSetting);
@@ -117,14 +117,14 @@ class GeneralSettingController extends AppBaseController
         if (empty($generalSetting)) {
             toastr()->addError('General Setting not found');
 
-            return redirect(route('generalSettings.index'));
+            return redirect(roleBasedRoute('generalSettings.index'));
         }
 
         $generalSetting = $this->generalSettingRepository->update($request->all(), $id);
 
         toastr()->addSuccess('General Setting updated successfully.');
 
-        return redirect(route('generalSettings.index'));
+        return redirect(roleBasedRoute('generalSettings.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class GeneralSettingController extends AppBaseController
             toastr()->addError('General Setting not found');
 
 
-            return redirect(route('generalSettings.index'));
+            return redirect(roleBasedRoute('generalSettings.index'));
         }
 
         $this->generalSettingRepository->delete($id);
 
         toastr()->addSuccess('General Setting deleted successfully.');
 
-        return redirect(route('generalSettings.index'));
+        return redirect(roleBasedRoute('generalSettings.index'));
     }
 }

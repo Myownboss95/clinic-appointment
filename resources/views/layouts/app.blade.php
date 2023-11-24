@@ -305,7 +305,7 @@
                             aria-expanded="false">
                             <img class="rounded-circle header-profile-user"
                                 src="{{ asset('lineone/images/users/avatar-1.jpg') }}" alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1 fw-medium">Paul K.</span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ user_name() }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">

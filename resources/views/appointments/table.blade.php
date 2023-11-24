@@ -19,13 +19,13 @@
             <td>{{ $appointment->end_time }}</td>
             <td>{{ $appointment->stage_id }}</td>
                 <td width="120">
-                    {!! Form::open(['route' => ['appointments.destroy', $appointment->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['staff.appointments.destroy', $appointment->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('appointments.show', [$appointment->id]) }}"
+                        <a href="{{ route('staff.appointments.show', [$appointment->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-eye"></i>
                         </a>
-                        <a href="{{ route('appointments.edit', [$appointment->id]) }}"
+                        <a href="{{ route('staff.appointments.edit', [$appointment->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-edit"></i>
                         </a>

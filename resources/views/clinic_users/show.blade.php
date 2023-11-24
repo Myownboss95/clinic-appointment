@@ -8,8 +8,7 @@
                     <h1>Clinic User Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('clinicUsers.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('staff.clinicUsers.index') }}">
                         Back
                     </a>
                 </div>

@@ -27,7 +27,7 @@
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('currencyLists.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('staff.currencyLists.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateStateRequest;
 use App\Http\Requests\UpdateStateRequest;
@@ -58,9 +58,9 @@ class StateController extends AppBaseController
 
         $state = $this->stateRepository->create($input);
 
-        Flash::success('State saved successfully.');
+        toastr()->addSuccess('State saved successfully.');
 
-        return redirect(route('states.index'));
+        return redirect(roleBasedRoute('states.index'));
     }
 
     /**
@@ -75,9 +75,9 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            Flash::error('State not found');
+            toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         return view('states.show')->with('state', $state);
@@ -95,9 +95,9 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            Flash::error('State not found');
+            toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         return view('states.edit')->with('state', $state);
@@ -116,16 +116,16 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            Flash::error('State not found');
+            toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         $state = $this->stateRepository->update($request->all(), $id);
 
-        Flash::success('State updated successfully.');
+        toastr()->addSuccess('State updated successfully.');
 
-        return redirect(route('states.index'));
+        return redirect(roleBasedRoute('states.index'));
     }
 
     /**
@@ -142,15 +142,15 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            Flash::error('State not found');
+            toastr()->addError('State not found');
 
-            return redirect(route('states.index'));
+            return redirect(roleBasedRoute('states.index'));
         }
 
         $this->stateRepository->delete($id);
 
-        Flash::success('State deleted successfully.');
+        toastr()->addSuccess('State deleted successfully.');
 
-        return redirect(route('states.index'));
+        return redirect(roleBasedRoute('states.index'));
     }
 }

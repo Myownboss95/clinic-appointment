@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateClinicUserRequest;
 use App\Http\Requests\UpdateClinicUserRequest;
@@ -58,9 +58,9 @@ class ClinicUserController extends AppBaseController
 
         $clinicUser = $this->clinicUserRepository->create($input);
 
-        Flash::success('Clinic User saved successfully.');
+        toastr()->addSuccess('Clinic User saved successfully.');
 
-        return redirect(route('clinicUsers.index'));
+        return redirect(roleBasedRoute('clinicUsers.index'));
     }
 
     /**
@@ -75,9 +75,9 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            Flash::error('Clinic User not found');
+            toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         return view('clinic_users.show')->with('clinicUser', $clinicUser);
@@ -95,9 +95,9 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            Flash::error('Clinic User not found');
+            toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         return view('clinic_users.edit')->with('clinicUser', $clinicUser);
@@ -116,16 +116,16 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            Flash::error('Clinic User not found');
+            toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         $clinicUser = $this->clinicUserRepository->update($request->all(), $id);
 
-        Flash::success('Clinic User updated successfully.');
+        toastr()->addSuccess('Clinic User updated successfully.');
 
-        return redirect(route('clinicUsers.index'));
+        return redirect(roleBasedRoute('clinicUsers.index'));
     }
 
     /**
@@ -142,15 +142,16 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            Flash::error('Clinic User not found');
+            toastr()->addError('Clinic User not found');
 
-            return redirect(route('clinicUsers.index'));
+            return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         $this->clinicUserRepository->delete($id);
 
-        Flash::success('Clinic User deleted successfully.');
+        toastr()->addSuccess('Clinic User deleted successfully.');
+        
 
-        return redirect(route('clinicUsers.index'));
+        return redirect(roleBasedRoute('clinicUsers.index'));
     }
 }

@@ -71,5 +71,15 @@ class Comment extends Model
         'staff_user_id' => 'nullable|integer'
     ];
 
+ /**
+     * Get the user that owns the Comment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     
 }

@@ -23,8 +23,9 @@ Homestead.json
 .DS_Store
 
 
+/public/css/app.css
 
+/public/js/app.js
 
-
-
+/public/mix-manifest.json
 

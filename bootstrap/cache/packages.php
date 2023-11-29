@@ -147,4 +147,11 @@
       0 => 'Flasher\\Toastr\\Laravel\\FlasherToastrServiceProvider',
     ),
   ),
+  'power-components/livewire-powergrid' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    ),
+  ),
 );

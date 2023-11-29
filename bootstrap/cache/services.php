@@ -40,10 +40,11 @@
     36 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     37 => 'Flasher\\Laravel\\FlasherServiceProvider',
     38 => 'Flasher\\Toastr\\Laravel\\FlasherToastrServiceProvider',
-    39 => 'App\\Providers\\AppServiceProvider',
-    40 => 'App\\Providers\\AuthServiceProvider',
-    41 => 'App\\Providers\\EventServiceProvider',
-    42 => 'App\\Providers\\RouteServiceProvider',
+    39 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    40 => 'App\\Providers\\AppServiceProvider',
+    41 => 'App\\Providers\\AuthServiceProvider',
+    42 => 'App\\Providers\\EventServiceProvider',
+    43 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -70,10 +71,11 @@
     20 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     21 => 'Flasher\\Laravel\\FlasherServiceProvider',
     22 => 'Flasher\\Toastr\\Laravel\\FlasherToastrServiceProvider',
-    23 => 'App\\Providers\\AppServiceProvider',
-    24 => 'App\\Providers\\AuthServiceProvider',
-    25 => 'App\\Providers\\EventServiceProvider',
-    26 => 'App\\Providers\\RouteServiceProvider',
+    23 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    24 => 'App\\Providers\\AppServiceProvider',
+    25 => 'App\\Providers\\AuthServiceProvider',
+    26 => 'App\\Providers\\EventServiceProvider',
+    27 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

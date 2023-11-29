@@ -20,6 +20,7 @@
         "livewire/livewire": "^2.12",
         "php-flasher/flasher-laravel": "^1.15",
         "php-flasher/flasher-toastr-laravel": "^1.15",
+        "power-components/livewire-powergrid": "^3.2",
         "saloonphp/saloon": "^3.0"
     },
     "require-dev": {

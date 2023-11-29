@@ -378,6 +378,8 @@
     <script src="{{ asset('lineone/js/js/pages/product-filter-range.init.js') }}"></script>
 
     <script src="{{ asset('lineone/js/js/app.js') }}"></script>
+    {{-- @livewireScripts
+    @powerGridScripts --}}
 
 </body>
 

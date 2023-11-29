@@ -107,25 +107,27 @@
           <p>Allow patients to schedule appointments through online portals, reducing administrative workload and improving accessibility for patients and send automated reminders to patients about upcoming appointments, helping reduce no-shows and improve overall appointment adherence.</p>
         </div>
 
+
         <div class="row">
           <div class="col-lg-8 col-md-6 d-flex align-items-stretch">
             @if($services->sub_service()->count() > 0)
             @foreach ($services->sub_service as $sub_service)
-            {{-- <a href="/services/{{$service->slug}}/subservices"> --}}
-                 
+            <a href="{{route('register.sub_service', $sub_service->slug)}}">
                 <div class="icon-box">
                 <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                <h4><a href="">{{$sub_service->name}}</a></h4>
-                <p>Provide a secure platform for communication between patients and healthcare providers, allowing for questions, updates, and shared decision-making</p>
+                <h4>{{$sub_service->price}}</h4>
+                <p>{{$sub_service->description}}</p>
                 </div>
-                {{-- @endforeach --}}
-            {{-- </a> --}}
+                
+            </a>
             @endforeach
+            @else
+                <p>No Subservice for this service</p>
             @endif
           </div>
           
         </div>
-
+ 
       </div>
     </section><!-- End Services Section -->
  

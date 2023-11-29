@@ -5,7 +5,7 @@
     <div class="auth-page">
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-xxl-3 col-lg-4 col-md-5">
+                <div class="col-xxl-3 col-lg-6 col-md-5">
                     <div class="auth-full-page-content d-flex p-sm-5 p-4">
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
@@ -19,102 +19,154 @@
                                     <div class="text-center">
                                         <h5 class="mb-0">Register a new membership</h5>
                                     </div>
-                                    <form class="mt-4 pt-2" method="post" action="{{ route('register') }}">
-                                        @csrf
-                                        <div class="form-floating form-floating-custom mb-4">
-                                            <input type="text" class="form-control  @error('name') is-invalid @enderror"
-                                                value="{{ old('name') }}" id="input-name" placeholder="Enter User Name"
-                                                name="name" required>
-                                            <div class="invalid-feedback">
-                                                Please Enter Full Name
-                                            </div>
-                                            <label for="input-name">Full Name</label>
-                                            <div class="form-floating-icon">
-                                                <i data-feather="users"></i>
-                                            </div>
-                                            @error('name')
-                                                <span class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-floating form-floating-custom mb-4">
-                                            <input type="text" class="form-control  @error('email') is-invalid @enderror"
-                                                id="input-email" placeholder="Enter Email" value="{{ old('email') }}"
-                                                name="email">
-                                            <label for="input-email">Email</label>
-                                            <div class="form-floating-icon">
-                                                <i data-feather="mail"></i>
-                                            </div>
-                                            @error('email')
-                                                <span class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                    
+                                        
+                                            <form class="mt-4 pt-2" method="post" action="{{ route('register') }}">
+                                                @csrf
+                                                <div class="row d-flex">
+                                                <div class="col-lg-6">
+                                                    <div class="form-floating form-floating-custom mb-4">
+                                                        <input type="text" class="form-control  @error('name') is-invalid @enderror"
+                                                            value="{{ old('name') }}" id="input-name" placeholder="Enter User Name"
+                                                            name="name" required>
+                                                        <div class="invalid-feedback">
+                                                            Please Enter Full Name
+                                                        </div>
+                                                        <label for="input-name">Full Name</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="users"></i>
+                                                        </div>
+                                                        @error('name')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-floating form-floating-custom mb-4">
+                                                        <input type="text" class="form-control  @error('email') is-invalid @enderror"
+                                                            id="input-email" placeholder="Enter Email" value="{{ old('email') }}"
+                                                            name="email">
+                                                        <label for="input-email">Email</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="mail"></i>
+                                                        </div>
+                                                        @error('email')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+            
+                                                    <div class="form-floating form-floating-custom mb-4">
+                                                        <input type="text" class="form-control  @error('phone_number') is-invalid @enderror"
+                                                            id="input-phone_number" placeholder="Enter Phone Number" value="{{ old('phone_number') }}"
+                                                            name="phone_number">
+                                                        <label for="input-phone_number">Phone Number</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="phone"></i>
+                                                        </div>
+                                                        @error('phone_number')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
 
-                                        <div class="form-floating form-floating-custom mb-4">
-                                            <input type="text" class="form-control  @error('email') is-invalid @enderror"
-                                                id="input-email" placeholder="Enter Email" value="{{ old('email') }}"
-                                                name="email">
-                                            <label for="input-email">Email</label>
-                                            <div class="form-floating-icon">
-                                                <i data-feather="mail"></i>
-                                            </div>
-                                            @error('email')
-                                                <span class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                            <input type="password"
-                                                class="form-control pe-5 @error('password') is-invalid @enderror"
-                                                id="password-input" placeholder="Enter Password" name="password">
-
-                                            <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                id="password-addon">
-                                                <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                            </button>
-                                            <label for="input-password">Password</label>
-                                            <div class="form-floating-icon">
-                                                <i data-feather="lock"></i>
-                                            </div>
-                                            @error('password')
-                                                <span class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                            <input type="password"
-                                                class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
-                                                id="password-input_confirmation" placeholder="Confirm Password"
-                                                name="password_confirmation">
-
-                                            <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                id="password-addon">
-                                                <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                            </button>
-                                            <label for="input-password_confirmation">Confirm Password</label>
-                                            <div class="form-floating-icon">
-                                                <i data-feather="lock"></i>
-                                            </div>
-                                            @error('password_confirmation')
-                                                <span class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col">
-                                                <div class="form-check font-size-15">
-                                                    <input class="form-check-input" type="checkbox" id="remember-check"
-                                                        name="terms" value="agree">
-                                                    <label class="form-check-label font-size-13" for="remember-check">
-                                                        I agree to the <a href="#">terms</a>
-                                                    </label>
+                                                    <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                        <input type="password"
+                                                            class="form-control pe-5 @error('password') is-invalid @enderror"
+                                                            id="password-input" placeholder="Enter Password" name="password">
+            
+                                                        <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                            id="password-addon">
+                                                            <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                        </button>
+                                                        <label for="input-password">Password</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="lock"></i>
+                                                        </div>
+                                                        @error('password')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
-                                            </div>
+                                              
+                                                <div class="col-lg-6">
+                                                    <div class="form-floating form-floating-custom mb-4">
+                                                        <select name="state" id="input-state" class="form-control form-select  @error('state') is-invalid @enderror value="{{ old('state') }}>
+                                                            <option value="">Choose State</option>
+                                                        </select>
+                                                        <label for="input-state">Current State</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="home"></i>
+                                                        </div>
+                                                        @error('state')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+            
+                                                    <div class="form-floating form-floating-custom mb-4">
+                                                        <select name="city" id="input-city" class="form-control form-select  @error('city') is-invalid @enderror value="{{ old('city') }}>
+                                                            <option value="">Choose City</option>
+                                                        </select>
+                                                        <label for="input-city">Current City</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="home"></i>
+                                                        </div>
+                                                        @error('city')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-floating form-floating-custom mb-4">
+                                                        <input type="text" class="form-control  @error('instagram_handle') is-invalid @enderror"
+                                                            id="input-instagram_handle" placeholder="Enter Instagram Handle" value="{{ old('instagram_handle') }}"
+                                                            name="instagram_handle">
+                                                        <label for="input-instagram_handle">Instagram Handle</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="instagram"></i>
+                                                        </div>
+                                                        @error('instagram_handle')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
 
+
+                                                    <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                        <input type="password"
+                                                            class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
+                                                            id="password-input_confirmation" placeholder="Confirm Password"
+                                                            name="password_confirmation">
+            
+                                                        <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                            id="password-addon">
+                                                            <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                        </button>
+                                                        <label for="input-password_confirmation">Confirm Password</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="lock"></i>
+                                                        </div>
+                                                        @error('password_confirmation')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+            
+                                                </div>
+                                             
+                                                <div class="row mb-4">
+                                                    <div class="col">
+                                                        <div class="form-check font-size-15">
+                                                            <input class="form-check-input" type="checkbox" id="remember-check"
+                                                                name="terms" value="agree">
+                                                            <label class="form-check-label font-size-13" for="remember-check">
+                                                                I agree to the <a href="#">terms</a>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+        
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button class="btn btn-primary w-100 waves-effect waves-light"
+                                                        type="submit">Sign Up</button>
+                                                </div>
+                                                
+                                            </form>
                                         </div>
-                                        <div class="mb-3">
-                                            <button class="btn btn-primary w-100 waves-effect waves-light"
-                                                type="submit">Sign Up</button>
-                                        </div>
-                                    </form>
+                                     
+                                    
 
                                     <div class="mt-4 pt-2 text-center">
                                         <div class="signin-other-title">
@@ -161,7 +213,7 @@
                     </div>
                     <!-- end auth full page content -->
                 </div>
-                @include('partials.auth-column')
+                @include('home.auth-column')
             </div>
             <!-- end row -->
         </div>

@@ -237,54 +237,18 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-heartbeat"></i></div>
-              <h4><a href="">Patient Portal and Engagement</a></h4>
-              <p>Provide a secure platform for communication between patients and healthcare providers, allowing for questions, updates, and shared decision-making</p>
-            </div>
+          <div class="col-lg-8 col-md-6 d-flex align-items-stretch">
+            @foreach ($services as $service)
+            <a href="{{route('services.sub_service', $service->slug)}}">
+                <div class="icon-box">
+                <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                <h4><a href="">{{$service->name}}</a></h4>
+                <p>Provide a secure platform for communication between patients and healthcare providers, allowing for questions, updates, and shared decision-making</p>
+                </div>
+            </a>
+            @endforeach
           </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-pills"></i></div>
-              <h4><a href="">Laboratory and Imaging Integration</a></h4>
-              <p>Allow healthcare providers to electronically order laboratory tests and imaging studies and receive results directly within the system, enhancing efficiency and reducing manual errors</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-hospital-user"></i></div>
-              <h4><a href="">Prescription Management</a></h4>
-              <p>Enable healthcare providers to electronically send prescriptions to pharmacies, improving accuracy and reducing the risk of medication errors</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-dna"></i></div>
-              <h4><a href="">Telemedicine Integration</a></h4>
-              <p> Facilitate remote patient consultations through secure video conferencing, enabling healthcare providers to offer telemedicine services</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-wheelchair"></i></div>
-              <h4><a href="">Billing and Financial Management</a></h4>
-              <p>Streamline the billing process by electronically submitting insurance claims and managing reimbursement processes</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-notes-medical"></i></div>
-              <h4><a href="">Electronic Health Records</a></h4>
-              <p>Capture and maintain comprehensive electronic health records for patients, including medical history, diagnoses, medications, allergies, and immunizations.</p>
-            </div>
-          </div>
-
+          
         </div>
 
       </div>

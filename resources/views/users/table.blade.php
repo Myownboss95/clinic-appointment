@@ -35,13 +35,13 @@
             <td>{{ $user->referred_by_user_id }}</td>
             <td>{{ $user->email_verified_at }}</td>
                 <td width="120">
-                    {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['staff.users.destroy', $user->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('users.show', [$user->id]) }}"
+                        <a href="{{ route('staff.users.show', [$user->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-eye"></i>
                         </a>
-                        <a href="{{ route('users.edit', [$user->id]) }}"
+                        <a href="{{ route('staff.users.edit', [$user->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-edit"></i>
                         </a>

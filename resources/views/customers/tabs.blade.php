@@ -45,7 +45,7 @@
                                                                         <td width="120">
                                                                             {!! Form::open(['route' => ['users.destroy', $customer->id], 'method' => 'delete']) !!}
                                                                             <div class='btn-group'>
-                                                                                <a href="{{ route('users.show', [$customer->id]) }}"
+                                                                                <a href="{{ route('staff.users.show', [$customer->id]) }}"
                                                                                 class='btn btn-default btn-xs'>
                                                                                     <i class="far fa-eye"></i>
                                                                                 </a>

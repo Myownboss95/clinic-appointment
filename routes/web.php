@@ -34,4 +34,3 @@ Route::prefix('staff')->as('staff.')->middleware('can:is_staff')->group(fn () =>
 
 
 });
-

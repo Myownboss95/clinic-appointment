@@ -19,13 +19,12 @@
 
     <div class="content px-3">
 
-        @include('flash::message')
-
         <div class="clearfix"></div>
 
         <div class="card">
-            <div class="card-body p-0">
-                @include('staff.table')
+            <div class="card-body p-3">
+                {{-- @include('staff.table') --}}
+                <livewire:staff-table/>
 
                 <div class="card-footer clearfix">
                     <div class="float-right">

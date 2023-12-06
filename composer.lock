@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "bbedad2a231d90b6037535f1950b9ca4",
     "packages": [
         {
@@ -4563,6 +4564,79 @@
                 }
             ],
             "time": "2023-11-27T11:13:31+00:00"
+        },
+        {
+            "name": "power-components/livewire-powergrid",
+            "version": "v3.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Power-Components/livewire-powergrid.git",
+                "reference": "361128298a527d5e19fd09f3db291646c52684f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/361128298a527d5e19fd09f3db291646c52684f7",
+                "reference": "361128298a527d5e19fd09f3db291646c52684f7",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^3.1|^2.12.1",
+                "livewire/livewire": "^2.10",
+                "openspout/openspout": "^4.6",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.1",
+                "friendsofphp/php-cs-fixer": "^3.9",
+                "illuminate/support": "^8.18|^9.0",
+                "laradumps/laradumps": "^1.1",
+                "nunomaduro/larastan": "^1.0 | ^2.1",
+                "orchestra/testbench": "^6.17 | ^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-faker": "^1.0",
+                "pestphp/pest-plugin-livewire": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luan Freitas",
+                    "email": "luanfreitasgoncalves@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
+            "homepage": "https://github.com/power-components/livewire-powergrid",
+            "support": {
+                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v3.2.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/luanfreitasdev",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-08-05T21:09:19+00:00"
         },
         {
             "name": "psr/clock",

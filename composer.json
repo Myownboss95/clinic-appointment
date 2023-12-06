@@ -6,27 +6,25 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "doctrine/dbal": "~2.3",
+        "doctrine/dbal": "~3.5 || ~3.6.2",
         "guzzlehttp/guzzle": "^7.0.1",
-        "infyomlabs/laravel-generator": "^6.0",
         "infyomlabs/adminlte-templates": "^6.0",
+        "infyomlabs/laravel-generator": "^6.0",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^4.2",
         "laravelcollective/html": "^6.2",
-        "livewire/livewire": "^2.12",
-        "php-flasher/flasher-laravel": "^1.15",
-        "php-flasher/flasher-toastr-laravel": "^1.15",
-
-        "power-components/livewire-powergrid": "^3.2",
-
-        "saloonphp/saloon": "^3.0",
-        "pusher/pusher-php-server": "^5.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "league/flysystem-ftp": "^3.0",
-        "league/flysystem-sftp-v3": "^3.0"
+        "league/flysystem-sftp-v3": "^3.0",
+        "livewire/livewire": "^3.2.6",
+        "php-flasher/flasher-laravel": "^1.15",
+        "php-flasher/flasher-toastr-laravel": "^1.15",
+        "power-components/livewire-powergrid": "^5.1",
+        "pusher/pusher-php-server": "^5.0",
+        "saloonphp/saloon": "^3.0"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^2.0",

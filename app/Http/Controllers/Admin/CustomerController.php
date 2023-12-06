@@ -25,12 +25,14 @@ class CustomerController extends AppBaseController
     public function __invoke(Request $request)
     {
         $defaultStage = Stage::with('users')->latest()->first();
-        
+
         $customers = $defaultStage->users()->get();
+        
         if(request()->stage) {
             $stage = Stage::where('slug', request()->category)->with('users')->get()->first();
             $customers = $stage->users()->get();
         }
+        
 
         return view('customers.index')
             ->with([

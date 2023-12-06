@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,9 @@ use App\Http\Controllers\User\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/services/{slug}/subservices', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
+Route::get('/subservice/{sub_service}/register', [HomeController::class, 'register'])->name('register.sub_service');
 
 Auth::routes();
 Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
@@ -34,4 +35,3 @@ Route::prefix('staff')->as('staff.')->middleware('can:is_staff')->group(fn () =>
 
 
 });
-

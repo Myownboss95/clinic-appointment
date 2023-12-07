@@ -34,3 +34,5 @@ use Illuminate\Support\Str;
         return Str::substr(auth()->user()->name, 0, 9);
     }
 
+    
+

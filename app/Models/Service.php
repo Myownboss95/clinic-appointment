@@ -30,8 +30,8 @@ class Service extends Model
 
 
 
-    public $fillable = [
-        'name'
+    public $guarded = [
+        'id'
     ];
 
     /**

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -64,9 +65,6 @@ class Comment extends Model
         'model_name' => 'required|string|max:255',
         'model_id' => 'required|integer',
         'body' => 'required|string',
-        'deleted_at' => 'nullable',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
         'user_id' => 'nullable|integer',
         'staff_user_id' => 'nullable|integer'
     ];

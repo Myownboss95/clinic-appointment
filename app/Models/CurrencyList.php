@@ -35,14 +35,7 @@ class CurrencyList extends Model
 
 
 
-    public $fillable = [
-        'id',
-        'name',
-        'code',
-        'dial_code',
-        'currency_name',
-        'currency_symbol',
-        'currency_code'
+    public $guarded = ['id'
     ];
 
     /**

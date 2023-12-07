@@ -57,10 +57,7 @@ class ClinicUser extends Model
     public static $rules = [
         'user_id' => 'required|integer',
         'clinic_id' => 'required|integer',
-        'role' => 'required|string|max:255',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'role' => 'required|string|max:255'
     ];
 
     

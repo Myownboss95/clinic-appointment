@@ -35,14 +35,7 @@ class Country extends Model
 
 
 
-    public $fillable = [
-        'id',
-        'name',
-        'iso_code2',
-        'iso_code3',
-        'num_code',
-        'status',
-        'currency_symbol'
+    public $guarded = ['id'
     ];
 
     /**

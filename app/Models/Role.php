@@ -29,8 +29,8 @@ class Role extends Model
 
 
 
-    public $fillable = [
-        'name'
+    public $guarded = [
+        'id'
     ];
 
     /**

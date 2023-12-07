@@ -34,14 +34,7 @@ class SubService extends Model
 
 
 
-    public $fillable = [
-        'name',
-        'slug',
-        'service_id',
-        'price',
-        'description',
-        'image'
-    ];
+    public $guarded = ['id'];
 
     /**
      * The attributes that should be casted to native types.

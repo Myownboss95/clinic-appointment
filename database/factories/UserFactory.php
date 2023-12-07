@@ -27,7 +27,6 @@ class UserFactory extends Factory
         'name' => $name,
         'email' => $this->faker->unique()->email(),
         'role_id' => $this->faker->randomDigitNotNull,
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s'),
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
         'password' => Hash::make('password'),

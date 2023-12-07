@@ -20,8 +20,8 @@ class ServiceSeeder extends Seeder
         foreach (ServiceTypes::toArray() as $service) {
             $selectedService = ServiceTypes::from($service);
 
-            // Create a Country
-            $country = Service::create([
+            // Create a service
+            Service::create([
                 'name' => $service,
                 'slug' => $selectedService->slug()
             ]);

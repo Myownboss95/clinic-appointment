@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Appointment
@@ -66,15 +67,12 @@ class Appointment extends Model
         'sub_service_id' => 'required|integer',
         'start_time' => 'nullable',
         'end_time' => 'nullable',
-        'stage_id' => 'nullable|string|max:11',
-        'created_at' => 'nullable|integer',
-        'updated_at' => 'nullable|integer',
-        'deleted_at' => 'nullable|integer'
+        'stage_id' => 'nullable|string|max:11'
     ];
 
-     public function user(): HasOne
+     public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class User
@@ -47,20 +48,7 @@ class User extends Authenticatable
 
 
 
-    public $fillable = [
-        'name',
-        'email',
-        'city_id',
-        'state_id',
-        'country_id',
-        'role_id',
-        'password',
-        'gender',
-        'balance',
-        'life_time_balance',
-        'referral_code',
-        'referred_by_user_id',
-        'email_verified_at'
+    public $guarded = ['id'
     ];
 
     /**
@@ -111,12 +99,17 @@ class User extends Authenticatable
 
     public function appointments(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Appointment::class);
     }
 
     public function comments(): HasMany
     {
         return $this->HasMany(Comment::class);
+    }
+
+    public function stage(): BelongsToMany
+    {
+        return $this->belongsToMany(Stage::class, 'user_stage');
     }
 
     public static function generateReferralCode($name): string

@@ -59,10 +59,7 @@ class City extends Model
     public static $rules = [
         'state_id' => 'required',
         'name' => 'required|string|max:255',
-        'status' => 'required|string',
-        'created_at' => 'required',
-        'updated_at' => 'required',
-        'deleted_at' => 'nullable'
+        'status' => 'required|string'
     ];
 
     

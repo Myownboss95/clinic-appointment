@@ -5,9 +5,10 @@ namespace App\Models;
 // use Eloquent as Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Stage
@@ -32,8 +33,8 @@ class Stage extends Model
 
 
 
-    public $fillable = [
-        'name'
+    public $guarded = [
+        'id'
     ];
 
     /**
@@ -53,14 +54,16 @@ class Stage extends Model
      */
     public static $rules = [
         'name' => 'required|string|max:255',
+        'slug' => 'required|string|max:255|unique:stage,slug',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
 
     
-    public function users(): BelongsTo
+    
+    public function users(): BelongsToMany
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'user_stage');
     }
 }

@@ -32,11 +32,8 @@ class UserStage extends Model
 
 
 
-    public $fillable = [
-        'user_id',
-        'sub_service_id',
-        'service_id',
-        'log'
+    public $guarded = [
+        'id'
     ];
 
     /**
@@ -48,7 +45,6 @@ class UserStage extends Model
         'id' => 'integer',
         'user_id' => 'integer',
         'sub_service_id' => 'integer',
-        'service_id' => 'integer',
         'log' => 'string'
     ];
 

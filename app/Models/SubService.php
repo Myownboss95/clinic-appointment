@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,6 +36,7 @@ class SubService extends Model
 
     public $fillable = [
         'name',
+        'slug',
         'service_id',
         'price',
         'description',
@@ -50,6 +51,7 @@ class SubService extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'integer',
+        'slug' => 'string',
         'service_id' => 'integer',
         'price' => 'integer',
         'description' => 'string',
@@ -63,7 +65,8 @@ class SubService extends Model
      */
     public static $rules = [
         'name' => 'required|integer|unique:sub_services',
-        'service_id' => 'required|integer',
+        'slug' => 'required|string|unique:sub_services,slug',
+        'service_id' => 'required|integer|exists:services:id',
         'price' => 'nullable|number',
         'description' => 'nullable|string',
         'image' => 'nullable|string|max:255',

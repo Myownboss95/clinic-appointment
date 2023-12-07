@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
@@ -118,8 +119,21 @@ class User extends Authenticatable
         return $this->HasMany(Comment::class);
     }
 
-    
+    public static function generateReferralCode($name): string
+    {
+        $proposedCode = Str::limit($name, 5, '');
+        if (Str::length($proposedCode) < 5) {
+            $proposedCode = str_pad($proposedCode, 10, (string) mt_rand(0, 9), STR_PAD_RIGHT);
+        }
+        while (User::where('referral_code', $proposedCode)->exists()) {
+            $proposedCode = Str::limit($name, 5, '');
+            if (User::where('referral_code', $proposedCode)->exists()) {
+                $proposedCode = Str::limit($proposedCode, 6, '').mt_rand(1000, 9999);
+            }
+        }
 
+        return $proposedCode;
+    }
    
 
     

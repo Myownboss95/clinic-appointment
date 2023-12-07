@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class UserFactory extends Factory
 {
@@ -21,22 +22,19 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->unique()->firstName();
         return [
-            'name' => $this->faker->word,
-        'email' => $this->faker->word,
-        'city_id' => $this->faker->randomDigitNotNull,
-        'state_id' => $this->faker->randomDigitNotNull,
-        'country_id' => $this->faker->randomDigitNotNull,
+        'name' => $name,
+        'email' => $this->faker->unique()->email(),
         'role_id' => $this->faker->randomDigitNotNull,
         'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s'),
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'password' => $this->faker->word,
-        'gender' => $this->faker->word,
+        'password' => Hash::make('password'),
+        'referral_code' => User::generateReferralCode($name),
+        'gender' => $this->faker->randomElement(['male', 'female']),
         'balance' => $this->faker->randomDigitNotNull,
         'life_time_balance' => $this->faker->randomDigitNotNull,
-        'referral_code' => $this->faker->word,
-        'referred_by_user_id' => $this->faker->randomDigitNotNull,
         'email_verified_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }

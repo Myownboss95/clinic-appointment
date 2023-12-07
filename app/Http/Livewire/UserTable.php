@@ -26,7 +26,7 @@ final class UserTable extends PowerGridComponent
 
         return [
             Exportable::make('export')
-                ->striped()
+                ->striped('#1c84ee')
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput(),
             Footer::make()
@@ -37,7 +37,7 @@ final class UserTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query();
+        return User::query()->where('role_id', 2);
     }
 
     public function relationSearch(): array
@@ -48,13 +48,13 @@ final class UserTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('id')
             ->addColumn('name')
 
            /** Example of custom column using a closure **/
             ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
 
             ->addColumn('email')
+            ->addColumn('life_time_balance')
             ->addColumn('email_verified_at_formatted', fn (User $model) => Carbon::parse($model->email_verified_at)->format('d/m/Y H:i:s'))
             ->addColumn('created_at_formatted', fn (User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -62,7 +62,6 @@ final class UserTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
@@ -71,6 +70,11 @@ final class UserTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
+            // Column::make('Balance', 'balance'),
+            // Column::make('Life time balance', 'life_time_balance'),
+            // Column::make('Referral code', 'referral_code')
+                // ->sortable()
+                // ->searchable(),
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
@@ -81,10 +85,7 @@ final class UserTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('name')->operators(['contains']),
-            Filter::inputText('email')->operators(['contains']),
-            Filter::datetimepicker('email_verified_at'),
-            Filter::datetimepicker('created_at'),
+            // Filter::datetimepicker('created_at'),
         ];
     }
 
@@ -98,8 +99,11 @@ final class UserTable extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->slot('Edit')
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->slot('Remove Admin ')
+                ->id()
+                ->class('btn btn-primary')
+                // ->route('edit', ['rowId' => $row->id])
+                
         ];
     }
 

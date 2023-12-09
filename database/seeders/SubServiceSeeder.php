@@ -22,14 +22,14 @@ class SubServiceSeeder extends Seeder
         foreach (SubServicesTypes::toArray() as $subservice) {
             $selectedSubService = SubServicesTypes::from($subservice);
             $service = Service::where('name', $selectedSubService->service())->first();
-            // Create a Country
+            // Create a subservice
             SubService::create([
                 'name' => $subservice,
                 'slug' => $selectedSubService->slug(),
                 'description' => $selectedSubService->description(),
                 'service_id' => $service->id,
                 'image' => $faker->imageUrl(144, 144),
-                'price' => $faker->numberBetween(10000, 500000)
+                'price' => $selectedSubService->price()
             ]);
         }
     }

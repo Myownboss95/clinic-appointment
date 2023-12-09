@@ -39,7 +39,7 @@
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
-                                <span class="logo-txt">Dason</span>
+                                <span class="logo-txt">{{ config('app.name')}}</span>
                             </span>
                         </a>
 
@@ -49,7 +49,7 @@
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
-                                <span class="logo-txt">Dason</span>
+                                <span class="logo-txt">{{ config('app.name')}}</span>
                             </span>
                         </a>
                     </div>

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Appointment
@@ -14,10 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @version October 24, 2023, 4:12 pm UTC
  *
  * @property integer $user_id
- * @property integer $sub_service_id
  * @property string|\Carbon\Carbon $start_time
  * @property string|\Carbon\Carbon $end_time
- * @property string $stage_id
  */
 class Appointment extends Model
 {
@@ -35,13 +34,7 @@ class Appointment extends Model
 
 
 
-    public $fillable = [
-        'user_id',
-        'sub_service_id',
-        'start_time',
-        'end_time',
-        'stage_id'
-    ];
+    public $guarded = ['id'];
 
     /**
      * The attributes that should be casted to native types.
@@ -51,10 +44,9 @@ class Appointment extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
-        'sub_service_id' => 'integer',
+        'parent_appointment_id' => 'integer',
         'start_time' => 'datetime',
         'end_time' => 'datetime',
-        'stage_id' => 'string'
     ];
 
     /**
@@ -64,16 +56,34 @@ class Appointment extends Model
      */
     public static $rules = [
         'user_id' => 'required|integer',
-        'sub_service_id' => 'required|integer',
+        'parent_appointment_id' => 'nullable|exists:appointments,id',
         'start_time' => 'nullable',
         'end_time' => 'nullable',
-        'stage_id' => 'nullable|string|max:11'
     ];
 
-     public function user(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    public function sub_service(): BelongsToMany
+    {
+        return $this->belongsToMany(SubService::class, 'appointment_sub_service');
+    }
+    
+    public function transaction(): BelongsToMany
+    {
+        return $this->belongsToMany(Transaction::class, 'appointment_transaction');
+    }
+
+    public function parentAppointment()
+    {
+        return $this->belongsTo(self::class, 'parent_appointment_id');
+    }
+
+    public function followUpAppointments()
+    {
+        return $this->hasMany(self::class, 'parent_appointment_id');
+    }
     
 }

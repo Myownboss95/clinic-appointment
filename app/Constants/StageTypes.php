@@ -19,13 +19,6 @@ enum StageTypes: string implements EnumToArray
 
     public function slug()
     {
-        return match ($this) {
-            self::CONSULTATION => Str::slug(self::CONSULTATION->value),
-            self::APPOINTMENT_SCHEDULING => Str::slug(self::APPOINTMENT_SCHEDULING->value),
-            self::DIAGNOSTICS => Str::slug(self::DIAGNOSTICS->value),
-            self::PROCEDURES => Str::slug(self::PROCEDURES->value),
-            self::POST_TREATMENT => Str::slug(self::POST_TREATMENT->value),
-            self::FOLLOW_UP_APPOINTMENT => Str::slug(self::FOLLOW_UP_APPOINTMENT->value),
-        };
+        return Str::slug($this->value);
     }
 }

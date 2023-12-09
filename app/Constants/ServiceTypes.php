@@ -2,8 +2,9 @@
 
 namespace App\Constants;
 
-use App\Contracts\EnumToArray;
+use Illuminate\Support\Str;
 use App\Traits\ArrayableEnum;
+use App\Contracts\EnumToArray;
 
 enum ServiceTypes: string implements EnumToArray
 {
@@ -15,9 +16,7 @@ enum ServiceTypes: string implements EnumToArray
 
     public function slug()
     {
-        return match ($this) {
-            self::DENTALS => 'dental-services',
-            self::GRILLS => 'grill-services',
-        };
+        return Str::slug("$this->value services");
+        
     }
 }

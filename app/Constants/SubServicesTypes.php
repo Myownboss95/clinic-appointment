@@ -2,8 +2,9 @@
 
 namespace App\Constants;
 
-use App\Contracts\EnumToArray;
+use Illuminate\Support\Str;
 use App\Traits\ArrayableEnum;
+use App\Contracts\EnumToArray;
 
 enum SubServicesTypes: string implements EnumToArray
 {
@@ -19,12 +20,7 @@ enum SubServicesTypes: string implements EnumToArray
 
     public function slug()
     {
-        return match ($this) {
-            self::TEETH_WHITENING => 'teeth-whitening',
-            self::BRACES => 'braces',
-            self::DENTURE => 'denture',
-            self::POLISHING => 'polishing',
-        };
+        return Str::slug("$this->value services");
     }
 
     public function service()
@@ -34,6 +30,15 @@ enum SubServicesTypes: string implements EnumToArray
             self::BRACES => ServiceTypes::GRILLS->value,
             self::DENTURE => ServiceTypes::GRILLS->value,
             self::POLISHING => ServiceTypes::DENTALS->value,
+        };
+    }
+    public function price()
+    {
+        return match ($this) {
+            self::TEETH_WHITENING => 20000.00,
+            self::BRACES => 100000.00,
+            self::DENTURE => 200000.00,
+            self::POLISHING => 50000.00,
         };
     }
 

@@ -14,22 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(5)->create([
-        //     'role_id' => 1
-        // ]);
-        // User::factory(5)->create([
-        //     'role_id' => 2
-        // ]);
-        // User::factory(1)->create([
-        //     'role_id' => 3
-        // ]);
+        User::factory(5)->create([
+            'role_id' => 1
+        ]);
+        User::factory(5)->create([
+            'role_id' => 2
+        ]);
+        User::factory(1)->create([
+            'role_id' => 3
+        ]);
 
         $this->call([
             // ServiceSeeder::class,
             // SubServiceSeeder::class,
             // StageSeeder::class,
-            // UserStageSeeder::class
-            AppointmentSeeder::class
+            // PaymentChannelsSeeder::class,
+
+            //this should be run to quickly seed this appointment, transaction and all the pivot tables
+            // AppointmentSeeder::class
+            //seed for follow up appointments
+            FollowUpAppointmentSeeder::class
         ]);
 
     }

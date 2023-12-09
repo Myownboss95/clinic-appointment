@@ -33,10 +33,10 @@
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Appointments</span>
                                             <h4 class="mb-3">
-                                                <span class="counter-value" data-target={{ $user->appointments->count() }}>0</span>
+                                                <span class="counter-value" data-target={{ $user->appointments?->count() }}>0</span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-danger-subtle text-danger">{{ $user->appointments->where('end_time', '!=', null)->count() }} Appointments</span>
+                                                <span class="badge bg-danger-subtle text-danger">{{ $user->appointments?->whereNotNull('end_time')->count() }} Appointments</span>
                                                 <span class="ms-1 text-muted font-size-13">Completed</span>
                                             </div>
                                         </div>
@@ -56,10 +56,10 @@
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Services Purchased</span>
                                             <h4 class="mb-3">
-                                                <span class="counter-value" data-target="{{ $user->transaction?->whereNotNull('sub_service_id')->count() ?? 0 }}">0</span>
+                                                <span class="counter-value" data-target="{{ $user->appointments()?->with('sub_service')->count() ?? 0 }}">0</span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">{{ $user->transaction?->whereNotNull('sub_service_id')->sum('amount') ?? 0 }}</span>
+                                                <span class="badge bg-success-subtle text-success">{{ $user->appointments()?->with('sub_service')->count() ?? 0 }}</span>
                                                 <span class="ms-1 text-muted font-size-13">Since joining us</span>
                                             </div>
                                         </div>
@@ -83,12 +83,8 @@
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Next Appointment</span>
                                             <h4 class="mb-3">
-                                                $<span class="counter-value" data-target="7.54">0</span>M
+                                                <span class="">{{ $nextAppointment }}</span>
                                             </h4>
-                                            <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">+ $2.8k</span>
-                                                <span class="ms-1 text-muted font-size-13">Since last week</span>
-                                            </div>
                                         </div>
                                         <div class="flex-shrink-0 text-end dash-widget">
                                             <div id="mini-chart3" data-colors='["--bs-primary", "--bs-success"]' class="apex-charts"></div>
@@ -105,13 +101,13 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
-                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Referral Earnings</span>
+                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Lifetime Earnings</span>
                                             <h4 class="mb-3">
-                                                <span class="counter-value" data-target="18.34">0</span>%
+                                                <span class="counter-value" data-target="18.34">{{ $user->life_time_balance}} </span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">+5.32%</span>
-                                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                                <span class="badge bg-success-subtle text-success">₦{{ $user->balance }}</span>
+                                                <span class="ms-1 text-muted font-size-13">Current Balance</span>
                                             </div>
                                         </div>
                                         <div class="flex-shrink-0 text-end dash-widget">

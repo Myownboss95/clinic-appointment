@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class SubService
@@ -34,13 +35,7 @@ class SubService extends Model
 
 
 
-    public $fillable = [
-        'name',
-        'service_id',
-        'price',
-        'description',
-        'image'
-    ];
+    public $guarded = ['id'];
 
     /**
      * The attributes that should be casted to native types.
@@ -50,6 +45,7 @@ class SubService extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'integer',
+        'slug' => 'string',
         'service_id' => 'integer',
         'price' => 'integer',
         'description' => 'string',
@@ -63,7 +59,8 @@ class SubService extends Model
      */
     public static $rules = [
         'name' => 'required|integer|unique:sub_services',
-        'service_id' => 'required|integer',
+        'slug' => 'required|string|unique:sub_services,slug',
+        'service_id' => 'required|integer|exists:services:id',
         'price' => 'nullable|number',
         'description' => 'nullable|string',
         'image' => 'nullable|string|max:255',
@@ -79,6 +76,11 @@ class SubService extends Model
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function appointment(): BelongsToMany
+    {
+        return $this->belongsToMany(Appointment::class, 'appointment_sub_service');
     }
 
     

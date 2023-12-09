@@ -13,6 +13,9 @@ use Illuminate\Support\Str;
         if ($userRoleId == 2) {
             return route('staff.' . $routeName);
         } 
+        if ($userRoleId == 1) {
+            return route('user.' . $routeName);
+        } 
             
         return route($routeName);
     }
@@ -31,6 +34,8 @@ use Illuminate\Support\Str;
 
     function user_name()
     {
-        return Str::substr(auth()->user()->name, 0, 9);
+        return Str::substr(auth()->user()->first_name, 0, 9);
     }
+
+    
 

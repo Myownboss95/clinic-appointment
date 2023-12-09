@@ -31,10 +31,7 @@ class GeneralSetting extends Model
 
 
 
-    public $fillable = [
-        'id',
-        'name',
-        'value'
+    public $guarded = ['id'
     ];
 
     /**

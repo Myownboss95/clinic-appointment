@@ -1,5 +1,5 @@
 <li>
-    <a href="{{ roleBasedRoute('index') }}">
+    <a href="">
         <i data-feather="home"></i>
         <span class="badge rounded-pill bg-success-subtle text-success float-end">9+</span>
         <span data-key="t-dashboard">Dashboard</span>

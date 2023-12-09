@@ -24,7 +24,7 @@
         <div class="card">
             <div class="card-body p-3">
                 {{-- @include('staff.table') --}}
-                <livewire:staff-table/>
+                <livewire:user-table/>
 
                 <div class="card-footer clearfix">
                     <div class="float-right">

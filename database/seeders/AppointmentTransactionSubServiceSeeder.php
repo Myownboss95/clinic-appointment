@@ -53,7 +53,7 @@ class AppointmentTransactionSubServiceSeeder extends Seeder
                 ]);
 
                 $appointment->transaction()->attach($transaction);
-                $appointment->sub_service()->attach($subservice, [
+                $appointment->subService()->attach($subservice, [
                     'stage_id' => $stage->id
                 ]);
             }

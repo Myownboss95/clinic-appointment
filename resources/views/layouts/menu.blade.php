@@ -7,13 +7,23 @@
 </li>
 <li class="menu-title" data-key="t-apps">Main</li>
 
+@can('is_user')
+    
+<li>
+    <a href="apps-calendar.html">
+        <i data-feather="calendar"></i>
+        <span data-key="t-calendar">Appoinments</span>
+    </a>
+</li>
+@endcan
+
 @can('is_staff')
     
 
 <li>
     <a href="{{ roleBasedRoute('appointments.index') }}">
-        <i data-feather="message-square"></i>
-        <span data-key="t-chat">Appointments</span>
+        <i data-feather="calendar"></i>
+        <span data-key="t-calendar">Appointments</span>
     </a>
 </li>
 <li>
@@ -111,12 +121,7 @@
     </ul>
 </li>
 
-<li>
-    <a href="apps-calendar.html">
-        <i data-feather="calendar"></i>
-        <span data-key="t-calendar">Calendar</span>
-    </a>
-</li>
+
 
 <li>
     <a href="javascript: void(0);" class="has-arrow">

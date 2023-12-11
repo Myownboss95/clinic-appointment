@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\AppointmentSubService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,7 +45,7 @@ class SubService extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'integer',
+        'name' => 'string',
         'slug' => 'string',
         'service_id' => 'integer',
         'price' => 'integer',
@@ -80,7 +81,13 @@ class SubService extends Model
 
     public function appointment(): BelongsToMany
     {
-        return $this->belongsToMany(Appointment::class, 'appointment_sub_service');
+        return $this->belongsToMany(Appointment::class, 'appointment_sub_service')->withPivot(['stage_id'])
+        ->using(AppointmentSubService::class);
+    }
+
+    public function stages()
+    {
+        return $this->belongsTo(Stage::class, 'stage_id');
     }
 
     

@@ -3,10 +3,12 @@
 namespace App\Models;
 
 
+
+use App\Models\AppointmentSubservice;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -66,9 +68,11 @@ class Appointment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function sub_service(): BelongsToMany
+    public function subService(): BelongsToMany
     {
-        return $this->belongsToMany(SubService::class, 'appointment_sub_service');
+        return $this->belongsToMany(SubService::class, 'appointment_sub_service')
+        ->withPivot(['stage_id'])
+        ->using(AppointmentSubService::class);
     }
     
     public function transaction(): BelongsToMany

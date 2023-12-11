@@ -1,5 +1,6 @@
 <?php 
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 
@@ -35,6 +36,11 @@ use Illuminate\Support\Str;
     function user_name()
     {
         return Str::substr(auth()->user()->first_name, 0, 9);
+    }
+
+    function format_datetime($datetime)
+    {
+        return Carbon::parse($datetime)->format('jS \of F, Y, \b\y g.ia');
     }
 
     

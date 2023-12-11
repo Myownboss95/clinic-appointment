@@ -9,12 +9,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Welcome {{ auth()->user()->name}}!</h4>
+                                <h4 class="mb-sm-0 font-size-18">Welcome {{ auth()->user()->first_name}}!</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                        <li class="breadcrumb-item active">Welcome {{ auth()->user()->name}}!</li>
+                                        <li class="breadcrumb-item active">Welcome {{ auth()->user()->first_name}}!</li>
                                     </ol>
                                 </div>
 
@@ -23,6 +23,7 @@
                     </div>
                     <!-- end page title -->
 
+                    {{-- card panel --}}
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <!-- card -->
@@ -56,10 +57,10 @@
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Services Purchased</span>
                                             <h4 class="mb-3">
-                                                <span class="counter-value" data-target="{{ $user->appointments()?->with('sub_service')->count() ?? 0 }}">0</span>
+                                                <span class="counter-value" data-target="{{ $user->appointments()?->with('subService')->count() ?? 0 }}">0</span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">{{ $user->appointments()?->with('sub_service')->count() ?? 0 }}</span>
+                                                <span class="badge bg-success-subtle text-success">{{ $user->appointments()?->with('subService')->count() ?? 0 }}</span>
                                                 <span class="ms-1 text-muted font-size-13">Since joining us</span>
                                             </div>
                                         </div>
@@ -102,8 +103,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Lifetime Earnings</span>
-                                            <h4 class="mb-3">
-                                                <span class="counter-value" data-target="18.34">{{ $user->life_time_balance}} </span>
+                                            <h4 class="mb-3">₦<span class="counter-value" data-target="{{ $user->life_time_balance}}">0</span>
                                             </h4>
                                             <div class="text-nowrap">
                                                 <span class="badge bg-success-subtle text-success">₦{{ $user->balance }}</span>
@@ -118,6 +118,134 @@
                             </div><!-- end card -->
                         </div><!-- end col -->    
                     </div><!-- end row-->     
+
+
+                    {{-- tables --}}
+                     <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Appointments</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Appointment Date</th>
+                                                    <th>Service</th>
+                                                    <th>Stage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($appointments as $appointment)
+                                                @php
+                                                    $stages = []; // Array to store stage names
+                                                @endphp
+                                                    <tr>
+                                                        <th scope="row">{{format_datetime($appointment->start_time)}}</th>
+                                                       @if ($appointment->subService->count() > 0)
+                                                           
+                                                       <td>
+                                                           @foreach ($appointment->subService as $appointment_services )
+                                                              <div class="m-1">
+                                                               <i class="dripicons-chevron-right"></i> {{$appointment_services->name}}
+                                                               </div> 
+                                                                @php
+                                                                    $stageName = $appointment_services->pivot->stage->name;
+                                                                    if (!in_array($stageName, $stages)) {
+                                                                        $stages[] = $stageName;
+                                                                    }
+                                                                @endphp
+                                                           @endforeach
+                                                       
+                                                       </td>
+                                                       
+                                                       <td>
+                                                           {{ implode(', ', $stages) }}
+                                                       </td>
+                                                       @endif
+                                                    </tr>
+                                                @endforeach
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Your Transactions</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mb-0">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Amount</th>
+                                                    <th>Service</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach ($transactions as $transaction)
+                                                <tr>
+                                                    <th scope="row">{{ $transaction->amount }}</th>
+                                                    <td>{{ $transaction->appointment->first()->subService->first()->name }}</td> 
+                                                    <td>{{ format_datetime($transaction->created_at)}}</td>
+                                                </tr>
+                                            @endforeach
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Follow Up Appointments</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Appointment Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($followUpAppointments as $followUpAppointment)
+                                                    <tr>
+                                                        <th scope="row">{{format_datetime($followUpAppointment->start_time)}}</th>
+                                                       
+                                                    </tr>
+                                                @endforeach
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
                 </div>
                 <!-- container-fluid -->
             </div>

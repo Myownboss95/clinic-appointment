@@ -21,4 +21,5 @@ enum StageTypes: string implements EnumToArray
     {
         return Str::slug($this->value);
     }
+    
 }

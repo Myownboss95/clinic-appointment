@@ -103,10 +103,10 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Lifetime Earnings</span>
-                                            <h4 class="mb-3">₦<span class="counter-value" data-target="{{ $user->life_time_balance}}">0</span>
+                                            <h4 class="mb-3">₦<span class="counter-value" data-target="{{ number_format($user->life_time_balance, 2, '.', ',')}}">0</span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">₦{{ $user->balance }}</span>
+                                                <span class="badge bg-success-subtle text-success">{{ '₦'.number_format($user->balance, 2, '.', ',') }}</span>
                                                 <span class="ms-1 text-muted font-size-13">Current Balance</span>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                                             <tbody>
                                             @foreach ($transactions as $transaction)
                                                 <tr>
-                                                    <th scope="row">{{ $transaction->amount }}</th>
+                                                    <th scope="row">{{ '₦'.number_format($transaction->amount, 2, '.', ',') }}</th>
                                                     <td>{{ $transaction->appointment->first()->subService->first()->name }}</td> 
                                                     <td>{{ format_datetime($transaction->created_at)}}</td>
                                                 </tr>

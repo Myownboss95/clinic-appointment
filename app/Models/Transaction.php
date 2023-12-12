@@ -16,8 +16,8 @@ class Transaction extends Model
     protected string $uuidColumn = 'ref';
 
     protected $casts = [
-        'status' => TransactionStatusTypes::class,
-        'type' => TransactionTypes::class,
+        // 'status' => TransactionStatusTypes::class,
+        // 'type' => TransactionTypes::class,
     ];
 
     public function user(): BelongsTo

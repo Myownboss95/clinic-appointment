@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $user = $request->user();
         $userTransactions = $user->load('transactions.appointment.subService');
         $userAppointments = $user->load('appointments.subService','appointments.transaction');
-        // dd($userTransactions->transactions);
+        // dd(auth()->user()->transactions);
         return view('user.dashboard', [
             'user' => $user->load('appointments.subService','appointments.transaction'),
             'appointments' => $userAppointments->appointments->whereNull('parent_appointment_id'),

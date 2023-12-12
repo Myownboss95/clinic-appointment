@@ -15,6 +15,13 @@
         <span data-key="t-calendar">Appoinments</span>
     </a>
 </li>
+<li>
+    <a href="{{route('user.transactions')}}">
+        <i data-feather="trello"></i>
+        <span data-key="t-tasks">Transactions</span>
+    </a>
+</li>
+
 @endcan
 
 @can('is_staff')

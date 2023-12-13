@@ -31,7 +31,7 @@ class CityController extends AppBaseController
     {
         $cities = $this->cityRepository->all();
 
-        return view('cities.index')
+        return view('admin.cities.index')
             ->with('cities', $cities);
     }
 
@@ -42,7 +42,7 @@ class CityController extends AppBaseController
      */
     public function create()
     {
-        return view('cities.create');
+        return view('admin.cities.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class CityController extends AppBaseController
             return redirect(roleBasedRoute('cities.index'));
         }
 
-        return view('cities.show')->with('city', $city);
+        return view('admin.cities.show')->with('city', $city);
     }
 
     /**
@@ -99,7 +99,7 @@ class CityController extends AppBaseController
             return redirect(roleBasedRoute('cities.index'));
         }
 
-        return view('cities.edit')->with('city', $city);
+        return view('admin.cities.edit')->with('city', $city);
     }
 
     /**

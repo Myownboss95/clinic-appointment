@@ -31,7 +31,7 @@ class CountryController extends AppBaseController
     {
         $countries = $this->countryRepository->all();
 
-        return view('countries.index')
+        return view('admin.countries.index')
             ->with('countries', $countries);
     }
 
@@ -42,7 +42,7 @@ class CountryController extends AppBaseController
      */
     public function create()
     {
-        return view('countries.create');
+        return view('admin.countries.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class CountryController extends AppBaseController
             return redirect(roleBasedRoute('countries.index'));
         }
 
-        return view('countries.show')->with('country', $country);
+        return view('admin.countries.show')->with('country', $country);
     }
 
     /**
@@ -100,7 +100,7 @@ class CountryController extends AppBaseController
             return redirect(roleBasedRoute('countries.index'));
         }
 
-        return view('countries.edit')->with('country', $country);
+        return view('admin.countries.edit')->with('country', $country);
     }
 
     /**

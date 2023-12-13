@@ -31,7 +31,7 @@ class CountryPhoneCodeController extends AppBaseController
     {
         $countryPhoneCodes = $this->countryPhoneCodeRepository->all();
 
-        return view('country_phone_codes.index')
+        return view('admin.country_phone_codes.index')
             ->with('countryPhoneCodes', $countryPhoneCodes);
     }
 
@@ -42,7 +42,7 @@ class CountryPhoneCodeController extends AppBaseController
      */
     public function create()
     {
-        return view('country_phone_codes.create');
+        return view('admin.country_phone_codes.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class CountryPhoneCodeController extends AppBaseController
             return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
-        return view('country_phone_codes.show')->with('countryPhoneCode', $countryPhoneCode);
+        return view('admin.country_phone_codes.show')->with('countryPhoneCode', $countryPhoneCode);
     }
 
     /**
@@ -100,7 +100,7 @@ class CountryPhoneCodeController extends AppBaseController
             return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
-        return view('country_phone_codes.edit')->with('countryPhoneCode', $countryPhoneCode);
+        return view('admin.country_phone_codes.edit')->with('countryPhoneCode', $countryPhoneCode);
     }
 
     /**

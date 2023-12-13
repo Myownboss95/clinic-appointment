@@ -31,7 +31,7 @@ class UserStageController extends AppBaseController
     {
         $userStages = $this->userStageRepository->all();
 
-        return view('user_stages.index')
+        return view('admin.user_stages.index')
             ->with('userStages', $userStages);
     }
 
@@ -42,7 +42,7 @@ class UserStageController extends AppBaseController
      */
     public function create()
     {
-        return view('user_stages.create');
+        return view('admin.user_stages.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class UserStageController extends AppBaseController
             return redirect(roleBasedRoute('userStages.index'));
         }
 
-        return view('user_stages.show')->with('userStage', $userStage);
+        return view('admin.user_stages.show')->with('userStage', $userStage);
     }
 
     /**
@@ -100,7 +100,7 @@ class UserStageController extends AppBaseController
             return redirect(roleBasedRoute('userStages.index'));
         }
 
-        return view('user_stages.edit')->with('userStage', $userStage);
+        return view('admin.user_stages.edit')->with('userStage', $userStage);
     }
 
     /**

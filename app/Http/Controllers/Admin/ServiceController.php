@@ -31,7 +31,7 @@ class ServiceController extends AppBaseController
     {
         $services = $this->serviceRepository->all();
 
-        return view('services.index')
+        return view('admin.services.index')
             ->with('services', $services);
     }
 
@@ -42,7 +42,7 @@ class ServiceController extends AppBaseController
      */
     public function create()
     {
-        return view('services.create');
+        return view('admin.services.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class ServiceController extends AppBaseController
             return redirect(roleBasedRoute('services.index'));
         }
 
-        return view('services.show')->with('service', $service);
+        return view('admin.services.show')->with('service', $service);
     }
 
     /**
@@ -100,7 +100,7 @@ class ServiceController extends AppBaseController
             return redirect(roleBasedRoute('services.index'));
         }
 
-        return view('services.edit')->with('service', $service);
+        return view('admin.services.edit')->with('service', $service);
     }
 
     /**

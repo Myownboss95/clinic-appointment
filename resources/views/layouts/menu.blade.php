@@ -117,39 +117,23 @@
 @endcan
 
 
+
+<li class="menu-title" data-key="t-apps">Account</li>
 <li>
-    <a href="javascript: void(0);" class="has-arrow">
-        <i data-feather="mail"></i>
-        <span data-key="t-email">Email</span>
-    </a>
-    <ul class="sub-menu" aria-expanded="false">
-        <li><a href="apps-email-inbox.html" data-key="t-inbox">Inbox</a></li>
-        <li><a href="apps-email-read.html" data-key="t-read-email">Read Email</a></li>
-    </ul>
+    <form action="{{ route('logout') }}" method="post">
+        @csrf
+        <a href="{{ roleBasedRoute('passwordResets.index') }}">
+            <button type="submit" style="border: none; background: none; cursor: pointer;">
+                <i data-feather="power"></i>
+                <span data-key="t-email">Log Out</span>
+            </button>
+        </a>
+    </form>
 </li>
-
-
-
-<li>
-    <a href="javascript: void(0);" class="has-arrow">
-        <i data-feather="users"></i>
-        <span data-key="t-contacts">Contacts</span>
-    </a>
-    <ul class="sub-menu" aria-expanded="false">
-        <li><a href="apps-contacts-grid.html" data-key="t-user-grid">User Grid</a></li>
-        <li><a href="apps-contacts-list.html" data-key="t-user-list">User List</a></li>
-        <li><a href="apps-contacts-profile.html" data-key="t-profile">Profile</a></li>
-    </ul>
-</li>
-
-<li>
-    <a href="javascript: void(0);" class="has-arrow">
-        <i data-feather="trello"></i>
-        <span data-key="t-tasks">Tasks</span>
-    </a>
-    <ul class="sub-menu" aria-expanded="false">
-        <li><a href="tasks-list.html" key="t-task-list">Task List</a></li>
-        <li><a href="tasks-kanban.html" key="t-kanban-board">Kanban Board</a></li>
-        <li><a href="tasks-create.html" key="t-create-task">Create Task</a></li>
-    </ul>
-</li>
+{{-- <li> 
+    <form action="{{ route('logout') }}" method="post">
+        @csrf
+        <button type="submit" class="dropdown-item"><i
+                class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</button>
+    </form>
+</li> --}}

@@ -8,8 +8,7 @@
                     <h1>Stage Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('stages.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('stages.index') }}">
                         Back
                     </a>
                 </div>

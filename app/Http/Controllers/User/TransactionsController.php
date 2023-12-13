@@ -21,5 +21,22 @@ class TransactionsController extends Controller
             'user' => $user->load('transactions'),
         ]);
     }
+
+     /**
+     * Display the specified Stage.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show(Request $request, $id)
+    {
+        $user = $request->user();
+        $transaction = $user->transaction()->where('id', $id)->first();
+        return view('admin.stages.show', [
+            'user' => $user,
+            'transaction' => $transaction,
+        ]);
+    }
 }
 

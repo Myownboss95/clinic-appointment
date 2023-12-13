@@ -22,6 +22,9 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/services/{slug}/subservices', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
 Route::get('/subservice/{sub_service}/register', [HomeController::class, 'register'])->name('register.sub_service');
 
+Route::get('/log-out', function (){
+    return view('auth.logout');
+})->name('log-out');
 Auth::routes();
 Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);

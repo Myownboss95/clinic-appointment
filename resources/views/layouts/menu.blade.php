@@ -120,15 +120,16 @@
 
 <li class="menu-title" data-key="t-apps">Account</li>
 <li>
-    <form action="{{ route('logout') }}" method="post">
-        @csrf
-        <a href="{{ roleBasedRoute('passwordResets.index') }}">
-            <button type="submit" style="border: none; background: none; cursor: pointer;">
-                <i data-feather="power"></i>
-                <span data-key="t-email">Log Out</span>
-            </button>
-        </a>
-    </form>
+    <a style="cursor: pointer;">
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                    <i data-feather="power"></i>
+                    <span data-key="t-email">Log Out</span>
+                </button>
+            </form>
+    </a>
+    
 </li>
 {{-- <li> 
     <form action="{{ route('logout') }}" method="post">

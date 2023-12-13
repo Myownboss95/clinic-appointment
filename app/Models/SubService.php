@@ -81,14 +81,9 @@ class SubService extends Model
 
     public function appointment(): BelongsToMany
     {
-        return $this->belongsToMany(Appointment::class, 'appointment_sub_service')->withPivot(['stage_id'])
-        ->using(AppointmentSubService::class);
+        return $this->belongsToMany(Appointment::class, 'appointment_sub_service');
     }
 
-    public function stages()
-    {
-        return $this->belongsTo(Stage::class, 'stage_id');
-    }
 
     
 }

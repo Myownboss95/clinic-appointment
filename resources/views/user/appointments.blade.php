@@ -24,7 +24,7 @@
 
                     {{-- card panel --}}
                     <div class="row">
-                        <div class="col-xl-3 col-md-6">
+                       <div class="col-xl-3 col-md-6">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -33,9 +33,12 @@
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Appointments</span>
                                             <h4 class="mb-3">
-                                                <span class="counter-value" data-target={{ $user->transactions?->count() }}>0</span>
+                                                <span class="counter-value" data-target={{ $user->appointments?->count() }}>0</span>
                                             </h4>
-                                            
+                                            <div class="text-nowrap">
+                                                <span class="badge bg-danger-subtle text-danger">{{ $user->appointments?->whereNotNull('end_time')->count() }} Appointments</span>
+                                                <span class="ms-1 text-muted font-size-13">Completed</span>
+                                            </div>
                                         </div>
                                         <div class="flex-shrink-0 text-end dash-widget">
                                             <div id="mini-chart2" data-colors='["--bs-primary", "--bs-success"]' class="apex-charts"></div>
@@ -72,10 +75,10 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Transactions</h4>
+                                    <h4 class="card-title">Appointments</h4>
                                 </div>
                                 <div class="card-body">
-                                    <livewire:user-transactions-table/>
+                                    <livewire:user-appointment-table/>
                                 </div>
                                 <!-- end card body -->
                             </div>

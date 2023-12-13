@@ -10,7 +10,7 @@
 @can('is_user')
     
 <li>
-    <a href="apps-calendar.html">
+    <a href="{{route('user.appointments')}}">
         <i data-feather="calendar"></i>
         <span data-key="t-calendar">Appoinments</span>
     </a>

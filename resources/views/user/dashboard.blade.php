@@ -141,29 +141,17 @@
                                             <tbody>
                                                 @foreach ($appointments as $appointment)
                                                 @php
-                                                    $stages = []; // Array to store stage names
                                                 @endphp
                                                     <tr>
                                                         <th scope="row">{{format_datetime($appointment->start_time)}}</th>
                                                        @if ($appointment->subService->count() > 0)
                                                            
                                                        <td>
-                                                           @foreach ($appointment->subService as $appointment_services )
-                                                              <div class="m-1">
-                                                               <i class="dripicons-chevron-right"></i> {{$appointment_services->name}}
-                                                               </div> 
-                                                                @php
-                                                                    $stageName = $appointment_services->pivot->stage->name;
-                                                                    if (!in_array($stageName, $stages)) {
-                                                                        $stages[] = $stageName;
-                                                                    }
-                                                                @endphp
-                                                           @endforeach
-                                                       
+                                                                {{strtoupper($appointment->subService->first()->name)}}
                                                        </td>
                                                        
                                                        <td>
-                                                           {{ implode(', ', $stages) }}
+                                                           {{$appointment->stage->name}}
                                                        </td>
                                                        @endif
                                                     </tr>

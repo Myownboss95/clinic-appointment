@@ -39,7 +39,7 @@ class AppointmentTransactionSubServiceSeeder extends Seeder
             $paymentChannelType = $faker->randomElement(PaymentChannels::toArray());
             $paymentChannel = PaymentChannel::where('bank_name', $paymentChannelType)->first();
 
-            for ($i = 0; $i < 2; $i++) {
+            for ($i = 0; $i < 3; $i++) {
                 $transaction = $user->transactions()->create([ 
                         'amount' => $subservice->price,
                         'status' => $faker->randomElement(TransactionStatusTypes::toArray()),
@@ -48,14 +48,13 @@ class AppointmentTransactionSubServiceSeeder extends Seeder
                 ]);
 
                 $appointment = $user->appointments()->create([ 
+                    'stage_id' => $stage->id,
                     'start_time' => now(),
                     'end_time' => $faker->randomElement([null, Carbon::now()->addHours(5) ])
                 ]);
 
                 $appointment->transaction()->attach($transaction);
-                $appointment->subService()->attach($subservice, [
-                    'stage_id' => $stage->id
-                ]);
+                $appointment->subService()->attach($subservice);
             }
             
         });

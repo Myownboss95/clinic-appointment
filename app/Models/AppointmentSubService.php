@@ -12,9 +12,11 @@ class AppointmentSubService extends Pivot
         'id'
     ];
 
-    // Relationship to the Stage model
-    public function stage()
-    {
-        return $this->belongsTo(Stage::class, 'stage_id');
+    
+    public function appointment(){
+        return $this->belongsTo(Appointment::class);
     }
+
+
+
 }

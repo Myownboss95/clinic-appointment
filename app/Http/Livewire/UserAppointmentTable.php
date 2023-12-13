@@ -2,10 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Appointment;
-use Illuminate\Support\Carbon;
 use App\Models\Stage;
+use App\Models\Appointment;
+use App\Constants\StageTypes;
+use Illuminate\Support\Carbon;
+use App\Models\AppointmentSubService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\App;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
@@ -39,7 +43,7 @@ final class UserAppointmentTable extends PowerGridComponent
     public function datasource(): Builder
     {
         $user =  auth()->user();
-        return Appointment::where('user_id', $user->id)->with('subService.subService')->latest();
+        return Appointment::where('user_id', $user->id)->whereNull('parent_appointment_id')->with('subService')->latest();
     }
 
     public function relationSearch(): array
@@ -50,15 +54,15 @@ final class UserAppointmentTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('stages', fn (Appointment $appointment)=> $appointment->subService()->first()->pivot->stage->name )
-            ->addColumn('service', fn (Appointment $appointment) => $appointment->first()->subService()->first()->name)
+            ->addColumn('stage_id', fn (Appointment $appointment)=> $appointment->stage->name)
+            ->addColumn('service', fn (Appointment $appointment) => $appointment->subService->first()->name)
             ->addColumn('created_at_formatted', fn (Appointment $appointment) => Carbon::parse($appointment->created_at)->format('jS \of F, Y, \b\y g.ia'));
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Stages', 'stages')->searchable()->sortable(),
+            Column::make('Stages', 'stage_id')->searchable()->sortable(),
             Column::make('Service Purchased', 'service')->searchable()->sortable(),
             Column::make('Appointment Date', 'created_at_formatted', 'created_at')
                 ->sortable(),
@@ -70,9 +74,12 @@ final class UserAppointmentTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::enumSelect('stages', 'stages')
-            ->dataSource(Stage::get('name')),
-        Filter::datetimepicker('created_at'),
+            Filter::select('stage_id', 'stage_id')
+            ->dataSource(Stage::all())
+            ->optionValue('id')
+            ->optionLabel('name'),
+
+            Filter::datetimepicker('created_at'),
         ];
     }
 

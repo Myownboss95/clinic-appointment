@@ -70,9 +70,7 @@ class Appointment extends Model
 
     public function subService(): BelongsToMany
     {
-        return $this->belongsToMany(SubService::class, 'appointment_sub_service')
-        ->withPivot(['stage_id'])
-        ->using(AppointmentSubService::class);
+        return $this->belongsToMany(SubService::class, 'appointment_sub_service');
     }
     
     public function transaction(): BelongsToMany
@@ -88,6 +86,11 @@ class Appointment extends Model
     public function followUpAppointments()
     {
         return $this->hasMany(self::class, 'parent_appointment_id');
+    }
+
+    public function stage(): BelongsTo
+    {
+        return $this->belongsTo(Stage::class);
     }
     
 }

@@ -6,5 +6,13 @@ enum TransactionTypes: string
 {
     case CREDIT = 'credit';
     case DEBIT = 'debit';
-    case WITHDRAWAL = 'withdrawal';
+
+    public function labels()
+    {
+        return match ($this) { 
+            self::CREDIT => "<i data-feather='arrow-up-right' class='text-success'></i>span class = 'badge bg-secondary' >DeCreditbit</span>",
+            self::DEBIT => "<i data-feather='arrow-down-left' class='text-danger'></i><span class = 'badge bg-secondary' >Debit</span>'",
+        };
+        
+    }
 }

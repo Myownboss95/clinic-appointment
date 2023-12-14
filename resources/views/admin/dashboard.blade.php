@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="main-content">
 
             <div class="page-content">
                 <div class="container-fluid">
@@ -12,7 +9,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Welcome, {{ auth()->user()->name}}!</h4>
+                                <h4 class="mb-sm-0 font-size-18">Welcome, {{ auth()->user()->first_name}}!</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
@@ -127,8 +124,4 @@
                 </div>
                 <!-- container-fluid -->
             </div>
-            <!-- End Page-content -->   
-        </div>
-    </div>
-</div>
 @endsection

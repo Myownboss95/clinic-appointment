@@ -76,9 +76,43 @@
 
                                             <div class="card-body">
                                                 <div>
-                                                    Overview Here
+                                                    <div class="pb-3">
+                                                        <div class="text-muted">
+                                                            <ul class="list-unstyled mb-0">
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phone Number: {{auth()->user()->phone_number}}</li>
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date of Birth: {{auth()->user()->dob}}</li>
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Location: {{auth()->user()->country}}, {{auth()->user()->state}}, {{auth()->user()->city}}</li>
+                                                                <div class="d-flex">
+                                                                    <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Referral Code: {{config('app.url')}}/ref/ {{auth()->user()->referral_code}}</li>
+                                                                    <div class="form-floating-icon px-4 cursor-pointer">
+                                                                        <i data-feather="copy"></i>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Last Activity: {{auth()->user()->updated_at->diffForHumans()}}</li>
+
+
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="pt-3">
+                                                        <h5 class="font-size-15">Experience :</h5>
+                                                        <div class="text-muted">
+                                                            <p>If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc</p>
+
+                                                            <ul class="list-unstyled mb-0">
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Donec vitae sapien ut libero venenatis faucibus</li>
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Quisque rutrum aenean imperdiet</li>
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Integer ante a consectetuer eget</li>
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phasellus nec sem in justo pellentesque</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <!-- end card body -->
                                             <!-- end card body -->
                                         </div>
                                         <!-- end card -->
@@ -88,7 +122,42 @@
                                     <div class="tab-pane" id="post" role="tabpanel">
                                         <div class="card">
                                             <div class="card-body"> 
-                                                    Form Here
+                                                <div class="row">
+                                                    <div>
+                                                        <div>
+                                                            <div class="mb-3">
+                                                                <label for="example-text-input" class="form-label">FullName</label>
+                                                                <input class="form-control" disabled type="text" value="{{auth()->user()->last_name .' '. auth()->user()->first_name }}" id="example-text-input" readonly>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="example-email-input" class="form-label">Email</label>
+                                                                <input class="form-control" disabled readonly type="email" value="{{old('email', auth()->user()->email)}}" id="example-email-input" >
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="example-date-input" class="form-label">Date</label>
+                                                                <input class="form-control" name="dob" type="date" value="{{old('dob', auth()->user()->dob)}}" id="example-date-input">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label for="example-tel-input" class="form-label">Telephone</label>
+                                                                <input class="form-control" name="phone_number" type="tel" value="{{old('phone_number', auth()->user()->phone_number)}}" id="example-tel-input">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="example-password-input" class="form-label">Password</label>
+                                                                <input class="form-control" name="password" type="password" value="" id="example-password-input">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="example-password-input" class="form-label">Confirm Password</label>
+                                                                <input class="form-control" name="confirm_password" type="password" value="" id="example-password-input">
+                                                            </div>
+                                                           
+                                                            <div class="mt-4 d-flex justify-content-center">
+                                                                <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- end card body -->
                                         </div>

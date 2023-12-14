@@ -22,7 +22,8 @@
                                             <div class="flex-grow-1">
                                                 <div>
                                                     <h5 class="font-size-16 mb-1">{{auth()->user()->first_name . ' '. auth()->user()->last_name}}</h5>
-                                                    <p class="text-muted font-size-13 mb-2 pb-2">{{auth()->user()->email}}</p>
+                                                    <p class="text-muted font-size-13">{{auth()->user()->email}}</p>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -59,6 +60,9 @@
                                             <li class="nav-item">
                                                 <a class="nav-link px-3" data-bs-toggle="tab" href="#post" role="tab">Edit Profile</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link px-3" data-bs-toggle="tab" href="#security" role="tab">Security</a>
+                                            </li>
                                         </ul>
                                    </div>
                                </div>
@@ -66,10 +70,10 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xl-8 col-lg-8">
+                            <div class="col-xl-5 col-lg-5">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="overview" role="tabpanel">
-                                        <div class="card">
+                                        <div class="card p-3">
                                             <div class="card-header">
                                                 <h5 class="card-title mb-0">About</h5>
                                             </div>
@@ -83,30 +87,16 @@
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date of Birth: {{auth()->user()->dob}}</li>
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Location: {{auth()->user()->country}}, {{auth()->user()->state}}, {{auth()->user()->city}}</li>
                                                                 <div class="d-flex">
-                                                                    <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Referral Code: {{config('app.url')}}/ref/ {{auth()->user()->referral_code}}</li>
+                                                                    <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Referral Code:{{refCode()}} </li>
                                                                     <div class="form-floating-icon px-4 cursor-pointer">
                                                                         <i data-feather="copy"></i>
                                                                     </div>
                                                                 </div>
                                                                 
-                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Last Activity: {{auth()->user()->updated_at->diffForHumans()}}</li>
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Last Login: {{auth()->user()->updated_at->diffForHumans()}}</li>
 
 
 
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="pt-3">
-                                                        <h5 class="font-size-15">Experience :</h5>
-                                                        <div class="text-muted">
-                                                            <p>If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc</p>
-
-                                                            <ul class="list-unstyled mb-0">
-                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Donec vitae sapien ut libero venenatis faucibus</li>
-                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Quisque rutrum aenean imperdiet</li>
-                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Integer ante a consectetuer eget</li>
-                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phasellus nec sem in justo pellentesque</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -120,7 +110,7 @@
                                     <!-- end tab pane -->
 
                                     <div class="tab-pane" id="post" role="tabpanel">
-                                        <div class="card">
+                                        <div class="card p-5">
                                             <div class="card-body"> 
                                                 <div class="row">
                                                     <div>
@@ -142,17 +132,9 @@
                                                                 <label for="example-tel-input" class="form-label">Telephone</label>
                                                                 <input class="form-control" name="phone_number" type="tel" value="{{old('phone_number', auth()->user()->phone_number)}}" id="example-tel-input">
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label for="example-password-input" class="form-label">Password</label>
-                                                                <input class="form-control" name="password" type="password" value="" id="example-password-input">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="example-password-input" class="form-label">Confirm Password</label>
-                                                                <input class="form-control" name="confirm_password" type="password" value="" id="example-password-input">
-                                                            </div>
                                                            
-                                                            <div class="mt-4 d-flex justify-content-center">
-                                                                <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                            <div class="mt-4 d-flex justify-content-left">
+                                                                <button type="submit" class="btn btn-primary w-md">Update Profile</button>
                                                             </div>
                                                             
                                                         </div>
@@ -164,12 +146,44 @@
                                         
                                     </div>
                                     <!-- end tab pane -->
+                                    <div class="tab-pane" id="security" role="tabpanel">
+                                        <div class="card p-5">
+                                            <div class="card-body"> 
+                                                <div class="row">
+                                                    <div>
+                                                        <div>
+                                                            <div class="mb-3">
+                                                                <label for="example-password-old" class="form-label">Old Password</label>
+                                                                <input class="form-control" name="password" type="password" value="" id="example-password-old">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="example-password-new" class="form-label">New Password</label>
+                                                                <input class="form-control" name="password" type="password" value="" id="example-password-new">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="example-password-confirm" class="form-label">Confirm Password</label>
+                                                                <input class="form-control" name="confirm_password" type="password" value="" id="example-password-confirm">
+                                                            </div>
+
+                                                            <div class="mt-4 d-flex justify-content-center">
+                                                                <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end card body -->
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- end tab pane -->
+                                </div>
                                 </div>
                                 <!-- end tab content -->
                             </div>
                             <!-- end col -->
 
-                            <div class="col-xl-4 col-lg-4">
+                            <div class="col-xl-7 col-lg-7">
 
                                 <div class="card">
                                     <div class="card-header">

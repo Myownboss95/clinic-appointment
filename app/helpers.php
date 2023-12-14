@@ -43,5 +43,10 @@ use Illuminate\Support\Str;
         return Carbon::parse($datetime)->format('jS \of F, Y, \b\y g.ia');
     }
 
+    function refCode()
+    {
+        return config('app.url')."/ref/". auth()->user()->referral_code;
+    }
+
     
 

@@ -120,17 +120,25 @@
 
 <li class="menu-title" data-key="t-apps">Account</li>
 <li>
-    <a style="cursor: pointer;">
+    <a href="{{route('profile.index')}}">
+        <i data-feather="user"></i>
+        <span data-key="t-user">Profile</span>
+    </a>
+</li>
+{{-- <li>
+   
             <form action="{{ route('logout') }}" method="post">
                 @csrf
+                 <a style="cursor: pointer;">
                 <button type="submit" style="border: none; background: none; cursor: pointer;">
                     <i data-feather="power"></i>
                     <span data-key="t-email">Log Out</span>
                 </button>
+                 </a>
             </form>
-    </a>
+   
     
-</li>
+</li> --}}
 {{-- <li> 
     <form action="{{ route('logout') }}" method="post">
         @csrf

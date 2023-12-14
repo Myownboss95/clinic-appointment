@@ -42,10 +42,11 @@
     38 => 'Flasher\\Toastr\\Laravel\\FlasherToastrServiceProvider',
     39 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
     40 => 'Spatie\\LaravelIgnition\\IgnitionServiceProvider',
-    41 => 'App\\Providers\\AppServiceProvider',
-    42 => 'App\\Providers\\AuthServiceProvider',
-    43 => 'App\\Providers\\EventServiceProvider',
-    44 => 'App\\Providers\\RouteServiceProvider',
+    41 => 'LivewireUI\\Modal\\LivewireModalServiceProvider',
+    42 => 'App\\Providers\\AppServiceProvider',
+    43 => 'App\\Providers\\AuthServiceProvider',
+    44 => 'App\\Providers\\EventServiceProvider',
+    45 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -74,10 +75,11 @@
     22 => 'Flasher\\Toastr\\Laravel\\FlasherToastrServiceProvider',
     23 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
     24 => 'Spatie\\LaravelIgnition\\IgnitionServiceProvider',
-    25 => 'App\\Providers\\AppServiceProvider',
-    26 => 'App\\Providers\\AuthServiceProvider',
-    27 => 'App\\Providers\\EventServiceProvider',
-    28 => 'App\\Providers\\RouteServiceProvider',
+    25 => 'LivewireUI\\Modal\\LivewireModalServiceProvider',
+    26 => 'App\\Providers\\AppServiceProvider',
+    27 => 'App\\Providers\\AuthServiceProvider',
+    28 => 'App\\Providers\\EventServiceProvider',
+    29 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

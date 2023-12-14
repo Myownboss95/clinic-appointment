@@ -22,10 +22,12 @@ class UpdateUserProfileRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        $rules = User::$rules;
-        
-        return $rules;
+        return [
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'phone_number' => ['required', 'unique:users']
+        ];
     }
 }

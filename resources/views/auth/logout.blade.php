@@ -1,5 +1,6 @@
 @extends('layouts.auth')
 
+@section('title', 'Log Out')
 @section('content')
     <!-- <body data-layout="horizontal"> -->
     <div class="auth-page">

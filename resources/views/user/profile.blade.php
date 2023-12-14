@@ -112,78 +112,15 @@
                                             <table class="table align-middle table-nowrap">
                                                 <tbody>
                                                     <tr>
+                                                        @foreach ($user->referrals as $referral)
+                                                            
                                                         <td style="width: 50px;"><img src="{{ asset('lineone/images/users/avatar-2.jpg')}}" class="rounded-circle avatar-sm" alt=""></td>
-                                                        <td><h5 class="font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Daniel Canales</a></h5></td>
+                                                        <td><h5 class="font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">{{ $referral->first_name}}</a></h5></td>
+                                                        
                                                         <td>
-                                                            <div>
-                                                                <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">Frontend</a>
-                                                                <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">UI</a>
-                                                            </div>
+                                                            <i class="mdi mdi-circle-medium font-size-18 text-success align-middle me-1"></i> {{ '₦'.number_format($refBonus, 2, '.', ',')  }}
                                                         </td>
-                                                        <td>
-                                                            <i class="mdi mdi-circle-medium font-size-18 text-success align-middle me-1"></i> Online
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="{{ asset('lineone/images/users/avatar-1.jpg')}}" class="rounded-circle avatar-sm" alt=""></td>
-                                                        <td><h5 class="font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Jennifer Walker</a></h5></td>
-                                                        <td>
-                                                            <div>
-                                                                <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">UI / UX</a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <i class="mdi mdi-circle-medium font-size-18 text-warning align-middle me-1"></i> Buzy
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="avatar-sm">
-                                                                <span class="avatar-title rounded-circle bg-primary text-white font-size-16">
-                                                                    C
-                                                                </span>
-                                                            </div>
-                                                        </td>
-                                                        <td><h5 class="font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Carl Mackay</a></h5></td>
-                                                        <td>
-                                                            <div>
-                                                                <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">Backend</a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <i class="mdi mdi-circle-medium font-size-18 text-success align-middle me-1"></i> Online
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="{{ asset('lineone/images/users/avatar-4.jpg')}}" class="rounded-circle avatar-sm" alt=""></td>
-                                                        <td><h5 class="font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Janice Cole</a></h5></td>
-                                                        <td>
-                                                            <div>
-                                                                <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">Frontend</a>
-                                                                <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">UI</a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <i class="mdi mdi-circle-medium font-size-18 text-success align-middle me-1"></i> Online
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="avatar-sm">
-                                                                <span class="avatar-title rounded-circle bg-primary text-white font-size-16">
-                                                                    T
-                                                                </span>
-                                                            </div>
-                                                        </td>
-                                                        <td><h5 class="font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Tony Brafford</a></h5></td>
-                                                        <td>
-                                                            <div>
-                                                                <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">Backend</a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <i class="mdi mdi-circle-medium font-size-18 text-secondary align-middle me-1"></i> Offline
-                                                        </td>
+                                                        @endforeach
                                                     </tr>
                                                 </tbody>
                                             </table>

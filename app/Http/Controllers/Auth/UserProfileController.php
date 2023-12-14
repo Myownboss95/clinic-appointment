@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Response;
 use Illuminate\Http\Request;
+use App\Models\GeneralSetting;
 use App\Repositories\UserRepository;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -26,8 +27,13 @@ class UserProfileController extends AppBaseController
      */
     public function index(Request $request)
     {
-       return view('user.profile')
-            ->with('user', $request->user());
+        $setting = GeneralSetting::first();
+        $refBonus = $setting->ref_bonus ?? 0;
+        
+        return view('user.profile', [
+                'user' => $request->user()->load('referrals'),
+                'refBonus' => $refBonus
+       ]);
     }
 
   

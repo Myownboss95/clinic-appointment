@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Actions\SaveCreditTransactionsAction;
+use App\Constants\PaymentChannels;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Services\LocationService;
 use App\Http\Controllers\Controller;
+use App\Models\PaymentChannel;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Notifications\CreditReferralWalletNotification;
+use App\Notifications\SocialRegisterationNotification;
 
 class RegisterController extends Controller
 {
@@ -71,8 +74,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_number' => ['required', 'string', 'max:255', 'unique:users,phone_number'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -86,18 +89,24 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'referred_by_user_id' => $this->getReferralId()
         ]);
+
+
+        return $user;
         
     }
 
     protected function getReferralId ()
     {
-        $refCode = session('data')->get('regToken') ?? null;
+        $refCode = collect(session('data'))->get('regToken') ?? null;
+        // dd($refCode);
         if(blank($refCode)) return null;
         
         $referredUser = User::where('referral_code', $refCode)->first();
@@ -108,7 +117,8 @@ class RegisterController extends Controller
         $refBonus = $setting->ref_bonus ?? 0;
 
         //save transaction and credit referrers wallet
-        SaveCreditTransactionsAction::execute($referredUser, $refBonus, 'Referral Bonus');
+        $payment_channel = PaymentChannel::where('bank_name', PaymentChannels::SYSTEM->value)->first();
+        SaveCreditTransactionsAction::execute($referredUser, $payment_channel ,$refBonus, 'Referral Bonus');
         
         $referredUser->refresh();
         $referredUser->notify(new CreditReferralWalletNotification($referredUser, $refBonus));
@@ -134,12 +144,13 @@ class RegisterController extends Controller
         {
             // Create a new user
             $newUser = User::create([
-                'name' => $user->name,
+                'first_name' => $user->name,
                 'email' => $user->email,
                 'password' => Hash::make(Str::random(10)), 
                 'referred_by_user_id' => $this->getReferralId()
             ]);
 
+            $newUser->notify(new SocialRegisterationNotification($newUser, 'google'));
             // Log in the new user
             auth()->login($newUser, true);
         }
@@ -149,6 +160,7 @@ class RegisterController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        session()->forget('data');
         return redirect()->route(
             $user->role_id == 3
             ? 'admin.index'

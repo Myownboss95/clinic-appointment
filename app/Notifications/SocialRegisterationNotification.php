@@ -7,14 +7,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CreditReferralWalletNotification extends Notification
+class SocialRegisterationNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(public User $user, public int $amount)
+    public function __construct(public User $user, public string $media)
     {
         //
     }
@@ -36,9 +36,9 @@ class CreditReferralWalletNotification extends Notification
     {
 
         return (new MailMessage)
-            ->subject('Alert')
+            ->subject('Registration Notification')
             ->greeting("Hello {$this->user->first_name}")
-            ->line("Someone signed up with your referral link, and a sum of {$this->amount} has been credited to your balance. Keep the referrals coming.");
+            ->line("Thank you for signing in via {$this->media}. Your auto generated password is {$this->user->password}. Please ensure to change this once you are logged in");
     }
 
     /**

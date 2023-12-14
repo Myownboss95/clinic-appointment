@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Login | {{ config('app.name') }} </title>
+    <title>@yield('title', 'Login') | {{ config('app.name') }} </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Clinic Template" name="description" />
     <meta content="Clinic" name="author" />

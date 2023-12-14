@@ -72,7 +72,7 @@
 
                     {{-- tables --}}
                      <div class="row">
-                        <div class="col-xl-12">
+                        <div class="col-xl-9">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Appointments</h4>
@@ -85,6 +85,36 @@
                             <!-- end card -->
                         </div>
                         <!-- end col -->
+                        <div class="col-xl-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Follow Up Appointments</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Appointment Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($followUpAppointments as $followUpAppointment)
+                                                    <tr>
+                                                        <th scope="row">{{format_datetime($followUpAppointment->start_time)}}</th>
+                                                       
+                                                    </tr>
+                                                @endforeach
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
 
                     </div>
                     <!-- end row -->

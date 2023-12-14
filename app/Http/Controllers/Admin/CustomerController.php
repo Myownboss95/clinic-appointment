@@ -34,7 +34,7 @@ class CustomerController extends AppBaseController
         }
         
 
-        return view('customers.index')
+        return view('admin.customers.index')
             ->with([
                 'customers' => $customers,
                 'stages' => Stage::all(),

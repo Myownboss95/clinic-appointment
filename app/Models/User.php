@@ -43,6 +43,9 @@ class User extends Authenticatable
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    protected $referralCodeColumn = 'referral_code';
+    protected $role = 'role_id';
+
 
     protected $dates = ['deleted_at'];
 
@@ -102,6 +105,19 @@ class User extends Authenticatable
         'email_verified_at' => 'nullable'
     ];
 
+    /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (self $model) {
+            $model->{$model->referralCodeColumn} = $model::generateReferralCode($model->first_name??''.$model->last_name??'');
+            $model->{$model->role} = 1;
+        });
+    }
+
     public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class);
@@ -122,14 +138,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Stage::class, 'user_stage');
     }
 
+    public function referrals()
+    {
+        return $this->hasMany(self::class, 'referred_by_user_id');
+    }
+
     public static function generateReferralCode($name): string
     {
-        $proposedCode = Str::limit($name, 8, '');
-        if (Str::length($proposedCode) < 8) {
-            $proposedCode = str_pad($proposedCode, 10, (string) mt_rand(0, 9), STR_PAD_RIGHT);
+        $proposedCode = Str::limit($name, 4, '');
+        if (Str::length($proposedCode) < 5) {
+            $proposedCode = str_pad($proposedCode, 6, (string) mt_rand(0, 9), STR_PAD_RIGHT);
         }
         while (User::where('referral_code', $proposedCode)->exists()) {
-            $proposedCode = Str::limit($name, 8, '');
+            $proposedCode = Str::limit($name, 5, '');
             if (User::where('referral_code', $proposedCode)->exists()) {
                 $proposedCode = Str::limit($proposedCode, 6, '').mt_rand(1000, 9999);
             }

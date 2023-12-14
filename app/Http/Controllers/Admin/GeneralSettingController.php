@@ -31,7 +31,7 @@ class GeneralSettingController extends AppBaseController
     {
         $generalSettings = $this->generalSettingRepository->all();
 
-        return view('general_settings.index')
+        return view('admin.general_settings.index')
             ->with('generalSettings', $generalSettings);
     }
 
@@ -42,7 +42,7 @@ class GeneralSettingController extends AppBaseController
      */
     public function create()
     {
-        return view('general_settings.create');
+        return view('admin.general_settings.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class GeneralSettingController extends AppBaseController
             return redirect(roleBasedRoute('generalSettings.index'));
         }
 
-        return view('general_settings.show')->with('generalSetting', $generalSetting);
+        return view('admin.general_settings.show')->with('generalSetting', $generalSetting);
     }
 
     /**
@@ -99,7 +99,7 @@ class GeneralSettingController extends AppBaseController
             return redirect(roleBasedRoute('generalSettings.index'));
         }
 
-        return view('general_settings.edit')->with('generalSetting', $generalSetting);
+        return view('admin.general_settings.edit')->with('generalSetting', $generalSetting);
     }
 
     /**

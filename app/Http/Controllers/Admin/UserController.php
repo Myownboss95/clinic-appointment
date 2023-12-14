@@ -32,7 +32,7 @@ class UserController extends AppBaseController
     {
         $users = $this->userRepository->all();
 
-        return view('users.index')
+        return view('admin.users.index')
             ->with('users', $users);
     }
 
@@ -43,7 +43,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class UserController extends AppBaseController
             return redirect(roleBasedRoute('users.index'));
         }
 
-        return view('users.show')->with('user', $user);
+        return view('admin.users.show')->with('user', $user);
     }
 
     /**
@@ -101,7 +101,7 @@ class UserController extends AppBaseController
             return redirect(roleBasedRoute('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        return view('admin.users.edit')->with('user', $user);
     }
 
     /**

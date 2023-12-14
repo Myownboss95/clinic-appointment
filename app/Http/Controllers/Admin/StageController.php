@@ -32,7 +32,7 @@ class StageController extends AppBaseController
     {
         $stages = $this->stageRepository->all();
 
-        return view('stages.index')
+        return view('admin.stages.index')
             ->with('stages', $stages);
     }
 
@@ -43,7 +43,7 @@ class StageController extends AppBaseController
      */
     public function create()
     {
-        return view('stages.create');
+        return view('admin.stages.create');
     }
 
     /**
@@ -84,7 +84,7 @@ class StageController extends AppBaseController
             return redirect(roleBasedRoute('stages.index'));
         }
 
-        return view('stages.show')->with('stage', $stage);
+        return view('admin.stages.show')->with('stage', $stage);
     }
 
     /**
@@ -104,7 +104,7 @@ class StageController extends AppBaseController
             return redirect(roleBasedRoute('stages.index'));
         }
 
-        return view('stages.edit')->with('stage', $stage);
+        return view('admin.stages.edit')->with('stage', $stage);
     }
 
     /**

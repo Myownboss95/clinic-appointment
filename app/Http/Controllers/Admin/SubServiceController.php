@@ -31,7 +31,7 @@ class SubServiceController extends AppBaseController
     {
         $subServices = $this->subServiceRepository->all();
 
-        return view('sub_services.index')
+        return view('admin.sub_services.index')
             ->with('subServices', $subServices);
     }
 
@@ -42,7 +42,7 @@ class SubServiceController extends AppBaseController
      */
     public function create()
     {
-        return view('sub_services.create');
+        return view('admin.sub_services.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class SubServiceController extends AppBaseController
             return redirect(roleBasedRoute('subServices.index'));
         }
 
-        return view('sub_services.show')->with('subService', $subService);
+        return view('admin.sub_services.show')->with('subService', $subService);
     }
 
     /**
@@ -100,7 +100,7 @@ class SubServiceController extends AppBaseController
             return redirect(roleBasedRoute('subServices.index'));
         }
 
-        return view('sub_services.edit')->with('subService', $subService);
+        return view('admin.sub_services.edit')->with('subService', $subService);
     }
 
     /**

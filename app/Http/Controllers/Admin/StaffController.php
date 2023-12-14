@@ -36,7 +36,7 @@ class StaffController extends AppBaseController
     {
         $staffs = User::where('role_id', 2)->latest()->get();
 
-        return view('staff.index')
+        return view('admin.staff.index')
             ->with('staffs', $staffs);
     }
 
@@ -47,7 +47,7 @@ class StaffController extends AppBaseController
      */
     public function create()
     {
-        return view('staff.create');
+        return view('admin.staff.create');
     }
 
     /**
@@ -89,7 +89,7 @@ class StaffController extends AppBaseController
             return redirect(route('admin.staff.index'));
         }
 
-        return view('staff.show')->with('staff', $staff);
+        return view('admin.staff.show')->with('staff', $staff);
     }
 
     /**
@@ -109,7 +109,7 @@ class StaffController extends AppBaseController
             return redirect(route('admin.staff.index'));
         }
 
-        return view('staff.edit')->with('staff', $staff);
+        return view('admin.staff.edit')->with('staff', $staff);
     }
 
     /**

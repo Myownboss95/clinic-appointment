@@ -84,6 +84,7 @@
                                                 <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <livewire:country-state-selector/>
 
                                         <div class="row mb-4">
                                             <div class="col">

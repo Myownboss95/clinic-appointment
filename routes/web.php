@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ReferralController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Auth\UserProfileController;
@@ -22,6 +24,12 @@ use App\Http\Controllers\Auth\UserProfileController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/services/{slug}/subservices', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
 Route::get('/subservice/{sub_service}/register', [HomeController::class, 'register'])->name('register.sub_service');
+Route::get('/ref/{token}', ReferralController::class);
+
+Route::prefix('location')->as('location.')->controller(LocationController::class)->group(function () {
+    Route::get('countries', 'countries')->name('countries');
+    Route::get('states/{country}', 'states')->name('states');
+});
 
 Route::get('/log-out', function (){
     return view('auth.logout');

@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\SaveCreditTransactionsAction;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\GeneralSetting;
+use App\Services\LocationService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\CreditReferralWalletNotification;
 
 class RegisterController extends Controller
 {
@@ -43,6 +47,18 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $service = new LocationService();
+        return view('auth.register', [
+            'countries' => $service->countries(),
+        ]);
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -69,11 +85,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'referred_by_user_id' => $this->getReferralId()
         ]);
+        
+    }
+
+    protected function getReferralId ()
+    {
+        $refCode = session('data')->get('regToken') ?? null;
+        if(blank($refCode)) return null;
+        
+        $referredUser = User::where('referral_code', $refCode)->first();
+        if(!$referredUser) return null;
+
+        //get the system referral bonus
+        $setting = GeneralSetting::first();
+        $refBonus = $setting->ref_bonus ?? 0;
+
+        //save transaction and credit referrers wallet
+        SaveCreditTransactionsAction::execute($referredUser, $refBonus, 'Referral Bonus');
+        
+        $referredUser->refresh();
+        $referredUser->notify(new CreditReferralWalletNotification($referredUser, $refBonus));
+            
+        return $referredUser->id;
     }
 
     public function redirectToGoogle()
@@ -97,6 +137,7 @@ class RegisterController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'password' => Hash::make(Str::random(10)), 
+                'referred_by_user_id' => $this->getReferralId()
             ]);
 
             // Log in the new user

@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ReferralController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Auth\UserProfileController;
+use App\Http\Controllers\Auth\UserChangePassword;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('profile-update', [UserProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile.index');
+
+    Route::get('/profile/change-password', [UserChangePassword::class, 'index'])->name('password.change');
+    Route::put('/profile/change-password', [UserChangePassword::class, 'update'])->name('password.update');
+
 
 Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));
 Route::prefix('admin')->as('admin.')->middleware('can:is_admin')->group(fn () => require_once('admin.php'));

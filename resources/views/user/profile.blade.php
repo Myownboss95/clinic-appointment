@@ -30,18 +30,14 @@
                                     <div class="col-sm-auto">
                                         <div class="d-flex align-items-start justify-content-end gap-2 mb-2">
                                             
-                                            {{-- <div>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-link font-size-16 shadow-none text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="bx bx-dots-horizontal-rounded font-size-20"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu dropdown-menu-end">
-                                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                    </ul>
+                                            <div class="col-sm-auto">
+                                                <div class="d-flex align-items-start justify-content-end gap-2 mb-2">
+                                                    <div>
+                                                        
+                                                        <a href="{{route('password.change')}}" class="btn btn-success">Reset Password</a>
+                                                    </div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     </div>
                                </div>

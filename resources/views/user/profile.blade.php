@@ -16,7 +16,11 @@
                                         <div class="d-flex align-items-end mt-3 mt-sm-0">
                                             <div class="flex-shrink-0">
                                                 <div class="avatar-xxl me-3">
-                                                    <img src="{{ asset('lineone/images/users/avatar-3.jpg')}}" alt="" class="img-fluid rounded-circle d-block img-thumbnail">
+                                                    <img src="{{ Storage::url(auth()->user()->image)}}" alt="" width="200" style="height: 100%" class="img-fluid rounded-circle d-block img-thumbnail">
+                                                </div>
+                                                <div class="form-floating-icon d-flex align-items-center">
+                                                    <i data-feather="edit"></i>
+                                                    <a href="{{route('image.index', [auth()->user()->id])}}">Edit Image</a>
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">

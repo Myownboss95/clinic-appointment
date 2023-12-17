@@ -7,18 +7,10 @@
     @error('image')
         <span class="error invalid-feedback">{{ $message }}</span>
     @enderror
-    @if(!$image)
-    <div class="avatar-xxxl me-3">
-        <img src="{{ $image->temporaryUrl()}}" alt="temp" width="200" class="img-fluid d-block img-thumbnail">
-    </div>
-    @else
+  
     <div class="avatar-xxxl me-3">
         <img src="{{ Storage::url($user->image)}}" width="200"alt="image" class="img-fluid d-block img-thumbnail">
-    </div>
-    @endif
-    
-
-    
+    </div>    
 <div class="text-center mt-4 d-flex align-items-center">
     <button type="submit" 
     class="btn btn-primary waves-effect waves-light">

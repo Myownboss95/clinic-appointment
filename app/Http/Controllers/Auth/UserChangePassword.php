@@ -22,12 +22,12 @@ class UserChangePassword extends Controller
         $validated = $request->validate(
             [
             'current_password' => ['required', 'current_password'],
-            'new_password' => ['required', Password::defaults()],
-            'confirm_password' => ['required']
+            'password' => ['required', Password::defaults()],
+            'password_confirmation' => ['required', 'same:password']
         ]);
 
         $request->user()->update([
-            'password' => Hash::make($validated['new_password']),
+            'password' => Hash::make($validated['password']),
         ]);
 
         toastr()->addSuccess('Password updated successfully.');

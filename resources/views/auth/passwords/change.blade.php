@@ -45,8 +45,8 @@
                                         
                                         <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
                                             <input type="password"
-                                                class="form-control pe-5 @error('new_password') is-invalid @enderror"
-                                                id="password-input" placeholder="Enter New password" name="new_password">
+                                                class="form-control pe-5 @error('password') is-invalid @enderror"
+                                                id="password-input" placeholder="Enter New password" name="password">
 
                                             <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
                                                 id="password-addon">
@@ -56,7 +56,7 @@
                                             <div class="form-floating-icon">
                                                 <i data-feather="lock"></i>
                                             </div>
-                                            @error('new_password')
+                                            @error('password')
                                                 <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -64,8 +64,8 @@
 
                                         <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
                                             <input type="password"
-                                                class="form-control pe-5 @error('confirm_password') is-invalid @enderror"
-                                                id="confirm-password-input" placeholder="Confirm password" name="confirm_password">
+                                                class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
+                                                id="confirm-password-input" placeholder="Confirm password" name="password_confirmation">
 
                                             <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
                                                 id="confirm-password-addon">
@@ -75,7 +75,7 @@
                                             <div class="form-floating-icon">
                                                 <i data-feather="lock"></i>
                                             </div>
-                                            @error('confirm_password')
+                                            @error('password_confirmation')
                                                 <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>

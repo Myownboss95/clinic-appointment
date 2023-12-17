@@ -21,7 +21,7 @@
                                                 <div class="form-floating-icon d-flex align-items-center">
                                                     <i data-feather="edit"></i>
                                                     <a href="{{route('image.index', [auth()->user()->id])}}">Edit Image</a>
-                                                </div>
+                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div>

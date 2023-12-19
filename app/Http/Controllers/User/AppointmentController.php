@@ -21,6 +21,7 @@ class AppointmentController extends Controller
         return view('user.appointments', [
             'user' => $user->load('appointments.subService'),
             'appointments' => $userAppointments->appointments->whereNull('parent_appointment_id'),
+            'followUpAppointments' => $userAppointments->appointments->whereNotNull('parent_appointment_id'),
             'nextAppointment' => Carbon::parse($user->appointments()
                                                     ->whereNotNull('parent_appointment_id')
                                                     ->whereNull('end_time')

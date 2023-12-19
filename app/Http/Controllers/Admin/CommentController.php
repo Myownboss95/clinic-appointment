@@ -31,7 +31,7 @@ class CommentController extends AppBaseController
     {
         $comments = $this->commentRepository->all();
 
-        return view('comments.index')
+        return view('admin.comments.index')
             ->with('comments', $comments);
     }
 
@@ -42,7 +42,7 @@ class CommentController extends AppBaseController
      */
     public function create()
     {
-        return view('comments.create');
+        return view('admin.comments.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class CommentController extends AppBaseController
             return redirect(roleBasedRoute('comments.index'));
         }
 
-        return view('comments.show')->with('comment', $comment);
+        return view('admin.comments.show')->with('comment', $comment);
     }
 
     /**
@@ -100,7 +100,7 @@ class CommentController extends AppBaseController
             return redirect(roleBasedRoute('comments.index'));
         }
 
-        return view('comments.edit')->with('comment', $comment);
+        return view('admin.comments.edit')->with('comment', $comment);
     }
 
     /**

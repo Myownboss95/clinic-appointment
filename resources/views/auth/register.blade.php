@@ -1,5 +1,6 @@
 @extends('layouts.auth')
 
+@section('title', 'Register')
 @section('content')
     <!-- <body data-layout="horizontal"> -->
     <div class="auth-page">
@@ -19,20 +20,76 @@
                                     <div class="text-center">
                                         <h5 class="mb-0">Register a new membership</h5>
                                     </div>
+                                    <div class="mt-4 pt-2 text-center">
+                                        <div class="signin-other-title">
+                                            <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign up with - Or</h5>
+                                        </div>
+
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <a href="javascript:void()"
+                                                    class="social-list-item bg-primary text-white border-primary">
+                                                    <i class="mdi mdi-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="javascript:void()"
+                                                    class="social-list-item bg-info text-white border-info">
+                                                    <i class="mdi mdi-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ route('register.google')}}"
+                                                    class="social-list-item bg-danger text-white border-danger">
+                                                    <i class="mdi mdi-google"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <form class="mt-4 pt-2" method="post" action="{{ route('register') }}">
                                         @csrf
                                         <div class="form-floating form-floating-custom mb-4">
-                                            <input type="text" class="form-control  @error('name') is-invalid @enderror"
-                                                value="{{ old('name') }}" id="input-name" placeholder="Enter User Name"
-                                                name="name" required>
+                                            <input type="text" class="form-control  @error('first_name') is-invalid @enderror"
+                                                value="{{ old('first_name') }}" id="input-first-name" placeholder="Enter First Name"
+                                                name="first_name" required>
                                             <div class="invalid-feedback">
-                                                Please Enter Full Name
+                                                Please Enter First Name
                                             </div>
-                                            <label for="input-name">Full Name</label>
+                                            <label for="input-first-name">First Name</label>
                                             <div class="form-floating-icon">
                                                 <i data-feather="users"></i>
                                             </div>
-                                            @error('name')
+                                            @error('first_name')
+                                                <span class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating form-floating-custom mb-4">
+                                            <input type="text" class="form-control  @error('last_name') is-invalid @enderror"
+                                                value="{{ old('last_name') }}" id="input-last-name" placeholder="Enter Last Name"
+                                                name="last_name" required>
+                                            <div class="invalid-feedback">
+                                                Please Enter Last Name
+                                            </div>
+                                            <label for="input-last-name">Last Name</label>
+                                            <div class="form-floating-icon">
+                                                <i data-feather="users"></i>
+                                            </div>
+                                            @error('last_name')
+                                                <span class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating form-floating-custom mb-4">
+                                            <input type="text" class="form-control  @error('phone_number') is-invalid @enderror"
+                                                value="{{ old('phone_number') }}" id="input-phone" placeholder="Enter Phone Number"
+                                                name="phone_number" required>
+                                            <div class="invalid-feedback">
+                                                Please Enter Phone Number
+                                            </div>
+                                            <label for="input-phone">Phone Number</label>
+                                            <div class="form-floating-icon">
+                                                <i data-feather="phone"></i>
+                                            </div>
+                                            @error('phone_number')
                                                 <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -84,6 +141,7 @@
                                                 <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        {{-- <livewire:country-state-selector/> --}}
 
                                         <div class="row mb-4">
                                             <div class="col">
@@ -103,32 +161,7 @@
                                         </div>
                                     </form>
 
-                                    <div class="mt-4 pt-2 text-center">
-                                        <div class="signin-other-title">
-                                            <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign up with -</h5>
-                                        </div>
-
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item">
-                                                <a href="javascript:void()"
-                                                    class="social-list-item bg-primary text-white border-primary">
-                                                    <i class="mdi mdi-facebook"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="javascript:void()"
-                                                    class="social-list-item bg-info text-white border-info">
-                                                    <i class="mdi mdi-twitter"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="{{ route('register.google')}}"
-                                                    class="social-list-item bg-danger text-white border-danger">
-                                                    <i class="mdi mdi-google"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    
                                     <div class="mt-1 text-center">
                                         <p class="text-muted mb-0">Have an account ? <a href="{{ route('login') }}"
                                                 class="text-primary fw-semibold">

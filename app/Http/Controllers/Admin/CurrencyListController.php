@@ -31,7 +31,7 @@ class CurrencyListController extends AppBaseController
     {
         $currencyLists = $this->currencyListRepository->all();
 
-        return view('currency_lists.index')
+        return view('admin.currency_lists.index')
             ->with('currencyLists', $currencyLists);
     }
 
@@ -42,7 +42,7 @@ class CurrencyListController extends AppBaseController
      */
     public function create()
     {
-        return view('currency_lists.create');
+        return view('admin.currency_lists.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class CurrencyListController extends AppBaseController
             return redirect(roleBasedRoute('currencyLists.index'));
         }
 
-        return view('currency_lists.show')->with('currencyList', $currencyList);
+        return view('admin.currency_lists.show')->with('currencyList', $currencyList);
     }
 
     /**
@@ -99,7 +99,7 @@ class CurrencyListController extends AppBaseController
             return redirect(roleBasedRoute('currencyLists.index'));
         }
 
-        return view('currency_lists.edit')->with('currencyList', $currencyList);
+        return view('admin.currency_lists.edit')->with('currencyList', $currencyList);
     }
 
     /**

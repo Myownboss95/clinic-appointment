@@ -42,7 +42,7 @@ class AppointmentController extends AppBaseController
      */
     public function create()
     {
-        return view('appointments.create');
+        return view('admin.appointments.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class AppointmentController extends AppBaseController
             return redirect(roleBasedRoute('appointments.index'));
         }
 
-        return view('appointments.show')->with('appointment', $appointment);
+        return view('admin.appointments.show')->with('appointment', $appointment);
     }
 
     /**
@@ -100,7 +100,7 @@ class AppointmentController extends AppBaseController
             return redirect(roleBasedRoute('appointments.index'));
         }
 
-        return view('appointments.edit')->with('appointment', $appointment);
+        return view('admin.appointments.edit')->with('appointment', $appointment);
     }
 
     /**

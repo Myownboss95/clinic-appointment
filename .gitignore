@@ -29,3 +29,5 @@ Homestead.json
 
 /public/mix-manifest.json
 
+composer.lock
+

@@ -31,7 +31,7 @@ class ClinicUserController extends AppBaseController
     {
         $clinicUsers = $this->clinicUserRepository->all();
 
-        return view('clinic_users.index')
+        return view('admin.clinic_users.index')
             ->with('clinicUsers', $clinicUsers);
     }
 
@@ -42,7 +42,7 @@ class ClinicUserController extends AppBaseController
      */
     public function create()
     {
-        return view('clinic_users.create');
+        return view('admin.clinic_users.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class ClinicUserController extends AppBaseController
             return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
-        return view('clinic_users.show')->with('clinicUser', $clinicUser);
+        return view('admin.clinic_users.show')->with('clinicUser', $clinicUser);
     }
 
     /**
@@ -100,7 +100,7 @@ class ClinicUserController extends AppBaseController
             return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
-        return view('clinic_users.edit')->with('clinicUser', $clinicUser);
+        return view('admin.clinic_users.edit')->with('clinicUser', $clinicUser);
     }
 
     /**

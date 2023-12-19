@@ -31,7 +31,7 @@ class StateController extends AppBaseController
     {
         $states = $this->stateRepository->all();
 
-        return view('states.index')
+        return view('admin.states.index')
             ->with('states', $states);
     }
 
@@ -42,7 +42,7 @@ class StateController extends AppBaseController
      */
     public function create()
     {
-        return view('states.create');
+        return view('admin.states.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class StateController extends AppBaseController
             return redirect(roleBasedRoute('states.index'));
         }
 
-        return view('states.show')->with('state', $state);
+        return view('admin.states.show')->with('state', $state);
     }
 
     /**
@@ -100,7 +100,7 @@ class StateController extends AppBaseController
             return redirect(roleBasedRoute('states.index'));
         }
 
-        return view('states.edit')->with('state', $state);
+        return view('admin.states.edit')->with('state', $state);
     }
 
     /**

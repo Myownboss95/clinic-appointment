@@ -31,7 +31,7 @@ class RoleController extends AppBaseController
     {
         $roles = $this->roleRepository->all();
 
-        return view('roles.index')
+        return view('admin.roles.index')
             ->with('roles', $roles);
     }
 
@@ -42,7 +42,7 @@ class RoleController extends AppBaseController
      */
     public function create()
     {
-        return view('roles.create');
+        return view('admin.roles.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class RoleController extends AppBaseController
             return redirect(roleBasedRoute('roles.index'));
         }
 
-        return view('roles.show')->with('role', $role);
+        return view('admin.roles.show')->with('role', $role);
     }
 
     /**
@@ -100,7 +100,7 @@ class RoleController extends AppBaseController
             return redirect(roleBasedRoute('roles.index'));
         }
 
-        return view('roles.edit')->with('role', $role);
+        return view('admin.roles.edit')->with('role', $role);
     }
 
     /**

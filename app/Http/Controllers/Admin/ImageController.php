@@ -10,6 +10,9 @@ class ImageController extends Controller
 {
     public function index(User $user){
         
-        return view('admin.image.index', compact("user"));
+        if($user->id === auth()->user()->id){
+            return view('admin.image.index', compact("user"));
+        }
+        abort(403);
     }
 }

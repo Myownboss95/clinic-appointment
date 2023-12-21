@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 
-    function roleBasedRoute($routeName)
+    function roleBasedRoute($routeName, $params = null)
     {
         $userRoleId = auth()->user()->role_id;
 
@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
             return route('admin.' . $routeName);
         }
         if ($userRoleId == 2) {
-            return route('staff.' . $routeName);
+            return route('staff.' . $routeName, $params);
         } 
         if ($userRoleId == 1) {
             return route('user.' . $routeName);

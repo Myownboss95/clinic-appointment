@@ -19,27 +19,26 @@
                                     <div class="text-center">
                                         <h5 class="mb-0">Register a new membership</h5>
                                     </div>
-                                    
-                                        
                                             <form class="mt-4 pt-2" method="post" action="{{ route('register') }}">
                                                 @csrf
                                                 <div class="row d-flex">
                                                 <div class="col-lg-6">
                                                     <div class="form-floating form-floating-custom mb-4">
-                                                        <input type="text" class="form-control  @error('name') is-invalid @enderror"
-                                                            value="{{ old('name') }}" id="input-name" placeholder="Enter User Name"
-                                                            name="name" required>
+                                                        <input type="text" class="form-control  @error('last_name') is-invalid @enderror"
+                                                            value="{{ old('last_name') }}" id="input-last_name" placeholder="Enter Lastname"
+                                                            name="last_name" required>
                                                         <div class="invalid-feedback">
-                                                            Please Enter Full Name
+                                                            Please Enter Last Name
                                                         </div>
-                                                        <label for="input-name">Full Name</label>
+                                                        <label for="input-name">Last Name</label>
                                                         <div class="form-floating-icon">
                                                             <i data-feather="users"></i>
                                                         </div>
-                                                        @error('name')
+                                                        @error('last_name')
                                                             <span class="error invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
+
                                                     <div class="form-floating form-floating-custom mb-4">
                                                         <input type="text" class="form-control  @error('email') is-invalid @enderror"
                                                             id="input-email" placeholder="Enter Email" value="{{ old('email') }}"
@@ -49,19 +48,6 @@
                                                             <i data-feather="mail"></i>
                                                         </div>
                                                         @error('email')
-                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-            
-                                                    <div class="form-floating form-floating-custom mb-4">
-                                                        <input type="text" class="form-control  @error('phone_number') is-invalid @enderror"
-                                                            id="input-phone_number" placeholder="Enter Phone Number" value="{{ old('phone_number') }}"
-                                                            name="phone_number">
-                                                        <label for="input-phone_number">Phone Number</label>
-                                                        <div class="form-floating-icon">
-                                                            <i data-feather="phone"></i>
-                                                        </div>
-                                                        @error('phone_number')
                                                             <span class="error invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -87,39 +73,31 @@
                                               
                                                 <div class="col-lg-6">
                                                     <div class="form-floating form-floating-custom mb-4">
-                                                        <select name="state" id="input-state" class="form-control form-select  @error('state') is-invalid @enderror value="{{ old('state') }}>
-                                                            <option value="">Choose State</option>
-                                                        </select>
-                                                        <label for="input-state">Current State</label>
-                                                        <div class="form-floating-icon">
-                                                            <i data-feather="home"></i>
+                                                        <input type="text" class="form-control  @error('first_name') is-invalid @enderror"
+                                                            value="{{ old('first_name') }}" id="input-first_name" placeholder="Enter Firstname"
+                                                            name="first_name" required>
+                                                        <div class="invalid-feedback">
+                                                            Please Enter First Name
                                                         </div>
-                                                        @error('state')
+                                                        <label for="input-name">First Name</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="users"></i>
+                                                        </div>
+                                                        @error('first_name')
                                                             <span class="error invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-            
+
+
                                                     <div class="form-floating form-floating-custom mb-4">
-                                                        <select name="city" id="input-city" class="form-control form-select  @error('city') is-invalid @enderror value="{{ old('city') }}>
-                                                            <option value="">Choose City</option>
-                                                        </select>
-                                                        <label for="input-city">Current City</label>
+                                                        <input type="text" class="form-control  @error('phone_number') is-invalid @enderror"
+                                                            id="input-phone_number" placeholder="Enter Phone Number" value="{{ old('phone_number') }}"
+                                                            name="phone_number">
+                                                        <label for="input-phone_number">Phone Number</label>
                                                         <div class="form-floating-icon">
-                                                            <i data-feather="home"></i>
+                                                            <i data-feather="phone"></i>
                                                         </div>
-                                                        @error('city')
-                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-floating form-floating-custom mb-4">
-                                                        <input type="text" class="form-control  @error('instagram_handle') is-invalid @enderror"
-                                                            id="input-instagram_handle" placeholder="Enter Instagram Handle" value="{{ old('instagram_handle') }}"
-                                                            name="instagram_handle">
-                                                        <label for="input-instagram_handle">Instagram Handle</label>
-                                                        <div class="form-floating-icon">
-                                                            <i data-feather="instagram"></i>
-                                                        </div>
-                                                        @error('instagram_handle')
+                                                        @error('phone_number')
                                                             <span class="error invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>

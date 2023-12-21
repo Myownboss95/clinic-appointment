@@ -151,185 +151,22 @@
           <p>Allow patients to schedule appointments through online portals, reducing administrative workload and improving accessibility for patients and send automated reminders to patients about upcoming appointments, helping reduce no-shows and improve overall appointment adherence.</p>
         </div>
 
+        @foreach ($services as $service)
         <div class="row">
-          <div class="col-lg-8 col-md-6 d-flex align-items-stretch">
-            @foreach ($services as $service)
             <a href="{{route('services.sub_service', $service->slug)}}">
-                <div class="icon-box">
-                <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                <h4><a href="">{{$service->name}}</a></h4>
-                <p>Provide a secure platform for communication between patients and healthcare providers, allowing for questions, updates, and shared decision-making</p>
-                </div>
-            </a>
-            @endforeach
-          </div>
-          
+              <div class="col-lg-6 col-md-12 d-flex align-items-center justify-content-between">
+                    <div class="icon-box">
+                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4><a href="">{{$service->name}}</a></h4>
+                    <p>Provide a secure platform for communication between patients and healthcare providers, allowing for questions, updates, and shared decision-making</p>
+                    </div>
+              </div>
+            </a>        
         </div>
+        @endforeach 
 
       </div>
     </section><!-- End Services Section -->
-
-    <!-- ======= Appointment Section ======= -->
-    <section id="appointment" class="appointment section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Make an Appointment</h2>
-          <p> Patients can schedule appointments conveniently through online portals, reducing the need for phone calls and manual scheduling. This streamlines the booking process for both patients and healthcare staff, saving time and resources.</p>
-        </div>
-
-        <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
-          <div class="row">
-            <div class="col-md-4 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-md-4 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-              <div class="validate"></div>
-            </div>
-            <div class="col-md-4 form-group mt-3 mt-md-0">
-              <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 form-group mt-3">
-              <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-md-4 form-group mt-3">
-              <select name="department" id="department" class="form-select">
-                <option value="">Select Department</option>
-                <option value="Department 1">Department 1</option>
-                <option value="Department 2">Department 2</option>
-                <option value="Department 3">Department 3</option>
-              </select>
-              <div class="validate"></div>
-            </div>
-            <div class="col-md-4 form-group mt-3">
-              <select name="doctor" id="doctor" class="form-select">
-                <option value="">Select Doctor</option>
-                <option value="Doctor 1">Doctor 1</option>
-                <option value="Doctor 2">Doctor 2</option>
-                <option value="Doctor 3">Doctor 3</option>
-              </select>
-              <div class="validate"></div>
-            </div>
-          </div>
-
-          <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-            <div class="validate"></div>
-          </div>
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">Make an Appointment</button></div>
-        </form>
-
-      </div>
-    </section><!-- End Appointment Section -->
-
-    <!-- ======= Departments Section ======= -->
-    <section id="departments" class="departments">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Departments</h2>
-          <p>responsibilities related to health management systems are distributed across various departments. Here are some key departments and their roles related to health management systems.</p>
-        </div>
-
-        <div class="row gy-4">
-          <div class="col-lg-3">
-            <ul class="nav nav-tabs flex-column">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Cardiology</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Neurology</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Hepatology</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Pediatrics</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Eye Care</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-9">
-            <div class="tab-content">
-              <div class="tab-pane active show" id="tab-1">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Cardiology</h3>
-                    <p class="fst-italic"> 
-                        Cardiology is the branch of medicine that deals with the study and treatment of disorders related to the heart and the circulatory system</p>
-                    <p>Cardiologists, medical professionals specializing in cardiology, diagnose and manage a wide range of conditions, from heart diseases to disorders of the blood vessels. The field encompasses both preventive and therapeutic aspects of cardiovascular health.</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="clinic/assets/img/departments-1.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-2">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Et blanditiis nemo veritatis excepturi</h3>
-                    <p class="fst-italic">The cardiovascular system includes the heart and blood vessels, such as arteries, veins, and capillaries. Its primary function is to circulate blood throughout the body, supplying oxygen and nutrients to tissues and organs while removing waste products.</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="clinic/assets/img/departments-2.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-3">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
-                    <p class="fst-italic">The cardiovascular system includes the heart and blood vessels, such as arteries, veins, and capillaries. Its primary function is to circulate blood throughout the body, supplying oxygen and nutrients to tissues and organs while removing waste products.</p>
-                    <p>The cardiovascular system includes the heart and blood vessels, such as arteries, veins, and capillaries. Its primary function is to circulate blood throughout the body, supplying oxygen and nutrients to tissues and organs while removing waste products.</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="clinic/assets/img/departments-3.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-4">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-                    <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus</p>
-                    <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="clinic/assets/img/departments-4.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-5">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-                    <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-                    <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="clinic/assets/img/departments-5.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Departments Section -->
 
     <!-- ======= Doctors Section ======= -->
     <section id="doctors" class="doctors">

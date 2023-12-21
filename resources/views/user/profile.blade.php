@@ -86,12 +86,8 @@
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phone Number: {{auth()->user()->phone_number}}</li>
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date of Birth: {{auth()->user()->dob}}</li>
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Location: {{auth()->user()->country}}, {{auth()->user()->state}}, {{auth()->user()->city}}</li>
-                                                                <div class="d-flex">
-                                                                    <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Referral Code:{{refCode()}} </li>
-                                                                    <div class="form-floating-icon px-4 cursor-pointer">
-                                                                        <i data-feather="copy"></i>
-                                                                    </div>
-                                                                </div>
+                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Ref Code: {{refCode()}} <i data-feather="copy"></i> </li>
+                                                                    
                                                                 
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Last Login: {{auth()->user()->updated_at->diffForHumans()}}</li>
 

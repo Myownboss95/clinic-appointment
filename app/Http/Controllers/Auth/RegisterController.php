@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\SaveCreditTransactionsAction;
-use App\Constants\PaymentChannels;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
-use App\Services\LocationService;
-use App\Http\Controllers\Controller;
 use App\Models\PaymentChannel;
+use App\Services\LocationService;
+use App\Constants\PaymentChannels;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Constants\TransactionReasons;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
+use App\Actions\SaveCreditTransactionsAction;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Notifications\CreditReferralWalletNotification;
 use App\Notifications\SocialRegisterationNotification;
+use App\Notifications\CreditReferralWalletNotification;
 
 class RegisterController extends Controller
 {
@@ -118,7 +119,7 @@ class RegisterController extends Controller
 
         //save transaction and credit referrers wallet
         $payment_channel = PaymentChannel::where('bank_name', PaymentChannels::SYSTEM->value)->first();
-        SaveCreditTransactionsAction::execute($referredUser, $payment_channel ,$refBonus, 'Referral Bonus');
+        SaveCreditTransactionsAction::execute($referredUser, $payment_channel ,$refBonus, TransactionReasons::REFERRALS->VALUE);
         
         $referredUser->refresh();
         $referredUser->notify(new CreditReferralWalletNotification($referredUser, $refBonus));

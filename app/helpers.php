@@ -48,5 +48,9 @@ use Illuminate\Support\Str;
         return config('app.url')."/ref/". auth()->user()->referral_code;
     }
 
+    function format_money($amount)
+    {
+        return '₦ '.number_format($amount, 2, '.', ',');
+    }
     
 

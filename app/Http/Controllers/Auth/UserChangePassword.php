@@ -10,9 +10,6 @@ use Illuminate\Validation\Rules\Password;
 
 class UserChangePassword extends Controller
 {
-    public function index(){
-        return view('auth.passwords.change');
-    }
 
     /**
      * Update the user's password.

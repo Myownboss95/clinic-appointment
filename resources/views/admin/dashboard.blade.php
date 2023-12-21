@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="main-content">
 
             <div class="page-content">
                 <div class="container-fluid">
@@ -12,7 +9,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Welcome, {{ auth()->user()->name}}!</h4>
+                                <h4 class="mb-sm-0 font-size-18">Welcome, {{ auth()->user()->first_name}}!</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
@@ -36,10 +33,10 @@
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Customers</span>
                                             <h4 class="mb-3">
-                                                $<span class="counter-value" data-target="354.5">0</span>k
+                                                <span class="counter-value" data-target="{{ $customers_count }}">0</span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">+$20.9k</span>
+                                                <span class="badge bg-success-subtle text-success">{{ $new_customers_count }}</span>
                                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                                             </div>
                                         </div>
@@ -61,11 +58,11 @@
                                         <div class="flex-grow-1">
                                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Appointments</span>
                                             <h4 class="mb-3">
-                                                <span class="counter-value" data-target={{ App\Models\Appointment::count() }}>0</span>
+                                                <span class="counter-value" data-target={{ $appointment_count }}>0</span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-danger-subtle text-danger">-29 Trades</span>
-                                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                                <span class="badge bg-danger-subtle text-danger">{{ $follow_up_appointment_count }}</span>
+                                                <span class="ms-1 text-muted font-size-13">Follow Up Appointments</span>
                                             </div>
                                         </div>
                                         <div class="flex-shrink-0 text-end dash-widget">
@@ -78,18 +75,18 @@
     
                         <div class="col-xl-3 col-md-6">
                             <!-- card -->
-                            <div class="card card-h-100">
+                            <div class="card ">
                                 <!-- card body -->
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Clinics</span>
-                                            <h4 class="mb-3">
-                                                $<span class="counter-value" data-target="7.54">0</span>M
-                                            </h4>
+                                        <div class="">
+                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Transactions</span>
+                                            <h5 class="mb-3">
+                                                <span>{{ format_money($total_transactions) }}</span>
+                                            </h5>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">+ $2.8k</span>
-                                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                                <span class="badge bg-success-subtle text-success">{{ $transactions_count }}</span>
+                                                <span class="ms-1 text-muted font-size-13">Total Transactions</span>
                                             </div>
                                         </div>
                                         <div class="flex-shrink-0 text-end dash-widget">
@@ -107,13 +104,13 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
-                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Earnings</span>
+                                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Referrals Paid</span>
                                             <h4 class="mb-3">
-                                                <span class="counter-value" data-target="18.34">0</span>%
+                                                <span>{{ format_money($total_referral_transactions) }}</span>
                                             </h4>
                                             <div class="text-nowrap">
-                                                <span class="badge bg-success-subtle text-success">+5.32%</span>
-                                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                                <span class="badge bg-success-subtle text-success">{{ $referral_transactions_count }}</span>
+                                                <span class="ms-1 text-muted font-size-13">Total Referrals Paid</span>
                                             </div>
                                         </div>
                                         <div class="flex-shrink-0 text-end dash-widget">
@@ -123,12 +120,23 @@
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div><!-- end col -->    
-                    </div><!-- end row-->     
+                    </div><!-- end row-->   
+                    
+                     <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Appointments</h4>
+                                </div>
+                                <div class="card-body">
+                                    <livewire:appointments-table/>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
                 </div>
                 <!-- container-fluid -->
             </div>
-            <!-- End Page-content -->   
-        </div>
-    </div>
-</div>
 @endsection

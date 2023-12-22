@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
-class UserChangePassword extends Controller
+class UpdatePasswordController extends Controller
 {
 
     /**

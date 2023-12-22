@@ -23,9 +23,9 @@ use RegistersUsers;
 
     public function getAllSubservices(string $slug)
     {
-        
+        dd(Service::where('slug', $slug)->with('subService')->first());
         return view('home.subservices', [
-            'services' =>  Service::where('slug', $slug)->with('sub_service')->first()
+            'services' =>  Service::where('slug', $slug)->with('subService')->first()
         ]);
     }
 

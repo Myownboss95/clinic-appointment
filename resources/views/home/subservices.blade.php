@@ -12,7 +12,7 @@
         </div>
         <div class="row">
           <div class="col-lg-8 col-md-6 d-flex align-items-stretch">
-            @if($services->sub_service()->count() > 0)
+            @if($services->subService()->count() > 0)
               @foreach ($services->sub_service as $sub_service)
                 <a href="{{route('register.sub_service', [$sub_service->service->slug, $sub_service->slug])}}">
                     <div class="icon-box">

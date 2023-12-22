@@ -56,7 +56,7 @@ class Service extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function sub_service(): HasMany
+    public function subService(): HasMany
     {
         return $this->hasMany(SubService::class);
     }

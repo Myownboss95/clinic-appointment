@@ -20,10 +20,10 @@ use App\Http\Controllers\Auth\UserProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
-Route::get('/{slug}/{sub_service}', [HomeController::class, 'register'])->name('register.sub_service');
+Route::get('/service/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
+Route::get('/service/{slug}/{sub_service}', [HomeController::class, 'register'])->name('register.sub_service');
 Route::get('/ref/{token}', ReferralController::class);
 
 Route::prefix('location')->as('location.')->controller(LocationController::class)->group(function () {
@@ -35,7 +35,7 @@ Route::prefix('location')->as('location.')->controller(LocationController::class
 Route::get('/log-out', function (){
     return view('auth.logout');
 })->name('log-out');
-Auth::routes();
+
 Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 Route::get('/register/google', [RegisterController::class, 'redirectToGoogle'])->name('register.google');

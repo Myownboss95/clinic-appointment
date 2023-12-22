@@ -38,7 +38,7 @@ class ImageUpdate extends Component
 
         $this->user->update(
             [
-                'image' => $this->image ? $this->image->store('images', 'public') : $imageToShow
+                'image' => $this->image ? $this->image->store('profile_pictures', 'public') : $imageToShow
             ]
         );
 

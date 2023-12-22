@@ -28,23 +28,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-auto">
-                                        <div class="d-flex align-items-start justify-content-end gap-2 mb-2">
-                                            
-                                            {{-- <div>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-link font-size-16 shadow-none text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="bx bx-dots-horizontal-rounded font-size-20"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu dropdown-menu-end">
-                                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div> --}}
-                                        </div>
-                                    </div>
                                </div>
                            </div>
                         </div>
@@ -61,7 +44,9 @@
                                                 <a class="nav-link px-3" data-bs-toggle="tab" href="#post" role="tab">Edit Profile</a>
                                             </li>
                                             <li class="nav-item">
+   
                                                 <a class="nav-link px-3" data-bs-toggle="tab" href="#security" role="tab">Security</a>
+ 
                                             </li>
                                         </ul>
                                    </div>
@@ -173,6 +158,79 @@
                                         
                                     </div>
                                     <!-- end tab pane -->
+
+                                    <div class="tab-pane" id="password" role="tabpanel">
+                                        <div class="card">
+                                            <div class="card-body"> 
+                                                <form class="mt-4 pt-2" method="post" action="{{ route('password.update') }}">
+                                                    @csrf
+                                                    @method('PUT')
+            
+                                                    <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                        <input type="password"
+                                                            class="form-control pe-5 @error('current_password') is-invalid @enderror"
+                                                            id="current-password-input" placeholder="Enter your current password" name="current_password">
+            
+                                                        <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                            id="current-password-addon">
+                                                            <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                        </button>
+                                                        <label for="input-current-password">Current password</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="lock"></i>
+                                                        </div>
+                                                        @error('current_password')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    
+                                                    <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                        <input type="password"
+                                                            class="form-control pe-5 @error('password') is-invalid @enderror"
+                                                            id="password-input" placeholder="Enter New password" name="password">
+            
+                                                        <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                            id="password-addon">
+                                                            <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                        </button>
+                                                        <label for="input-new-password">New password</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="lock"></i>
+                                                        </div>
+                                                        @error('password')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+            
+            
+                                                    <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                        <input type="password"
+                                                            class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
+                                                            id="confirm-password-input" placeholder="Confirm password" name="password_confirmation">
+            
+                                                        <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                            id="confirm-password-addon">
+                                                            <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                        </button>
+                                                        <label for="input-confirm-password">Confirm password</label>
+                                                        <div class="form-floating-icon">
+                                                            <i data-feather="lock"></i>
+                                                        </div>
+                                                        @error('password_confirmation')
+                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-3 d-flex justify-content-end">
+                                                        <button class="btn btn-primary w-40 waves-effect waves-light"
+                                                            type="submit">Update Password</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- end card body -->
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- end tab pane -->
                                 </div>
                                 </div>
                                 <!-- end tab content -->
@@ -215,3 +273,11 @@
                 </div>
                 <!-- End Page-content -->
  @endsection
+
+ <script>
+    document.getElementById("password-addon").addEventListener("click",function(){var e=document.getElementById("password-input");"password"===e.type?e.type="text":e.type="password"});
+
+document.getElementById("current-password-addon").addEventListener("click",function(){var e=document.getElementById("current-password-input");"password"===e.type?e.type="text":e.type="password"});
+
+document.getElementById("confirm-password-addon").addEventListener("click",function(){var e=document.getElementById("confirm-password-input");"password"===e.type?e.type="text":e.type="password"});
+ </script>

@@ -1,6 +1,6 @@
 <!-- Name Field -->
 <div class="col-sm-12">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{{ $service->name }}</p>
+     <h5>Name:</h5>
+     <span>{{ $service->name }}</span>
 </div>
 

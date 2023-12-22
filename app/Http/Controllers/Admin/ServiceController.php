@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Support\Str;
 
 class ServiceController extends AppBaseController
 {
@@ -54,12 +55,9 @@ class ServiceController extends AppBaseController
      */
     public function store(CreateServiceRequest $request)
     {
-        $input = $request->all();
-
+        $input = array_merge($request->all(), ['slug' => Str::slug($request->input('name'))]);
         $service = $this->serviceRepository->create($input);
-
         toastr()->addSuccess('Service saved successfully.');
-
         return redirect(roleBasedRoute('services.index'));
     }
 

@@ -17,17 +17,17 @@
 
         <div class="card">
 
-            {!! Form::model($subService, ['route' => ['subServices.update', $subService->id], 'method' => 'patch']) !!}
-
+            {!! Form::model($subService, ['route' => ['staff.subServices.update', $subService->id], 'method' => 'patch']) !!}
+             
             <div class="card-body">
                 <div class="row">
-                    @include('sub_services.fields')
+                    @include('admin.sub_services.fields')
                 </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('subServices.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ roleBasedRoute('subServices.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

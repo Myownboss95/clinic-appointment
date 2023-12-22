@@ -61,7 +61,7 @@ class SubService extends Model
     public static $rules = [
         'name' => 'required|integer|unique:sub_services',
         'slug' => 'required|string|unique:sub_services,slug',
-        'service_id' => 'required|integer|exists:services:id',
+        'service_id' => 'required|integer|exists:services,id',
         'price' => 'nullable|number',
         'description' => 'nullable|string',
         'image' => 'nullable|string|max:255',

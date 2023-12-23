@@ -23,8 +23,8 @@ use App\Http\Controllers\Auth\UpdatePasswordController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
-Route::get('/{slug}/{sub_service}', [HomeController::class, 'register'])->name('register.sub_service');
+Route::get('services/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
+Route::get('/{slug}/subservices/{sub_service}', [HomeController::class, 'register'])->name('register.sub_service');
 Route::get('/ref/{token}', ReferralController::class);
 
 Route::prefix('location')->as('location.')->controller(LocationController::class)->group(function () {

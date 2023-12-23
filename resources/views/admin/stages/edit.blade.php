@@ -17,17 +17,17 @@
 
         <div class="card">
 
-            {!! Form::model($stage, ['route' => ['stages.update', $stage->id], 'method' => 'patch']) !!}
+            {!! Form::model($stage, ['route' => ['staff.stages.update', $stage->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('stages.fields')
+                    @include('admin.stages.fields')
                 </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('stages.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ roleBasedRoute('stages.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

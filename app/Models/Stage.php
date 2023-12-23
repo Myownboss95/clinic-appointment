@@ -54,7 +54,7 @@ class Stage extends Model
      */
     public static $rules = [
         'name' => 'required|string|max:255',
-        'slug' => 'required|string|max:255|unique:stage,slug',
+        'slug' => 'string|max:255|unique:stage,slug',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

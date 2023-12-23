@@ -25,6 +25,6 @@
 <!-- Image Field -->
 <div class="col-sm-12">
     {!! Form::label('image', 'Image:') !!}
-    <p>{{ $subService->image }}</p>
+    <p><img src="{{$subService->image}}" width="100" alt=""></p>
 </div>
 

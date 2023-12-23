@@ -7,8 +7,12 @@ use App\Http\Requests\UpdateSubServiceRequest;
 use App\Repositories\SubServiceRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Flash;
 use Response;
+use App\Models\Service;
+use App\Models\SubService;
+
 
 class SubServiceController extends AppBaseController
 {
@@ -30,7 +34,8 @@ class SubServiceController extends AppBaseController
     public function index(Request $request)
     {
         $subServices = $this->subServiceRepository->all();
-
+        // $subServices = SubService::with('service')->get();
+        // dd($subServices);
         return view('admin.sub_services.index')
             ->with('subServices', $subServices);
     }
@@ -42,7 +47,9 @@ class SubServiceController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.sub_services.create');
+        return view('admin.sub_services.create',[
+            'services' => Service::get()
+        ]);
     }
 
     /**
@@ -54,7 +61,13 @@ class SubServiceController extends AppBaseController
      */
     public function store(CreateSubServiceRequest $request)
     {
-        $input = $request->all();
+        $input = array_merge($request->all(), [
+            'slug' => Str::slug($request->input('name'))
+        ]);
+        $imageName = time() . $request->image->getClientOriginalName();
+       // $imageExtension = $request->image->extension();
+       //dd($imageName);
+       $request->image->storeAs(public_path('images'), $imageName);
 
         $subService = $this->subServiceRepository->create($input);
 
@@ -100,7 +113,9 @@ class SubServiceController extends AppBaseController
             return redirect(roleBasedRoute('subServices.index'));
         }
 
-        return view('admin.sub_services.edit')->with('subService', $subService);
+        return view('admin.sub_services.edit',[
+            'services' => Service::get()
+        ])->with('subService', $subService);
     }
 
     /**

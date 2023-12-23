@@ -13,11 +13,12 @@
         <tbody>
         @foreach($subServices as $subService)
             <tr>
-                <td>{{ $subService->name }}</td>
+            <td>{{ $subService->name }}</td>
             <td>{{ $subService->service_id }}</td>
             <td>{{ $subService->price }}</td>
             <td>{{ $subService->description }}</td>
-            <td>{{ $subService->image }}</td>
+            <td><img src="{{$subService->image}}" width="50" alt=""></td>
+            {{-- <td>{{  }}</td> --}}
                 <td width="120">
                      <form action="{{roleBasedRoute('subServices.destroy', $subService->id)}}" method="POST">
                         @csrf

@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ReferralController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Auth\UserProfileController;
+use App\Http\Controllers\BookAppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,10 @@ use App\Http\Controllers\Auth\UserProfileController;
 */
 Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/service/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
-Route::get('/service/{slug}/{sub_service}', [HomeController::class, 'register'])->name('register.sub_service');
+Route::get('/category/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
+Route::get('/service/{subservice}', [HomeController::class, 'viewService'])->name('view.sub_service');
 Route::get('/ref/{token}', ReferralController::class);
+Route::get('/book-appointment/{subservice}', [BookAppointmentController::class, 'index'])->name('book-appointment');
 
 Route::prefix('location')->as('location.')->controller(LocationController::class)->group(function () {
     Route::get('countries', 'countries')->name('countries');

@@ -33,12 +33,12 @@ use Illuminate\Support\Str;
         return "Customer";
     }
 
-    function user_name()
+    function userName()
     {
         return Str::substr(auth()->user()->first_name, 0, 9);
     }
 
-    function format_datetime($datetime)
+    function formatDateTime($datetime)
     {
         return Carbon::parse($datetime)->format('jS \of F, Y, \b\y g.ia');
     }
@@ -48,7 +48,7 @@ use Illuminate\Support\Str;
         return config('app.url')."/ref/". auth()->user()->referral_code;
     }
 
-    function format_money($amount)
+    function formatMoney($amount)
     {
         return '₦ '.number_format($amount, 2, '.', ',');
     }

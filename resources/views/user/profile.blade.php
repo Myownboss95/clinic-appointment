@@ -16,16 +16,16 @@
                                         <div class="d-flex align-items-end mt-3 mt-sm-0">
                                             <div class="flex-shrink-0">
                                                 <div class="avatar-xxl me-3">
-                                                    <img src="{{ Storage::url(auth()->user()->image)}}" alt="" width="200" style="height: 100%" class="img-fluid rounded-circle d-block img-thumbnail">
+                                                    <img src="{{ asset('storage/'. $user->image)}}" alt="" width="200" style="height: 100%" class="img-fluid rounded-circle d-block img-thumbnail">
                                                 </div>
                                                 <div class="form-floating-icon d-flex align-items-center">
                                                     <i data-feather="edit"></i>
-                                                    <a href="{{route('image.index', [auth()->user()->id])}}">Edit Image</a>
+                                                    <a href="{{route('image.index', [$user->id])}}">Edit Image</a>
                                                  </div>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div>
-                                                    <h5 class="font-size-16 mb-1">{{auth()->user()->first_name . ' '. auth()->user()->last_name}}</h5>
+                                                    <h5 class="font-size-16 mb-1">{{$user->first_name . ' '. $user->last_name}}</h5>
                                                     <p class="text-muted font-size-13 mb-2 pb-2">{{auth()->user()->email}}</p>
                                                 </div>
                                             </div>

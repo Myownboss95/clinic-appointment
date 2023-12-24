@@ -33,8 +33,8 @@ class SubServiceController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subServices = $this->subServiceRepository->all();
-        // $subServices = SubService::with('service')->get();
+        //$subServices = $this->subServiceRepository->all();
+         $subServices = SubService::with('service')->get();
         // dd($subServices);
         return view('admin.sub_services.index')
             ->with('subServices', $subServices);

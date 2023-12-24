@@ -31,7 +31,7 @@ class AppointmentController extends AppBaseController
     {
         $appointments = $this->appointmentRepository->all();
 
-        return view('appointments.index')
+        return view('admin.appointments.index')
             ->with('appointments', $appointments);
     }
 

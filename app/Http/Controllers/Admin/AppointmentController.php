@@ -9,6 +9,9 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Stage;
+use App\Models\User;
+use App\Models\Appointment;
 
 class AppointmentController extends AppBaseController
 {
@@ -42,7 +45,11 @@ class AppointmentController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.appointments.create');
+        $appointments = new Appointment();
+        return view('admin.appointments.create', [
+            'stages' => Stage::get(),
+            'users' => User::get()
+        ])->with('appointment', $appointments);
     }
 
     /**
@@ -100,7 +107,12 @@ class AppointmentController extends AppBaseController
             return redirect(roleBasedRoute('appointments.index'));
         }
 
-        return view('admin.appointments.edit')->with('appointment', $appointment);
+        return view('admin.appointments.edit',
+        [
+            'stages' => Stage::get(),
+            'users' => User::get()
+        ]
+        )->with('appointment', $appointment);
     }
 
     /**

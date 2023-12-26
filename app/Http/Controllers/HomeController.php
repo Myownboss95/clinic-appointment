@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Integrations\Calendly\CalendlyService;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\SubService;
@@ -31,9 +32,10 @@ class HomeController extends Controller
         ]);
     }
 
-    public function bookAppointment()
+    public function calendly()
     {
-        
+        $calendlyService = new CalendlyService();
+        $calendlyService->eventTypes();
     }
      
 }

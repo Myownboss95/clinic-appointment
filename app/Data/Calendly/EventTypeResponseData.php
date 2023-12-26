@@ -5,17 +5,18 @@ namespace App\Data\Calendly;
 use Saloon\Contracts\Response;
 use Spatie\LaravelData\Data;
 
-class AuthTokenResponseData extends Data
+class EventTypeResponseData extends Data
 {
     public function __construct(
-        public readonly string $accessToken,
+        public readonly array $data
     ) {
     }
 
     public static function fromResponse(Response $response): self
     {
-        $responseJson = $response->body();
+        $data = $response->json();
+        // $test = $data['test'];
 
-        return new self($responseJson);
+        return new self($data);
     }
 }

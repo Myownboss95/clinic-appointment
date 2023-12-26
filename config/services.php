@@ -37,8 +37,8 @@ return [
     ],
     'calendly' => [
         'base_url' => env('CALENDLY_API_URL', 'https://api.calendly.com'),
-        'client_id' => env('CALENDLY_API_URL', ''),
-        'client_secret' => env('CALENDLY_API_URL', ''),
+        'client_id' => env('CALENDLY_CLIENT_ID', ''),
+        'client_secret' => env('CALENDLY_CLIENT_SECRET', ''),
         'webhook_signin_key' => env('CALENDLY_WEBHOOK_SIGNIN_KEY', ''),
         'calendly_oauth_url' => env('CALENDLY_OAUTH_URL', ''),
     ],

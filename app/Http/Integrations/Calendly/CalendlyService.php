@@ -2,14 +2,16 @@
 
 namespace App\Http\Integrations\Calendly;
 
-use App\Data\Calendly\AuthTokenResponseData;
-use App\Data\Calendly\BvnResponseData;
-use App\Exceptions\Calendly\BvnLookupFailedException;
-use App\Exceptions\Calendly\FailedToGetAccessTokenException;
-use App\Exceptions\Calendly\IdentityMisMatchException;
-use App\Http\Integrations\Calendly\Requests\BvnLookUpRequest;
-use App\Http\Integrations\Calendly\Requests\LoginRequest;
+use Exception;
 use Illuminate\Support\Facades\Cache;
+use App\Data\Calendly\EventTypeResponseData;
+use App\Data\Calendly\AuthTokenResponseData;
+use App\Exceptions\Calendly\BvnLookupFailedException;
+use App\Exceptions\Calendly\IdentityMisMatchException;
+use App\Http\Integrations\Calendly\Requests\LoginRequest;
+use App\Exceptions\Calendly\FailedToGetAccessTokenException;
+use App\Http\Integrations\Calendly\Connectors\BaseConnector;
+use App\Http\Integrations\Calendly\Requests\EventTypesRequest;
 
 class CalendlyService
 {
@@ -24,7 +26,7 @@ class CalendlyService
         $response = (new LoginRequest())->send();
 
         if (! $response->successful()) {
-            // throw new FailedToGetAccessTokenException($response->body());
+            throw new Exception($response->body());
         }
 
         /**
@@ -37,25 +39,28 @@ class CalendlyService
         return $authTokenData;
     }
 
-    public function lookUpBvn(string $bvn, string $firstName, string $lastName): BvnResponseData
+    public function eventTypes()//: EventTypeResponseData
     {
-        $accessTokenData = $this->getAccessToken();
+        $connector = new BaseConnector();
 
-        $response = (new BvnLookUpRequest($accessTokenData, $bvn, $firstName, $lastName))->send();
+        dd($connector);
 
-        if (! $response->successful()) {
-            // throw new BvnLookupFailedException($response->body());
-        }
+        dd($connector->send(new EventTypesRequest()));
+        return;
+        // $accessTokenData = $this->getAccessToken();
+        // return info ($accessTokenData);
 
-        if ($response->json('status')['status'] == 'id_mismatch') {
-            // throw new IdentityMisMatchException($response->body());
-        }
+        // $response = (new EventTypesRequest($accessTokenData))->send();
 
-        /**
-         * @var BvnResponseData
-         */
-        $bvnResponseData = $response->dto();
+        // if (! $response->successful()) {
+        // }
+        // $response->body();
 
-        return $bvnResponseData;
+        // /**
+        //  * @var EventTypeResponseData
+        //  */
+        // $eventTypeResponseData = $response->dto();
+        // info($eventTypeResponseData);
+        // return $eventTypeResponseData;
     }
 }

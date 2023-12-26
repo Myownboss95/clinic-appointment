@@ -3,7 +3,7 @@
 namespace App\Http\Integrations\Calendly\Requests;
 
 use App\Data\Calendly\AuthTokenResponseData;
-use App\Data\Calendly\BvnResponseData;
+use App\Data\Calendly\EventTypeResponseData;
 use App\Http\Integrations\Calendly\Connectors\BaseConnector;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Contracts\Response;
@@ -14,7 +14,7 @@ use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\Traits\Request\HasConnector;
 use Saloon\Traits\RequestProperties\HasHeaders;
 
-class BvnLookUpRequest extends Request implements HasBody
+class EventTypesRequest extends Request implements HasBody
 {
     use AcceptsJson;
     use HasConnector;
@@ -31,7 +31,7 @@ class BvnLookUpRequest extends Request implements HasBody
      */
     protected Method $method = Method::POST;
 
-    public function __construct(public AuthTokenResponseData $authTokenData, public string $bvn, public string $firstName, public string $lastName)
+    public function __construct()
     {
 
     }
@@ -41,8 +41,7 @@ class BvnLookUpRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        // return "/v1/ng/identities/bvn-premium/22510152123";
-        return "/v1/ng/identities/bvn-premium/$this->bvn";
+        return "https://api.calendly.com/event_types";
     }
 
     /**
@@ -52,23 +51,22 @@ class BvnLookUpRequest extends Request implements HasBody
      */
     protected function defaultHeaders(): array
     {
-        $token = $this->authTokenData->accessToken;
+        // $token = $this->authTokenData->accessToken;
 
-        return [
-            'authorization' => "Bearer $token",
-        ];
+        // return [
+        //     'authorization' => "Bearer $token",
+        // ];
+        return [];
     }
 
     public function defaultBody(): array
     {
         return [
-            'firstname' => $this->firstName,
-            'lastname' => $this->lastName,
         ];
     }
 
     public function createDtoFromResponse(Response $response): mixed
     {
-        return BvnResponseData::fromResponse($response);
+        return EventTypeResponseData::fromResponse($response);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -8,8 +9,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ReferralController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
-use App\Http\Controllers\Auth\UserProfileController;
 use App\Http\Controllers\BookAppointmentController;
+use App\Http\Controllers\Auth\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,10 @@ Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name(
 Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 Route::get('/register/google', [RegisterController::class, 'redirectToGoogle'])->name('register.google');
 Route::get('/register/google/callback', [RegisterController::class, 'handleGoogleCallback']);
+Route::get('/calendly/callback', function(Request $request){
+    info($request);
+});
+Route::get('calendly', [HomeController::class, 'calendly']);
 
 Route::middleware('auth')->group(function () {
 

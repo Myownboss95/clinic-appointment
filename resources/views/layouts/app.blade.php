@@ -10,6 +10,7 @@
 
     @stack('page_css') --}}
     <!-- plugin css -->
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <link href="{{ asset('lineone/css/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- preloader css -->
@@ -39,7 +40,7 @@
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
-                                <span class="logo-txt">{{ config('app.name')}}</span>
+                                <span class="logo-txt">{{ config('app.name') }}</span>
                             </span>
                         </a>
 
@@ -49,7 +50,7 @@
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
-                                <span class="logo-txt">{{ config('app.name')}}</span>
+                                <span class="logo-txt">{{ config('app.name') }}</span>
                             </span>
                         </a>
                     </div>
@@ -305,12 +306,12 @@
                             aria-expanded="false">
                             <img class="rounded-circle header-profile-user"
                                 src="{{ asset('lineone/images/users/avatar-1.jpg') }}" alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ user_name() }}</span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ userName() }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="{{route('profile.index')}}"><i
+                            <a class="dropdown-item" href="{{ route('profile.index') }}"><i
                                     class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
                             <div class="dropdown-divider"></div>
                             <form action="{{ route('logout') }}" method="post">

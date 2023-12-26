@@ -48,7 +48,11 @@ final class AppointmentsTable extends PowerGridComponent
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'user' => ['first_name'],
+            'subService' => ['name'],
+            'stage' => ['name']
+        ];
     }
 
     public function addColumns(): PowerGridColumns
@@ -64,7 +68,7 @@ final class AppointmentsTable extends PowerGridComponent
     {
         return [
             Column::make('Stages', 'stage_id')->searchable()->sortable(),
-            Column::make('Customers', 'user')->searchable()->sortable(),
+            Column::make('User', 'user')->searchable()->sortable(),
             Column::make('Service Purchased', 'service')->searchable()->sortable(),
             Column::make('Appointment Date', 'created_at_formatted', 'created_at')
                 ->sortable(),
@@ -101,6 +105,7 @@ final class AppointmentsTable extends PowerGridComponent
                 ->dispatch('edit', ['rowId' => $row->id])
         ];
     }
+
 
     /*
     public function actionRules($row): array

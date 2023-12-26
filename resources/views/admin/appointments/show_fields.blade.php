@@ -1,7 +1,7 @@
 <!-- User Id Field -->
 <div class="col-sm-12">
     {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $appointment->user_id }}</p>
+    <p>{{ $appointment->user->last_name . ' '. $appointment->user->first_name}}</p>
 </div>
 
 <!-- Sub Service Id Field -->
@@ -24,7 +24,7 @@
 
 <!-- Stage Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('stage_id', 'Stage Id:') !!}
-    <p>{{ $appointment->stage_id }}</p>
+    {!! Form::label('stage_id', 'Stage:') !!}
+    <p>{{ $appointment->stage->name }}</p>
 </div>
 

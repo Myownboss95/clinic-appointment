@@ -13,11 +13,11 @@
         <tbody>
         @foreach($appointments as $appointment)
             <tr>
-                <td>{{ $appointment->user_id }}</td>
+                <td>{{ $appointment->user->last_name . ' '. $appointment->user->first_name   }}</td>
             <td>{{ $appointment->sub_service_id }}</td>
             <td>{{ $appointment->start_time }}</td>
             <td>{{ $appointment->end_time }}</td>
-            <td>{{ $appointment->stage_id }}</td>
+            <td>{{ $appointment->stage->name }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['staff.appointments.destroy', $appointment->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

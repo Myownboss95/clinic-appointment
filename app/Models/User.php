@@ -75,7 +75,8 @@ class User extends Authenticatable
         'life_time_balance' => 'integer',
         'referral_code' => 'string',
         'referred_by_user_id' => 'integer',
-        'email_verified_at' => 'datetime'
+        'email_verified_at' => 'datetime',
+        'image' => 'string',
     ];
 
     /**

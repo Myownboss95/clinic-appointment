@@ -11,7 +11,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\BookAppointmentController;
 use App\Http\Controllers\Auth\UserProfileController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,8 +56,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('profile-update', [UserProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/{user}/edit-image', [ImageController::class, 'index'])->name('image.index');
+    Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
 
-     Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
 
 
 Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));

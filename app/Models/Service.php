@@ -50,7 +50,8 @@ class Service extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required|string|max:255|unique',
+        'name' => 'required|string|max:255|unique:services,name',
+        'slug' => 'unique:services,slug',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

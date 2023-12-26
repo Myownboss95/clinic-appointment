@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\BookAppointmentController;
 use App\Http\Controllers\Auth\UserProfileController;
+use App\Http\Controllers\Auth\UpdatePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/category/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
 Route::get('/service/{subservice}', [HomeController::class, 'viewService'])->name('view.sub_service');
+
 Route::get('/ref/{token}', ReferralController::class);
 Route::get('/book-appointment/{subservice}', [BookAppointmentController::class, 'index'])->name('book-appointment');
 
@@ -52,6 +54,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('profile-update', [UserProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile.index');
+
+     Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
+
 
 Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));
 Route::prefix('admin')->as('admin.')->middleware('can:is_admin')->group(fn () => require_once('admin.php'));

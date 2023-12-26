@@ -6,6 +6,9 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
+    @livewireStyles
+
+    @powerGridStyles
     {{-- @stack('third_party_stylesheets')
 
     @stack('page_css') --}}
@@ -382,7 +385,9 @@
     <script src="{{ asset('lineone/js/js/app.js') }}"></script>
     {{-- @livewireScripts
     @powerGridScripts --}}
+@livewireScripts
 
+    @powerGridScripts
 </body>
 
 </html>

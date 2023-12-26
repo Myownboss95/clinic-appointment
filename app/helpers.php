@@ -24,10 +24,10 @@ use Illuminate\Support\Str;
     function role($role_id)
     {
         if ($role_id == 3) {
-            return "Administrator";
+            return "admin";
         }
         if ($role_id == 2) {
-            return "Staff";
+            return "staff";
         } 
             
         return "Customer";

@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
             return route('user.' . $routeName);
         } 
             
-        return route($routeName);
+        return route($routeName, $params);
     }
 
     function role($role_id)

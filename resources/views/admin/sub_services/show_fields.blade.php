@@ -6,8 +6,8 @@
 
 <!-- Service Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('service_id', 'Service Id:') !!}
-    <p>{{ $subService->service_id }}</p>
+    {!! Form::label('service_id', 'Service:') !!}
+    <p>{{ $subService->service->name }}</p>
 </div>
 
 <!-- Price Field -->
@@ -25,6 +25,6 @@
 <!-- Image Field -->
 <div class="col-sm-12">
     {!! Form::label('image', 'Image:') !!}
-    <p>{{ $subService->image }}</p>
+    <p><img src="{{$subService->image}}" width="100" alt=""></p>
 </div>
 

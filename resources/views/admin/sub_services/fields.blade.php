@@ -1,19 +1,26 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name:') !!}
-    {!! Form::number('name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Service Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('service_id', 'Service Id:') !!}
-    {!! Form::number('service_id', null, ['class' => 'form-control']) !!}
+    {{-- {!! Form::label('service_id', 'Service Id:') !!}
+    {!! Form::number('service_id', null, ['class' => 'form-control']) !!} --}}
+    <label for="service">Service</label>
+    <select name="service_id" id="service_id" class="form-control">
+        <option value="">Choose Service</option>
+        @foreach($services as $service)
+            <option value="{{$service->id}}">{{$service->name}}</option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Price Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('price', 'Price:') !!}
-    {!! Form::number('price', null, ['class' => 'form-control']) !!}
+    {!! Form::text('price', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Description Field -->
@@ -25,5 +32,5 @@
 <!-- Image Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('image', 'Image:') !!}
-    {!! Form::text('image', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::file('image', null, ['class' => 'form-control']) !!}
 </div>

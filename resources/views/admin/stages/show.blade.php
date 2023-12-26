@@ -8,7 +8,7 @@
                     <h1>Stage Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right" href="{{ route('stages.index') }}">
+                    <a class="btn btn-default float-right" href="{{ roleBasedRoute('stages.index') }}">
                         Back
                     </a>
                 </div>
@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('stages.show_fields')
+                    @include('admin.stages.show_fields')
                 </div>
             </div>
         </div>

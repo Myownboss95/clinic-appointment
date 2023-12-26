@@ -17,22 +17,23 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'services.store']) !!}
-
+            <form action="{{roleBasedRoute('services.store')}}" method="POST">
+                @csrf
+                
             <div class="card-body">
 
                 <div class="row">
-                    @include('services.fields')
+                    @include('admin.services.fields')
                 </div>
 
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('services.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('staff.services.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
-            {!! Form::close() !!}
+        </form>  
 
         </div>
     </div>

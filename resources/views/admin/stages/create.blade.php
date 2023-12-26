@@ -17,22 +17,23 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'stages.store']) !!}
-
+            
+            <form action="{{roleBasedRoute('stages.store')}}" method="POST">
+                @csrf
             <div class="card-body">
 
                 <div class="row">
-                    @include('stages.fields')
+                    @include('admin.stages.fields')
                 </div>
 
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('stages.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ roleBasedRoute('stages.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
-            {!! Form::close() !!}
+            </form>
 
         </div>
     </div>

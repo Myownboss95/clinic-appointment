@@ -68,7 +68,7 @@ final class UserTransactionsTable extends PowerGridComponent
     {
         return [
             Column::make('Status', 'status'),
-            Column::make('Transaction Reference', 'ref'),
+            Column::make('Transaction Reference', 'ref')->searchable()->sortable(),
             Column::make('Amount', 'amount')->searchable()->sortable(),
             Column::make('Type', 'type')->sortable(),
             Column::make('Service Purchased', 'service')->searchable()->sortable(),

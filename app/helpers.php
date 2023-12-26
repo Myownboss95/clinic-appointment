@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 
-    function roleBasedRoute($routeName)
+    function roleBasedRoute($routeName, $params = null)
     {
         $userRoleId = auth()->user()->role_id;
 
@@ -12,13 +12,13 @@ use Illuminate\Support\Str;
             return route('admin.' . $routeName);
         }
         if ($userRoleId == 2) {
-            return route('staff.' . $routeName);
+            return route('staff.' . $routeName, $params);
         } 
         if ($userRoleId == 1) {
             return route('user.' . $routeName);
         } 
             
-        return route($routeName);
+        return route($routeName, $params);
     }
 
     function role($role_id)
@@ -33,15 +33,24 @@ use Illuminate\Support\Str;
         return "Customer";
     }
 
-    function user_name()
+    function userName()
     {
         return Str::substr(auth()->user()->first_name, 0, 9);
     }
 
-    function format_datetime($datetime)
+    function formatDateTime($datetime)
     {
         return Carbon::parse($datetime)->format('jS \of F, Y, \b\y g.ia');
     }
 
+    function refCode()
+    {
+        return config('app.url')."/ref/". auth()->user()->referral_code;
+    }
+
+    function formatMoney($amount)
+    {
+        return '₦ '.number_format($amount, 2, '.', ',');
+    }
     
 

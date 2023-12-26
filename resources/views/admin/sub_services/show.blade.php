@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right"
-                       href="{{ route('subServices.index') }}">
+                       href="{{ roleBasedRoute('subServices.index') }}">
                         Back
                     </a>
                 </div>
@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('sub_services.show_fields')
+                    @include('admin.sub_services.show_fields')
                 </div>
             </div>
         </div>

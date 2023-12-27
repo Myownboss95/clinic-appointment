@@ -28,6 +28,7 @@ Homestead.json
 /public/js/app.js
 
 /public/mix-manifest.json
+/public/build
 
 composer.lock
 

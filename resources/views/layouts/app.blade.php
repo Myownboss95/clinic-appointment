@@ -6,14 +6,13 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
+    
     @livewireStyles
+    @stack('third_party_stylesheets')
 
-    @powerGridStyles
-    {{-- @stack('third_party_stylesheets')
-
-    @stack('page_css') --}}
+    @stack('page_css')
     <!-- plugin css -->
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/js/app.js'])
     <link href="{{ asset('lineone/css/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- preloader css -->
@@ -25,7 +24,6 @@
     <link href="{{ asset('lineone/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ asset('lineone/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body data-topbar="dark">
@@ -363,7 +361,7 @@
     <!-- END layout-wrapper -->
 
     <!-- JAVASCRIPT -->
-    <script src="{{ asset('lineone/js/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('lineone/js/libs/jquery/jquery.min.js') }}"></script> 
     <script src="{{ asset('lineone/js/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lineone/js/libs/metismenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('lineone/js/libs/simplebar/simplebar.min.js') }}"></script>
@@ -382,12 +380,10 @@
     <script src="{{asset('lineone/js/js/pages/password-addon.init.js')}}"></script>
 
 
-    <script src="{{ asset('lineone/js/js/app.js') }}"></script>
+    <script src="{{ asset('lineone/js/js/app.js') }}"></script> 
     {{-- @livewireScripts
     @powerGridScripts --}}
-@livewireScripts
 
-    @powerGridScripts
 </body>
 
 </html>

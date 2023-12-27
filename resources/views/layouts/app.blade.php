@@ -12,7 +12,7 @@
 
     @stack('page_css')
     <!-- plugin css -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
     <link href="{{ asset('lineone/css/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- preloader css -->

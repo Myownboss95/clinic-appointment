@@ -1,29 +1,4 @@
 {
-  "public/lineone/css/app.min.css": {
-    "file": "assets/app-90JhkHNj.css",
-    "isEntry": true,
-    "src": "public/lineone/css/app.min.css"
-  },
-  "public/lineone/css/bootstrap.min.css": {
-    "file": "assets/bootstrap-nAccRfC4.css",
-    "isEntry": true,
-    "src": "public/lineone/css/bootstrap.min.css"
-  },
-  "public/lineone/css/icons.min.css": {
-    "file": "assets/icons-L66jXGTy.css",
-    "isEntry": true,
-    "src": "public/lineone/css/icons.min.css"
-  },
-  "public/lineone/css/jquery-jvectormap-1.2.2.css": {
-    "file": "assets/jquery-jvectormap-1.2-qMNzIOtW.css",
-    "isEntry": true,
-    "src": "public/lineone/css/jquery-jvectormap-1.2.2.css"
-  },
-  "public/lineone/css/preloader.min.css": {
-    "file": "assets/preloader-SD3VWMMk.css",
-    "isEntry": true,
-    "src": "public/lineone/css/preloader.min.css"
-  },
   "public/lineone/fonts/boxicons.eot": {
     "file": "assets/boxicons-gEkJTZmV.eot",
     "src": "public/lineone/fonts/boxicons.eot"
@@ -144,71 +119,6 @@
     "file": "assets/profile-bg-1-YjZ-qVvx.jpg",
     "src": "public/lineone/images/profile-bg-1.jpg"
   },
-  "public/lineone/js/js/app.js": {
-    "file": "assets/app-WrDIkflA.js",
-    "isEntry": true,
-    "src": "public/lineone/js/js/app.js"
-  },
-  "public/lineone/js/js/pages/pass-addon.init.js": {
-    "file": "assets/pass-addon.init-RQNrpig9.js",
-    "isEntry": true,
-    "src": "public/lineone/js/js/pages/pass-addon.init.js"
-  },
-  "public/lineone/js/js/pages/password-addon.init.js": {
-    "file": "assets/password-addon.init-CYnRJF3I.js",
-    "isEntry": true,
-    "src": "public/lineone/js/js/pages/password-addon.init.js"
-  },
-  "public/lineone/js/js/pages/product-filter-range.init.js": {
-    "file": "assets/product-filter-range.init-09zaKxzP.js",
-    "isEntry": true,
-    "src": "public/lineone/js/js/pages/product-filter-range.init.js"
-  },
-  "public/lineone/js/libs/bootstrap/js/bootstrap.bundle.min.js": {
-    "file": "assets/bootstrap.bundle.min-YeN_yLT2.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/bootstrap/js/bootstrap.bundle.min.js"
-  },
-  "public/lineone/js/libs/feather-icons/feather.min.js": {
-    "file": "assets/feather.min-FvF3Tf4b.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/feather-icons/feather.min.js"
-  },
-  "public/lineone/js/libs/jquery/jquery.min.js": {
-    "file": "assets/jquery.min-PiZkWn3_.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/jquery/jquery.min.js"
-  },
-  "public/lineone/js/libs/metismenu/metisMenu.min.js": {
-    "file": "assets/metisMenu.min-XRkMhDZO.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/metismenu/metisMenu.min.js"
-  },
-  "public/lineone/js/libs/node-waves/waves.min.js": {
-    "file": "assets/waves.min-ndbrgjzh.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/node-waves/waves.min.js"
-  },
-  "public/lineone/js/libs/nouislider/nouislider.min.js": {
-    "file": "assets/nouislider.min-CuGTgK0D.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/nouislider/nouislider.min.js"
-  },
-  "public/lineone/js/libs/pace-js/pace.min.js": {
-    "file": "assets/pace.min-ecF9M20u.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/pace-js/pace.min.js"
-  },
-  "public/lineone/js/libs/simplebar/simplebar.min.js": {
-    "file": "assets/simplebar.min-EmE-l2iW.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/simplebar/simplebar.min.js"
-  },
-  "public/lineone/js/libs/wnumb/wNumb.min.js": {
-    "file": "assets/wNumb.min-cqBI8d3I.js",
-    "isEntry": true,
-    "src": "public/lineone/js/libs/wnumb/wNumb.min.js"
-  },
   "resources/css/app.css": {
     "file": "assets/app-RGDSnsyn.css",
     "isEntry": true,
@@ -248,28 +158,9 @@
       "assets/profile-bg-1-YjZ-qVvx.jpg"
     ],
     "css": [
-      "assets/app-aW_p7GGf.css",
-      "assets/jquery-jvectormap-1.2-qMNzIOtW.css",
-      "assets/preloader-SD3VWMMk.css",
-      "assets/bootstrap-nAccRfC4.css",
-      "assets/icons-L66jXGTy.css",
-      "assets/app-90JhkHNj.css"
+      "assets/app-xll45B7U.css"
     ],
-    "file": "assets/app-l5WQTxLC.js",
-    "imports": [
-      "public/lineone/js/libs/jquery/jquery.min.js",
-      "public/lineone/js/libs/bootstrap/js/bootstrap.bundle.min.js",
-      "public/lineone/js/libs/metismenu/metisMenu.min.js",
-      "public/lineone/js/libs/simplebar/simplebar.min.js",
-      "public/lineone/js/libs/node-waves/waves.min.js",
-      "public/lineone/js/libs/feather-icons/feather.min.js",
-      "public/lineone/js/libs/pace-js/pace.min.js",
-      "public/lineone/js/libs/wnumb/wNumb.min.js",
-      "public/lineone/js/js/pages/product-filter-range.init.js",
-      "public/lineone/js/js/pages/pass-addon.init.js",
-      "public/lineone/js/js/pages/password-addon.init.js",
-      "public/lineone/js/js/app.js"
-    ],
+    "file": "assets/app-SpqN3LAK.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

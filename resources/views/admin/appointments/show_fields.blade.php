@@ -64,10 +64,13 @@
                                             <div class="col-xl-6">
                                                 <div class="mt-4 mt-xl-3">
                                                     <a href="javascript: void(0);" class="text-primary"></a>
-                                                    <h4 class="mt-1 mb-3">{{ $appointment->subService}}</h4>
-                                                    <p class="text-muted mb-4">Subservice description here</p>
+                                                    <h4 class="mt-1 mb-3">{{ $appointment->subService?->first()?->name}}</h4>
+                                                    <p class="text-muted mb-4">{{ $appointment->subService?->first()?->description}}</p>
                                                     <h5 class="mb-4">Client:<span class="badge rounded-pill bg-primary-subtle text-primary"></span> <b>{{ $appointment->user->last_name}} {{ $appointment->user->first_name}}</b></h5>
                                                     <h5 class="mb-4">Stage:<span class="badge rounded-pill bg-primary-subtle text-primary "></span> <b>{{ $appointment->stage->name}}</b></h5>
+                                                    <h5 class="mb-4">Total Transactions:<span class="badge rounded-pill bg-primary-subtle text-primary "></span> <b>{{ number_format($appointment->transactions?->first()->amount, 2)}}</b></h5>
+                                                    <h5 class="mb-4">State:<span class="badge rounded-pill bg-primary-subtle text-primary "></span> <b>{{ $appointment->user?->state}}</b></h5>
+                                                    <h5 class="mb-4">City:<span class="badge rounded-pill bg-primary-subtle text-primary "></span> <b>{{ $appointment->user?->city}}</b></h5>
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
                                                             <div>
@@ -108,7 +111,7 @@
                                                                 <div class="flex-1 ms-4">
                                                                     <h5 class="mb-2 font-size-15 text-primary">Jerry Rossiter</h5>
                                                                     <h5 class="text-muted font-size-15">kuwait</h5>
-                                                                    <p class="text-muted">65 Followers, 86 Reviews</p>
+                                                                    {{-- <p class="text-muted">65 Followers, 86 Reviews</p> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -126,14 +129,14 @@
                                                             
                                                             <p class="text-muted">Maecenas non vestibulum ante, nec efficitur orci. Duis eu ornare mi, quis bibendum quam. Etiam imperdiet aliquam purus sit amet rhoncus. Vestibulum pretium consectetur leo, in mattis 
                                                                 ipsum sollicitudin eget. Pellentesque vel mi tortor. Nullam vitae maximus dui dolor sit amet, consectetur adipiscing elit.</p>
-                                                            <ul class="list-inline float-sm-end mb-sm-0">
+                                                            {{-- <ul class="list-inline float-sm-end mb-sm-0">
                                                                 <li class="list-inline-item">
                                                                     <a href="javascript: void(0);"><i class="far fa-thumbs-up me-1"></i> Like</a>
                                                                 </li>
                                                                 <li class="list-inline-item">
                                                                     <a href="javascript: void(0);"><i class="far fa-comment-dots me-1"></i> Comment</a>
                                                                 </li>
-                                                            </ul>
+                                                            </ul> --}}
                                                         </div>
                                                     </div>
                                                 </div>

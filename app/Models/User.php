@@ -158,7 +158,6 @@ class User extends Authenticatable
 
         return $proposedCode;
     }
-   
 
     
 }

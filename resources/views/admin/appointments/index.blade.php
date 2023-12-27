@@ -25,7 +25,7 @@
 
         <div class="card">
             <div class="card-body p-0">
-                @include('admin.appointments.table')
+                <livewire:appointments-table/>
 
                 <div class="card-footer clearfix">
                     <div class="float-right">

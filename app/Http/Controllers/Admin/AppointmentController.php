@@ -87,7 +87,8 @@ class AppointmentController extends AppBaseController
             return redirect(roleBasedRoute('appointments.index'));
         }
 
-        return view('admin.appointments.show')->with('appointment', $appointment);
+        $comments = $appointment->comments()->get();
+        return view('admin.appointments.show', ['comments' => $comments])->with('appointment', $appointment);
     }
 
     /**

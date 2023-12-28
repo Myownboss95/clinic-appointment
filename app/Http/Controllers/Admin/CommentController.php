@@ -60,7 +60,7 @@ class CommentController extends AppBaseController
 
         toastr()->addSuccess('Comment saved successfully.');
 
-        return redirect(roleBasedRoute('comments.index'));
+        return redirect()->back();
     }
 
     /**

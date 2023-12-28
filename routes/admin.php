@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ClinicUserController;
 use App\Http\Controllers\Admin\SubServiceController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\CurrencyListController;
+use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\CountryPhoneCodeController;
 
@@ -43,3 +44,4 @@ Route::resource('countries', CountryController::class);
 Route::resource('clinicUsers', ClinicUserController::class);
 Route::resource('cities', CityController::class);
 Route::resource('appointments', AppointmentController::class);
+Route::resource('transactions', TransactionsController::class);

@@ -24,6 +24,8 @@
 
 @endcan
 
+
+{{-- admin --}}
 @can('is_staff')
     
 
@@ -31,6 +33,12 @@
     <a href="{{ roleBasedRoute('appointments.index') }}">
         <i data-feather="calendar"></i>
         <span data-key="t-calendar">Appointments</span>
+    </a>
+</li>
+<li>
+    <a href="{{roleBasedRoute('transactions.index')}}">
+        <i data-feather="trello"></i>
+        <span data-key="t-tasks">Transactions</span>
     </a>
 </li>
 <li>

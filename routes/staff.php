@@ -10,15 +10,16 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserStageController;
 use App\Http\Controllers\Admin\ClinicUserController;
 use App\Http\Controllers\Admin\SubServiceController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\CurrencyListController;
+use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\CountryPhoneCodeController;
-use App\Http\Controllers\Admin\CustomerController;
 
 Route::get('/', DashboardController::class)->name('index');
 
@@ -37,3 +38,10 @@ Route::resource('countries', CountryController::class);
 Route::resource('clinicUsers', ClinicUserController::class);
 Route::resource('cities', CityController::class);
 Route::resource('appointments', AppointmentController::class);
+Route::prefix('transactions')->controller(TransactionsController::class)->group(function () {
+    Route::get('', 'index')->name('transactions');
+    Route::get('confirmed-transactions', 'approvedTransactions')->name('confirmed.transactions');
+    Route::get('rejected-transactions', 'rejectedTransactions')->name('rejected.transactions');
+    Route::get('approve', 'approveTransaction')->name('approve');
+    Route::get('reject', 'rejectTransaction')->name('reject');
+});

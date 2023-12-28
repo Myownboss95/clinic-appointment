@@ -33,22 +33,12 @@ class TransactionsController extends Controller
     public function show(Request $request, $id)
     {
         $user = $request->user();
-        $transaction = $user->transaction()->where('id', $id)->first();
-        return view('admin.stages.show', [
+        $transaction = $user->transactions()->where('id', $id)->first();
+        return view('user.transactions.show', [
             'user' => $user,
             'transaction' => $transaction,
         ]);
     }
 
-
-    public function showTransaction(Request $request, $id)
-    {
-        //$user = $request->user();
-        $transaction = Transaction::where('id', $id)->first();
-        return view('user.transactions.show', [
-            // 'user' => $user,
-            'transaction' => $transaction,
-        ]);
-    }
 }
 

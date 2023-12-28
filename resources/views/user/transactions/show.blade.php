@@ -110,9 +110,6 @@
 
                                 <div class="col-xl-6">
                                     <div class="mt-4 mt-xl-3">
-                                        <p class="text-primary">Reference number</p>
-                                        <h4 class="mt-1 mb-3">{{$transaction->ref}} <i class="bx bx-copy me-2"></i></h4>
-
                                         <h4>Trasaction status: <span class="btn btn-sm btn-danger text-uppercase">{{$transaction->status}}</span></h4>
                                         <h5 class="mb-4">Amount :  <b>{{number_format($transaction->amount, 2)}}</b></h5>
                                         <h6>Payment Reason</h6>

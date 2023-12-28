@@ -12,7 +12,7 @@
 
 <!-- Sub Service Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('sub_service_id', 'Sub Service Id:') !!}
+    {!! Form::label('sub_service_id', 'Sub Service:') !!}
     {!! Form::number('sub_service_id', null, ['class' => 'form-control']) !!}
 </div>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
+    {{-- <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -15,15 +15,15 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <div class="content px-3">
+    {{-- <div class="content px-3">
         <div class="card">
             <div class="card-body">
-                <div class="row">
+                <div class="row"> --}}
                     @include('admin.appointments.show_fields')
-                </div>
+                {{-- </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

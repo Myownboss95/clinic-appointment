@@ -51,20 +51,20 @@ class TransactionsController extends Controller
      */
     public function edit($id)
     {
-        $appointment = $this->appointmentRepository->find($id);
+        // $appointment = $this->appointmentRepository->find($id);
 
-        if (empty($appointment)) {
-            toastr()->addError('Appointment not found');
+        // if (empty($appointment)) {
+        //     toastr()->addError('Appointment not found');
 
-            return redirect(roleBasedRoute('appointments.index'));
-        }
+        //     return redirect(roleBasedRoute('appointments.index'));
+        // }
 
-        return view('admin.appointments.edit',
-        [
-            'stages' => Stage::get(),
-            'users' => User::get()
-        ]
-        )->with('appointment', $appointment);
+        // return view('admin.appointments.edit',
+        // [
+        //     'stages' => Stage::get(),
+        //     'users' => User::get()
+        // ]
+        // )->with('appointment', $appointment);
     }
 
     /**
@@ -77,20 +77,20 @@ class TransactionsController extends Controller
      */
     public function update($id, UpdateAppointmentRequest $request)
     {
-        $appointment = $this->appointmentRepository->find($id);
+        // $appointment = $this->appointmentRepository->find($id);
 
-        if (empty($appointment)) {
+        // if (empty($appointment)) {
             
 
-            toastr()->addError('urrency List saved successfully.');
-            return redirect(roleBasedRoute('appointments.index'));
-        }
+        //     toastr()->addError('urrency List saved successfully.');
+        //     return redirect(roleBasedRoute('appointments.index'));
+        // }
 
-        $appointment = $this->appointmentRepository->update($request->all(), $id);
+        // $appointment = $this->appointmentRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Appointment updated successfully.');
+        // toastr()->addSuccess('Appointment updated successfully.');
 
-        return redirect(roleBasedRoute('appointments.index'));
+        // return redirect(roleBasedRoute('appointments.index'));
     }
 
     /**
@@ -104,19 +104,19 @@ class TransactionsController extends Controller
      */
     public function destroy($id)
     {
-        $appointment = $this->appointmentRepository->find($id);
+        // $appointment = $this->appointmentRepository->find($id);
 
-        if (empty($appointment)) {
-            toastr()->addError('Appointment not found');
-            return redirect(roleBasedRoute('appointments.index'));
-        }
+        // if (empty($appointment)) {
+        //     toastr()->addError('Appointment not found');
+        //     return redirect(roleBasedRoute('appointments.index'));
+        // }
 
-        $this->appointmentRepository->delete($id);
+        // $this->appointmentRepository->delete($id);
 
-        toastr()->addSuccess('Appointment saved successfully.');
+        // toastr()->addSuccess('Appointment saved successfully.');
 
-        return redirect(roleBasedRoute('appointments.index'));
+        // return redirect(roleBasedRoute('appointments.index'));
     }
 }
-}
+
 

@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
             return route('staff.' . $routeName, $params);
         } 
         if ($userRoleId == 1) {
-            return route('user.' . $routeName);
+            return route('user.' . $routeName, $params);
         } 
             
         return route($routeName, $params);

@@ -35,11 +35,10 @@ class Comment extends Model
 
 
     public $fillable = [
-        'model_name',
-        'model_id',
+        'appointment_id',
+        'appointment_stage_id',
         'body',
         'user_id',
-        'staff_user_id'
     ];
 
     /**
@@ -49,12 +48,11 @@ class Comment extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'model_name' => 'string',
-        'model_id' => 'integer',
+        'appointment_id' => 'integer',
+        'appointment_stage_id' => 'integer',
         'body' => 'string',
         'user_id' => 'integer',
-        'staff_user_id' => 'integer'
-    ];
+     ];
 
     /**
      * Validation rules
@@ -62,11 +60,11 @@ class Comment extends Model
      * @var array
      */
     public static $rules = [
-        'model_name' => 'required|string|max:255',
-        'model_id' => 'required|integer',
+        'appointment_id' => 'required|integer',
+        'appointment_stage_id' => 'required|integer',
         'body' => 'required|string',
         'user_id' => 'nullable|integer',
-        'staff_user_id' => 'nullable|integer'
+         
     ];
 
  /**

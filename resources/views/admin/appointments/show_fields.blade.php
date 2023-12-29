@@ -90,8 +90,12 @@
                                         <div class="mt-5">
                                             <h5 class="mb-3">Comment Here :</h5>
     
-                                                <form action="">
+                                                <form action="{{roleBasedRoute('comments.store')}}" method="POST">
+                                                    @csrf
                                                     <textarea name="body" class="form-control" id=""></textarea>
+                                                    <input type="hidden" name="user_id" id="" value="{{auth()->user()->id}}">
+                                                    <input type="hidden" name="appointment_id" id="" value="{{$appointment->id}}">
+                                                    <input type="hidden" name="appointment_stage_id" id="" value="{{$appointment->stage->id}}">
                                                     <div>
                                                         <button type="submit" class="btn btn-primary waves-effect waves-light mt-2 me-1">Submit</button>
                                                     </div>
@@ -101,16 +105,18 @@
                                         <div class="mt-5">
                                             <h5>Comments :</h5>
     
+                                            
+                                            @forelse($comments as $comment)
                                             <div class="mt-4 border p-4">
 
                                                 <div class="row">
                                                     <div class="col-xl-3 col-md-5">
                                                         <div>
                                                             <div class="d-flex">
-                                                                <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="img" />
+                                                                <img src="/lineone/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="img" />
                                                                 <div class="flex-1 ms-4">
-                                                                    <h5 class="mb-2 font-size-15 text-primary">Jerry Rossiter</h5>
-                                                                    <h5 class="text-muted font-size-15">kuwait</h5>
+                                                                    <h5 class="mb-2 font-size-15 text-muted">{{$comment->user->last_name}} {{$comment->user->first_name}}</h5>
+                                                                    <h5 class="text-muted font-size-15">{{$comment->user->state}}, {{$comment->user->country}}</h5>
                                                                     {{-- <p class="text-muted">65 Followers, 86 Reviews</p> --}}
                                                                 </div>
                                                             </div>
@@ -124,11 +130,10 @@
                                                                 <i class="bx bxs-star text-warning"></i>
                                                                 <i class="bx bxs-star text-warning"></i>
                                                                 <i class="bx bxs-star text-warning"></i>
-                                                                <span class="ms-3"><i class="far fa-calendar-alt text-primary me-1"></i> 15/09/2021</span>
+                                                                <span class="ms-3"><i class="far fa-calendar-alt text-primary me-1"></i>{{$comment->created_at->diffForHumans()}}</span>
                                                             </p>
                                                             
-                                                            <p class="text-muted">Maecenas non vestibulum ante, nec efficitur orci. Duis eu ornare mi, quis bibendum quam. Etiam imperdiet aliquam purus sit amet rhoncus. Vestibulum pretium consectetur leo, in mattis 
-                                                                ipsum sollicitudin eget. Pellentesque vel mi tortor. Nullam vitae maximus dui dolor sit amet, consectetur adipiscing elit.</p>
+                                                            <p class="text-muted">{{$comment->body}}</p>
                                                             {{-- <ul class="list-inline float-sm-end mb-sm-0">
                                                                 <li class="list-inline-item">
                                                                     <a href="javascript: void(0);"><i class="far fa-thumbs-up me-1"></i> Like</a>
@@ -141,6 +146,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @empty
+                                                <p>NO comment for this appoinment</p>
+                                            @endforelse
 
                                             
                                             

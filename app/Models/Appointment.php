@@ -93,4 +93,8 @@ class Appointment extends Model
         return $this->belongsTo(Stage::class);
     }
     
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

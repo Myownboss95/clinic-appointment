@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Response;
+use Illuminate\Http\Request;
+use App\Models\GeneralSetting;
+use App\Repositories\UserRepository;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
-use Response;
 
 class UserController extends AppBaseController
 {
@@ -74,6 +75,8 @@ class UserController extends AppBaseController
     public function show($id)
     {
         $user = $this->userRepository->find($id);
+        $setting = GeneralSetting::first();
+
 
         if (empty($user)) {
             toastr()->addError('User not found');
@@ -81,7 +84,11 @@ class UserController extends AppBaseController
             return redirect(roleBasedRoute('users.index'));
         }
 
-        return view('admin.users.show')->with('user', $user);
+        return view('admin.users.show', [
+            'user' => $user->load('referrals'),
+            'refBonus'=> $setting->ref_bonus ?? 0
+
+        ])->with('user', $user);
     }
 
     /**

@@ -66,4 +66,8 @@ class Stage extends Model
     {
         return $this->belongsToMany(User::class, 'user_stage');
     }
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }

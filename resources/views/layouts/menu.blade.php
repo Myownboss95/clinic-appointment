@@ -1,5 +1,5 @@
 <li>
-    <a href="">
+    <a href="{{ roleBasedRoute('index') }}">
         <i data-feather="home"></i>
         <span class="badge rounded-pill bg-success-subtle text-success float-end">9+</span>
         <span data-key="t-dashboard">Dashboard</span>
@@ -36,7 +36,7 @@
     </a>
 </li>
 <li>
-    <a href="{{roleBasedRoute('transactions.index')}}">
+    <a href="{{roleBasedRoute('transactions')}}">
         <i data-feather="trello"></i>
         <span data-key="t-tasks">Transactions</span>
     </a>

@@ -45,3 +45,10 @@ Route::resource('clinicUsers', ClinicUserController::class);
 Route::resource('cities', CityController::class);
 Route::resource('appointments', AppointmentController::class);
 Route::resource('transactions', TransactionsController::class);
+Route::prefix('transactions')->controller(TransactionsController::class)->group(function () {
+    Route::get('', 'index')->name('transactions');
+    Route::get('confirmed-transactions', 'approvedTransactions')->name('confirmed.transactions');
+    Route::get('rejected-transactions', 'rejectedTransactions')->name('rejected.transactions');
+    Route::get('approve', 'approveTransaction')->name('approve');
+    Route::get('reject', 'rejectTransaction')->name('reject');
+});

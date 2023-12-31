@@ -14,6 +14,7 @@ enum StageTypes: string implements EnumToArray
     case APPOINTMENT_SCHEDULING = 'appointment scheduling';
     case DIAGNOSTICS = 'diagnostics';
     case PROCEDURES = 'procedures';
+    case COMPLETED = 'completed';
     case POST_TREATMENT = 'post treatment';
     case FOLLOW_UP_APPOINTMENT = 'follow up appointments';
 

@@ -2,14 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Stage;
-use App\Models\Appointment;
-use App\Constants\StageTypes;
+use App\Models\User;
 use Illuminate\Support\Carbon;
-use App\Models\AppointmentSubService;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\App;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
@@ -21,7 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
-final class AppointmentsTable extends PowerGridComponent
+final class CustomersTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -42,35 +37,33 @@ final class AppointmentsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        $user =  auth()->user();
-        return Appointment::whereNull('parent_appointment_id')->with('subService')->latest();
+        return User::where('role_id', 1)->latest();
     }
 
     public function relationSearch(): array
     {
-        return [
-            'user' => ['first_name', 'last_name'],
-            'subService' => ['name'],
-            'stage' => ['name']
-        ];
+        return [];
     }
 
     public function addColumns(): PowerGridColumns
     {
+        /**
+         * @var User
+         */
         return PowerGrid::columns()
-            ->addColumn('stage_id', fn (Appointment $appointment)=> $appointment->stage->name)
-            ->addColumn('user', fn (Appointment $appointment)=> $appointment->user->first_name. ' '.$appointment->user->last_name)
-            ->addColumn('service', fn (Appointment $appointment) => $appointment->subService->first()->name)
-            ->addColumn('created_at_formatted', fn (Appointment $appointment) => Carbon::parse($appointment->created_at)->format('jS \of F, Y, \b\y g.ia'));
+        ->addColumn('name', fn (User $user) => $user->first_name. ' '. $user->last_name)
+        ->addColumn('email', fn (User $user) => $user->email)
+        ->addColumn('phone_number', fn (User $user) => $user->phone_number)
+        ->addColumn('created_at_formatted', fn (User $user) => Carbon::parse($user->created_at)->format('jS \of F, Y, \b\y g.ia'));
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Stages', 'stage_id')->searchable()->sortable(),
-            Column::make('User', 'user')->searchable()->sortable(),
-            Column::make('Service Purchased', 'service')->searchable()->sortable(),
-            Column::make('Appointment Date', 'created_at_formatted', 'created_at')
+            Column::make('Name', 'name')->searchable()->sortable(),
+            Column::make('Email', 'email')->searchable()->sortable(),
+            Column::make('Phone Number', 'phone_number')->searchable()->sortable(),
+            Column::make('Date Registered', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
             Column::action('Action')
@@ -80,12 +73,7 @@ final class AppointmentsTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::select('stage_id', 'stage_id')
-            ->dataSource(Stage::all())
-            ->optionValue('id')
-            ->optionLabel('name'),
-
-            Filter::datetimepicker('created_at'),
+        Filter::datetimepicker('created_at'),
         ];
     }
 
@@ -95,17 +83,16 @@ final class AppointmentsTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(\App\Models\Appointment $row): array
+    public function actions(\App\Models\User $row): array
     {
         return [
             Button::add('view')
                 ->slot('View')
                 ->class('btn btn-success')
                 ->target('')
-                ->route(role(auth()->user()->role_id).".appointments.show", ['appointment' => $row->id]),
+                ->route(role(auth()->user()->role_id).".users.show", ['user' => $row->id]),
         ];
     }
-
 
     /*
     public function actionRules($row): array

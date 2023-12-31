@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CreateAppointmentRequest;
-use App\Http\Requests\UpdateAppointmentRequest;
-use App\Repositories\AppointmentRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
+use App\Constants\StageTypes;
 use Flash;
 use Response;
-use App\Models\Stage;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Stage;
 use App\Models\Appointment;
+use App\Models\Transaction;
+use Illuminate\Http\Request;
+use App\Constants\TransactionReasons;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\AppointmentRepository;
+use App\Http\Requests\CreateAppointmentRequest;
+use App\Http\Requests\UpdateAppointmentRequest;
 
 class AppointmentController extends AppBaseController
 {
@@ -32,10 +36,29 @@ class AppointmentController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $appointments = $this->appointmentRepository->all();
+        $query = Appointment::with(['subService', 'stage'])->latest();
+        $pendingStage = Stage::where('name', StageTypes::APPOINTMENT_SCHEDULING->value)->first(); 
+        $completedStage = Stage::where('name', StageTypes::COMPLETED->value)->first(); 
 
-        return view('admin.appointments.index')
-            ->with('appointments', $appointments);
+
+        return view('admin.appointments.index',
+        [
+            'customers' => User::where('role_id', 1)->latest(),
+            'customers_count' => User::where('role_id', 1)->count(),
+            'new_customers_count' => User::where('role_id', 1)
+            ->where('created_at', '>=', Carbon::now()->subWeek())
+            ->count(),
+            'appointment' => $query->get(),
+            'follow_up_appointment_count' => $query->whereNotNull('parent_appointment_id')->count(),
+            'appointment_count' => $query->count(),
+            'pending_appointment_count' =>$pendingStage->appointments->count(),
+            'new_pending_appointment_count' => $pendingStage->appointments->where('created_at', '>=', Carbon::now()->subWeek())
+                                                ->whereNull('end_date')->count(),
+            'completed_appointment_count' =>$completedStage->appointments->count(),
+            'new_completed_appointment_count' => $completedStage->appointments->where('created_at', '>=', Carbon::now()->subWeek())
+                                                ->whereNull('end_date')->count(),
+        ]);
+
     }
 
     /**

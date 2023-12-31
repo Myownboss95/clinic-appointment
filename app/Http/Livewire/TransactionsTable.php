@@ -40,12 +40,14 @@ final class TransactionsTable extends PowerGridComponent
     public function datasource(): Builder
     {
         $user =  auth()->user();
-        return Transaction::where('user_id', $user->id)->with('appointment.subService')->latest();
+        return Transaction::with('appointment.subService')->latest();
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'user' => ['first_name', 'last_name'],
+        ];
     }
 
     public function addColumns(): PowerGridColumns
@@ -54,13 +56,13 @@ final class TransactionsTable extends PowerGridComponent
         ->addColumn('status', function (Transaction $transaction) {
             return TransactionStatusTypes::from($transaction->status)->labels();
         })
-        ->addColumn('user', fn (Transaction $transaction) => $transaction->user->name)
+        ->addColumn('user', fn (Transaction $transaction) => $transaction->user->first_name. ' '. $transaction->user->last_name)
         ->addColumn('type', function (Transaction $transaction) {
             return TransactionTypes::from($transaction->type)->labels();
         })
             ->addColumn('amount', fn (Transaction $transaction) => '₦ '.number_format($transaction->amount, 2, '.', ','))
             ->addColumn('ref')
-            ->addColumn('service', fn (Transaction $transaction) => $transaction->appointment->first()->subService()->first()->name)
+            // ->addColumn('service', fn (Transaction $transaction) => $transaction->appointment?->first()->subService()->first()->name ?? '')
             ->addColumn('created_at_formatted', fn (Transaction $model) => Carbon::parse($model->created_at)->format('jS \of F, Y, \b\y g.ia'));
     }
 
@@ -72,7 +74,7 @@ final class TransactionsTable extends PowerGridComponent
             Column::make('Transaction Reference', 'ref')->searchable()->sortable(),
             Column::make('Amount', 'amount')->searchable()->sortable(),
             Column::make('Type', 'type')->sortable(),
-            Column::make('Service Purchased', 'service')->searchable()->sortable(),
+            // Column::make('Service Purchased', 'service')->searchable()->sortable(),
             Column::make('Date of Transaction', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
@@ -100,11 +102,11 @@ final class TransactionsTable extends PowerGridComponent
     public function actions(\App\Models\Transaction $row): array
     {
         return [
-            Button::add('edit')
+            Button::add('view')
                 ->slot('View')
-                ->id()
                 ->class('btn btn-success')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->target('')
+                ->route(role(auth()->user()->role_id).".transactions.show", ['transaction' => $row->id]),
         ];
     }
 

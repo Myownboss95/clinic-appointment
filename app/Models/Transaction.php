@@ -25,7 +25,7 @@ class Transaction extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function payment_channel(): BelongsTo
+    public function paymentChannel(): BelongsTo
     {
         return $this->belongsTo(PaymentChannel::class);
     }

@@ -12,6 +12,7 @@ use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\BookAppointmentController;
 use App\Http\Controllers\Auth\UserProfileController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
+use App\Http\Controllers\TransactionReceiptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,13 +55,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('profile-update', [UserProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
+    Route::get('transaction/download', TransactionReceiptController::class)->name('download.transaction');
 
-     Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
-
-
-Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));
-Route::prefix('admin')->as('admin.')->middleware('can:is_admin')->group(fn () => require_once('admin.php'));
-Route::prefix('staff')->as('staff.')->middleware('can:is_staff')->group(fn () => require_once('staff.php'));
+    Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));
+    Route::prefix('admin')->as('admin.')->middleware('can:is_admin')->group(fn () => require_once('admin.php'));
+    Route::prefix('staff')->as('staff.')->middleware('can:is_staff')->group(fn () => require_once('staff.php'));
 
 
 });

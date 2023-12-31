@@ -131,16 +131,15 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Appointments</h4>
+                            <h4 class="card-title">Users</h4>
                         </div>
                         <div class="card-body">
-                            <livewire:appointments-table />
+                            <livewire:customers-table />
                         </div>
                         <!-- end card body -->
                     </div>
                     <!-- end card -->
                 </div>
-                <!-- end col -->
             </div>
             <!-- container-fluid -->
         </div>

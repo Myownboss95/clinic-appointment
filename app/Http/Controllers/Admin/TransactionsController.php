@@ -18,7 +18,7 @@ class TransactionsController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.transaction', [
+        return view('admin.transactions.index', [
             'transactions' => Transaction::with(['user','appointment.subservice'])->latest(),
             'transactions_count' => Transaction::count(),
             'total_transactions' => Transaction::sum('amount'),
@@ -36,7 +36,8 @@ class TransactionsController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $transaction = Transaction::with(['user','appointment.subservice'])->where('id', $id)->first();
+        $transaction = Transaction::with(['user','appointment.subservice','paymentChannel'])->where('id', $id)->first();
+        // dd($transaction);
         return view('admin.transactions.show', [
             'transaction' => $transaction,
         ]);
@@ -51,20 +52,18 @@ class TransactionsController extends Controller
      */
     public function edit($id)
     {
-        // $appointment = $this->appointmentRepository->find($id);
+        $transaction = Transaction::with(['user','appointment.subservice'])->where('id', $id)->first();
 
-        // if (empty($appointment)) {
-        //     toastr()->addError('Appointment not found');
+        if (empty($transaction)) {
+            toastr()->addError('Appointment not found');
 
-        //     return redirect(roleBasedRoute('appointments.index'));
-        // }
+            return redirect(roleBasedRoute('transactions.index'));
+        }
 
-        // return view('admin.appointments.edit',
-        // [
-        //     'stages' => Stage::get(),
-        //     'users' => User::get()
-        // ]
-        // )->with('appointment', $appointment);
+        return view('admin.transactions.edit',
+        [
+            'transaction'=> $transaction
+        ]);
     }
 
     /**

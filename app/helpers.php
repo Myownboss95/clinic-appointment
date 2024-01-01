@@ -55,5 +55,7 @@ function formatMoney($amount)
 
 function profilePicture(User $user)
 {
-    return
+    return $user->image
+        ? asset("storage/profile_pictures/{$user->image}")
+        : asset('lineone/images/users/avatar-6.jpg'); // Replace with your default image path
 }

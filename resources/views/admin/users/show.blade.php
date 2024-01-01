@@ -1,5 +1,13 @@
  @extends('layouts.app')
  @section('content')
+ <style>
+.table-responsive .table td,
+.table-responsive .table th {
+    font-size: 0.75rem;
+}
+
+ 
+</style>
      <div class="page-content">
          <div class="container-fluid">
 
@@ -71,10 +79,12 @@
              </div>
 
              <div class="row">
-                 <div class="col-xl-10 col-lg-10">
+                 <div class="col-xl-12 col-lg-12">
                      <div class="tab-content">
                          <div class="tab-pane active" id="overview" role="tabpanel">
-                             <div class="card p-3">
+                            <div class="row">
+                                <div class="col-md-5">
+<div class="card p-3">
                                  <div class="card-header">
                                      <h5 class="card-title mb-0">Overview</h5>
                                  </div>
@@ -107,15 +117,18 @@
                                  <!-- end card body -->
                                  <!-- end card body -->
                              </div>
+                                </div>
+                            </div>
+                             
                              <!-- end card -->
                          </div>
                          <!-- end tab pane -->
 
                          <div class="tab-pane" id="appointments" role="tabpanel">
-                             <div class="card p-5">
+                             <div class="card">
                                  <div class="card-body">
                                      <div class="row">
-
+                                        <livewire:user-appointment-table userId="{{ $user->id }}"/>
                                      </div>
                                  </div>
                                  <!-- end card body -->
@@ -124,34 +137,58 @@
                          </div>
                          <!-- end tab pane -->
                          <div class="tab-pane" id="transactionstab" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Transactions</h4>
+                                </div>
+                                <div class="card-body">
+                                    <livewire:user-transactions-table userId="{{$user->id}}"/>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                         </div>
+                         <!-- end tab pane -->
+                         <div class="tab-pane" id="updateuser" role="tabpanel">
                              <div class="card p-5">
                                  <div class="card-body">
-                                     <div class="row">
-                                         <div>
-                                             <div>
-                                                 <div class="mb-3">
-                                                     <label for="example-password-old" class="form-label">Old
-                                                         Password</label>
-                                                     <input class="form-control" name="password" type="password"
-                                                         value="" id="example-password-old">
-                                                 </div>
-                                                 <div class="mb-3">
-                                                     <label for="example-password-new" class="form-label">New
-                                                         Password</label>
-                                                     <input class="form-control" name="password" type="password"
-                                                         value="" id="example-password-new">
-                                                 </div>
-                                                 <div class="mb-3">
-                                                     <label for="example-password-confirm" class="form-label">Confirm
-                                                         Password</label>
-                                                     <input class="form-control" name="confirm_password" type="password"
-                                                         value="" id="example-password-confirm">
-                                                 </div>
 
-                                                 <div class="mt-4 d-flex justify-content-center">
-                                                     <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                 </div>
 
-                                                 </div>
+                             </div>
+                         </div>
+                         <!-- end tab pane -->
+                         <div class="tab-pane" id="referrals" role="tabpanel">
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <div class="card p-2">
+                                         <div class="card-body">
+                                     <div class="table-responsive">
+                                                 <table class="table align-middle table-nowrap">
+                                                     <tbody>
+                                                         <tr>
+                                                             @if ($user->referrals()->count() > 0)
+                                                                 @foreach ($user->referrals as $referral)
+                                                                     <td style="width: 50px;"><img
+                                                                             src="{{ asset('lineone/images/users/avatar-2.jpg') }}"
+                                                                             class="rounded-circle avatar-sm"
+                                                                             alt=""></td>
+                                                                     <td>
+                                                                         <h5 class="font-size-14 m-0"><a
+                                                                                 href="javascript: void(0);"
+                                                                                 class="text-dark">{{ $referral->first_name }}</a>
+                                                                         </h5>
+                                                                     </td>
+
+                                                                     <td>
+                                                                         <i
+                                                                             class="mdi mdi-circle-medium font-size-18 text-success align-middle me-1"></i>
+                                                                         {{ '₦' . number_format($refBonus, 2, '.', ',') }}
+                                                                     </td>
+                                                                 @endforeach
+                                                             @endif
+                                                         </tr>
+                                                     </tbody>
+                                                 </table>
                                              </div>
                                          </div>
                                      </div>
@@ -159,165 +196,113 @@
                                  </div>
 
                              </div>
-                             <!-- end tab pane -->
-                             <div class="tab-pane" id="updateuser" role="tabpanel">
-                                 <div class="card p-5">
+                            </div>
+
+                             <div class="tab-pane" id="password" role="tabpanel">
+                                 <div class="card">
                                      <div class="card-body">
-                                         
-                                     </div>
+                                         <form class="mt-4 pt-2" method="post" action="{{ route('password.update') }}">
+                                             @csrf
+                                             @method('PUT')
 
-                                 </div>
-                                 <!-- end tab pane -->
-                                 <div class="tab-pane" id="referrals" role="tabpanel">
-                                     <div class="card p-5">
-                                         <div class="card-body">
-                                             <div class="row">
-                                                 <div>
-                                                     <div class="table-responsive">
-                                                         <table class="table align-middle table-nowrap">
-                                                             <tbody>
-                                                                 <tr>
-                                                                     @if ($user->referrals()->count() > 0)
-                                                                         @foreach ($user->referrals as $referral)
-                                                                             <td style="width: 50px;"><img
-                                                                                     src="{{ asset('lineone/images/users/avatar-2.jpg') }}"
-                                                                                     class="rounded-circle avatar-sm"
-                                                                                     alt=""></td>
-                                                                             <td>
-                                                                                 <h5 class="font-size-14 m-0"><a
-                                                                                         href="javascript: void(0);"
-                                                                                         class="text-dark">{{ $referral->first_name }}</a>
-                                                                                 </h5>
-                                                                             </td>
+                                             <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                 <input type="password"
+                                                     class="form-control pe-5 @error('current_password') is-invalid @enderror"
+                                                     id="current-password-input" placeholder="Enter your current password"
+                                                     name="current_password">
 
-                                                                             <td>
-                                                                                 <i
-                                                                                     class="mdi mdi-circle-medium font-size-18 text-success align-middle me-1"></i>
-                                                                                 {{ '₦' . number_format($refBonus, 2, '.', ',') }}
-                                                                             </td>
-                                                                         @endforeach
-                                                                     @endif
-                                                                 </tr>
-                                                             </tbody>
-                                                         </table>
-                                                     </div>
+                                                 <button type="button"
+                                                     class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                     id="current-password-addon">
+                                                     <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                 </button>
+                                                 <label for="input-current-password">Current password</label>
+                                                 <div class="form-floating-icon">
+                                                     <i data-feather="lock"></i>
                                                  </div>
+                                                 @error('current_password')
+                                                     <span class="error invalid-feedback">{{ $message }}</span>
+                                                 @enderror
                                              </div>
-                                             <!-- end card body -->
-                                         </div>
 
-                                     </div>
+                                             <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                 <input type="password"
+                                                     class="form-control pe-5 @error('password') is-invalid @enderror"
+                                                     id="password-input" placeholder="Enter New password"
+                                                     name="password">
 
-                                     <div class="tab-pane" id="password" role="tabpanel">
-                                         <div class="card">
-                                             <div class="card-body">
-                                                 <form class="mt-4 pt-2" method="post"
-                                                     action="{{ route('password.update') }}">
-                                                     @csrf
-                                                     @method('PUT')
-
-                                                     <div
-                                                         class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                                         <input type="password"
-                                                             class="form-control pe-5 @error('current_password') is-invalid @enderror"
-                                                             id="current-password-input"
-                                                             placeholder="Enter your current password"
-                                                             name="current_password">
-
-                                                         <button type="button"
-                                                             class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                             id="current-password-addon">
-                                                             <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                                         </button>
-                                                         <label for="input-current-password">Current password</label>
-                                                         <div class="form-floating-icon">
-                                                             <i data-feather="lock"></i>
-                                                         </div>
-                                                         @error('current_password')
-                                                             <span class="error invalid-feedback">{{ $message }}</span>
-                                                         @enderror
-                                                     </div>
-
-                                                     <div
-                                                         class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                                         <input type="password"
-                                                             class="form-control pe-5 @error('password') is-invalid @enderror"
-                                                             id="password-input" placeholder="Enter New password"
-                                                             name="password">
-
-                                                         <button type="button"
-                                                             class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                             id="password-addon">
-                                                             <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                                         </button>
-                                                         <label for="input-new-password">New password</label>
-                                                         <div class="form-floating-icon">
-                                                             <i data-feather="lock"></i>
-                                                         </div>
-                                                         @error('password')
-                                                             <span class="error invalid-feedback">{{ $message }}</span>
-                                                         @enderror
-                                                     </div>
-
-
-                                                     <div
-                                                         class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                                         <input type="password"
-                                                             class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
-                                                             id="confirm-password-input" placeholder="Confirm password"
-                                                             name="password_confirmation">
-
-                                                         <button type="button"
-                                                             class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                             id="confirm-password-addon">
-                                                             <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                                         </button>
-                                                         <label for="input-confirm-password">Confirm password</label>
-                                                         <div class="form-floating-icon">
-                                                             <i data-feather="lock"></i>
-                                                         </div>
-                                                         @error('password_confirmation')
-                                                             <span class="error invalid-feedback">{{ $message }}</span>
-                                                         @enderror
-                                                     </div>
-                                                     <div class="mb-3 d-flex justify-content-end">
-                                                         <button class="btn btn-primary w-40 waves-effect waves-light"
-                                                             type="submit">Update Password</button>
-                                                     </div>
-                                                 </form>
+                                                 <button type="button"
+                                                     class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                     id="password-addon">
+                                                     <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                 </button>
+                                                 <label for="input-new-password">New password</label>
+                                                 <div class="form-floating-icon">
+                                                     <i data-feather="lock"></i>
+                                                 </div>
+                                                 @error('password')
+                                                     <span class="error invalid-feedback">{{ $message }}</span>
+                                                 @enderror
                                              </div>
-                                             <!-- end card body -->
-                                         </div>
 
+
+                                             <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                                                 <input type="password"
+                                                     class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
+                                                     id="confirm-password-input" placeholder="Confirm password"
+                                                     name="password_confirmation">
+
+                                                 <button type="button"
+                                                     class="btn btn-link position-absolute h-100 end-0 top-0"
+                                                     id="confirm-password-addon">
+                                                     <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                 </button>
+                                                 <label for="input-confirm-password">Confirm password</label>
+                                                 <div class="form-floating-icon">
+                                                     <i data-feather="lock"></i>
+                                                 </div>
+                                                 @error('password_confirmation')
+                                                     <span class="error invalid-feedback">{{ $message }}</span>
+                                                 @enderror
+                                             </div>
+                                             <div class="mb-3 d-flex justify-content-end">
+                                                 <button class="btn btn-primary w-40 waves-effect waves-light"
+                                                     type="submit">Update Password</button>
+                                             </div>
+                                         </form>
                                      </div>
-                                     <!-- end tab pane -->
+                                     <!-- end card body -->
                                  </div>
+
                              </div>
-                             <!-- end tab content -->
+                             <!-- end tab pane -->
                          </div>
-                         <!-- end col -->
-                         <!-- end col -->
                      </div>
-                     <!-- end row -->
-
-                 </div> <!-- container-fluid -->
+                     <!-- end tab content -->
+                 </div>
+                 <!-- end col -->
+                 <!-- end col -->
              </div>
-             <!-- End Page-content -->
-         @endsection
+             <!-- end row -->
 
-         <script>
-             document.getElementById("password-addon").addEventListener("click", function() {
-                 var e = document.getElementById("password-input");
-                 "password" === e.type ? e.type = "text" : e.type = "password"
-             });
+         </div> <!-- container-fluid -->
+     </div>
+     <!-- End Page-content -->
+ @endsection
 
-             document.getElementById("current-password-addon").addEventListener("click", function() {
-                 var e = document.getElementById("current-password-input");
-                 "password" === e.type ? e.type = "text" : e.type = "password"
-             });
+ <script>
+     document.getElementById("password-addon").addEventListener("click", function() {
+         var e = document.getElementById("password-input");
+         "password" === e.type ? e.type = "text" : e.type = "password"
+     });
 
-             document.getElementById("confirm-password-addon").addEventListener("click", function() {
-                 var e = document.getElementById("confirm-password-input");
-                 "password" === e.type ? e.type = "text" : e.type = "password"
-             });
-         </script>
+     document.getElementById("current-password-addon").addEventListener("click", function() {
+         var e = document.getElementById("current-password-input");
+         "password" === e.type ? e.type = "text" : e.type = "password"
+     });
+
+     document.getElementById("confirm-password-addon").addEventListener("click", function() {
+         var e = document.getElementById("confirm-password-input");
+         "password" === e.type ? e.type = "text" : e.type = "password"
+     });
+ </script>

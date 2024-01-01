@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -50,4 +51,9 @@ function refCode()
 function formatMoney($amount)
 {
     return '₦ '.number_format($amount, 2, '.', ',');
+}
+
+function profilePicture(User $user)
+{
+    return
 }

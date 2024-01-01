@@ -19,6 +19,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class UserAppointmentTable extends PowerGridComponent
 {
+    public int $userId;
+
     use WithExport;
 
     public function setUp(): array
@@ -40,7 +42,7 @@ final class UserAppointmentTable extends PowerGridComponent
     {
         $user = auth()->user();
 
-        return Appointment::where('user_id', $user->id)->whereNull('parent_appointment_id')->with('subService')->latest();
+        return Appointment::where('user_id', $this->userId)->whereNull('parent_appointment_id')->with('subService')->latest();
     }
 
     public function relationSearch(): array

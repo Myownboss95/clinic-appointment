@@ -20,6 +20,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class UserTransactionsTable extends PowerGridComponent
 {
+    public int $userId;
+
     use WithExport;
 
     public function setUp(): array
@@ -39,9 +41,7 @@ final class UserTransactionsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        $user = auth()->user();
-
-        return Transaction::where('user_id', $user->id)->with('appointment.subService')->latest();
+        return Transaction::where('user_id', $this->userId)->with('appointment.subService')->latest();
     }
 
     public function relationSearch(): array
@@ -60,7 +60,7 @@ final class UserTransactionsTable extends PowerGridComponent
             })
             ->addColumn('amount', fn (Transaction $transaction) => '₦ '.number_format($transaction->amount, 2, '.', ','))
             ->addColumn('ref')
-            ->addColumn('service', fn (Transaction $transaction) => $transaction->appointment->first()->subService()->first()->name)
+            ->addColumn('service', fn (Transaction $transaction) => $transaction->appointment?->first()?->subService?->first()?->name ?? '')
             ->addColumn('created_at_formatted', fn (Transaction $model) => Carbon::parse($model->created_at)->format('jS \of F, Y, \b\y g.ia'));
     }
 
@@ -105,6 +105,12 @@ final class UserTransactionsTable extends PowerGridComponent
                 ->class('btn btn-success')
                 ->dispatch('edit', ['rowId' => $row->id]),
         ];
+    }
+
+    protected function tableAttributes()
+    {
+        return ['class' => 'table-striped table-responsive table-hover fs-6',
+            'style' => 'font-size:2px'];
     }
 
     /*

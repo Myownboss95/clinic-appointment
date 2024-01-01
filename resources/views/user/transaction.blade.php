@@ -79,7 +79,7 @@
                                     <h4 class="card-title">Transactions</h4>
                                 </div>
                                 <div class="card-body">
-                                    <livewire:user-transactions-table/>
+                                    <livewire:user-transactions-table userId="{{$user->id}}"/>
                                 </div>
                                 <!-- end card body -->
                             </div>

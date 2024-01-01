@@ -81,7 +81,7 @@
                             <h4 class="card-title">Appointments</h4>
                         </div>
                         <div class="card-body">
-                            <livewire:user-appointment-table />
+                            <livewire:user-appointment-table userId="{{ $user->id }}"/>
                         </div>
                         <!-- end card body -->
                     </div>

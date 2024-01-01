@@ -13,6 +13,8 @@ class ImageUpdate extends Component
 
     public $user;
     public $image;
+
+    
     
 
     public function mount(User $user ){

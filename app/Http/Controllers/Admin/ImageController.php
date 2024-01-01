@@ -13,6 +13,7 @@ class ImageController extends Controller
         if($user->id === auth()->user()->id){
             return view('admin.image.index', compact("user"));
         }
+        
         abort(403);
     }
 }

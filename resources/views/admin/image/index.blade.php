@@ -29,6 +29,8 @@
                             <div class="card-body">
                                 {{-- @livewire('image-update') --}}
                                 <livewire:image-update :user="$user" />    
+
+                                
                             </div>
                         </div>
                     </div> <!-- end col -->

@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('profile-update', [UserProfileController::class, 'update'])->name('profile.update');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile.index');
+    //handle profile image
     Route::get('/profile/{user}/edit-image', [ImageController::class, 'index'])->name('image.index');
     Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
 

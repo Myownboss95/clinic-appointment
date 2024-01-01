@@ -77,12 +77,7 @@
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date of Birth: {{$user->dob}}</li>
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Location: {{$user->country}}, {{$user->state}}, {{$user->city}}</li>
                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Ref Code: {{refCode()}} <i data-feather="copy"></i> </li>
-                                                                    
-                                                                
-                                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Last Login: {{$user->updated_at->diffForHumans()}}</li>
-
-
-
+                                                                 <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date Joined: {{$user->created_at->diffForHumans()}}</li>  
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -103,14 +98,14 @@
                                                         <div>
                                                             <div class="mb-3">
                                                                 <label for="example-text-input" class="form-label">FullName</label>
-                                                                <input class="form-control" disabled type="text" value="{{$user->last_name .' '. $user->first_name }}" id="example-text-input" readonly>
+                                                                <input class="form-control" disabled type="text" value="{{$user->last_name .' '. $user->first_name }}" id="example-text-input">
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="example-email-input" class="form-label">Email</label>
                                                                 <input class="form-control" disabled readonly type="email" value="{{old('email', $user->email)}}" id="example-email-input" >
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="example-date-input" class="form-label">Date</label>
+                                                                <label for="example-date-input" class="form-label">Date of Birth</label>
                                                                 <input class="form-control" name="dob" type="date" value="{{old('dob', $user->dob)}}" id="example-date-input">
                                                             </div>
 

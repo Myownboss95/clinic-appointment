@@ -1,56 +1,53 @@
-<?php 
+<?php
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
+function roleBasedRoute($routeName, $params = null)
+{
+    $userRoleId = auth()->user()->role_id;
 
-    function roleBasedRoute($routeName, $params = null)
-    {
-        $userRoleId = auth()->user()->role_id;
-
-        if ($userRoleId == 3) {
-            return route('admin.' . $routeName);
-        }
-        if ($userRoleId == 2) {
-            return route('staff.' . $routeName, $params);
-        } 
-        if ($userRoleId == 1) {
-            return route('user.' . $routeName, $params);
-        } 
-            
-        return route($routeName, $params);
+    if ($userRoleId == 3) {
+        return route('admin.'.$routeName);
+    }
+    if ($userRoleId == 2) {
+        return route('staff.'.$routeName, $params);
+    }
+    if ($userRoleId == 1) {
+        return route('user.'.$routeName, $params);
     }
 
-    function role($role_id)
-    {
-        if ($role_id == 3) {
-            return "admin";
-        }
-        if ($role_id == 2) {
-            return "staff";
-        } 
-            
-        return "Customer";
+    return route($routeName, $params);
+}
+
+function role($role_id)
+{
+    if ($role_id == 3) {
+        return 'admin';
+    }
+    if ($role_id == 2) {
+        return 'staff';
     }
 
-    function userName()
-    {
-        return Str::substr(auth()->user()->first_name, 0, 9);
-    }
+    return 'Customer';
+}
 
-    function formatDateTime($datetime)
-    {
-        return Carbon::parse($datetime)->format('jS \of F, Y, \b\y g.ia');
-    }
+function userName()
+{
+    return Str::substr(auth()->user()->first_name, 0, 9);
+}
 
-    function refCode()
-    {
-        return config('app.url')."/ref/". auth()->user()->referral_code;
-    }
+function formatDateTime($datetime)
+{
+    return Carbon::parse($datetime)->format('jS \of F, Y, \b\y g.ia');
+}
 
-    function formatMoney($amount)
-    {
-        return '₦ '.number_format($amount, 2, '.', ',');
-    }
-    
+function refCode()
+{
+    return config('app.url').'/ref/'.auth()->user()->referral_code;
+}
 
+function formatMoney($amount)
+{
+    return '₦ '.number_format($amount, 2, '.', ',');
+}

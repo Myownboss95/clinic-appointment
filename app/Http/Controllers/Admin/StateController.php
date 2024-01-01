@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateStateRequest;
 use App\Http\Requests\UpdateStateRequest;
 use App\Repositories\StateRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class StateController extends AppBaseController
 {
-    /** @var StateRepository $stateRepository*/
+    /** @var StateRepository */
     private $stateRepository;
 
     public function __construct(StateRepository $stateRepo)
@@ -23,7 +22,6 @@ class StateController extends AppBaseController
     /**
      * Display a listing of the State.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class StateController extends AppBaseController
     /**
      * Store a newly created State in storage.
      *
-     * @param CreateStateRequest $request
      *
      * @return Response
      */
@@ -66,8 +63,7 @@ class StateController extends AppBaseController
     /**
      * Display the specified State.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +82,7 @@ class StateController extends AppBaseController
     /**
      * Show the form for editing the specified State.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +101,7 @@ class StateController extends AppBaseController
     /**
      * Update the specified State in storage.
      *
-     * @param int $id
-     * @param UpdateStateRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateStateRequest $request)
@@ -131,11 +124,10 @@ class StateController extends AppBaseController
     /**
      * Remove the specified State from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

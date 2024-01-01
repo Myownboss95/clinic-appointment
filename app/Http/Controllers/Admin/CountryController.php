@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
 use App\Repositories\CountryRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class CountryController extends AppBaseController
 {
-    /** @var CountryRepository $countryRepository*/
+    /** @var CountryRepository */
     private $countryRepository;
 
     public function __construct(CountryRepository $countryRepo)
@@ -23,7 +22,6 @@ class CountryController extends AppBaseController
     /**
      * Display a listing of the Country.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class CountryController extends AppBaseController
     /**
      * Store a newly created Country in storage.
      *
-     * @param CreateCountryRequest $request
      *
      * @return Response
      */
@@ -66,8 +63,7 @@ class CountryController extends AppBaseController
     /**
      * Display the specified Country.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +82,7 @@ class CountryController extends AppBaseController
     /**
      * Show the form for editing the specified Country.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +101,7 @@ class CountryController extends AppBaseController
     /**
      * Update the specified Country in storage.
      *
-     * @param int $id
-     * @param UpdateCountryRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateCountryRequest $request)
@@ -131,11 +124,10 @@ class CountryController extends AppBaseController
     /**
      * Remove the specified Country from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

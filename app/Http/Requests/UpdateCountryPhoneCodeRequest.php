@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\CountryPhoneCode;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCountryPhoneCodeRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateCountryPhoneCodeRequest extends FormRequest
     public function rules()
     {
         $rules = CountryPhoneCode::$rules;
-        
+
         return $rules;
     }
 }

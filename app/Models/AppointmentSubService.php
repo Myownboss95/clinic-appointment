@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -9,14 +10,11 @@ class AppointmentSubService extends Pivot
 
     // Additional columns on the pivot table
     protected $guarded = [
-        'id'
+        'id',
     ];
 
-    
-    public function appointment(){
+    public function appointment()
+    {
         return $this->belongsTo(Appointment::class);
     }
-
-
-
 }

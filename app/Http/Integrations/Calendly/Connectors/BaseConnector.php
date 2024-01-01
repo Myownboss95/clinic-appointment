@@ -3,14 +3,13 @@
 namespace App\Http\Integrations\Calendly\Connectors;
 
 use DateTimeImmutable;
-use Saloon\Http\Request;
-use Saloon\Http\Connector;
+use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Contracts\Response;
 use Saloon\Helpers\OAuth2\OAuthConfig;
-use Saloon\Traits\Plugins\AcceptsJson;
-use Saloon\Contracts\OAuthAuthenticator;
-use Saloon\Traits\OAuth2\AuthorizationCodeGrant;
+use Saloon\Http\Connector;
+use Saloon\Http\Request;
 use Saloon\Traits\OAuth2\ClientCredentialsGrant;
+use Saloon\Traits\Plugins\AcceptsJson;
 
 class BaseConnector extends Connector
 {
@@ -41,7 +40,7 @@ class BaseConnector extends Connector
             ->setClientId(config('services.calendly.client_id'))
             ->setClientSecret(config('services.calendly.client_secret'))
             ->setRedirectUri('https://clinic.test/calendly/callback')
-	        ->setAuthorizeEndpoint('https://api.calendly.com/oauth/authorize')
+            ->setAuthorizeEndpoint('https://api.calendly.com/oauth/authorize')
             ->setTokenEndpoint('https://api.calendly.com/oauth/token')
             ->setRequestModifier(function (Request $request) {
                 dd($request);
@@ -58,7 +57,6 @@ class BaseConnector extends Connector
     // {
     //     dd($accessToken, $refreshToken);
 
-        
     // }
 
     /**

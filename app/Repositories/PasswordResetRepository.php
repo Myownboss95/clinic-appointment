@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\PasswordReset;
-use App\Repositories\BaseRepository;
 
 /**
  * Class PasswordResetRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:04 pm UTC
-*/
-
+ */
 class PasswordResetRepository extends BaseRepository
 {
     /**
@@ -18,7 +16,7 @@ class PasswordResetRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'email',
-        'token'
+        'token',
     ];
 
     /**

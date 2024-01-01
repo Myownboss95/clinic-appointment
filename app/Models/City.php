@@ -3,40 +3,37 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class City
- * @package App\Models
+ *
  * @version October 24, 2023, 4:12 pm UTC
  *
- * @property integer $id
- * @property integer $state_id
+ * @property int $id
+ * @property int $state_id
  * @property string $name
  * @property string $status
  */
 class City extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'cities';
-    
+
     const CREATED_AT = 'created_at';
+
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'id',
         'state_id',
         'name',
-        'status'
+        'status',
     ];
 
     /**
@@ -48,7 +45,7 @@ class City extends Model
         'id' => 'integer',
         'state_id' => 'integer',
         'name' => 'string',
-        'status' => 'string'
+        'status' => 'string',
     ];
 
     /**
@@ -59,8 +56,6 @@ class City extends Model
     public static $rules = [
         'state_id' => 'required',
         'name' => 'required|string|max:255',
-        'status' => 'required|string'
+        'status' => 'required|string',
     ];
-
-    
 }

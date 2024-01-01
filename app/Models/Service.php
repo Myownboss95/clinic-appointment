@@ -2,36 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Service
- * @package App\Models
+ *
  * @version October 24, 2023, 4:03 pm UTC
  *
  * @property string $name
  */
 class Service extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'services';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
 
+    const CREATED_AT = 'created_at';
+
+    const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
 
-
-
     public $guarded = [
-        'id'
+        'id',
     ];
 
     /**
@@ -41,7 +38,7 @@ class Service extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'name' => 'string',
     ];
 
     /**
@@ -54,13 +51,11 @@ class Service extends Model
         'slug' => 'unique:services,slug',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
 
     public function subService(): HasMany
     {
         return $this->hasMany(SubService::class);
     }
-
-    
 }

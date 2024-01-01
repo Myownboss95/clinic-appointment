@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\User;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserProfileRequest extends FormRequest
 {
@@ -19,15 +19,13 @@ class UpdateUserProfileRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {
         return [
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'phone_number' => ['required', 'unique:users']
+            'phone_number' => ['required', 'unique:users'],
         ];
     }
 }

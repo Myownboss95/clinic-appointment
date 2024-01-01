@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\GeneralSetting;
-use App\Repositories\UserRepository;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Http\Controllers\AppBaseController;
+use App\Models\GeneralSetting;
+use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
+use Response;
 
 class UserController extends AppBaseController
 {
-    /** @var UserRepository $userRepository*/
+    /** @var UserRepository */
     private $userRepository;
 
     public function __construct(UserRepository $userRepo)
@@ -25,7 +25,6 @@ class UserController extends AppBaseController
     /**
      * Display a listing of the User.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -50,7 +49,6 @@ class UserController extends AppBaseController
     /**
      * Store a newly created User in storage.
      *
-     * @param CreateUserRequest $request
      *
      * @return Response
      */
@@ -68,15 +66,13 @@ class UserController extends AppBaseController
     /**
      * Display the specified User.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
     {
         $user = $this->userRepository->find($id);
         $setting = GeneralSetting::first();
-
 
         if (empty($user)) {
             toastr()->addError('User not found');
@@ -86,7 +82,7 @@ class UserController extends AppBaseController
 
         return view('admin.users.show', [
             'user' => $user->load('referrals'),
-            'refBonus'=> $setting->ref_bonus ?? 0
+            'refBonus' => $setting->ref_bonus ?? 0,
 
         ])->with('user', $user);
     }
@@ -94,8 +90,7 @@ class UserController extends AppBaseController
     /**
      * Show the form for editing the specified User.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -114,9 +109,7 @@ class UserController extends AppBaseController
     /**
      * Update the specified User in storage.
      *
-     * @param int $id
-     * @param UpdateUserRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateUserRequest $request)
@@ -139,11 +132,10 @@ class UserController extends AppBaseController
     /**
      * Remove the specified User from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

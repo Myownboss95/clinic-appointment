@@ -2,21 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Transaction;
-use Illuminate\Support\Carbon;
-use App\Constants\TransactionTypes;
 use App\Constants\TransactionStatusTypes;
+use App\Constants\TransactionTypes;
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class UserTransactionsTable extends PowerGridComponent
 {
@@ -39,7 +39,8 @@ final class UserTransactionsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        $user =  auth()->user();
+        $user = auth()->user();
+
         return Transaction::where('user_id', $user->id)->with('appointment.subService')->latest();
     }
 
@@ -51,13 +52,12 @@ final class UserTransactionsTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-        ->addColumn('status', function (Transaction $transaction) {
-            return TransactionStatusTypes::from($transaction->status)->labels();
-        })
-
-        ->addColumn('type', function (Transaction $transaction) {
-            return TransactionTypes::from($transaction->type)->labels();
-        })
+            ->addColumn('status', function (Transaction $transaction) {
+                return TransactionStatusTypes::from($transaction->status)->labels();
+            })
+            ->addColumn('type', function (Transaction $transaction) {
+                return TransactionTypes::from($transaction->type)->labels();
+            })
             ->addColumn('amount', fn (Transaction $transaction) => '₦ '.number_format($transaction->amount, 2, '.', ','))
             ->addColumn('ref')
             ->addColumn('service', fn (Transaction $transaction) => $transaction->appointment->first()->subService()->first()->name)
@@ -75,7 +75,7 @@ final class UserTransactionsTable extends PowerGridComponent
             Column::make('Date of Transaction', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
-            Column::action('Action')
+            Column::action('Action'),
         ];
     }
 
@@ -83,10 +83,10 @@ final class UserTransactionsTable extends PowerGridComponent
     {
         return [
             Filter::enumSelect('status', 'status')
-            ->dataSource(TransactionStatusTypes::cases()),
+                ->dataSource(TransactionStatusTypes::cases()),
             Filter::enumSelect('type', 'type')
-            ->dataSource(TransactionTypes::cases()),
-        Filter::datetimepicker('created_at'),
+                ->dataSource(TransactionTypes::cases()),
+            Filter::datetimepicker('created_at'),
         ];
     }
 
@@ -96,14 +96,14 @@ final class UserTransactionsTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(\App\Models\Transaction $row): array
+    public function actions(Transaction $row): array
     {
         return [
             Button::add('edit')
                 ->slot('View')
                 ->id()
                 ->class('btn btn-success')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->dispatch('edit', ['rowId' => $row->id]),
         ];
     }
 

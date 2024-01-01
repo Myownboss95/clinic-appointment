@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\SubService;
-use App\Repositories\BaseRepository;
 
 /**
  * Class SubServiceRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 3:59 pm UTC
-*/
-
+ */
 class SubServiceRepository extends BaseRepository
 {
     /**
@@ -21,7 +19,7 @@ class SubServiceRepository extends BaseRepository
         'service_id',
         'price',
         'description',
-        'image'
+        'image',
     ];
 
     /**

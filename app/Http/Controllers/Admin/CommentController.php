@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Repositories\CommentRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class CommentController extends AppBaseController
 {
-    /** @var CommentRepository $commentRepository*/
+    /** @var CommentRepository */
     private $commentRepository;
 
     public function __construct(CommentRepository $commentRepo)
@@ -23,7 +22,6 @@ class CommentController extends AppBaseController
     /**
      * Display a listing of the Comment.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class CommentController extends AppBaseController
     /**
      * Store a newly created Comment in storage.
      *
-     * @param CreateCommentRequest $request
      *
      * @return Response
      */
@@ -66,8 +63,7 @@ class CommentController extends AppBaseController
     /**
      * Display the specified Comment.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +82,7 @@ class CommentController extends AppBaseController
     /**
      * Show the form for editing the specified Comment.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +101,7 @@ class CommentController extends AppBaseController
     /**
      * Update the specified Comment in storage.
      *
-     * @param int $id
-     * @param UpdateCommentRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateCommentRequest $request)
@@ -131,11 +124,10 @@ class CommentController extends AppBaseController
     /**
      * Remove the specified Comment from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

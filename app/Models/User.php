@@ -3,53 +3,50 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Support\Str;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 /**
  * Class User
- * @package App\Models
+ *
  * @version October 24, 2023, 3:58 pm UTC
  *
  * @property string $name
  * @property string $email
- * @property integer $city_id
- * @property integer $state_id
- * @property integer $country_id
- * @property integer $role_id
+ * @property int $city_id
+ * @property int $state_id
+ * @property int $country_id
+ * @property int $role_id
  * @property string $password
  * @property string $gender
- * @property integer $balance
- * @property integer $life_time_balance
+ * @property int $balance
+ * @property int $life_time_balance
  * @property string $referral_code
- * @property integer $referred_by_user_id
+ * @property int $referred_by_user_id
  * @property string|\Carbon\Carbon $email_verified_at
  */
 class User extends Authenticatable
 {
-    use SoftDeletes;
-    use Notifiable;
-
     use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
+
     const UPDATED_AT = 'updated_at';
 
     protected $referralCodeColumn = 'referral_code';
+
     protected $role = 'role_id';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $guarded = ['id'];
 
@@ -75,7 +72,7 @@ class User extends Authenticatable
         'life_time_balance' => 'integer',
         'referral_code' => 'string',
         'referred_by_user_id' => 'integer',
-        'email_verified_at' => 'datetime'
+        'email_verified_at' => 'datetime',
     ];
 
     /**
@@ -102,7 +99,7 @@ class User extends Authenticatable
         'life_time_balance' => 'nullable|integer',
         'referral_code' => 'nullable|string|max:255',
         'referred_by_user_id' => 'nullable|integer',
-        'email_verified_at' => 'nullable'
+        'email_verified_at' => 'nullable',
     ];
 
     /**
@@ -113,7 +110,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function (self $model) {
-            $model->{$model->referralCodeColumn} = $model::generateReferralCode($model->first_name??''.$model->last_name??'');
+            $model->{$model->referralCodeColumn} = $model::generateReferralCode($model->first_name ?? ''.$model->last_name ?? '');
             $model->{$model->role} = 1;
         });
     }
@@ -158,6 +155,4 @@ class User extends Authenticatable
 
         return $proposedCode;
     }
-
-    
 }

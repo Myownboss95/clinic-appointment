@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
-use Throwable;
-use Illuminate\Session\TokenMismatchException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -42,9 +42,10 @@ class Handler extends ExceptionHandler
         $this->renderable(function (\Exception $e) {
             if ($e->getPrevious() instanceof TokenMismatchException) {
                 toastr()->addError('Please submit the form again');
+
                 return back()
-                ->withInput(request()->except('_token'));
-            };
+                    ->withInput(request()->except('_token'));
+            }
         });
     }
 }

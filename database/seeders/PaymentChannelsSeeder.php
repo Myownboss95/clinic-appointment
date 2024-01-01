@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Constants\PaymentChannels;
 use App\Models\PaymentChannel;
 use Faker\Factory as Faker;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PaymentChannelsSeeder extends Seeder
@@ -24,7 +23,7 @@ class PaymentChannelsSeeder extends Seeder
                 'name' => $selectedChannel->name(),
                 'bank_name' => $selectedChannel->bank_name(),
                 'account_name' => $selectedChannel->account_name(),
-                'account_number' => $selectedChannel->account_number()
+                'account_number' => $selectedChannel->account_number(),
             ]);
         }
     }

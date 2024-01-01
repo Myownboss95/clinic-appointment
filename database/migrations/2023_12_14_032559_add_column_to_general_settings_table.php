@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('general_settings', function (Blueprint $table) {
-            
+
             $table->string('facebook')->after('id');
             $table->string('instagram')->after('id');
             $table->string('linkedin')->after('id');

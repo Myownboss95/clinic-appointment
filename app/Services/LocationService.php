@@ -5,6 +5,7 @@ namespace App\Services;
 class LocationService
 {
     private $country_file = 'countries.json';
+
     protected $countries;
 
     public function __construct()
@@ -18,6 +19,7 @@ class LocationService
         foreach ($this->countries as $country) {
             array_push($countries, $country['name']);
         }
+
         return $countries;
     }
 
@@ -31,12 +33,14 @@ class LocationService
                 }
             }
         }
+
         return $states;
     }
 
     private function parseContries()
     {
         $contents = file_get_contents(public_path($this->country_file));
+
         return json_decode($contents, true);
     }
 

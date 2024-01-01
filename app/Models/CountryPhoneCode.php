@@ -3,41 +3,38 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class CountryPhoneCode
- * @package App\Models
+ *
  * @version October 24, 2023, 4:11 pm UTC
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $dial_code
- * @property integer $dial_min_length
- * @property integer $dial_max_length
+ * @property int $dial_min_length
+ * @property int $dial_max_length
  * @property string $code
  * @property string $currency_name
  * @property string $currency_code
  * @property string $currency_symbol
  * @property string $flag
- * @property boolean $active
+ * @property bool $active
  */
 class CountryPhoneCode extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'country_phone_codes';
-    
+
     const CREATED_AT = 'created_at';
+
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'id',
@@ -50,7 +47,7 @@ class CountryPhoneCode extends Model
         'currency_code',
         'currency_symbol',
         'flag',
-        'active'
+        'active',
     ];
 
     /**
@@ -69,7 +66,7 @@ class CountryPhoneCode extends Model
         'currency_code' => 'string',
         'currency_symbol' => 'string',
         'flag' => 'string',
-        'active' => 'boolean'
+        'active' => 'boolean',
     ];
 
     /**
@@ -90,8 +87,6 @@ class CountryPhoneCode extends Model
         'active' => 'required|boolean',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
-
-    
 }

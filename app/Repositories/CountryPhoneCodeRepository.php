@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\CountryPhoneCode;
-use App\Repositories\BaseRepository;
 
 /**
  * Class CountryPhoneCodeRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:11 pm UTC
-*/
-
+ */
 class CountryPhoneCodeRepository extends BaseRepository
 {
     /**
@@ -27,7 +25,7 @@ class CountryPhoneCodeRepository extends BaseRepository
         'currency_code',
         'currency_symbol',
         'flag',
-        'active'
+        'active',
     ];
 
     /**

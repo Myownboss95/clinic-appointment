@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Stage;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateStageRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateStageRequest extends FormRequest
     public function rules()
     {
         $rules = Stage::$rules;
-        
+
         return $rules;
     }
 }

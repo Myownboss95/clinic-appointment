@@ -3,37 +3,34 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class UserStage
- * @package App\Models
+ *
  * @version October 24, 2023, 3:59 pm UTC
  *
- * @property integer $user_id
- * @property integer $sub_service_id
- * @property integer $service_id
+ * @property int $user_id
+ * @property int $sub_service_id
+ * @property int $service_id
  * @property string $log
  */
 class UserStage extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'user_stage';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
 
+    const CREATED_AT = 'created_at';
+
+    const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
 
-
-
     public $guarded = [
-        'id'
+        'id',
     ];
 
     /**
@@ -45,7 +42,7 @@ class UserStage extends Model
         'id' => 'integer',
         'user_id' => 'integer',
         'sub_service_id' => 'integer',
-        'log' => 'string'
+        'log' => 'string',
     ];
 
     /**
@@ -60,8 +57,6 @@ class UserStage extends Model
         'log' => 'nullable|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
-
-    
 }

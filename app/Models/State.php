@@ -3,38 +3,35 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class State
- * @package App\Models
+ *
  * @version October 24, 2023, 4:00 pm UTC
  *
- * @property integer $country_id
+ * @property int $country_id
  * @property string $name
  * @property string $status
  */
 class State extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'states';
-    
+
     const CREATED_AT = 'created_at';
+
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'country_id',
         'name',
-        'status'
+        'status',
     ];
 
     /**
@@ -46,7 +43,7 @@ class State extends Model
         'id' => 'integer',
         'country_id' => 'integer',
         'name' => 'string',
-        'status' => 'string'
+        'status' => 'string',
     ];
 
     /**
@@ -60,8 +57,6 @@ class State extends Model
         'status' => 'required|string',
         'created_at' => 'required',
         'updated_at' => 'required',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
-
-    
 }

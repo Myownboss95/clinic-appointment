@@ -22,14 +22,14 @@ class AppointmentFactory extends Factory
     public function definition()
     {
         return [
-        'user_id' => $this->faker->randomDigitNotNull,
-        'sub_service_id' => $this->faker->randomDigitNotNull,
-        'start_time' => $this->faker->date('Y-m-d H:i:s'),
-        'end_time' => $this->faker->date('Y-m-d H:i:s'),
-        'stage_id' => $this->faker->word,
-        'created_at' => $this->faker->randomDigitNotNull,
-        'updated_at' => $this->faker->randomDigitNotNull,
-        'deleted_at' => $this->faker->randomDigitNotNull
+            'user_id' => $this->faker->randomDigitNotNull,
+            'sub_service_id' => $this->faker->randomDigitNotNull,
+            'start_time' => $this->faker->date('Y-m-d H:i:s'),
+            'end_time' => $this->faker->date('Y-m-d H:i:s'),
+            'stage_id' => $this->faker->word,
+            'created_at' => $this->faker->randomDigitNotNull,
+            'updated_at' => $this->faker->randomDigitNotNull,
+            'deleted_at' => $this->faker->randomDigitNotNull,
         ];
     }
 }

@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\CurrencyList;
-use App\Repositories\BaseRepository;
 
 /**
  * Class CurrencyListRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:10 pm UTC
-*/
-
+ */
 class CurrencyListRepository extends BaseRepository
 {
     /**
@@ -23,7 +21,7 @@ class CurrencyListRepository extends BaseRepository
         'dial_code',
         'currency_name',
         'currency_symbol',
-        'currency_code'
+        'currency_code',
     ];
 
     /**

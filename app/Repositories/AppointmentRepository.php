@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Appointment;
-use App\Repositories\BaseRepository;
 
 /**
  * Class AppointmentRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:12 pm UTC
-*/
-
+ */
 class AppointmentRepository extends BaseRepository
 {
     /**
@@ -21,7 +19,7 @@ class AppointmentRepository extends BaseRepository
         'sub_service_id',
         'start_time',
         'end_time',
-        'stage_id'
+        'stage_id',
     ];
 
     /**

@@ -28,7 +28,7 @@ class CreateStaffRequest extends FormRequest
             // Rule::unique('plans')->ignore($this->route('plan'))],
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|max:255'
+            'password' => 'required|string|max:255',
         ];
     }
 }

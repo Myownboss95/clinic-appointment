@@ -2,24 +2,20 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Stage;
 use App\Models\Appointment;
-use App\Constants\StageTypes;
-use Illuminate\Support\Carbon;
-use App\Models\AppointmentSubService;
+use App\Models\Stage;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class AppointmentsTable extends PowerGridComponent
 {
@@ -42,7 +38,8 @@ final class AppointmentsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        $user =  auth()->user();
+        $user = auth()->user();
+
         return Appointment::whereNull('parent_appointment_id')->with('subService')->latest();
     }
 
@@ -51,15 +48,15 @@ final class AppointmentsTable extends PowerGridComponent
         return [
             'user' => ['first_name', 'last_name'],
             'subService' => ['name'],
-            'stage' => ['name']
+            'stage' => ['name'],
         ];
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('stage_id', fn (Appointment $appointment)=> $appointment->stage->name)
-            ->addColumn('user', fn (Appointment $appointment)=> $appointment->user->first_name. ' '.$appointment->user->last_name)
+            ->addColumn('stage_id', fn (Appointment $appointment) => $appointment->stage->name)
+            ->addColumn('user', fn (Appointment $appointment) => $appointment->user->first_name.' '.$appointment->user->last_name)
             ->addColumn('service', fn (Appointment $appointment) => $appointment->subService->first()->name)
             ->addColumn('created_at_formatted', fn (Appointment $appointment) => Carbon::parse($appointment->created_at)->format('jS \of F, Y, \b\y g.ia'));
     }
@@ -73,7 +70,7 @@ final class AppointmentsTable extends PowerGridComponent
             Column::make('Appointment Date', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
-            Column::action('Action')
+            Column::action('Action'),
         ];
     }
 
@@ -81,9 +78,9 @@ final class AppointmentsTable extends PowerGridComponent
     {
         return [
             Filter::select('stage_id', 'stage_id')
-            ->dataSource(Stage::all())
-            ->optionValue('id')
-            ->optionLabel('name'),
+                ->dataSource(Stage::all())
+                ->optionValue('id')
+                ->optionLabel('name'),
 
             Filter::datetimepicker('created_at'),
         ];
@@ -95,17 +92,16 @@ final class AppointmentsTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(\App\Models\Appointment $row): array
+    public function actions(Appointment $row): array
     {
         return [
             Button::add('view')
                 ->slot('View')
                 ->class('btn btn-success')
                 ->target('')
-                ->route(role(auth()->user()->role_id).".appointments.show", ['appointment' => $row->id]),
+                ->route(role(auth()->user()->role_id).'.appointments.show', ['appointment' => $row->id]),
         ];
     }
-
 
     /*
     public function actionRules($row): array

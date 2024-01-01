@@ -23,8 +23,8 @@ class PasswordResetFactory extends Factory
     {
         return [
             'email' => $this->faker->word,
-        'token' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s')
+            'token' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
         ];
     }
 }

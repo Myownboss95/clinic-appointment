@@ -23,13 +23,13 @@ class CommentFactory extends Factory
     {
         return [
             'model_name' => $this->faker->word,
-        'model_id' => $this->faker->randomDigitNotNull,
-        'body' => $this->faker->text,
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'user_id' => $this->faker->randomDigitNotNull,
-        'staff_user_id' => $this->faker->randomDigitNotNull
+            'model_id' => $this->faker->randomDigitNotNull,
+            'body' => $this->faker->text,
+            'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+            'user_id' => $this->faker->randomDigitNotNull,
+            'staff_user_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

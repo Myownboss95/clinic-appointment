@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\GeneralSetting;
-use App\Repositories\BaseRepository;
 
 /**
  * Class GeneralSettingRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:08 pm UTC
-*/
-
+ */
 class GeneralSettingRepository extends BaseRepository
 {
     /**
@@ -19,7 +17,7 @@ class GeneralSettingRepository extends BaseRepository
     protected $fieldSearchable = [
         'id',
         'name',
-        'value'
+        'value',
     ];
 
     /**

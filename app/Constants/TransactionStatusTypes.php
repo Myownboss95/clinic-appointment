@@ -2,8 +2,8 @@
 
 namespace App\Constants;
 
-use App\Traits\ArrayableEnum;
 use App\Contracts\EnumToArray;
+use App\Traits\ArrayableEnum;
 
 enum TransactionStatusTypes: string implements EnumToArray
 {
@@ -20,8 +20,6 @@ enum TransactionStatusTypes: string implements EnumToArray
             self::CONFIRMED => "<span class = 'badge bg-success' >confirmed <i  class='bx bx-check'></i></span>"
 
         };
-        
+
     }
 }
-
-

@@ -2,39 +2,32 @@
 
 namespace App\Models;
 
-
-
-use App\Models\AppointmentSubservice;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Appointment
- * @package App\Models
+ *
  * @version October 24, 2023, 4:12 pm UTC
  *
- * @property integer $user_id
+ * @property int $user_id
  * @property string|\Carbon\Carbon $start_time
  * @property string|\Carbon\Carbon $end_time
  */
 class Appointment extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'appointments';
-    
+
     const CREATED_AT = 'created_at';
+
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $guarded = ['id'];
 
@@ -72,7 +65,7 @@ class Appointment extends Model
     {
         return $this->belongsToMany(SubService::class, 'appointment_sub_service');
     }
-    
+
     public function transaction(): BelongsToMany
     {
         return $this->belongsToMany(Transaction::class, 'appointment_transaction');
@@ -92,7 +85,7 @@ class Appointment extends Model
     {
         return $this->belongsTo(Stage::class);
     }
-    
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

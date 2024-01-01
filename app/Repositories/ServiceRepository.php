@@ -3,21 +3,19 @@
 namespace App\Repositories;
 
 use App\Models\Service;
-use App\Repositories\BaseRepository;
 
 /**
  * Class ServiceRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:03 pm UTC
-*/
-
+ */
 class ServiceRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'name'
+        'name',
     ];
 
     /**

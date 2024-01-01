@@ -23,11 +23,11 @@ class ClinicUserFactory extends Factory
     {
         return [
             'user_id' => $this->faker->randomDigitNotNull,
-        'clinic_id' => $this->faker->randomDigitNotNull,
-        'role' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'clinic_id' => $this->faker->randomDigitNotNull,
+            'role' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+            'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
         ];
     }
 }

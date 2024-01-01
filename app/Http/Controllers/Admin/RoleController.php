@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Repositories\RoleRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class RoleController extends AppBaseController
 {
-    /** @var RoleRepository $roleRepository*/
+    /** @var RoleRepository */
     private $roleRepository;
 
     public function __construct(RoleRepository $roleRepo)
@@ -23,7 +22,6 @@ class RoleController extends AppBaseController
     /**
      * Display a listing of the Role.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class RoleController extends AppBaseController
     /**
      * Store a newly created Role in storage.
      *
-     * @param CreateRoleRequest $request
      *
      * @return Response
      */
@@ -66,8 +63,7 @@ class RoleController extends AppBaseController
     /**
      * Display the specified Role.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +82,7 @@ class RoleController extends AppBaseController
     /**
      * Show the form for editing the specified Role.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +101,7 @@ class RoleController extends AppBaseController
     /**
      * Update the specified Role in storage.
      *
-     * @param int $id
-     * @param UpdateRoleRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateRoleRequest $request)
@@ -131,11 +124,10 @@ class RoleController extends AppBaseController
     /**
      * Remove the specified Role from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

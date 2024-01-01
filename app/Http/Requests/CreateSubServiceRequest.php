@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\SubService;
+use Illuminate\Foundation\Http\FormRequest;
 
 class CreateSubServiceRequest extends FormRequest
 {

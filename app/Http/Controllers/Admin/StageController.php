@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Flash;
-use Response;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Repositories\StageRepository;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateStageRequest;
 use App\Http\Requests\UpdateStageRequest;
-use App\Http\Controllers\AppBaseController;
+use App\Repositories\StageRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Response;
 
 class StageController extends AppBaseController
 {
-    /** @var StageRepository $stageRepository*/
+    /** @var StageRepository */
     private $stageRepository;
 
     public function __construct(StageRepository $stageRepo)
@@ -24,7 +23,6 @@ class StageController extends AppBaseController
     /**
      * Display a listing of the Stage.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -49,7 +47,6 @@ class StageController extends AppBaseController
     /**
      * Store a newly created Stage in storage.
      *
-     * @param CreateStageRequest $request
      *
      * @return Response
      */
@@ -57,9 +54,9 @@ class StageController extends AppBaseController
     {
         $input = $request->all();
 
-        $stage = $this->stageRepository->create( array_merge($input, 
+        $stage = $this->stageRepository->create(array_merge($input,
             [
-                'slug' => Str::slug($request->input('name'))  
+                'slug' => Str::slug($request->input('name')),
             ]));
 
         toastr()->addSuccess('Stage saved successfully.');
@@ -70,8 +67,7 @@ class StageController extends AppBaseController
     /**
      * Display the specified Stage.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -90,8 +86,7 @@ class StageController extends AppBaseController
     /**
      * Show the form for editing the specified Stage.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -110,9 +105,7 @@ class StageController extends AppBaseController
     /**
      * Update the specified Stage in storage.
      *
-     * @param int $id
-     * @param UpdateStageRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateStageRequest $request)
@@ -125,11 +118,11 @@ class StageController extends AppBaseController
             return redirect(roleBasedRoute('stages.index'));
         }
 
-        $stage = $this->stageRepository->update(array_merge($request->all(), 
-        [
-            'slug' => Str::slug($request->input('name'))  
-        ]), 
-        $id);
+        $stage = $this->stageRepository->update(array_merge($request->all(),
+            [
+                'slug' => Str::slug($request->input('name')),
+            ]),
+            $id);
 
         toastr()->addSuccess('Stage updated successfully.');
 
@@ -139,11 +132,10 @@ class StageController extends AppBaseController
     /**
      * Remove the specified Stage from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Repositories\ServiceRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Response;
 use Illuminate\Support\Str;
+use Response;
 
 class ServiceController extends AppBaseController
 {
-    /** @var ServiceRepository $serviceRepository*/
+    /** @var ServiceRepository */
     private $serviceRepository;
 
     public function __construct(ServiceRepository $serviceRepo)
@@ -24,7 +23,6 @@ class ServiceController extends AppBaseController
     /**
      * Display a listing of the Service.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -49,7 +47,6 @@ class ServiceController extends AppBaseController
     /**
      * Store a newly created Service in storage.
      *
-     * @param CreateServiceRequest $request
      *
      * @return Response
      */
@@ -58,14 +55,14 @@ class ServiceController extends AppBaseController
         $input = array_merge($request->all(), ['slug' => Str::slug($request->input('name'))]);
         $service = $this->serviceRepository->create($input);
         toastr()->addSuccess('Service saved successfully.');
+
         return redirect(roleBasedRoute('services.index'));
     }
 
     /**
      * Display the specified Service.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -84,8 +81,7 @@ class ServiceController extends AppBaseController
     /**
      * Show the form for editing the specified Service.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -104,9 +100,7 @@ class ServiceController extends AppBaseController
     /**
      * Update the specified Service in storage.
      *
-     * @param int $id
-     * @param UpdateServiceRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateServiceRequest $request)
@@ -129,11 +123,10 @@ class ServiceController extends AppBaseController
     /**
      * Remove the specified Service from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

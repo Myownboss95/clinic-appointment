@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(5)->create([
-            'role_id' => 1
+            'role_id' => 1,
         ]);
         User::factory(5)->create([
-            'role_id' => 2
+            'role_id' => 2,
         ]);
         User::factory(1)->create([
-            'role_id' => 3
+            'role_id' => 3,
         ]);
 
         $this->call([
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             //this should be run to quickly seed this appointment, transaction and all the pivot tables
             // AppointmentSeeder::class
             //seed for follow up appointments
-            FollowUpAppointmentSeeder::class
+            FollowUpAppointmentSeeder::class,
         ]);
 
     }

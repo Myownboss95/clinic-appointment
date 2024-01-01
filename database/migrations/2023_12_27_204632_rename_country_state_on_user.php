@@ -16,7 +16,6 @@ return new class extends Migration
             $table->renameColumn('city_id', 'city');
             $table->renameColumn('country_id', 'country');
 
-            
         });
     }
 

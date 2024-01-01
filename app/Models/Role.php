@@ -3,34 +3,31 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Role
- * @package App\Models
+ *
  * @version October 24, 2023, 3:47 pm UTC
  *
  * @property string $name
  */
 class Role extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'roles';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
 
+    const CREATED_AT = 'created_at';
+
+    const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
 
-
-
     public $guarded = [
-        'id'
+        'id',
     ];
 
     /**
@@ -40,7 +37,7 @@ class Role extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'name' => 'string',
     ];
 
     /**
@@ -52,8 +49,6 @@ class Role extends Model
         'name' => 'required|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
-
-    
 }

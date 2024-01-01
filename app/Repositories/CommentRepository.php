@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Comment;
-use App\Repositories\BaseRepository;
 
 /**
  * Class CommentRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:01 pm UTC
-*/
-
+ */
 class CommentRepository extends BaseRepository
 {
     /**
@@ -21,7 +19,7 @@ class CommentRepository extends BaseRepository
         'model_id',
         'body',
         'user_id',
-        'staff_user_id'
+        'staff_user_id',
     ];
 
     /**

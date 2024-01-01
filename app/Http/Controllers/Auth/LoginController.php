@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -58,6 +58,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         $user->increment('login_count');
+
         return redirect()->route(
             $user->role_id == 3
             ? 'admin.index'
@@ -67,7 +68,7 @@ class LoginController extends Controller
 
         );
     }
-    
+
     public function logout(Request $request)
     {
         $this->guard()->logout();
@@ -84,5 +85,4 @@ class LoginController extends Controller
             ? new JsonResponse([], 204)
             : redirect()->route('log-out');
     }
-
 }

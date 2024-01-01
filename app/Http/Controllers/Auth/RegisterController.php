@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Actions\SaveCreditTransactionsAction;
+use App\Constants\PaymentChannels;
+use App\Constants\TransactionReasons;
+use App\Http\Controllers\Controller;
 use App\Models\GeneralSetting;
 use App\Models\PaymentChannel;
-use App\Services\LocationService;
-use App\Constants\PaymentChannels;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use App\Constants\TransactionReasons;
-use App\Providers\RouteServiceProvider;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Validator;
-use App\Actions\SaveCreditTransactionsAction;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Notifications\SocialRegisterationNotification;
+use App\Models\User;
 use App\Notifications\CreditReferralWalletNotification;
+use App\Notifications\SocialRegisterationNotification;
+use App\Providers\RouteServiceProvider;
+use App\Services\LocationService;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class RegisterController extends Controller
 {
@@ -51,6 +51,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
     /**
      * Show the application registration form.
      *
@@ -59,6 +60,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $service = new LocationService();
+
         return view('auth.register', [
             'countries' => $service->countries(),
         ]);
@@ -67,7 +69,6 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -84,34 +85,36 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        
+
         $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'referred_by_user_id' => $this->getReferralId()
+            'referred_by_user_id' => $this->getReferralId(),
         ]);
 
-
         return $user;
-        
+
     }
 
-    protected function getReferralId ()
+    protected function getReferralId()
     {
         $refCode = collect(session('data'))->get('regToken') ?? null;
         // dd($refCode);
-        if(blank($refCode)) return null;
-        
+        if (blank($refCode)) {
+            return null;
+        }
+
         $referredUser = User::where('referral_code', $refCode)->first();
-        if(!$referredUser) return null;
+        if (! $referredUser) {
+            return null;
+        }
 
         //get the system referral bonus
         $setting = GeneralSetting::first();
@@ -119,11 +122,11 @@ class RegisterController extends Controller
 
         //save transaction and credit referrers wallet
         $payment_channel = PaymentChannel::where('bank_name', PaymentChannels::SYSTEM->value)->first();
-        SaveCreditTransactionsAction::execute($referredUser, $payment_channel ,$refBonus, TransactionReasons::REFERRALS->VALUE);
-        
+        SaveCreditTransactionsAction::execute($referredUser, $payment_channel, $refBonus, TransactionReasons::REFERRALS->VALUE);
+
         $referredUser->refresh();
         $referredUser->notify(new CreditReferralWalletNotification($referredUser, $refBonus));
-            
+
         return $referredUser->id;
     }
 
@@ -140,15 +143,14 @@ class RegisterController extends Controller
 
         if ($existingUser) {
             auth()->login($existingUser, true);
-        } 
-        if (!$existingUser) 
-        {
+        }
+        if (! $existingUser) {
             // Create a new user
             $newUser = User::create([
                 'first_name' => $user->name,
                 'email' => $user->email,
-                'password' => Hash::make(Str::random(10)), 
-                'referred_by_user_id' => $this->getReferralId()
+                'password' => Hash::make(Str::random(10)),
+                'referred_by_user_id' => $this->getReferralId(),
             ]);
 
             $newUser->notify(new SocialRegisterationNotification($newUser, 'google'));
@@ -162,6 +164,7 @@ class RegisterController extends Controller
     protected function authenticated(Request $request, $user)
     {
         session()->forget('data');
+
         return redirect()->route(
             $user->role_id == 3
             ? 'admin.index'

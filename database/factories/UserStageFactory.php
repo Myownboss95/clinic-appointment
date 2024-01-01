@@ -22,13 +22,13 @@ class UserStageFactory extends Factory
     public function definition()
     {
         return [
-        'user_id' => $this->faker->randomDigitNotNull,
-        'sub_service_id' => $this->faker->randomDigitNotNull,
-        'service_id' => $this->faker->randomDigitNotNull,
-        'log' => $this->faker->text,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'user_id' => $this->faker->randomDigitNotNull,
+            'sub_service_id' => $this->faker->randomDigitNotNull,
+            'service_id' => $this->faker->randomDigitNotNull,
+            'log' => $this->faker->text,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+            'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
         ];
     }
 }

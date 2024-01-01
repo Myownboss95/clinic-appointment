@@ -23,13 +23,13 @@ class SubServiceFactory extends Factory
     {
         return [
             'name' => $this->faker->randomDigitNotNull,
-        'service_id' => $this->faker->randomDigitNotNull,
-        'price' => $this->faker->randomDigitNotNull,
-        'description' => $this->faker->text,
-        'image' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'service_id' => $this->faker->randomDigitNotNull,
+            'price' => $this->faker->randomDigitNotNull,
+            'description' => $this->faker->text,
+            'image' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+            'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
         ];
     }
 }

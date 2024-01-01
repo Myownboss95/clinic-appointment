@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\PasswordReset;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePasswordResetRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdatePasswordResetRequest extends FormRequest
     public function rules()
     {
         $rules = PasswordReset::$rules;
-        
+
         return $rules;
     }
 }

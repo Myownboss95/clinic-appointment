@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Constants\ServiceTypes;
 use App\Models\Service;
 use Faker\Factory as Faker;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
@@ -23,7 +22,7 @@ class ServiceSeeder extends Seeder
             // Create a service
             Service::create([
                 'name' => $service,
-                'slug' => $selectedService->slug()
+                'slug' => $selectedService->slug(),
             ]);
         }
     }

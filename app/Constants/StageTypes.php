@@ -2,9 +2,9 @@
 
 namespace App\Constants;
 
-use Illuminate\Support\Str;
-use App\Traits\ArrayableEnum;
 use App\Contracts\EnumToArray;
+use App\Traits\ArrayableEnum;
+use Illuminate\Support\Str;
 
 enum StageTypes: string implements EnumToArray
 {
@@ -22,5 +22,4 @@ enum StageTypes: string implements EnumToArray
     {
         return Str::slug($this->value);
     }
-    
 }

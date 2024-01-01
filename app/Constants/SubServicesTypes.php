@@ -2,9 +2,9 @@
 
 namespace App\Constants;
 
-use Illuminate\Support\Str;
-use App\Traits\ArrayableEnum;
 use App\Contracts\EnumToArray;
+use App\Traits\ArrayableEnum;
+use Illuminate\Support\Str;
 
 enum SubServicesTypes: string implements EnumToArray
 {
@@ -32,6 +32,7 @@ enum SubServicesTypes: string implements EnumToArray
             self::POLISHING => ServiceTypes::DENTALS->value,
         };
     }
+
     public function price()
     {
         return match ($this) {
@@ -45,10 +46,10 @@ enum SubServicesTypes: string implements EnumToArray
     public function description()
     {
         return match ($this) {
-            self::TEETH_WHITENING => "Lightens teeth color and removes stains for a brighter smile.",
-            self::BRACES => "Orthodontic devices to align teeth and correct bite issues.",
-            self::DENTURE => "Removable prosthetics to replace missing teeth.",
-            self::POLISHING => "Procedure to remove stains and plaque for cleaner teeth.",
+            self::TEETH_WHITENING => 'Lightens teeth color and removes stains for a brighter smile.',
+            self::BRACES => 'Orthodontic devices to align teeth and correct bite issues.',
+            self::DENTURE => 'Removable prosthetics to replace missing teeth.',
+            self::POLISHING => 'Procedure to remove stains and plaque for cleaner teeth.',
         };
     }
 }

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateGeneralSettingRequest;
 use App\Http\Requests\UpdateGeneralSettingRequest;
 use App\Repositories\GeneralSettingRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class GeneralSettingController extends AppBaseController
 {
-    /** @var GeneralSettingRepository $generalSettingRepository*/
+    /** @var GeneralSettingRepository */
     private $generalSettingRepository;
 
     public function __construct(GeneralSettingRepository $generalSettingRepo)
@@ -23,7 +22,6 @@ class GeneralSettingController extends AppBaseController
     /**
      * Display a listing of the GeneralSetting.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class GeneralSettingController extends AppBaseController
     /**
      * Store a newly created GeneralSetting in storage.
      *
-     * @param CreateGeneralSettingRequest $request
      *
      * @return Response
      */
@@ -59,14 +56,14 @@ class GeneralSettingController extends AppBaseController
         $generalSetting = $this->generalSettingRepository->create($input);
 
         toastr()->addSuccess('Appointment saved successfully.');
+
         return redirect(roleBasedRoute('generalSettings.index'));
     }
 
     /**
      * Display the specified GeneralSetting.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -85,8 +82,7 @@ class GeneralSettingController extends AppBaseController
     /**
      * Show the form for editing the specified GeneralSetting.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -105,9 +101,7 @@ class GeneralSettingController extends AppBaseController
     /**
      * Update the specified GeneralSetting in storage.
      *
-     * @param int $id
-     * @param UpdateGeneralSettingRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateGeneralSettingRequest $request)
@@ -130,11 +124,10 @@ class GeneralSettingController extends AppBaseController
     /**
      * Remove the specified GeneralSetting from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {
@@ -142,7 +135,6 @@ class GeneralSettingController extends AppBaseController
 
         if (empty($generalSetting)) {
             toastr()->addError('General Setting not found');
-
 
             return redirect(roleBasedRoute('generalSettings.index'));
         }

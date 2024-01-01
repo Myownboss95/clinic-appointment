@@ -2,39 +2,35 @@
 
 namespace App\Models;
 
-use App\Models\AppointmentSubService;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class SubService
- * @package App\Models
+ *
  * @version October 24, 2023, 3:59 pm UTC
  *
- * @property integer $name
- * @property integer $service_id
- * @property integer $price
+ * @property int $name
+ * @property int $service_id
+ * @property int $price
  * @property string $description
  * @property string $image
  */
 class SubService extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'sub_services';
-    
+
     const CREATED_AT = 'created_at';
+
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $guarded = ['id'];
 
@@ -50,7 +46,7 @@ class SubService extends Model
         'service_id' => 'integer',
         'price' => 'integer',
         'description' => 'string',
-        'image' => 'string'
+        'image' => 'string',
     ];
 
     /**
@@ -67,12 +63,11 @@ class SubService extends Model
         'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
+
     /**
      * Get the user that owns the SubService
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function service(): BelongsTo
     {
@@ -83,7 +78,4 @@ class SubService extends Model
     {
         return $this->belongsToMany(Appointment::class, 'appointment_sub_service');
     }
-
-
-    
 }

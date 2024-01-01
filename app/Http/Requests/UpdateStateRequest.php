@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\State;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateStateRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateStateRequest extends FormRequest
     public function rules()
     {
         $rules = State::$rules;
-        
+
         return $rules;
     }
 }

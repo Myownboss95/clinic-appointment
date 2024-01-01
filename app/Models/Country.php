@@ -3,39 +3,36 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Country
- * @package App\Models
+ *
  * @version October 24, 2023, 4:11 pm UTC
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $iso_code2
  * @property string $iso_code3
- * @property integer $num_code
+ * @property int $num_code
  * @property string $status
  * @property string $currency_symbol
  */
 class Country extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'countries';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
 
+    const CREATED_AT = 'created_at';
+
+    const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
 
-
-
-    public $guarded = ['id'
+    public $guarded = ['id',
     ];
 
     /**
@@ -50,7 +47,7 @@ class Country extends Model
         'iso_code3' => 'string',
         'num_code' => 'integer',
         'status' => 'string',
-        'currency_symbol' => 'string'
+        'currency_symbol' => 'string',
     ];
 
     /**
@@ -67,8 +64,6 @@ class Country extends Model
         'created_at' => 'required',
         'updated_at' => 'required',
         'deleted_at' => 'nullable',
-        'currency_symbol' => 'nullable|string|max:191'
+        'currency_symbol' => 'nullable|string|max:191',
     ];
-
-    
 }

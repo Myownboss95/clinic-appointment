@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -50,8 +50,8 @@ final class UserTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('name')
 
-           /** Example of custom column using a closure **/
-            ->addColumn('name_lower', fn (User $model) => strtolower(e($model->first_name.' '. $model->last_name)))
+            /** Example of custom column using a closure **/
+            ->addColumn('name_lower', fn (User $model) => strtolower(e($model->first_name.' '.$model->last_name)))
 
             ->addColumn('email')
             ->addColumn('life_time_balance')
@@ -73,12 +73,12 @@ final class UserTable extends PowerGridComponent
             // Column::make('Balance', 'balance'),
             // Column::make('Life time balance', 'life_time_balance'),
             // Column::make('Referral code', 'referral_code')
-                // ->sortable()
-                // ->searchable(),
+            // ->sortable()
+            // ->searchable(),
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
-            Column::action('Action')
+            Column::action('Action'),
         ];
     }
 
@@ -95,15 +95,15 @@ final class UserTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(\App\Models\User $row): array
+    public function actions(User $row): array
     {
         return [
             Button::add('edit')
                 ->slot('Remove Admin ')
                 ->id()
-                ->class('btn btn-primary')
-                // ->route('edit', ['rowId' => $row->id])
-                
+                ->class('btn btn-primary'),
+            // ->route('edit', ['rowId' => $row->id])
+
         ];
     }
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\ClinicUser;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateClinicUserRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateClinicUserRequest extends FormRequest
     public function rules()
     {
         $rules = ClinicUser::$rules;
-        
+
         return $rules;
     }
 }

@@ -19,10 +19,9 @@ class StageSeeder extends Seeder
         foreach (StageTypes::toArray() as $stage) {
             $selectedStage = StageTypes::from($stage);
 
-           
             Stage::create([
                 'name' => $stage,
-                'slug' => $selectedStage->slug()
+                'slug' => $selectedStage->slug(),
             ]);
         }
     }

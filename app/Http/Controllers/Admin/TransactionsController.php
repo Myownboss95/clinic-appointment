@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
+use App\Constants\TransactionReasons;
+use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Constants\TransactionReasons;
 
 class TransactionsController extends Controller
 {
-    
     /**
      * Show the application dashboard.
      *
@@ -19,24 +17,24 @@ class TransactionsController extends Controller
     public function index(Request $request)
     {
         return view('admin.transactions.index', [
-            'transactions' => Transaction::with(['user','appointment.subservice'])->latest(),
+            'transactions' => Transaction::with(['user', 'appointment.subservice'])->latest(),
             'transactions_count' => Transaction::count(),
             'total_transactions' => Transaction::sum('amount'),
             'total_referral_transactions' => Transaction::where('reason', TransactionReasons::REFERRALS->value)->sum('amount'),
-            'referral_transactions_count' => Transaction::where('reason', TransactionReasons::REFERRALS->value)->count()
+            'referral_transactions_count' => Transaction::where('reason', TransactionReasons::REFERRALS->value)->count(),
         ]);
     }
 
-     /**
+    /**
      * Display the specified Stage.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show(Request $request, $id)
     {
-        $transaction = Transaction::with(['user','appointment.subservice','paymentChannel'])->where('id', $id)->first();
+        $transaction = Transaction::with(['user', 'appointment.subservice', 'paymentChannel'])->where('id', $id)->first();
+
         // dd($transaction);
         return view('admin.transactions.show', [
             'transaction' => $transaction,
@@ -46,13 +44,12 @@ class TransactionsController extends Controller
     /**
      * Show the form for editing the specified Appointment.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
     {
-        $transaction = Transaction::with(['user','appointment.subservice'])->where('id', $id)->first();
+        $transaction = Transaction::with(['user', 'appointment.subservice'])->where('id', $id)->first();
 
         if (empty($transaction)) {
             toastr()->addError('Appointment not found');
@@ -61,17 +58,15 @@ class TransactionsController extends Controller
         }
 
         return view('admin.transactions.edit',
-        [
-            'transaction'=> $transaction
-        ]);
+            [
+                'transaction' => $transaction,
+            ]);
     }
 
     /**
      * Update the specified Appointment in storage.
      *
-     * @param int $id
-     * @param UpdateAppointmentRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateAppointmentRequest $request)
@@ -79,7 +74,6 @@ class TransactionsController extends Controller
         // $appointment = $this->appointmentRepository->find($id);
 
         // if (empty($appointment)) {
-            
 
         //     toastr()->addError('urrency List saved successfully.');
         //     return redirect(roleBasedRoute('appointments.index'));
@@ -95,11 +89,10 @@ class TransactionsController extends Controller
     /**
      * Remove the specified Appointment from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {
@@ -117,5 +110,3 @@ class TransactionsController extends Controller
         // return redirect(roleBasedRoute('appointments.index'));
     }
 }
-
-

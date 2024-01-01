@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Constants\SubServicesTypes;
 use App\Models\Service;
 use App\Models\SubService;
 use Faker\Factory as Faker;
-use App\Constants\ServiceTypes;
 use Illuminate\Database\Seeder;
-use App\Constants\SubServicesTypes;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SubServiceSeeder extends Seeder
 {
@@ -29,7 +27,7 @@ class SubServiceSeeder extends Seeder
                 'description' => $selectedSubService->description(),
                 'service_id' => $service->id,
                 'image' => $faker->imageUrl(144, 144),
-                'price' => $selectedSubService->price()
+                'price' => $selectedSubService->price(),
             ]);
         }
     }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransactionReceiptController extends Controller
@@ -15,13 +14,14 @@ class TransactionReceiptController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke($uuid)
-    {    
-        
+    {
+
         $transaction = Transaction::where('uuid', $uuid)->with('appointment.subService')->first();
-        if(!$transaction){
+        if (! $transaction) {
             toastr()->addError('Transaction not found');
         }
         $pdf = Pdf::loadView('front.reciept', compact('transaction'))->setPaper('a2', 'landscape');
+
         return $pdf->download();
     }
 }

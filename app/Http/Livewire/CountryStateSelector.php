@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Http;
+use Livewire\Component;
 
 class CountryStateSelector extends Component
 {
     public $countries;
+
     public $selectedCountry;
+
     public $states;
 
     public function mount()

@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Flash;
-use Response;
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
-use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\CreateAppointmentRequest;
+use App\Models\User;
+use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Response;
 
 class StaffController extends AppBaseController
 {
-
-    /** @var UserRepository $userRepository*/
+    /** @var UserRepository */
     private $userRepository;
 
     public function __construct(UserRepository $userRepo)
@@ -24,11 +21,10 @@ class StaffController extends AppBaseController
         $this->userRepository = $userRepo;
 
     }
-    
+
     /**
      * Display a listing of the Staff.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -53,7 +49,6 @@ class StaffController extends AppBaseController
     /**
      * Store a newly created Staff in storage.
      *
-     * @param CreateStaffRequest $request
      *
      * @return Response
      */
@@ -64,7 +59,7 @@ class StaffController extends AppBaseController
         $staff = $this->userRepository->create(
             array_merge($input, [
                 'password' => Hash::make($request->input('password')),
-                'role_id' => 2
+                'role_id' => 2,
             ]));
 
         toastr()->addSuccess('Staff created successfully.');
@@ -75,8 +70,7 @@ class StaffController extends AppBaseController
     /**
      * Display the specified Staff.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -95,8 +89,7 @@ class StaffController extends AppBaseController
     /**
      * Show the form for editing the specified Staff.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -115,9 +108,7 @@ class StaffController extends AppBaseController
     /**
      * Update the specified Staff in storage.
      *
-     * @param int $id
-     * @param UpdateStaffRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateStaffRequest $request)
@@ -125,9 +116,9 @@ class StaffController extends AppBaseController
         $staff = $this->userRepository->find($id);
 
         if (empty($staff)) {
-            
 
             toastr()->addError('Not Found.');
+
             return redirect(route('admin.staff.index'));
         }
 
@@ -141,11 +132,10 @@ class StaffController extends AppBaseController
     /**
      * Remove the specified Staff from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {
@@ -153,6 +143,7 @@ class StaffController extends AppBaseController
 
         if (empty($staff)) {
             toastr()->addError('Staff not found');
+
             return redirect(route('admin.staff.index'));
         }
 
@@ -166,11 +157,10 @@ class StaffController extends AppBaseController
     /**
      * Remove the specified Staff from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function removeAdmin($id)
     {
@@ -178,23 +168,24 @@ class StaffController extends AppBaseController
 
         if (empty($staff)) {
             toastr()->addError('Staff not found');
+
             return redirect(route('admin.staff.index'));
         }
 
-        $this->userRepository->update(['role_id' => 1],$id);
+        $this->userRepository->update(['role_id' => 1], $id);
 
         toastr()->addSuccess('Staff saved successfully.');
 
         return redirect(route('admin.staff.index'));
     }
+
     /**
      * Remove the specified Staff from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function setAdmin($id)
     {
@@ -202,10 +193,11 @@ class StaffController extends AppBaseController
 
         if (empty($staff)) {
             toastr()->addError('Staff not found');
+
             return redirect(route('admin.staff.index'));
         }
 
-        $this->userRepository->update(['role_id' => 2],$id);
+        $this->userRepository->update(['role_id' => 2], $id);
 
         toastr()->addSuccess('Staff saved successfully.');
 

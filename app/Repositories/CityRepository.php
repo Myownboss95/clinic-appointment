@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\City;
-use App\Repositories\BaseRepository;
 
 /**
  * Class CityRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:12 pm UTC
-*/
-
+ */
 class CityRepository extends BaseRepository
 {
     /**
@@ -20,7 +18,7 @@ class CityRepository extends BaseRepository
         'id',
         'state_id',
         'name',
-        'status'
+        'status',
     ];
 
     /**

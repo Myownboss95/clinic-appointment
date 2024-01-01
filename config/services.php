@@ -29,7 +29,7 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    
+
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
@@ -42,6 +42,5 @@ return [
         'webhook_signin_key' => env('CALENDLY_WEBHOOK_SIGNIN_KEY', ''),
         'calendly_oauth_url' => env('CALENDLY_OAUTH_URL', ''),
     ],
-
 
 ];

@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //
     }
+
     private function registerGates()
     {
         Gate::define('is_admin', fn (User $user) => $user->role_id == 3);

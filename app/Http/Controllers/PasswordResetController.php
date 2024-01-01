@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePasswordResetRequest;
 use App\Http\Requests\UpdatePasswordResetRequest;
 use App\Repositories\PasswordResetRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class PasswordResetController extends AppBaseController
 {
-    /** @var PasswordResetRepository $passwordResetRepository*/
+    /** @var PasswordResetRepository */
     private $passwordResetRepository;
 
     public function __construct(PasswordResetRepository $passwordResetRepo)
@@ -23,7 +21,6 @@ class PasswordResetController extends AppBaseController
     /**
      * Display a listing of the PasswordReset.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +45,6 @@ class PasswordResetController extends AppBaseController
     /**
      * Store a newly created PasswordReset in storage.
      *
-     * @param CreatePasswordResetRequest $request
      *
      * @return Response
      */
@@ -66,8 +62,7 @@ class PasswordResetController extends AppBaseController
     /**
      * Display the specified PasswordReset.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +81,7 @@ class PasswordResetController extends AppBaseController
     /**
      * Show the form for editing the specified PasswordReset.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +100,7 @@ class PasswordResetController extends AppBaseController
     /**
      * Update the specified PasswordReset in storage.
      *
-     * @param int $id
-     * @param UpdatePasswordResetRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdatePasswordResetRequest $request)
@@ -131,11 +123,10 @@ class PasswordResetController extends AppBaseController
     /**
      * Remove the specified PasswordReset from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\LocationService;
-use Illuminate\Http\Request;
-
-use function Pest\Laravel\json;
 
 class LocationController extends Controller
 {
@@ -16,7 +13,7 @@ class LocationController extends Controller
     public function countries()
     {
         return response()->json([
-            'countries' => $this->service->countries()
+            'countries' => $this->service->countries(),
         ]);
     }
 
@@ -24,7 +21,7 @@ class LocationController extends Controller
     {
         return response()->json([
             'country' => $country,
-            'states' => $this->service->states($country)
+            'states' => $this->service->states($country),
         ]);
     }
 }

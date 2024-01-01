@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\GeneralSetting;
-use App\Repositories\UserRepository;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\UpdateUserProfileRequest;
+use App\Models\GeneralSetting;
+use Illuminate\Http\Request;
+use Response;
 
 class UserProfileController extends AppBaseController
 {
-   
-
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * Display a listing of the User.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -29,15 +24,13 @@ class UserProfileController extends AppBaseController
     {
         $setting = GeneralSetting::first();
         $refBonus = $setting->ref_bonus ?? 0;
-        
+
         return view('user.profile', [
-                'user' => $request->user()->load('referrals'),
-                'refBonus' => $refBonus
-       ]);
+            'user' => $request->user()->load('referrals'),
+            'refBonus' => $refBonus,
+        ]);
     }
 
-  
-     
     public function update(UpdateUserProfileRequest $request)
     {
         $user = $request->user();

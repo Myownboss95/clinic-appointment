@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\UserStage;
-use App\Repositories\BaseRepository;
 
 /**
  * Class UserStageRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 3:59 pm UTC
-*/
-
+ */
 class UserStageRepository extends BaseRepository
 {
     /**
@@ -20,7 +18,7 @@ class UserStageRepository extends BaseRepository
         'user_id',
         'sub_service_id',
         'service_id',
-        'log'
+        'log',
     ];
 
     /**

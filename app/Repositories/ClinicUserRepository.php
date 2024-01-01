@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\ClinicUser;
-use App\Repositories\BaseRepository;
 
 /**
  * Class ClinicUserRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:12 pm UTC
-*/
-
+ */
 class ClinicUserRepository extends BaseRepository
 {
     /**
@@ -19,7 +17,7 @@ class ClinicUserRepository extends BaseRepository
     protected $fieldSearchable = [
         'user_id',
         'clinic_id',
-        'role'
+        'role',
     ];
 
     /**

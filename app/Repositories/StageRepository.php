@@ -3,21 +3,19 @@
 namespace App\Repositories;
 
 use App\Models\Stage;
-use App\Repositories\BaseRepository;
 
 /**
  * Class StageRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:00 pm UTC
-*/
-
+ */
 class StageRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'name'
+        'name',
     ];
 
     /**

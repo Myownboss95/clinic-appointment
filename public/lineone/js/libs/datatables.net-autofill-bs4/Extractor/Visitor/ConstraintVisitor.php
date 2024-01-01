@@ -33,12 +33,12 @@ final class ConstraintVisitor extends AbstractVisitor implements NodeVisitor
 
     public function enterNode(Node $node): ?Node
     {
-        if (!$node instanceof Node\Expr\New_ && !$node instanceof Node\Attribute) {
+        if (! $node instanceof Node\Expr\New_ && ! $node instanceof Node\Attribute) {
             return null;
         }
 
         $className = $node instanceof Node\Attribute ? $node->name : $node->class;
-        if (!$className instanceof Node\Name) {
+        if (! $className instanceof Node\Name) {
             return null;
         }
 
@@ -53,19 +53,19 @@ final class ConstraintVisitor extends AbstractVisitor implements NodeVisitor
             }
         }
 
-        if (!$isConstraintClass) {
+        if (! $isConstraintClass) {
             return null;
         }
 
         $arg = $node->args[0] ?? null;
-        if (!$arg instanceof Node\Arg) {
+        if (! $arg instanceof Node\Arg) {
             return null;
         }
 
         if ($this->hasNodeNamedArguments($node)) {
             $messages = $this->getStringArguments($node, '/message/i', true);
         } else {
-            if (!$arg->value instanceof Node\Expr\Array_) {
+            if (! $arg->value instanceof Node\Expr\Array_) {
                 // There is no way to guess which argument is a message to be translated.
                 return null;
             }
@@ -75,15 +75,15 @@ final class ConstraintVisitor extends AbstractVisitor implements NodeVisitor
 
             /** @var Node\Expr\ArrayItem $item */
             foreach ($options->items as $item) {
-                if (!$item->key instanceof Node\Scalar\String_) {
+                if (! $item->key instanceof Node\Scalar\String_) {
                     continue;
                 }
 
-                if (false === stripos($item->key->value ?? '', 'message')) {
+                if (stripos($item->key->value ?? '', 'message') === false) {
                     continue;
                 }
 
-                if (!$item->value instanceof Node\Scalar\String_) {
+                if (! $item->value instanceof Node\Scalar\String_) {
                     continue;
                 }
 

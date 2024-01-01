@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class CurrencyList
- * @package App\Models
+ *
  * @version October 24, 2023, 4:10 pm UTC
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $code
  * @property string $dial_code
@@ -21,21 +21,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class CurrencyList extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'currency_lists';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
 
+    const CREATED_AT = 'created_at';
+
+    const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
 
-
-
-    public $guarded = ['id'
+    public $guarded = ['id',
     ];
 
     /**
@@ -50,7 +47,7 @@ class CurrencyList extends Model
         'dial_code' => 'string',
         'currency_name' => 'string',
         'currency_symbol' => 'string',
-        'currency_code' => 'string'
+        'currency_code' => 'string',
     ];
 
     /**
@@ -67,8 +64,6 @@ class CurrencyList extends Model
         'currency_code' => 'nullable|string|max:191',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
-
-    
 }

@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Country;
-use App\Repositories\BaseRepository;
 
 /**
  * Class CountryRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:11 pm UTC
-*/
-
+ */
 class CountryRepository extends BaseRepository
 {
     /**
@@ -23,7 +21,7 @@ class CountryRepository extends BaseRepository
         'iso_code3',
         'num_code',
         'status',
-        'currency_symbol'
+        'currency_symbol',
     ];
 
     /**

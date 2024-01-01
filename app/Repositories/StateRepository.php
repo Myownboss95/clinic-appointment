@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\State;
-use App\Repositories\BaseRepository;
 
 /**
  * Class StateRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 4:00 pm UTC
-*/
-
+ */
 class StateRepository extends BaseRepository
 {
     /**
@@ -19,7 +17,7 @@ class StateRepository extends BaseRepository
     protected $fieldSearchable = [
         'country_id',
         'name',
-        'status'
+        'status',
     ];
 
     /**

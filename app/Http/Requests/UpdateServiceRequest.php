@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Service;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateServiceRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateServiceRequest extends FormRequest
     public function rules()
     {
         $rules = Service::$rules;
-        
+
         return $rules;
     }
 }

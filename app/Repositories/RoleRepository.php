@@ -3,21 +3,19 @@
 namespace App\Repositories;
 
 use App\Models\Role;
-use App\Repositories\BaseRepository;
 
 /**
  * Class RoleRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 3:47 pm UTC
-*/
-
+ */
 class RoleRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'name'
+        'name',
     ];
 
     /**

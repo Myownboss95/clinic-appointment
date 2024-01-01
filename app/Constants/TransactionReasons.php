@@ -2,9 +2,8 @@
 
 namespace App\Constants;
 
-use Illuminate\Support\Str;
-use App\Traits\ArrayableEnum;
 use App\Contracts\EnumToArray;
+use App\Traits\ArrayableEnum;
 
 enum TransactionReasons: string implements EnumToArray
 {
@@ -12,5 +11,4 @@ enum TransactionReasons: string implements EnumToArray
 
     case REFERRALS = 'Referral Bonus';
 
-    
 }

@@ -2,9 +2,9 @@
 
 use App\Models\Stage;
 use App\Models\SubService;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('appointments', function (Blueprint $table) {
-            $table->dropColumn(['stage_id','sub_service_id']);
+            $table->dropColumn(['stage_id', 'sub_service_id']);
         });
     }
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Role;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRoleRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         $rules = Role::$rules;
-        
+
         return $rules;
     }
 }

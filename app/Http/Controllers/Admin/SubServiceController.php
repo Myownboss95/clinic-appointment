@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateSubServiceRequest;
 use App\Http\Requests\UpdateSubServiceRequest;
-use App\Repositories\SubServiceRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Flash;
-use Response;
 use App\Models\Service;
 use App\Models\SubService;
-
+use App\Repositories\SubServiceRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Response;
 
 class SubServiceController extends AppBaseController
 {
-    /** @var SubServiceRepository $subServiceRepository*/
+    /** @var SubServiceRepository */
     private $subServiceRepository;
 
     public function __construct(SubServiceRepository $subServiceRepo)
@@ -27,14 +25,14 @@ class SubServiceController extends AppBaseController
     /**
      * Display a listing of the SubService.
      *
-     * @param Request $request
      *
      * @return Response
      */
     public function index(Request $request)
     {
         //$subServices = $this->subServiceRepository->all();
-         $subServices = SubService::with('service')->get();
+        $subServices = SubService::with('service')->get();
+
         // dd($subServices);
         return view('admin.sub_services.index')
             ->with('subServices', $subServices);
@@ -47,27 +45,26 @@ class SubServiceController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.sub_services.create',[
-            'services' => Service::get()
+        return view('admin.sub_services.create', [
+            'services' => Service::get(),
         ]);
     }
 
     /**
      * Store a newly created SubService in storage.
      *
-     * @param CreateSubServiceRequest $request
      *
      * @return Response
      */
     public function store(CreateSubServiceRequest $request)
     {
         $input = array_merge($request->all(), [
-            'slug' => Str::slug($request->input('name'))
+            'slug' => Str::slug($request->input('name')),
         ]);
-        $imageName = time() . $request->image->getClientOriginalName();
-       // $imageExtension = $request->image->extension();
-       //dd($imageName);
-       $request->image->storeAs(public_path('images'), $imageName);
+        $imageName = time().$request->image->getClientOriginalName();
+        // $imageExtension = $request->image->extension();
+        //dd($imageName);
+        $request->image->storeAs(public_path('images'), $imageName);
 
         $subService = $this->subServiceRepository->create($input);
 
@@ -79,8 +76,7 @@ class SubServiceController extends AppBaseController
     /**
      * Display the specified SubService.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -99,8 +95,7 @@ class SubServiceController extends AppBaseController
     /**
      * Show the form for editing the specified SubService.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -113,17 +108,15 @@ class SubServiceController extends AppBaseController
             return redirect(roleBasedRoute('subServices.index'));
         }
 
-        return view('admin.sub_services.edit',[
-            'services' => Service::get()
+        return view('admin.sub_services.edit', [
+            'services' => Service::get(),
         ])->with('subService', $subService);
     }
 
     /**
      * Update the specified SubService in storage.
      *
-     * @param int $id
-     * @param UpdateSubServiceRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateSubServiceRequest $request)
@@ -146,11 +139,10 @@ class SubServiceController extends AppBaseController
     /**
      * Remove the specified SubService from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

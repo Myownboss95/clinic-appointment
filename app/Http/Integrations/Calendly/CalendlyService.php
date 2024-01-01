@@ -2,16 +2,13 @@
 
 namespace App\Http\Integrations\Calendly;
 
-use Exception;
-use Illuminate\Support\Facades\Cache;
-use App\Data\Calendly\EventTypeResponseData;
 use App\Data\Calendly\AuthTokenResponseData;
-use App\Exceptions\Calendly\BvnLookupFailedException;
-use App\Exceptions\Calendly\IdentityMisMatchException;
-use App\Http\Integrations\Calendly\Requests\LoginRequest;
-use App\Exceptions\Calendly\FailedToGetAccessTokenException;
+use App\Data\Calendly\EventTypeResponseData;
 use App\Http\Integrations\Calendly\Connectors\BaseConnector;
 use App\Http\Integrations\Calendly\Requests\EventTypesRequest;
+use App\Http\Integrations\Calendly\Requests\LoginRequest;
+use Exception;
+use Illuminate\Support\Facades\Cache;
 
 class CalendlyService
 {
@@ -46,7 +43,7 @@ class CalendlyService
         dd($connector);
 
         dd($connector->send(new EventTypesRequest()));
-        return;
+
         // $accessTokenData = $this->getAccessToken();
         // return info ($accessTokenData);
 

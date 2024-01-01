@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use App\Repositories\BaseRepository;
 
 /**
  * Class UserRepository
- * @package App\Repositories
+ *
  * @version October 24, 2023, 3:58 pm UTC
-*/
-
+ */
 class UserRepository extends BaseRepository
 {
     /**
@@ -29,7 +27,7 @@ class UserRepository extends BaseRepository
         'life_time_balance',
         'referral_code',
         'referred_by_user_id',
-        'email_verified_at'
+        'email_verified_at',
     ];
 
     /**

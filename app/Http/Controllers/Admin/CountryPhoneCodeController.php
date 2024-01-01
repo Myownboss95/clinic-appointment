@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCountryPhoneCodeRequest;
 use App\Http\Requests\UpdateCountryPhoneCodeRequest;
 use App\Repositories\CountryPhoneCodeRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class CountryPhoneCodeController extends AppBaseController
 {
-    /** @var CountryPhoneCodeRepository $countryPhoneCodeRepository*/
+    /** @var CountryPhoneCodeRepository */
     private $countryPhoneCodeRepository;
 
     public function __construct(CountryPhoneCodeRepository $countryPhoneCodeRepo)
@@ -23,7 +22,6 @@ class CountryPhoneCodeController extends AppBaseController
     /**
      * Display a listing of the CountryPhoneCode.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class CountryPhoneCodeController extends AppBaseController
     /**
      * Store a newly created CountryPhoneCode in storage.
      *
-     * @param CreateCountryPhoneCodeRequest $request
      *
      * @return Response
      */
@@ -66,8 +63,7 @@ class CountryPhoneCodeController extends AppBaseController
     /**
      * Display the specified CountryPhoneCode.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +82,7 @@ class CountryPhoneCodeController extends AppBaseController
     /**
      * Show the form for editing the specified CountryPhoneCode.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +101,7 @@ class CountryPhoneCodeController extends AppBaseController
     /**
      * Update the specified CountryPhoneCode in storage.
      *
-     * @param int $id
-     * @param UpdateCountryPhoneCodeRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateCountryPhoneCodeRequest $request)
@@ -131,11 +124,10 @@ class CountryPhoneCodeController extends AppBaseController
     /**
      * Remove the specified CountryPhoneCode from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

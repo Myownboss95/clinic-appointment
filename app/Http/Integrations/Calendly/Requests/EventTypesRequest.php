@@ -2,7 +2,6 @@
 
 namespace App\Http\Integrations\Calendly\Requests;
 
-use App\Data\Calendly\AuthTokenResponseData;
 use App\Data\Calendly\EventTypeResponseData;
 use App\Http\Integrations\Calendly\Connectors\BaseConnector;
 use Saloon\Contracts\Body\HasBody;
@@ -41,7 +40,7 @@ class EventTypesRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return "https://api.calendly.com/event_types";
+        return 'https://api.calendly.com/event_types';
     }
 
     /**

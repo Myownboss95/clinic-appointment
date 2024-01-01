@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCurrencyListRequest;
 use App\Http\Requests\UpdateCurrencyListRequest;
 use App\Repositories\CurrencyListRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class CurrencyListController extends AppBaseController
 {
-    /** @var CurrencyListRepository $currencyListRepository*/
+    /** @var CurrencyListRepository */
     private $currencyListRepository;
 
     public function __construct(CurrencyListRepository $currencyListRepo)
@@ -23,7 +22,6 @@ class CurrencyListController extends AppBaseController
     /**
      * Display a listing of the CurrencyList.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class CurrencyListController extends AppBaseController
     /**
      * Store a newly created CurrencyList in storage.
      *
-     * @param CreateCurrencyListRequest $request
      *
      * @return Response
      */
@@ -65,8 +62,7 @@ class CurrencyListController extends AppBaseController
     /**
      * Display the specified CurrencyList.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -85,8 +81,7 @@ class CurrencyListController extends AppBaseController
     /**
      * Show the form for editing the specified CurrencyList.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -105,9 +100,7 @@ class CurrencyListController extends AppBaseController
     /**
      * Update the specified CurrencyList in storage.
      *
-     * @param int $id
-     * @param UpdateCurrencyListRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateCurrencyListRequest $request)
@@ -130,11 +123,10 @@ class CurrencyListController extends AppBaseController
     /**
      * Remove the specified CurrencyList from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateClinicUserRequest;
 use App\Http\Requests\UpdateClinicUserRequest;
 use App\Repositories\ClinicUserRepository;
-use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
 use Response;
 
 class ClinicUserController extends AppBaseController
 {
-    /** @var ClinicUserRepository $clinicUserRepository*/
+    /** @var ClinicUserRepository */
     private $clinicUserRepository;
 
     public function __construct(ClinicUserRepository $clinicUserRepo)
@@ -23,7 +22,6 @@ class ClinicUserController extends AppBaseController
     /**
      * Display a listing of the ClinicUser.
      *
-     * @param Request $request
      *
      * @return Response
      */
@@ -48,7 +46,6 @@ class ClinicUserController extends AppBaseController
     /**
      * Store a newly created ClinicUser in storage.
      *
-     * @param CreateClinicUserRequest $request
      *
      * @return Response
      */
@@ -66,8 +63,7 @@ class ClinicUserController extends AppBaseController
     /**
      * Display the specified ClinicUser.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +82,7 @@ class ClinicUserController extends AppBaseController
     /**
      * Show the form for editing the specified ClinicUser.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +101,7 @@ class ClinicUserController extends AppBaseController
     /**
      * Update the specified ClinicUser in storage.
      *
-     * @param int $id
-     * @param UpdateClinicUserRequest $request
-     *
+     * @param  int  $id
      * @return Response
      */
     public function update($id, UpdateClinicUserRequest $request)
@@ -131,11 +124,10 @@ class ClinicUserController extends AppBaseController
     /**
      * Remove the specified ClinicUser from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return Response
      *
      * @throws \Exception
-     *
-     * @return Response
      */
     public function destroy($id)
     {
@@ -150,7 +142,6 @@ class ClinicUserController extends AppBaseController
         $this->clinicUserRepository->delete($id);
 
         toastr()->addSuccess('Clinic User deleted successfully.');
-        
 
         return redirect(roleBasedRoute('clinicUsers.index'));
     }

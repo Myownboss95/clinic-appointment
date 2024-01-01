@@ -3,38 +3,34 @@
 namespace App\Models;
 
 // use Eloquent as Model;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Stage
- * @package App\Models
+ *
  * @version October 24, 2023, 4:00 pm UTC
  *
  * @property string $name
  */
 class Stage extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
-    use HasFactory;
-
     public $table = 'stages';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
 
+    const CREATED_AT = 'created_at';
+
+    const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
 
-
-
     public $guarded = [
-        'id'
+        'id',
     ];
 
     /**
@@ -44,7 +40,7 @@ class Stage extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'name' => 'string',
     ];
 
     /**
@@ -57,15 +53,14 @@ class Stage extends Model
         'slug' => 'string|max:255|unique:stage,slug',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
 
-    
-    
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_stage');
     }
+
     public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class);

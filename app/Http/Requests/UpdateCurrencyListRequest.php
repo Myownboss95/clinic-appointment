@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\CurrencyList;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCurrencyListRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateCurrencyListRequest extends FormRequest
     public function rules()
     {
         $rules = CurrencyList::$rules;
-        
+
         return $rules;
     }
 }

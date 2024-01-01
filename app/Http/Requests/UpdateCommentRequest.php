@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Comment;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCommentRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateCommentRequest extends FormRequest
     public function rules()
     {
         $rules = Comment::$rules;
-        
+
         return $rules;
     }
 }

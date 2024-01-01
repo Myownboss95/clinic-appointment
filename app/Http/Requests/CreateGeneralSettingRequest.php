@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\GeneralSetting;
+use Illuminate\Foundation\Http\FormRequest;
 
 class CreateGeneralSettingRequest extends FormRequest
 {

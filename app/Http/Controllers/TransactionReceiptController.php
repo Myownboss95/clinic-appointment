@@ -16,7 +16,7 @@ class TransactionReceiptController extends Controller
     public function __invoke($uuid)
     {
 
-        $transaction = Transaction::where('id', $uuid)->with('appointment.subService')->first();
+        $transaction = Transaction::where('ref', $uuid)->with('appointment.subService')->first();
         if (!$transaction) {
             toastr()->addError('Transaction not found');
         }

@@ -25,8 +25,11 @@
                                     <div class="col-xl-6">
                                         <div class="product-detai-imgs">
                                             <div class="row">
-
-
+                                                <div class="col-md-6">
+                                                    <div class="p-1">
+                                                        @livewire('change-transaction-status-selector', ['transactionId' => $transaction->ref])
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -36,7 +39,6 @@
                                             <h4>Trasaction status: {!! $status->labels() !!}
                                             </h4>
                                             <h5 class="mb-4">Amount : <b>{{ formatMoney($transaction->amount) }}</b>
-
                                             </h5>
 
 
@@ -50,13 +52,13 @@
 
                                             <a href="{{ route('download.transaction', $transaction->ref) }}"
                                                 class="btn btn-outline-secondary btn-sm"><i class="fas fa-download"></i>
-                                                Download Reciept</a>
+                                                Download Receipt</a>
 
                                         </div>
                                     </div>
                                     <div class="col-xl 6">
                                         <div class="mt-4 mt-xl-3">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -79,6 +81,12 @@
                                                                 class="fas fa-eye"></i>
                                                     </td>
                                                     </a>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" style="width: 400px;">Confirmed By </th>
+                                                    <td>
+                                                        {{ $transaction->confirmedBy?->first_name . ' '. $transaction->confirmedBy?->last_name}}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Email</th>

@@ -26,6 +26,11 @@ class Transaction extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function confirmedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'confirmed_by');
+    }
+
     public function paymentChannel(): BelongsTo
     {
         return $this->belongsTo(PaymentChannel::class);

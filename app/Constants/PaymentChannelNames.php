@@ -2,8 +2,8 @@
 
 namespace App\Constants;
 
-use App\Traits\ArrayableEnum;
 use App\Contracts\EnumToArray;
+use App\Traits\ArrayableEnum;
 
 enum PaymentChannelNames: string implements EnumToArray
 {

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Throwable;
@@ -45,6 +46,11 @@ class Handler extends ExceptionHandler
 
                 return back()
                     ->withInput(request()->except('_token'));
+            }
+            if ($e->getPrevious() instanceof AuthorizationException) {
+                toastr()->addError('You are not allowed to perform this action');
+
+                return back();
             }
         });
     }

@@ -1,13 +1,11 @@
  @extends('layouts.app')
  @section('content')
- <style>
-.table-responsive .table td,
-.table-responsive .table th {
-    font-size: 0.75rem;
-}
-
- 
-</style>
+     <style>
+         .table-responsive .table td,
+         .table-responsive .table th {
+             font-size: 0.75rem;
+         }
+     </style>
      <div class="page-content">
          <div class="container-fluid">
 
@@ -24,7 +22,7 @@
                              <div class="d-flex align-items-end mt-3 mt-sm-0">
                                  <div class="flex-shrink-0">
                                      <div class="avatar-xxl me-3">
-                                         <img src="{{ asset('lineone/images/users/avatar-3.jpg') }}" alt=""
+                                         <img src="{{ profilePicture($user) }}" alt=""
                                              class="img-fluid rounded-circle d-block img-thumbnail">
                                      </div>
                                  </div>
@@ -62,12 +60,6 @@
                                  </li>
                                  <li class="nav-item">
 
-                                     <a class="nav-link px-3" data-bs-toggle="tab" href="#updateuser" role="tab">Update
-                                         User Info</a>
-
-                                 </li>
-                                 <li class="nav-item">
-
                                      <a class="nav-link px-3" data-bs-toggle="tab" href="#referrals"
                                          role="tab">Referrals</a>
 
@@ -82,44 +74,64 @@
                  <div class="col-xl-12 col-lg-12">
                      <div class="tab-content">
                          <div class="tab-pane active" id="overview" role="tabpanel">
-                            <div class="row">
-                                <div class="col-md-5">
-<div class="card p-3">
-                                 <div class="card-header">
-                                     <h5 class="card-title mb-0">Overview</h5>
-                                 </div>
+                             <div class="row">
+                                 <div class="col-md-10">
+                                     <div class="card p-3">
+                                         <div class="card-header">
+                                             <h5 class="card-title mb-0">Overview</h5>
+                                         </div>
+                                         <div class="row">
+                                             <div class="col-md-4">
+                                                 <div class="card-body">
+                                                     <div>
+                                                         <div class="pb-3">
+                                                             <div class="text-muted">
+                                                                 <ul class="list-unstyled mb-0">
+                                                                     <li class="py-1"><i
+                                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phone
+                                                                         Number: {{ $user->phone_number }}</li>
+                                                                     <li class="py-1"><i
+                                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Age: {{ age($user->dob) }}</li>
+                                                                         @if ($user->country && $user->city && $user->state)
+                                                                             
+                                                                         <li class="py-1"><i
+                                                                                 class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Location:
+                                                                             {{ $user->city }}, {{ $user->state }}, {{ $user->country }}.
+                                                                             </li>
+                                                                         @endif
+                                                                     <li class="py-1"><i
+                                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i> Ref
+                                                                         Code: <br> {{ refCode() }} </li>
+                                                                     <li class="py-1"><i
+                                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date
+                                                                         Joined: {{ $user->created_at->diffForHumans() }}
+                                                                     </li>
+                                                                     <li class="py-1"><i
+                                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Balance: {{ formatMoney($user->balance) }}
+                                                                     </li>
+                                                                     <li class="py-1"><i
+                                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Lifetime Balance: {{ formatMoney($user->life_time_balance) }}
+                                                                     </li>
+                                                                 </ul>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                             <div class="col-md-8">
+                                                <div class="row pt-1">
 
-                                 <div class="card-body">
-                                     <div>
-                                         <div class="pb-3">
-                                             <div class="text-muted">
-                                                 <ul class="list-unstyled mb-0">
-                                                     <li class="py-1"><i
-                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phone
-                                                         Number: {{ $user->phone_number }}</li>
-                                                     <li class="py-1"><i
-                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date
-                                                         of Birth: {{ $user->dob }}</li>
-                                                     <li class="py-1"><i
-                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Location:
-                                                         {{ $user->country }}, {{ $user->state }}, {{ $user->city }}</li>
-                                                     <li class="py-1"><i
-                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Ref
-                                                         Code: {{ refCode() }} </li>
-                                                     <li class="py-1"><i
-                                                             class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Date
-                                                         Joined: {{ $user->created_at->diffForHumans() }}</li>
-                                                 </ul>
+                                                    @include('admin.users.update_user')
+                                                </div>
                                              </div>
                                          </div>
+
+                                         <!-- end card body -->
+                                         <!-- end card body -->
                                      </div>
                                  </div>
-                                 <!-- end card body -->
-                                 <!-- end card body -->
                              </div>
-                                </div>
-                            </div>
-                             
+
                              <!-- end card -->
                          </div>
                          <!-- end tab pane -->
@@ -128,7 +140,7 @@
                              <div class="card">
                                  <div class="card-body">
                                      <div class="row">
-                                        <livewire:user-appointment-table userId="{{ $user->id }}"/>
+                                         <livewire:user-appointment-table userId="{{ $user->id }}" />
                                      </div>
                                  </div>
                                  <!-- end card body -->
@@ -137,23 +149,14 @@
                          </div>
                          <!-- end tab pane -->
                          <div class="tab-pane" id="transactionstab" role="tabpanel">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Transactions</h4>
-                                </div>
-                                <div class="card-body">
-                                    <livewire:user-transactions-table userId="{{$user->id}}"/>
-                                </div>
-                                <!-- end card body -->
-                            </div>
-                         </div>
-                         <!-- end tab pane -->
-                         <div class="tab-pane" id="updateuser" role="tabpanel">
-                             <div class="card p-5">
-                                 <div class="card-body">
-
+                             <div class="card">
+                                 <div class="card-header">
+                                     <h4 class="card-title">Transactions</h4>
                                  </div>
-
+                                 <div class="card-body">
+                                     <livewire:user-transactions-table userId="{{ $user->id }}" />
+                                 </div>
+                                 <!-- end card body -->
                              </div>
                          </div>
                          <!-- end tab pane -->
@@ -162,14 +165,14 @@
                                  <div class="col-md-6">
                                      <div class="card p-2">
                                          <div class="card-body">
-                                     <div class="table-responsive">
+                                             <div class="table-responsive">
                                                  <table class="table align-middle table-nowrap">
                                                      <tbody>
                                                          <tr>
                                                              @if ($user->referrals()->count() > 0)
                                                                  @foreach ($user->referrals as $referral)
                                                                      <td style="width: 50px;"><img
-                                                                             src="{{ asset('lineone/images/users/avatar-2.jpg') }}"
+                                                                             src="{{ profilePicture($referral) }}"
                                                                              class="rounded-circle avatar-sm"
                                                                              alt=""></td>
                                                                      <td>
@@ -196,96 +199,17 @@
                                  </div>
 
                              </div>
-                            </div>
-
-                             <div class="tab-pane" id="password" role="tabpanel">
-                                 <div class="card">
-                                     <div class="card-body">
-                                         <form class="mt-4 pt-2" method="post" action="{{ route('password.update') }}">
-                                             @csrf
-                                             @method('PUT')
-
-                                             <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                                 <input type="password"
-                                                     class="form-control pe-5 @error('current_password') is-invalid @enderror"
-                                                     id="current-password-input" placeholder="Enter your current password"
-                                                     name="current_password">
-
-                                                 <button type="button"
-                                                     class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                     id="current-password-addon">
-                                                     <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                                 </button>
-                                                 <label for="input-current-password">Current password</label>
-                                                 <div class="form-floating-icon">
-                                                     <i data-feather="lock"></i>
-                                                 </div>
-                                                 @error('current_password')
-                                                     <span class="error invalid-feedback">{{ $message }}</span>
-                                                 @enderror
-                                             </div>
-
-                                             <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                                 <input type="password"
-                                                     class="form-control pe-5 @error('password') is-invalid @enderror"
-                                                     id="password-input" placeholder="Enter New password"
-                                                     name="password">
-
-                                                 <button type="button"
-                                                     class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                     id="password-addon">
-                                                     <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                                 </button>
-                                                 <label for="input-new-password">New password</label>
-                                                 <div class="form-floating-icon">
-                                                     <i data-feather="lock"></i>
-                                                 </div>
-                                                 @error('password')
-                                                     <span class="error invalid-feedback">{{ $message }}</span>
-                                                 @enderror
-                                             </div>
-
-
-                                             <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
-                                                 <input type="password"
-                                                     class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
-                                                     id="confirm-password-input" placeholder="Confirm password"
-                                                     name="password_confirmation">
-
-                                                 <button type="button"
-                                                     class="btn btn-link position-absolute h-100 end-0 top-0"
-                                                     id="confirm-password-addon">
-                                                     <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                                 </button>
-                                                 <label for="input-confirm-password">Confirm password</label>
-                                                 <div class="form-floating-icon">
-                                                     <i data-feather="lock"></i>
-                                                 </div>
-                                                 @error('password_confirmation')
-                                                     <span class="error invalid-feedback">{{ $message }}</span>
-                                                 @enderror
-                                             </div>
-                                             <div class="mb-3 d-flex justify-content-end">
-                                                 <button class="btn btn-primary w-40 waves-effect waves-light"
-                                                     type="submit">Update Password</button>
-                                             </div>
-                                         </form>
-                                     </div>
-                                     <!-- end card body -->
-                                 </div>
-
-                             </div>
-                             <!-- end tab pane -->
                          </div>
                      </div>
-                     <!-- end tab content -->
                  </div>
-                 <!-- end col -->
-                 <!-- end col -->
+                 <!-- end tab content -->
              </div>
-             <!-- end row -->
+             <!-- end col -->
+             <!-- end col -->
+         </div>
+         <!-- end row -->
 
-         </div> <!-- container-fluid -->
+     </div> <!-- container-fluid -->
      </div>
      <!-- End Page-content -->
  @endsection

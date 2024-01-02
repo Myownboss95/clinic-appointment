@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\AdminUpdateUserRequest;
 use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
 use App\Models\GeneralSetting;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -17,7 +17,6 @@ class UserController extends AppBaseController
 
     public function __construct(UserRepository $userRepo)
     {
-        $this->middleware('can:admin')->except('index', 'show');
         $this->userRepository = $userRepo;
 
     }
@@ -112,7 +111,7 @@ class UserController extends AppBaseController
      * @param  int  $id
      * @return Response
      */
-    public function update($id, UpdateUserRequest $request)
+    public function update($id, AdminUpdateUserRequest $request)
     {
         $user = $this->userRepository->find($id);
 
@@ -126,7 +125,7 @@ class UserController extends AppBaseController
 
         toastr()->addSuccess('User updated successfully.');
 
-        return redirect(roleBasedRoute('users.index'));
+        return back();
     }
 
     /**

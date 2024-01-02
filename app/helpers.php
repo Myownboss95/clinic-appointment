@@ -9,7 +9,7 @@ function roleBasedRoute($routeName, $params = null)
     $userRoleId = auth()->user()->role_id;
 
     if ($userRoleId == 3) {
-        return route('admin.'.$routeName);
+        return route('admin.'.$routeName, $params);
     }
     if ($userRoleId == 2) {
         return route('staff.'.$routeName, $params);
@@ -58,4 +58,9 @@ function profilePicture(User $user)
     return $user->image
         ? asset("storage/{$user->image}")
         : asset('lineone/images/users/avatar-6.jpg'); // Replace with your default image path
+}
+
+function age($age)
+{
+    return $age->diff(Carbon::now())->format('%y years old');
 }

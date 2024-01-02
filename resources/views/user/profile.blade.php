@@ -254,7 +254,7 @@
                                                     <tr>
                                                         @foreach ($user->referrals as $referral)
                                                             
-                                                        <td style="width: 50px;"><img src="{{ asset('lineone/images/users/avatar-2.jpg')}}" class="rounded-circle avatar-sm" alt=""></td>
+                                                        <td style="width: 50px;"><img src="{{ profilePicture($referral)}}" class="rounded-circle avatar-sm" alt=""></td>
                                                         <td><h5 class="font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">{{ $referral->first_name}}</a></h5></td>
                                                         
                                                         <td>

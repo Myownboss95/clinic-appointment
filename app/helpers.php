@@ -50,7 +50,7 @@ function refCode()
 
 function formatMoney($amount)
 {
-    return '₦ '.number_format($amount, 2, '.', ',');
+    return html_entity_decode('&#8358;').number_format($amount, 2, '.', ',');
 }
 
 function profilePicture(User $user)

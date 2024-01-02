@@ -10,19 +10,27 @@
                 <x-bread-crumb title="Transaction" />
                 <!-- end page title -->
 
-                <div class="row ">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-body px-5">
+                            <div class="card-body">
                                 <div class="row">
-
-
                                     <div class="col-xl-6">
+                                        <div class="product-detai-imgs">
+                                            <div class="row">
+
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12">
                                         <div class="mt-4 mt-xl-3">
                                             <h4>Trasaction status: <span
                                                     class="btn btn-sm btn-danger text-uppercase">{{ $transaction->status }}</span>
                                             </h4>
-                                            <h5 class="mb-4">Amount : <b>{{ formatMoney($transaction->amount) }}</b>
+                                        <h5 class="mb-4">Amount :  <b>{{formatMoney($transaction->amount)}}</b>
+
                                             </h5>
                                             <h6>Payment Reason</h6>
                                             <p class="text-muted mb-4">{{ $transaction?->reason }}</p>
@@ -39,14 +47,13 @@
                                                         </p>
                                                         <p class="text-muted"><i
                                                                 class="bx bx-money font-size-16 align-middle text-primary me-1"></i>Payment
-                                                            Type:
-                                                            {{ $transaction->paymentChannel->name }}
-                                                        </p>
+                                                            Type: {{ $transaction->payment_channel?->name }}</p>
                                                     </div>
                                                 </div>
                                             </div>
 
-
+                                            <a href="{{ route('download.transaction', $transaction->ref) }}">Download
+                                                Reciept</a>
                                         </div>
                                     </div>
                                 </div>

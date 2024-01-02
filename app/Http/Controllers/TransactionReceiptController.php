@@ -16,11 +16,12 @@ class TransactionReceiptController extends Controller
     public function __invoke($ref)
     {
 
-        $transaction = Transaction::where('ref', $ref)->with('appointment.subService')->first();
+        $transaction = Transaction::where('ref', $ref)->with(['appointment.subService', 'user', 'paymentChannel'])->first();
+        $user = $transaction->user;
         if (!$transaction) {
             toastr()->addError('Transaction not found');
         }
-        $pdf = Pdf::loadView('user.transactions.reciept', compact('transaction'))->setPaper('a2', 'landscape');
+        $pdf = Pdf::loadView('user.transactions.reciept', compact('transaction', 'user'))->setPaper('a5', 'portrait');
 
         return $pdf->download();
     }

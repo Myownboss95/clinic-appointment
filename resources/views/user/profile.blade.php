@@ -3,26 +3,29 @@
      <div class="page-content">
                     <div class="container-fluid">
 
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="profile-user"></div>
-                            </div>
-                        </div>
 
-                        <div class="row">
+                        <div class="row mt-5">
                            <div class="profile-content">
                                <div class="row align-items-end">
                                     <div class="col-sm">
                                         <div class="d-flex align-items-end mt-3 mt-sm-0">
                                             <div class="flex-shrink-0">
                                                 <div class="avatar-xxl me-3">
-                                                    <img src="{{ asset('lineone/images/users/avatar-3.jpg')}}" alt="" class="img-fluid rounded-circle d-block img-thumbnail">
+                                                    <img src="{{ profilePicture(auth()->user())}}" alt="" class="img-fluid rounded-circle d-block img-thumbnail" style="width: 150px;
+                                                    height:150px;">
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div>
-                                                    <h5 class="font-size-16 mb-1">{{auth()->user()->first_name . ' '. auth()->user()->last_name}}</h5>
+                                                    <h5 class="font-size-16 mb-1 pt-5">{{auth()->user()->first_name . ' '. auth()->user()->last_name}}</h5>
                                                     <p class="text-muted font-size-13">{{auth()->user()->email}}</p>
+                                                    <small class="small">
+                                                    <a href="{{route('image.index', (auth()->user()->id))}}" class="btn btn-link"
+                                                        style="font-size: 11px; 
+                                                    margin-left:-10px; 
+                                                    margin-top:-10px">
+                                                    <i data-feather="edit" style="font-size: 11px"></i>
+                                                        Change Profile Image</a></small>
                                                     
                                                 </div>
                                             </div>

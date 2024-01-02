@@ -1,18 +1,18 @@
 <?php
 
+use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ReferralController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\UpdatePasswordController;
+use App\Http\Controllers\Auth\UserProfileController;
+use App\Http\Controllers\BookAppointmentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\TransactionReceiptController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\ImageController;
-use App\Http\Controllers\Auth\ReferralController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\BookAppointmentController;
-use App\Http\Controllers\Auth\UserProfileController;
-use App\Http\Controllers\TransactionReceiptController;
-use App\Http\Controllers\Auth\UpdatePasswordController;
 
 /*
 |--------------------------------------------------------------------------

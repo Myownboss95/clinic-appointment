@@ -272,7 +272,7 @@
                                 <a href="#!" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
-                                            <img src="{{ profilePicture($user) }}"
+                                            <img src="{{ profilePicture(auth()->user()) }}"
                                                 class="rounded-circle avatar-sm" alt="user-pic">
                                         </div>
                                         <div class="flex-grow-1">
@@ -306,7 +306,7 @@
                             id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <img class="rounded-circle header-profile-user"
-                                src="{{ asset('lineone/images/users/avatar-1.jpg') }}" alt="Header Avatar">
+                                src="{{ profilePicture(auth()->user()) }}" alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ userName() }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>

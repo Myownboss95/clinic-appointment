@@ -58,7 +58,8 @@ Route::middleware('auth')->group(function () {
     //handle profile image
     Route::get('/profile/{user}/edit-image', [ImageController::class, 'index'])->name('image.index');
     Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
-    Route::get('transaction/download', TransactionReceiptController::class)->name('download.transaction');
+    Route::get('transaction/download/{ref}', TransactionReceiptController::class)->name('download.transaction');
+    
 
     Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));
     Route::prefix('admin')->as('admin.')->middleware('can:is_admin')->group(fn () => require_once('admin.php'));

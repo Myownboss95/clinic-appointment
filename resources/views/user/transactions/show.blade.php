@@ -110,7 +110,7 @@
                                             </div>
                                         </div>
 
-                                      <a href="{{roleBasedRoute("download-reciept", $transaction->id)}}">Download Reciept</a>
+                                      <a href="{{route("download.transaction", $transaction->ref)}}">Download Reciept</a>
                                     </div>
                                 </div>
                             </div>

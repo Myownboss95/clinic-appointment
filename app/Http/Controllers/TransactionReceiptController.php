@@ -13,10 +13,10 @@ class TransactionReceiptController extends Controller
      * @param  \App\Models\Order  $bot
      * @return \Illuminate\Http\Response
      */
-    public function __invoke($uuid)
+    public function __invoke($ref)
     {
 
-        $transaction = Transaction::where('ref', $uuid)->with('appointment.subService')->first();
+        $transaction = Transaction::where('ref', $ref)->with('appointment.subService')->first();
         if (!$transaction) {
             toastr()->addError('Transaction not found');
         }

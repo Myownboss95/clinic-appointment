@@ -105,12 +105,12 @@
                                                 <div>
                                                     <p class="text-muted"><i class="bx bx-unlink font-size-16 align-middle text-primary me-1"></i>Trasaction Type: <span>{{$transaction->type}}</span></p>
                                                     <p class="text-muted"><i class="bx bx-calendar-event font-size-16 align-middle text-primary me-1"></i>Transaction Date: <span class="btn btn-info btn-sm">{{$transaction->created_at}}</span></p>
-                                                    <p class="text-muted"><i class="bx bx-money font-size-16 align-middle text-primary me-1"></i>Payment Type: {{$transaction->payment_channel->name}}</p>
+                                                    <p class="text-muted"><i class="bx bx-money font-size-16 align-middle text-primary me-1"></i>Payment Type: {{$transaction->payment_channel?->name}}</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                      
+                                      <a href="{{roleBasedRoute("download-reciept", $transaction->id)}}">Download Reciept</a>
                                     </div>
                                 </div>
                             </div>

@@ -16,11 +16,11 @@ class TransactionReceiptController extends Controller
     public function __invoke($uuid)
     {
 
-        $transaction = Transaction::where('uuid', $uuid)->with('appointment.subService')->first();
-        if (! $transaction) {
+        $transaction = Transaction::where('id', $uuid)->with('appointment.subService')->first();
+        if (!$transaction) {
             toastr()->addError('Transaction not found');
         }
-        $pdf = Pdf::loadView('front.reciept', compact('transaction'))->setPaper('a2', 'landscape');
+        $pdf = Pdf::loadView('user.transactions.reciept', compact('transaction'))->setPaper('a2', 'landscape');
 
         return $pdf->download();
     }

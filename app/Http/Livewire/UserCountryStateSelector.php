@@ -8,18 +8,22 @@ use Livewire\Component;
 class UserCountryStateSelector extends Component
 {
     public $countries;
+
     public $selectedCountry;
+
     public $states;
+
     public $selectedState;
 
     // Props for default user values
     public $userCountry;
+
     public $userState;
 
     public function mount()
     {
         $this->getCountries();
-        
+
         // Set default values from user props
         if ($this->userCountry) {
             $this->selectedCountry = $this->userCountry;

@@ -64,3 +64,8 @@ function age($age)
 {
     return $age->diff(Carbon::now())->format('%y years old');
 }
+
+function upperCase($string)
+{
+    return Str::ucfirst($string);
+}

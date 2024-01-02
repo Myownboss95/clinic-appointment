@@ -3,7 +3,6 @@
 use App\Http\Controllers\User\AppointmentController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\TransactionsController;
-use App\Http\Controllers\TransactionReceiptController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', DashboardController::class)->name('index');

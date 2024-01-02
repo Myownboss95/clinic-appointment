@@ -103,12 +103,18 @@ final class TransactionsTable extends PowerGridComponent
     public function actions(Transaction $row): array
     {
         return [
-            Button::add('view')
-                ->slot('View')
-                ->class('btn btn-success')
+            Button::add('<i class="fas fa-eye"></i>')
+                ->slot('<i class="fas fa-eye"></i>')
+                ->class('btn btn-success d-block btn-sm')  // Change to display: block
                 ->target('')
                 ->route(role(auth()->user()->role_id).'.transactions.show', ['transaction' => $row->id]),
+            Button::add('<i class="fas fa-download"></i>')
+                ->slot('<i class="fas fa-download"></i>')
+                ->class('btn btn-info d-block btn-sm ')  // Stack below with margin
+                ->target('')
+                ->route('download.transaction', ['ref' => $row->ref]),
         ];
+
     }
 
     /*

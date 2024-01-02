@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.powergrid-actions .btn {
+    display: block;
+}
 
+</style>
             <div class="page-content">
                 <div class="container-fluid">
 

@@ -5,6 +5,9 @@
          .table-responsive .table th {
              font-size: 0.75rem;
          }
+         .powergrid-actions .btn {
+    display: block;
+}
      </style>
      <div class="page-content">
          <div class="container-fluid">

@@ -18,7 +18,7 @@ class TransactionReceiptController extends Controller
 
         $transaction = Transaction::where('ref', $ref)->with(['appointment.subService', 'user', 'paymentChannel'])->first();
         $user = $transaction->user;
-        if (!$transaction) {
+        if (! $transaction) {
             toastr()->addError('Transaction not found');
         }
         $pdf = Pdf::loadView('user.transactions.reciept', compact('transaction', 'user'))->setPaper('a5', 'portrait');

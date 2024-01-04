@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Repositories\AppointmentRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Response;
 
 class AppointmentController extends AppBaseController
@@ -104,11 +105,21 @@ class AppointmentController extends AppBaseController
             return redirect(roleBasedRoute('appointments.index'));
         }
 
-        $comments = $appointment->comments()->get();
+        $allComments = $appointment->comments->sortBy('stage_id');
+
+        $yourComments = $allComments->filter(function ($comment) {
+            return $comment->author_id === auth()->user()->id;
+        });
+
+        $otherComments = $allComments->filter(function ($comment) {
+            return $comment->author_id !== auth()->user()->id;
+        });
 
         return view('admin.appointments.show', [
             'appointment' => $appointment,
-            'comments' => $comments,
+            'yourComments' => $yourComments,
+            'otherComments' => $otherComments,
+            'stages' => Stage::get(),
         ]);
     }
 
@@ -168,8 +179,17 @@ class AppointmentController extends AppBaseController
      *
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'current_password' => ['required', 'current_password'],
+        ]);
+
+        if ($validator->fails()) {
+            toastr()->addError('Incorrect Password');
+
+            return redirect(roleBasedRoute('appointments.show', $id));
+        }
         $appointment = $this->appointmentRepository->find($id);
 
         if (empty($appointment)) {

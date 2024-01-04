@@ -10,10 +10,16 @@ use Livewire\Component;
 class ChangeAppointmentStageSelector extends Component
 {
     public $appointmentId;
+
     public $selectedStage;
+
     public $appointment;
+
     public $password;
+
     public $showPasswordField = false; // Add a property to control visibility
+
+    public $showPasswordModal = false; // Add a property to control visibility
 
     public function mount($appointmentId)
     {
@@ -29,7 +35,8 @@ class ChangeAppointmentStageSelector extends Component
 
     public function updateSelectedStage()
     {
-        $this->showPasswordField = $this->selectedStage !== $this->appointment->stage_id;
+        $this->dispatch('toggle-password-modal', $this->selectedStage !== $this->appointment->stage_id);
+
     }
 
     public function updateAppointmentStage()
@@ -42,11 +49,11 @@ class ChangeAppointmentStageSelector extends Component
             toastr()->addSuccess('Appointment Stage updated successfully.');
             $this->appointment->user->notify(new UserAppointmentStageNotification($this->appointment->user, $this->appointment));
 
-            return redirect()->route(role(auth()->user()->role_id) . '.appointments.show', $this->appointment->id);
+            return redirect()->route(role(auth()->user()->role_id).'.appointments.show', $this->appointment->id);
         }
 
         toastr()->addError('Incorrect Password');
 
-        return redirect()->route(role(auth()->user()->role_id) . '.appointments.show', $this->appointment->id);
+        return redirect()->route(role(auth()->user()->role_id).'.appointments.show', $this->appointment->id);
     }
 }

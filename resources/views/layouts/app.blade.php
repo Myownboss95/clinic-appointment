@@ -383,7 +383,7 @@
     <script src="{{ asset('lineone/js/js/app.js') }}"></script> 
     {{-- @livewireScripts
     @powerGridScripts --}}
-
+@stack('scripts')
 </body>
 
 </html>

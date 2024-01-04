@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Comment;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateCommentRequest extends FormRequest
@@ -24,6 +23,9 @@ class CreateCommentRequest extends FormRequest
      */
     public function rules()
     {
-        return Comment::$rules;
+        return [
+            'body' => ['string', 'required'],
+            'stage_id' => ['required', 'exists:stages,id'],
+        ];
     }
 }

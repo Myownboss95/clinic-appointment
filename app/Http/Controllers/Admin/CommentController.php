@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Models\Appointment;
 use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
 use Response;
@@ -49,11 +50,18 @@ class CommentController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateCommentRequest $request)
+    public function store(CreateCommentRequest $request, $appointmentId)
     {
         $input = $request->all();
-
-        $comment = $this->commentRepository->create($input);
+        $appointment = Appointment::where('id', $appointmentId)->with('user')->first();
+        $data = array_merge($input, [
+            'appointment_id' => $appointment->id,
+            'author_id' => auth()->user()->id,
+            'user_id' => $appointment->user->id,
+            'stage_id' => $request->input('stage_id'),
+        ]);
+        // dd($data);
+        $this->commentRepository->create($data);
 
         toastr()->addSuccess('Comment saved successfully.');
 
@@ -143,6 +151,6 @@ class CommentController extends AppBaseController
 
         toastr()->addSuccess('Comment deleted successfully.');
 
-        return redirect(roleBasedRoute('comments.index'));
+        return back();
     }
 }

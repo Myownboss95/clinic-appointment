@@ -24,11 +24,7 @@ class Comment extends Model
 
     protected $dates = ['deleted_at'];
 
-    public $fillable = [
-        'appointment_id',
-        'appointment_stage_id',
-        'body',
-        'user_id',
+    public $guarded = ['id',
     ];
 
     /**
@@ -39,9 +35,10 @@ class Comment extends Model
     protected $casts = [
         'id' => 'integer',
         'appointment_id' => 'integer',
-        'appointment_stage_id' => 'integer',
+        'stage_id' => 'integer',
         'body' => 'string',
         'user_id' => 'integer',
+        'author_id' => 'integer',
     ];
 
     /**

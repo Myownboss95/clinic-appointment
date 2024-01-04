@@ -24,6 +24,8 @@ import '../../public/lineone/js/js/pages/product-filter-range.init';
 import '../../public/lineone/js/js/pages/pass-addon.init';
 import '../../public/lineone/js/js/pages/password-addon.init';
 import '../../public/lineone/js/js/app';
+import '../../public/clinic/assets/vendor/bootstrap/js/bootstrap';
+
 
 
 

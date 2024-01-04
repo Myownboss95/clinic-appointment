@@ -50,17 +50,9 @@
                                                     class="btn btn-primary waves-effect waves-light mt-2 me-1">
                                                     <i class="bx bx-edit me-2"></i> Edit
                                                 </a>
-                                                <form
-                                                    action="{{ roleBasedRoute('appointments.destroy', [$appointment->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button"
-                                                        class="btn btn-danger waves-effect  mt-2 waves-light"
-                                                        onclick="return confirm('Are you sure?')">
-                                                        <i class="bx bx-trash"></i>Delete
-                                                    </button>
-                                                </form>
+                                                <button type="button" class="btn btn-danger waves-effect mt-2 waves-light" id="deleteButton">
+                                                    <i class="bx bx-trash"></i>Delete
+                                                </button>
                                             </div>
 
                                         </div>
@@ -73,15 +65,17 @@
                                             <h5 class="mb-4">Client:<span
                                                     class="badge rounded-pill bg-primary-subtle text-primary"></span>
                                                 <b>{{ $appointment->user->last_name }}
-                                                    {{ $appointment->user->first_name }}</b></h5>
-                                            
+                                                    {{ $appointment->user->first_name }}</b>
+                                            </h5>
+
                                             <h5 class="mb-4">Amount Paid:<span
                                                     class="badge rounded-pill bg-primary-subtle text-primary "></span>
                                                 <b>{{ formatMoney($appointment->transaction?->first()->amount) }}</b>
                                             </h5>
                                             <h5 class="mb-4">Stage:<span
                                                     class="badge rounded-pill bg-primary-subtle text-primary "></span>
-                                                <b>{{ $appointment->stage->name }}</b></h5>
+                                                <b>{{ $appointment->stage->name }}</b>
+                                            </h5>
                                             @livewire('change-appointment-stage-selector', ['appointmentId' => $appointment->uuid])
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
@@ -107,84 +101,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-5">
-                                    <h5 class="mb-3">Comment Here :</h5>
 
-                                    <form action="{{ roleBasedRoute('comments.store') }}" method="POST">
-                                        @csrf
-                                        <textarea name="body" class="form-control" id=""></textarea>
-                                        <input type="hidden" name="user_id" id=""
-                                            value="{{ auth()->user()->id }}">
-                                        <input type="hidden" name="appointment_id" id=""
-                                            value="{{ $appointment->id }}">
-                                        <input type="hidden" name="appointment_stage_id" id=""
-                                            value="{{ $appointment->stage->id }}">
-                                        <div>
-                                            <button type="submit"
-                                                class="btn btn-primary waves-effect waves-light mt-2 me-1">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- end row -->
-                                <div class="mt-5">
-                                    <h5>Comments :</h5>
-
-
-                                    @forelse($comments as $comment)
-                                        <div class="mt-4 border p-4">
-
-                                            <div class="row">
-                                                <div class="col-xl-3 col-md-5">
-                                                    <div>
-                                                        <div class="d-flex">
-                                                            <img src="/lineone/images/users/avatar-2.jpg"
-                                                                class="avatar-sm rounded-circle" width="100"
-                                                                height="100" alt="img"
-                                                                style="width: 100px; height:100px;" />
-                                                            <div class="flex-1 ms-4">
-                                                                <h5 class="mb-2 font-size-15 text-muted">
-                                                                    {{ $comment->user->last_name }}
-                                                                    {{ $comment->user->first_name }}</h5>
-                                                                <h5 class="text-muted font-size-15">
-                                                                    {{ $comment->user->state }},
-                                                                    {{ $comment->user->country }}</h5>
-                                                                {{-- <p class="text-muted">65 Followers, 86 Reviews</p> --}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-9 col-md-7">
-                                                    <div>
-                                                        <p class="text-muted mb-2">
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <span class="ms-3"><i
-                                                                    class="far fa-calendar-alt text-primary me-1"></i>{{ $comment->created_at->diffForHumans() }}</span>
-                                                        </p>
-
-                                                        <p class="text-muted">{{ $comment->body }}</p>
-                                                        {{-- <ul class="list-inline float-sm-end mb-sm-0">
-                                                                <li class="list-inline-item">
-                                                                    <a href="javascript: void(0);"><i class="far fa-thumbs-up me-1"></i> Like</a>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <a href="javascript: void(0);"><i class="far fa-comment-dots me-1"></i> Comment</a>
-                                                                </li>
-                                                            </ul> --}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <p>NO comment for this appoinment</p>
-                                    @endforelse
-
-
-
-                                </div>
 
 
                             </div>
@@ -193,7 +110,9 @@
                     </div>
                 </div>
                 <!-- end row -->
-
+                <div class="row">
+                    @include('admin.appointments.comments')
+                </div>
 
 
             </div> <!-- container-fluid -->
@@ -201,6 +120,6 @@
         <!-- End Page-content -->
 
 
-
+        @include('admin.appointments.delete-modal')
     </div>
 @endsection

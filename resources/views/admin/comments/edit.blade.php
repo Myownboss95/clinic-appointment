@@ -17,7 +17,8 @@
 
         <div class="card">
 
-            {!! Form::model($comment, ['route' => ['comments.update', $comment->id], 'method' => 'patch']) !!}
+            {{-- {!! Form::model($comment, ['route' => ['comments.update', $comment->id], 'method' => 'patch']) !!} --}}
+            
 
             <div class="card-body">
                 <div class="row">
@@ -30,7 +31,7 @@
                 <a href="{{ route('staff.comments.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
-            {!! Form::close() !!}
+            {{-- {!! Form::close() !!} --}}
 
         </div>
     </div>

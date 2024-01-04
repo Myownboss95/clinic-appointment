@@ -10,18 +10,16 @@ use Livewire\Component;
 class ChangeAppointmentStageSelector extends Component
 {
     public $appointmentId;
-
     public $selectedStage;
-
     public $appointment;
-
     public $password;
+    public $showPasswordField = false; // Add a property to control visibility
 
     public function mount($appointmentId)
     {
-        $this->$appointmentId = $appointmentId;
-        $this->appointment = Appointment::where('uuid', $this->$appointmentId)->first();
-        $this->selectedStage = $this->appointment->status;
+        $this->appointmentId = $appointmentId;
+        $this->appointment = Appointment::where('uuid', $this->appointmentId)->first();
+        $this->selectedStage = $this->appointment->stage_id;
     }
 
     public function render()
@@ -29,29 +27,26 @@ class ChangeAppointmentStageSelector extends Component
         return view('livewire.change-appointment-stage-selector');
     }
 
-    public function updatedSelectedStage()
+    public function updateSelectedStage()
     {
-        if ($this->selectedStage !== $this->appointment->status) {
-            $this->password = null;
-        }
+        $this->showPasswordField = $this->selectedStage !== $this->appointment->stage_id;
     }
 
     public function updateAppointmentStage()
     {
         if (Hash::check($this->password, auth()->user()->password)) {
             $this->appointment->update([
-                'status' => $this->selectedStage,
+                'stage_id' => $this->selectedStage,
             ]);
 
             toastr()->addSuccess('Appointment Stage updated successfully.');
             $this->appointment->user->notify(new UserAppointmentStageNotification($this->appointment->user, $this->appointment));
 
-            return redirect()->route(role(auth()->user()->role_id).'.appointments.show', $this->appointment->id);
+            return redirect()->route(role(auth()->user()->role_id) . '.appointments.show', $this->appointment->id);
         }
 
         toastr()->addError('Incorrect Password');
 
-        return redirect()->route(role(auth()->user()->role_id).'.appointments.show', $this->appointment->id);
-
+        return redirect()->route(role(auth()->user()->role_id) . '.appointments.show', $this->appointment->id);
     }
 }

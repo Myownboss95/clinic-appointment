@@ -96,7 +96,7 @@ class AppointmentController extends AppBaseController
      */
     public function show($id)
     {
-        $appointment = $this->appointmentRepository->find($id);
+        $appointment = Appointment::where('id', $id)->with(['comments', 'subService', 'transaction', 'stage'])->first();
 
         if (empty($appointment)) {
             toastr()->addError('Appointment not found');
@@ -106,7 +106,10 @@ class AppointmentController extends AppBaseController
 
         $comments = $appointment->comments()->get();
 
-        return view('admin.appointments.show', ['comments' => $comments])->with('appointment', $appointment);
+        return view('admin.appointments.show', [
+            'appointment' => $appointment,
+            'comments' => $comments,
+        ]);
     }
 
     /**
@@ -145,7 +148,7 @@ class AppointmentController extends AppBaseController
 
         if (empty($appointment)) {
 
-            toastr()->addError('urrency List saved successfully.');
+            toastr()->addError('Appointment saved successfully.');
 
             return redirect(roleBasedRoute('appointments.index'));
         }

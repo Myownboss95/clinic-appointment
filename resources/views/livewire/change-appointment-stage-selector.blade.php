@@ -1,19 +1,18 @@
 @php
     use App\Models\Stage;
 @endphp
-
-<div>
-    <label for="status" class="form-label">Select Stages</label>
+<div class="my-5">
+    <label for="status" class="form-label">Change Appointment Stage</label>
 
     <div class=" mb-2">
-        <select wire:model="selectedStage" class="form-select" id="status">
+        <select wire:change="updateSelectedStage" class="form-select" id="stage" wire:model="selectedStage">
             @foreach (Stage::all() as $stage)
                 <option value="{{ $stage->id }}">{{ $stage->name }}</option>
             @endforeach
         </select>
     </div>
 
-    @if ($selectedStage)
+    @if ($showPasswordField)
         <div class="mb-2">
             <input type="password" wire:model="password" placeholder="Enter password to confirm" class="form-control">
         </div>

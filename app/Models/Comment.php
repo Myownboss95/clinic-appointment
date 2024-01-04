@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,12 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Comment
  *
  * @version October 24, 2023, 4:01 pm UTC
- *
- * @property string $model_name
- * @property int $model_id
- * @property string $body
- * @property int $user_id
- * @property int $staff_user_id
  */
 class Comment extends Model
 {
@@ -70,5 +63,20 @@ class Comment extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function appointment(): BelongsTo
+    {
+        return $this->belongsTo(Appointment::class);
+    }
+
+    public function stage(): BelongsTo
+    {
+        return $this->belongsTo(Stage::class);
+    }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author_id');
     }
 }

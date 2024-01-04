@@ -25,8 +25,10 @@ return new class extends Migration
         Schema::table('comments', function (Blueprint $table) {
             $table->foreignIdFor(Appointment::class)->after('id');
             $table->foreignIdFor(User::class)->after('id');
+            $table->uuid()->unique()->after('id');
             $table->foreignIdFor(Stage::class)->after('body');
             $table->unsignedBigInteger('author_id')->after('body');
+
         });
     }
 
@@ -37,7 +39,7 @@ return new class extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->unsignedBigInteger('model_name')->after('id');
-            $table->sring('model_id')->after('id');
+            $table->string('model_id')->after('id');
             $table->foreignIdFor(User::class)->after('id');
             $table->unsignedBigInteger('staff_user_id')->after('body');
 

@@ -47,7 +47,10 @@ final class UserAppointmentTable extends PowerGridComponent
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'subService' => ['name'],
+            'stage' => ['name'],
+        ];
     }
 
     public function addColumns(): PowerGridColumns

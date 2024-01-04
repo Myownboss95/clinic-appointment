@@ -38,8 +38,6 @@ final class AppointmentsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        $user = auth()->user();
-
         return Appointment::whereNull('parent_appointment_id')->with('subService')->latest();
     }
 

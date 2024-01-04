@@ -59,14 +59,19 @@ class LoginController extends Controller
     {
         $user->increment('login_count');
 
-        return redirect()->route(
-            $user->role_id == 3
-            ? 'admin.index'
-            : ($user->role_id == 2
-                ? 'staff.index'
-                : 'user.index')
+        // return redirect()->route(
+        //     $user->role_id == 3
+        //     ? 'admin.index'
+        //     : ($user->role_id == 2
+        //         ? 'staff.index'
+        //         : 'user.index')
 
-        );
+        // );
+        return redirect()->intended(function () use ($user) {
+            return $user->role_id == 3
+                ? route('admin.index')
+                : ($user->role_id == 2 ? route('staff.index') : route('user.index'));
+        });
     }
 
     public function logout(Request $request)

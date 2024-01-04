@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\SubService;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSubServiceRequest extends FormRequest
 {
@@ -24,8 +24,21 @@ class UpdateSubServiceRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = SubService::$rules;
+        return [
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('sub_services', 'name')->ignore($this->route('subService')),
+            ],
+            'slug' => [
+                'string',
+                Rule::unique('sub_services', 'slug')->ignore($this->route('subService')),
+            ],
+            'service_id' => 'required|integer|exists:services,id',
+            'price' => 'nullable',
+            'description' => 'nullable|string',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
-        return $rules;
+        ];
     }
 }

@@ -8,12 +8,16 @@ use App\Http\Requests\UpdateSubServiceRequest;
 use App\Models\Service;
 use App\Models\SubService;
 use App\Repositories\SubServiceRepository;
+use App\Traits\UploadFiles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Response;
 
 class SubServiceController extends AppBaseController
 {
+    use UploadFiles;
+
     /** @var SubServiceRepository */
     private $subServiceRepository;
 
@@ -47,6 +51,7 @@ class SubServiceController extends AppBaseController
     {
         return view('admin.sub_services.create', [
             'services' => Service::get(),
+            'subService' => null,
         ]);
     }
 
@@ -62,11 +67,9 @@ class SubServiceController extends AppBaseController
             'slug' => Str::slug($request->input('name')),
         ]);
         $imageName = time().$request->image->getClientOriginalName();
-        // $imageExtension = $request->image->extension();
-        //dd($imageName);
         $request->image->storeAs(public_path('images'), $imageName);
 
-        $subService = $this->subServiceRepository->create($input);
+        $this->subServiceRepository->create($input);
 
         toastr()->addSuccess('Sub Service saved successfully.');
 
@@ -121,7 +124,7 @@ class SubServiceController extends AppBaseController
      */
     public function update($id, UpdateSubServiceRequest $request)
     {
-        $subService = $this->subServiceRepository->find($id);
+        $subService = SubService::find($id);
 
         if (empty($subService)) {
             toastr()->addError('Sub Service not found');
@@ -129,8 +132,13 @@ class SubServiceController extends AppBaseController
             return redirect(roleBasedRoute('subServices.index'));
         }
 
-        $subService = $this->subServiceRepository->update($request->all(), $id);
+        $data = $request->all();
 
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadImage('sub_service', $request);
+        }
+
+        $subService->update($data);
         toastr()->addSuccess('Sub Service updated successfully.');
 
         return redirect(roleBasedRoute('subServices.index'));

@@ -12,7 +12,10 @@
     <select name="service_id" id="service_id" class="form-control">
         <option value="">Choose Service</option>
         @foreach($services as $service)
-            <option value="{{$service->id}}">{{$service->name}}</option>
+            <option value="{{$service->id}}" @if ($subService != null && $subService->service->id === $service->id)
+                    selected="selected"
+            @endif
+            >{{$service->name}}</option>
         @endforeach
     </select>
 </div>
@@ -30,7 +33,8 @@
 </div>
 
 <!-- Image Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('image', 'Image:') !!}
-    {!! Form::file('image', null, ['class' => 'form-control']) !!}
+<div class="form-group col-sm-6 mb-4">
+    {{-- <img src="{{asset('uploads/sub_service/1704312885.jpg')}}" class="img-fluid" alt=""> --}}
+    <label for="image">Image</label>
+    <input type="file" name="image" class="form-control">
 </div>

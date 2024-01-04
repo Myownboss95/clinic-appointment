@@ -20,8 +20,19 @@ class TransactionsController extends Controller
             'transactions' => Transaction::with(['user', 'appointment.subservice'])->latest(),
             'transactions_count' => Transaction::count(),
             'total_transactions' => Transaction::sum('amount'),
-            'total_referral_transactions' => Transaction::where('reason', TransactionReasons::REFERRALS->value)->sum('amount'),
-            'referral_transactions_count' => Transaction::where('reason', TransactionReasons::REFERRALS->value)->count(),
+            'total_referral_transactions' => Transaction::where('reason', TransactionReasons::REFERRALS)->sum('amount'),
+            'referral_transactions_count' => Transaction::where('reason', TransactionReasons::REFERRALS)->count(),
+        ]);
+    }
+
+    public function pendingTransactions(Request $request)
+    {
+        return view('admin.transactions.pending-transactions', [
+            'transactions' => Transaction::with(['user', 'appointment.subservice'])->latest(),
+            'transactions_count' => Transaction::count(),
+            'total_transactions' => Transaction::sum('amount'),
+            'total_referral_transactions' => Transaction::where('reason', TransactionReasons::REFERRALS)->sum('amount'),
+            'referral_transactions_count' => Transaction::where('reason', TransactionReasons::REFERRALS)->count(),
         ]);
     }
 
@@ -35,78 +46,83 @@ class TransactionsController extends Controller
     {
         $transaction = Transaction::with(['user', 'appointment.subservice', 'paymentChannel'])->where('id', $id)->first();
 
+        if (empty($transaction)) {
+            toastr()->addError('Transaction not found');
+
+            return redirect(roleBasedRoute('transactions.index'));
+        }
         // dd($transaction);
         return view('admin.transactions.show', [
             'transaction' => $transaction,
         ]);
     }
 
-    /**
-     * Show the form for editing the specified Appointment.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $transaction = Transaction::with(['user', 'appointment.subservice'])->where('id', $id)->first();
+    // /**
+    //  * Show the form for editing the specified Appointment.
+    //  *
+    //  * @param  int  $id
+    //  * @return Response
+    //  */
+    // public function edit($id)
+    // {
+    //     $transaction = Transaction::with(['user', 'appointment.subservice'])->where('id', $id)->first();
 
-        if (empty($transaction)) {
-            toastr()->addError('Appointment not found');
+    //     if (empty($transaction)) {
+    //         toastr()->addError('Appointment not found');
 
-            return redirect(roleBasedRoute('transactions.index'));
-        }
+    //         return redirect(roleBasedRoute('transactions.index'));
+    //     }
 
-        return view('admin.transactions.edit',
-            [
-                'transaction' => $transaction,
-            ]);
-    }
+    //     return view('admin.transactions.edit',
+    //         [
+    //             'transaction' => $transaction,
+    //         ]);
+    // }
 
-    /**
-     * Update the specified Appointment in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id, UpdateAppointmentRequest $request)
-    {
-        // $appointment = $this->appointmentRepository->find($id);
+    // /**
+    //  * Update the specified Appointment in storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return Response
+    //  */
+    // public function update($id, UpdateAppointmentRequest $request)
+    // {
+    //     // $appointment = $this->appointmentRepository->find($id);
 
-        // if (empty($appointment)) {
+    //     // if (empty($appointment)) {
 
-        //     toastr()->addError('urrency List saved successfully.');
-        //     return redirect(roleBasedRoute('appointments.index'));
-        // }
+    //     //     toastr()->addError('urrency List saved successfully.');
+    //     //     return redirect(roleBasedRoute('appointments.index'));
+    //     // }
 
-        // $appointment = $this->appointmentRepository->update($request->all(), $id);
+    //     // $appointment = $this->appointmentRepository->update($request->all(), $id);
 
-        // toastr()->addSuccess('Appointment updated successfully.');
+    //     // toastr()->addSuccess('Appointment updated successfully.');
 
-        // return redirect(roleBasedRoute('appointments.index'));
-    }
+    //     // return redirect(roleBasedRoute('appointments.index'));
+    // }
 
-    /**
-     * Remove the specified Appointment from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     *
-     * @throws \Exception
-     */
-    public function destroy($id)
-    {
-        // $appointment = $this->appointmentRepository->find($id);
+    // /**
+    //  * Remove the specified Appointment from storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return Response
+    //  *
+    //  * @throws \Exception
+    //  */
+    // public function destroy($id)
+    // {
+    //     // $appointment = $this->appointmentRepository->find($id);
 
-        // if (empty($appointment)) {
-        //     toastr()->addError('Appointment not found');
-        //     return redirect(roleBasedRoute('appointments.index'));
-        // }
+    //     // if (empty($appointment)) {
+    //     //     toastr()->addError('Appointment not found');
+    //     //     return redirect(roleBasedRoute('appointments.index'));
+    //     // }
 
-        // $this->appointmentRepository->delete($id);
+    //     // $this->appointmentRepository->delete($id);
 
-        // toastr()->addSuccess('Appointment saved successfully.');
+    //     // toastr()->addSuccess('Appointment saved successfully.');
 
-        // return redirect(roleBasedRoute('appointments.index'));
-    }
+    //     // return redirect(roleBasedRoute('appointments.index'));
+    // }
 }

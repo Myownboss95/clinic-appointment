@@ -25,16 +25,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
+                    <h5 class="modal-title" id="passwordModalLabel">Enter Password To Proceed</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="password" wire:model="password" placeholder="Enter password to confirm"
-                        class="form-control">
+                    <input type="password" wire:model="password" placeholder="Enter password to change the stage"
+                        class="form-control" autocomplete="off">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button wire:click="updateAppointmentStage" class="btn btn-primary">Update Status</button>
+                    <button wire:click="updateAppointmentStage" class="btn btn-primary">Update Stage</button>
                 </div>
             </div>
         </div>

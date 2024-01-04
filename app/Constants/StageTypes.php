@@ -10,8 +10,7 @@ enum StageTypes: string implements EnumToArray
 {
     use ArrayableEnum;
 
-    case CONSULTATION = 'consultation';
-    case APPOINTMENT_SCHEDULING = 'appointment scheduling';
+    case PENDING = 'pending';
     case DIAGNOSTICS = 'diagnostics';
     case PROCEDURES = 'procedures';
     case COMPLETED = 'completed';

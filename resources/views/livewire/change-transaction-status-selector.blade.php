@@ -14,7 +14,7 @@
     @if ($selectedStatus)
         <div class="mb-2">
             <input type="password" wire:model="password" placeholder="Enter password to confirm"
-                class="form-control">
+                class="form-control" required>
         </div>
         <div class="mb-4">
             <button wire:click="updateTransactionStatus" class="btn btn-primary btn-md">Update Status</button>

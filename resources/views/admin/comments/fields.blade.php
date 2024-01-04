@@ -1,29 +1,29 @@
-<!-- Model Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('model_name', 'Model Name:') !!}
-    {!! Form::text('model_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+ <div class="row">
+     <div class="col-md-6">
+        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary"> <i class="fas fa-reply"></i> Go Back</a>
+         <div class="mb-3">
+             <label for="body" class="form-label">Make your Comments</label>
+             <textarea name="body" class="form-control" id="comment-body">
+             </textarea>
+         </div>
 
-<!-- Model Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('model_id', 'Model Id:') !!}
-    {!! Form::number('model_id', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Body Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('body', 'Body:') !!}
-    {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
-</div>
+         <div class=" mb-3">
+             <label for="stage" class="form-label">Stage</label>
+             <select class="form-select" id="stage" name="stage_id">
+                 <option value="">Select Stage</option>
+                 @foreach ($stages as $stage)
+                     <option value="">Select Stage</option>
+                     <option value="{{ $stage->id }}" @if ($stage->id == $commentStage->id) selected @endif>
+                         {{ $stage->name }}</option>
+                 @endforeach
+             </select>
+         </div>
+     </div>
+ </div>
 
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Staff User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('staff_user_id', 'Staff User Id:') !!}
-    {!! Form::number('staff_user_id', null, ['class' => 'form-control']) !!}
-</div>
+ @push('scripts')
+     <script>
+         document.getElementById('comment-body').value = "{{ $comment?->body ?? '' }}";
+     </script>
+ @endpush

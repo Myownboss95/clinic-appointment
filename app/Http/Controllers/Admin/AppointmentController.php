@@ -34,10 +34,36 @@ class AppointmentController extends AppBaseController
     public function index(Request $request)
     {
         $query = Appointment::with(['subService', 'stage'])->latest();
-        $pendingStage = Stage::where('name', StageTypes::APPOINTMENT_SCHEDULING->value)->first();
+        $pendingStage = Stage::where('name', StageTypes::PENDING->value)->first();
         $completedStage = Stage::where('name', StageTypes::COMPLETED->value)->first();
 
         return view('admin.appointments.index',
+            [
+                'customers' => User::where('role_id', 1)->latest(),
+                'customers_count' => User::where('role_id', 1)->count(),
+                'new_customers_count' => User::where('role_id', 1)
+                    ->where('created_at', '>=', Carbon::now()->subWeek())
+                    ->count(),
+                'appointment' => $query->get(),
+                'follow_up_appointment_count' => $query->whereNotNull('parent_appointment_id')->count(),
+                'appointment_count' => $query->count(),
+                'pending_appointment_count' => $pendingStage->appointments->count(),
+                'new_pending_appointment_count' => $pendingStage->appointments->where('created_at', '>=', Carbon::now()->subWeek())
+                    ->whereNull('end_date')->count(),
+                'completed_appointment_count' => $completedStage->appointments->count(),
+                'new_completed_appointment_count' => $completedStage->appointments->where('created_at', '>=', Carbon::now()->subWeek())
+                    ->whereNull('end_date')->count(),
+            ]);
+
+    }
+
+    public function pendingAppointments(Request $request)
+    {
+        $query = Appointment::with(['subService', 'stage'])->latest();
+        $pendingStage = Stage::where('name', StageTypes::PENDING->value)->first();
+        $completedStage = Stage::where('name', StageTypes::COMPLETED->value)->first();
+
+        return view('admin.appointments.pending-appointments',
             [
                 'customers' => User::where('role_id', 1)->latest(),
                 'customers_count' => User::where('role_id', 1)->count(),

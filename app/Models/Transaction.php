@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\TransactionReasons;
 use App\Constants\TransactionStatusTypes;
 use App\Constants\TransactionTypes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,7 @@ class Transaction extends Model
     protected $casts = [
         // 'status' => TransactionStatusTypes::class,
         // 'type' => TransactionTypes::class,
+        'reason' => TransactionReasons::class
     ];
 
     public function user(): BelongsTo

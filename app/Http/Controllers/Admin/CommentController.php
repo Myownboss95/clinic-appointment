@@ -6,6 +6,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Appointment;
+use App\Models\Stage;
 use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
 use Response;
@@ -39,10 +40,14 @@ class CommentController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
-    {
-        return view('admin.comments.create');
-    }
+    // public function create()
+    // {
+    //     return view('admin.comments.create', [
+    //         'stages' => Stage::all(),
+    //         'commentStage' => null,
+    //         'comment' => null
+    //     ]);
+    // }
 
     /**
      * Store a newly created Comment in storage.
@@ -103,7 +108,11 @@ class CommentController extends AppBaseController
             return redirect(roleBasedRoute('comments.index'));
         }
 
-        return view('admin.comments.edit')->with('comment', $comment);
+        return view('admin.comments.edit', [
+            'comment' => $comment,
+            'stages' => Stage::all(),
+            'commentStage' => $comment->stage,
+        ]);
     }
 
     /**
@@ -126,7 +135,7 @@ class CommentController extends AppBaseController
 
         toastr()->addSuccess('Comment updated successfully.');
 
-        return redirect(roleBasedRoute('comments.index'));
+        return back();
     }
 
     /**

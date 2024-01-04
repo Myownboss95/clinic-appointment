@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class SaveCreditTransactionsAction
 {
     //needs reimplementation using DTOs
-    public static function execute(User $user, PaymentChannel $payment_channel, int $amount, string $reason = '')
+    public static function execute(User $user, PaymentChannel $payment_channel, TransactionStatusTypes $transactionStatusTypes, int $amount, string $reason = '')
     {
 
         DB::beginTransaction();
@@ -24,7 +24,7 @@ class SaveCreditTransactionsAction
             $user->transactions()->create([
                 'amount' => $amount,
                 'payment_channel_id' => $payment_channel->id,
-                'status' => TransactionStatusTypes::CONFIRMED->value,
+                'status' => $transactionStatusTypes,
                 'type' => TransactionTypes::CREDIT->value,
                 'reason' => $reason,
             ]);

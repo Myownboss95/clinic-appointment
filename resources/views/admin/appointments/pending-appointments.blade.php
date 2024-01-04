@@ -81,31 +81,16 @@
                         <!-- card body -->
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                @can('is_admin')
-                                    <div class="">
-                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Transactions</span>
-                                        <h5 class="mb-3">
-                                            <span>{{ formatMoney($total_transactions) }}</span>
-                                        </h5>
-                                        <div class="text-nowrap">
-                                            <span class="badge bg-success-subtle text-success">{{ $transactions_count }}</span>
-                                            <span class="ms-1 text-muted font-size-13">Total Transactions</span>
-                                        </div>
+                                <div class="">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Pending Appointments</span>
+                                    <h5 class="mb-3">
+                                        <span>{{ $pending_appointment_count }}</span>
+                                    </h5>
+                                    <div class="text-nowrap">
+                                        <span class="badge bg-success-subtle text-success">{{ $new_pending_appointment_count }}</span>
+                                        <span class="ms-1 text-muted font-size-13">New Since 1 week</span>
                                     </div>
-                                @endcan
-                                @can('is_staff')
-                                    <div class="">
-                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Transactions</span>
-                                        <h5 class="mb-3">
-                                            <span>{{ $transactions_count }}</span>
-                                        </h5>
-                                        <div class="text-nowrap">
-                                            <span class="ms-1 text-muted font-size-13">Total Transactions</span>
-                                        </div>
-                                    </div>
-                                @endcan
-
-
+                                </div>
                                 <div class="flex-shrink-0 text-end dash-widget">
                                     <div id="mini-chart3" data-colors='["--bs-primary", "--bs-success"]'
                                         class="apex-charts"></div>
@@ -120,60 +105,41 @@
                     <div class="card card-h-100">
                         <!-- card body -->
                         <div class="card-body">
-                            @can('is_admin')
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1">
-                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Referrals Paid</span>
-                                        <h4 class="mb-3">
-                                            <span>{{ formatMoney($total_referral_transactions) }}</span>
-                                        </h4>
-                                        <div class="text-nowrap">
-                                            <span
-                                                class="badge bg-success-subtle text-success">{{ $referral_transactions_count }}</span>
-                                            <span class="ms-1 text-muted font-size-13">Total Referrals Paid</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-shrink-0 text-end dash-widget">
-                                        <div id="mini-chart4" data-colors='["--bs-primary", "--bs-success"]'
-                                            class="apex-charts"></div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Completed Appointments</span>
+                                    <h4 class="mb-3">
+                                        <span>{{ $completed_appointment_count }}</span>
+                                    </h4>
+                                    <div class="text-nowrap">
+                                        <span class="badge bg-success-subtle text-success">{{ $new_completed_appointment_count }}</span>
+                                        <span class="ms-1 text-muted font-size-13">Completed in the last week</span>
                                     </div>
                                 </div>
-                            @endcan
-                            @can('is_staff')
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1">
-                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Referrals</span>
-                                        <h4 class="mb-3">
-                                            <span>{{ $referral_transactions_count }}</span>
-                                        </h4>
-                                        <div class="text-nowrap">
-                                            <span class="ms-1 text-muted font-size-13">Total Referrals</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-shrink-0 text-end dash-widget">
-                                        <div id="mini-chart4" data-colors='["--bs-primary", "--bs-success"]'
-                                            class="apex-charts"></div>
-                                    </div>
+                                <div class="flex-shrink-0 text-end dash-widget">
+                                    <div id="mini-chart4" data-colors='["--bs-primary", "--bs-success"]'
+                                        class="apex-charts"></div>
                                 </div>
-                            @endcan
+                            </div>
                         </div><!-- end card body -->
                     </div><!-- end card -->
                 </div><!-- end col -->
             </div><!-- end row-->
 
             <div class="row">
-                <div class="col-xl-12">
+                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Users</h4>
+                            <h4 class="card-title">Pending Appointments</h4>
                         </div>
                         <div class="card-body">
-                            <livewire:customers-table />
+                            <livewire:pending-appointments-table />
                         </div>
                         <!-- end card body -->
                     </div>
                     <!-- end card -->
                 </div>
+                <!-- end col -->
             </div>
             <!-- container-fluid -->
         </div>

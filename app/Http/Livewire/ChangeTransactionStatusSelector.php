@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Constants\TransactionStatusTypes;
 use App\Models\Transaction;
 use App\Notifications\UserTransactionNotification;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +39,13 @@ class ChangeTransactionStatusSelector extends Component
 
     public function updateTransactionStatus()
     {
+        if (auth()->user()->role_id !== 3) {
+            if ($this->selectedStatus == TransactionStatusTypes::PENDING->value) {
+                toastr()->addError('You can either confirm or reject transactions');
+
+                return redirect()->route(role(auth()->user()->role_id).'.transactions.show', $this->transaction->id);
+            }
+        }
         if (Hash::check($this->password, auth()->user()->password)) {
             $this->transaction->update([
                 'status' => $this->selectedStatus,

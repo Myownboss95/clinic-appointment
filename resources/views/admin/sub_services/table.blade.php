@@ -3,7 +3,7 @@
         <thead>
         <tr>
             <th>Name</th>
-        <th>Service Id</th>
+        <th>Service</th>
         <th>Price</th>
         <th>Description</th>
         <th>Image</th>

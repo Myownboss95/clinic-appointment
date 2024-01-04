@@ -14,7 +14,7 @@
             <div class="container-fluid">
 
                 <!-- start page title -->
-                <x-bread-crumb title="Transaction" />
+                <x-bread-crumb title="Transaction" url="transactions" />
                 <!-- end page title -->
 
                 <div class="row">

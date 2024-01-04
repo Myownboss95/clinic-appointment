@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
+    {{-- <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -15,7 +15,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+
+    
 
     <div class="content px-3">
 
@@ -24,7 +26,36 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body p-0 ">
+                     
+                
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                         </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mt-3">
+                             
+                            <div>
+                                <a href="{{roleBasedRoute('subServices.create')}}" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
+                            </div>
+                            
+                            <div class="dropdown">
+                                  <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                     
+                                </a>
+                            
+                                 
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
                 @include('admin.sub_services.table')
 
                 <div class="card-footer clearfix">

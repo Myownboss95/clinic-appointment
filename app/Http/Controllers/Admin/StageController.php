@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateStageRequest;
 use App\Repositories\StageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Stage;
 use Response;
 
 class StageController extends AppBaseController
@@ -41,7 +43,7 @@ class StageController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.stages.create');
+        return view('admin.stages.create', ['stage' => new Stage()]);
     }
 
     /**
@@ -137,14 +139,25 @@ class StageController extends AppBaseController
      *
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        if ($validator->fails()) {
+            toastr()->addError('Incorrect Password');
+
+            return redirect()->back();
+        }
+
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
             toastr()->addError('Stage not found');
 
-            return redirect(roleBasedRoute('stages.index'));
+            return redirect()->back();
         }
 
         $this->stageRepository->delete($id);

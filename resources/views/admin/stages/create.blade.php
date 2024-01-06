@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            
+            <x-page-header title="Create Stage" />
             <form action="{{roleBasedRoute('stages.store')}}" method="POST">
                 @csrf
             <div class="card-body">
@@ -29,7 +29,7 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                <button type="submit" class="btn btn-primary">Save</button>
                 <a href="{{ roleBasedRoute('stages.index') }}" class="btn btn-default">Cancel</a>
             </div>
 

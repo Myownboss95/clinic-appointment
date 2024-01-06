@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\SaveCreditTransactionsAction;
-use App\Constants\PaymentChannels;
-use App\Constants\TransactionReasons;
-use App\Constants\TransactionStatusTypes;
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Data\TransactionData;
 use App\Models\GeneralSetting;
 use App\Models\PaymentChannel;
-use App\Models\User;
-use App\Notifications\CreditReferralWalletNotification;
-use App\Notifications\SocialRegisterationNotification;
-use App\Providers\RouteServiceProvider;
 use App\Services\LocationService;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
+use App\Constants\PaymentChannels;
+use App\Constants\TransactionTypes;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+use App\Constants\TransactionReasons;
+use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
+use App\Constants\TransactionStatusTypes;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Actions\SaveReferralCreditTransactionAction;
+use App\Notifications\SocialRegisterationNotification;
+use App\Notifications\CreditReferralWalletNotification;
 
 class RegisterController extends Controller
 {
@@ -122,8 +124,15 @@ class RegisterController extends Controller
         $refBonus = $setting->ref_bonus ?? 0;
 
         //save transaction and credit referrers wallet
-        $payment_channel = PaymentChannel::where('bank_name', PaymentChannels::SYSTEM->value)->first();
-        SaveCreditTransactionsAction::execute($referredUser, $payment_channel, TransactionStatusTypes::PENDING, $refBonus, TransactionReasons::REFERRALS->VALUE);
+        $paymentChannel = PaymentChannel::where('bank_name', PaymentChannels::SYSTEM->value)->first();
+        $transactionData = new TransactionData( $refBonus, 
+                                                TransactionStatusTypes::PENDING, 
+                                                TransactionTypes::CREDIT,
+                                                $referredUser,
+                                                $paymentChannel, 
+                                                TransactionReasons::REFERRALS, 
+                                            );
+                                            SaveReferralCreditTransactionAction::execute($transactionData);
 
         $referredUser->refresh();
         $referredUser->notify(new CreditReferralWalletNotification($referredUser, $refBonus));

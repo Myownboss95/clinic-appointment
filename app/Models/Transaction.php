@@ -20,7 +20,7 @@ class Transaction extends Model
     protected $casts = [
         // 'status' => TransactionStatusTypes::class,
         // 'type' => TransactionTypes::class,
-        'reason' => TransactionReasons::class
+        'reason' => TransactionReasons::class,
     ];
 
     public function user(): BelongsTo

@@ -41,7 +41,7 @@ Route::resource('cities', CityController::class);
 Route::get('appointments/pending-appointments', [AppointmentController::class, 'pendingAppointments'])->name('appointments.pending');
 Route::resource('appointments', AppointmentController::class);
 Route::get('referrals/pending-payouts', [ReferralsTransactionController::class, 'pendingTransactions'])->name('referrals.pending');
-Route::resource('referrals', ReferralsTransactionController::class)->only(['index','show']);
+Route::resource('referrals', ReferralsTransactionController::class)->only(['index', 'show']);
 Route::get('transactions/pending-transactions', [TransactionsController::class, 'pendingTransactions'])->name('transactions.pending');
 Route::resource('transactions', TransactionsController::class)->except(['create', 'destroy']);
 Route::prefix('transactions')->controller(TransactionsController::class)->group(function () {

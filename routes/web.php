@@ -10,6 +10,7 @@ use App\Http\Controllers\BookAppointmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\TransactionReceiptController;
+use App\Http\Controllers\User\UserBankDetailsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,12 +53,15 @@ Route::get('calendly', [HomeController::class, 'calendly']);
 
 Route::middleware('auth')->group(function () {
 
-    Route::post('profile-update', [UserProfileController::class, 'update'])->name('profile.update');
-    Route::get('profile', [UserProfileController::class, 'index'])->name('profile.index');
+    Route::prefix('profile')->group(function () {
+        Route::post('/update', [UserProfileController::class, 'update'])->name('profile.update');
+        Route::get('', [UserProfileController::class, 'index'])->name('profile.index');
 
-    //handle profile image
-    Route::get('/profile/{user}/edit-image', [ImageController::class, 'index'])->name('image.index');
-    Route::put('/profile/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
+        //handle profile image
+        Route::get('/{user}/edit-image', [ImageController::class, 'index'])->name('image.index');
+        Route::put('/change-password', [UpdatePasswordController::class, 'update'])->name('password.update');
+        Route::post('/update-bank-details', [UserBankDetailsController::class, 'update'])->name('bank-details.update');
+    });
     Route::get('transaction/download/{ref}', TransactionReceiptController::class)->name('download.transaction');
 
     Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));

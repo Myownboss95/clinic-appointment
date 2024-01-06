@@ -1,28 +1,27 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\ClinicUserController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CountryPhoneCodeController;
+use App\Http\Controllers\Admin\CurrencyListController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GeneralSettingController;
+use App\Http\Controllers\Admin\ReferralsTransactionController;
 use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StageController;
 use App\Http\Controllers\Admin\StateController;
-use App\Http\Controllers\Admin\CommentController;
-use App\Http\Controllers\Admin\CountryController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\PasswordResetController;
-use App\Http\Controllers\Admin\CustomerController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\UserStageController;
-use App\Http\Controllers\Admin\ClinicUserController;
 use App\Http\Controllers\Admin\SubServiceController;
-use App\Http\Controllers\Admin\AppointmentController;
-use App\Http\Controllers\Admin\CurrencyListController;
 use App\Http\Controllers\Admin\TransactionsController;
-use App\Http\Controllers\Admin\GeneralSettingController;
-use App\Http\Controllers\Admin\CountryPhoneCodeController;
-use App\Http\Controllers\Admin\ReferralsTransactionController;
-
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserStageController;
+use App\Http\Controllers\PasswordResetController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', DashboardController::class)->name('index');
 Route::get('customers', CustomerController::class)->name('customers.index');
@@ -35,7 +34,7 @@ Route::resource('userStages', UserStageController::class);
 Route::resource('subServices', SubServiceController::class);
 Route::resource('states', StateController::class);
 Route::resource('stages', StageController::class);
-Route::resource('comments', CommentController::class)->except(['store','destroy']);
+Route::resource('comments', CommentController::class)->except(['store', 'destroy']);
 Route::get('comments-destroy/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::post('comments/appointment/{appointmentId}/store', [CommentController::class, 'store'])->name('comments.appointment.store');
 Route::resource('services', ServiceController::class);
@@ -49,7 +48,7 @@ Route::resource('cities', CityController::class);
 Route::get('appointments/pending-appointments', [AppointmentController::class, 'pendingAppointments'])->name('appointments.pending');
 Route::resource('appointments', AppointmentController::class);
 Route::get('referrals/pending-payouts', [ReferralsTransactionController::class, 'pendingTransactions'])->name('referrals.pending');
-Route::resource('referrals', ReferralsTransactionController::class)->only(['index','show']);
+Route::resource('referrals', ReferralsTransactionController::class)->only(['index', 'show']);
 Route::get('transactions/pending-transactions', [TransactionsController::class, 'pendingTransactions'])->name('transactions.pending');
 Route::resource('transactions', TransactionsController::class);
 Route::prefix('transactions')->controller(TransactionsController::class)->group(function () {

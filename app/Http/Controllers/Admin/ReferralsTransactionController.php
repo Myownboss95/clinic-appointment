@@ -51,6 +51,7 @@ class ReferralsTransactionController extends Controller
 
             return redirect(roleBasedRoute('referrals.index'));
         }
+
         // dd($transaction);
         return view('admin.referrals-transactions.show', [
             'transaction' => $transaction,

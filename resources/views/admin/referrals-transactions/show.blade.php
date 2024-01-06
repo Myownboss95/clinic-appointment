@@ -14,7 +14,7 @@
             <div class="container-fluid">
 
                 <!-- start page title -->
-                <x-bread-crumb title="Transaction" />
+                <x-bread-crumb title="Transaction" url="referrals.index" />
                 <!-- end page title -->
 
                 <div class="row">
@@ -27,7 +27,9 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="p-1">
-                                                        @livewire('confirm-referral-transaction-status-selector', ['transactionId' => $transaction->ref])
+                                                        {{-- @livewire('confirm-referral-transaction-status-selector', ['transactionId' => $transaction->ref]) --}}
+<x-pay-referral-modal url="subServices" :id="$subService->id" />
+                                                    
                                                     </div>
                                                 </div>
                                             </div>

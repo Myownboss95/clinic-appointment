@@ -51,33 +51,34 @@ class TransactionsController extends Controller
 
             return redirect(roleBasedRoute('transactions.index'));
         }
+
         // dd($transaction);
         return view('admin.transactions.show', [
             'transaction' => $transaction,
         ]);
     }
 
-    // /**
-    //  * Show the form for editing the specified Appointment.
-    //  *
-    //  * @param  int  $id
-    //  * @return Response
-    //  */
-    // public function edit($id)
-    // {
-    //     $transaction = Transaction::with(['user', 'appointment.subservice'])->where('id', $id)->first();
+    /**
+     * Show the form for editing the specified Appointment.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function payReferrals($id)
+    {
+        $transaction = Transaction::find($id);
 
-    //     if (empty($transaction)) {
-    //         toastr()->addError('Appointment not found');
+        if (empty($transaction)) {
+            toastr()->addError('Transaction not found');
 
-    //         return redirect(roleBasedRoute('transactions.index'));
-    //     }
+            return redirect()->back();
+        }
 
-    //     return view('admin.transactions.edit',
-    //         [
-    //             'transaction' => $transaction,
-    //         ]);
-    // }
+        return view('admin.transactions.edit',
+            [
+                'transaction' => $transaction,
+            ]);
+    }
 
     // /**
     //  * Update the specified Appointment in storage.

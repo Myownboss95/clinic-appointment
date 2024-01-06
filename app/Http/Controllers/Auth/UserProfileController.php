@@ -26,7 +26,7 @@ class UserProfileController extends AppBaseController
         $refBonus = $setting->ref_bonus ?? 0;
 
         return view('user.profile', [
-            'user' => $request->user()->load('referrals'),
+            'user' => $request->user()->load(['referrals','bankDetail']),
             'refBonus' => $refBonus,
         ]);
     }

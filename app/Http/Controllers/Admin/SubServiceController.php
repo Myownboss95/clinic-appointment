@@ -11,8 +11,8 @@ use App\Repositories\SubServiceRepository;
 use App\Traits\UploadFiles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Response;
 
 class SubServiceController extends AppBaseController
@@ -67,11 +67,11 @@ class SubServiceController extends AppBaseController
         $data = array_merge($request->all(), [
             'slug' => Str::slug($request->input('name')),
         ]);
-      
+
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadImage('sub_service', $request);
         }
-         
+
         SubService::create($data);
 
         //$this->subServiceRepository->create($input);
@@ -182,8 +182,6 @@ class SubServiceController extends AppBaseController
         toastr()->addSuccess('Sub Service deleted successfully.');
 
         return redirect(roleBasedRoute('subServices.index'));
-    
 
-      
     }
 }

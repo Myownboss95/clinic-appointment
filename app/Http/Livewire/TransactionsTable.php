@@ -40,7 +40,7 @@ final class TransactionsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Transaction::where('reason', '',TransactionReasons::REFERRALS)->with('appointment.subService')->latest();
+        return Transaction::where('reason', '', TransactionReasons::REFERRALS)->with('appointment.subService')->latest();
     }
 
     public function relationSearch(): array

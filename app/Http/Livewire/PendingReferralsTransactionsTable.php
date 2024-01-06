@@ -2,21 +2,22 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Transaction;
-use Illuminate\Support\Carbon;
-use App\Constants\TransactionTypes;
 use App\Constants\TransactionReasons;
+use App\Constants\TransactionStatusTypes;
+use App\Constants\TransactionTypes;
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class PendingReferralsTransactionsTable extends PowerGridComponent
 {
@@ -39,7 +40,7 @@ final class PendingReferralsTransactionsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Transaction::where('reason', TransactionReasons::REFERRALS)->with('appointment.subService')->latest();
+        return Transaction::where('reason', TransactionReasons::REFERRALS)->where('status', TransactionStatusTypes::PENDING)->with('appointment.subService')->latest();
     }
 
     public function relationSearch(): array

@@ -16,9 +16,9 @@
             <tr>
             <td>{{ $subService->name }}</td>
             <td>{{ $subService->service->name }}</td>
-            <td>{{ $subService->price }}</td>
+            <td>{{ '₦'.$subService->price }}</td>
             <td>{{ $subService->description }}</td>
-            <td><img src="{{asset('storage/images'. $subService->image)}}" width="50" alt=""></td>
+            <td> <img src="{{asset('storage/sub_service/' . $subService->image)}}" alt="" width="60" class="img-fluid mx-auto d-block rounded"> </td>
             {{-- <td>{{  }}</td> --}}
                 <td width="120">
                      <form action="{{roleBasedRoute('subServices.destroy', $subService->id)}}" method="POST">
@@ -33,12 +33,17 @@
                            class='btn btn-default btn-xs'>
                             <i class="far fa-edit"></i>
                         </a>
-                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        
+                        <button class="btn btn-danger btn-xs" type="button" id="deleteButton">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+
                     </div>
                      </form>
                      
                 </td>
             </tr>
+            <x-delete-modal url="subServices" :id="$subService->id" />
         @endforeach
         </tbody>
     </table>

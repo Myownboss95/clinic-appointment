@@ -1,21 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Sub Services</h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ roleBasedRoute('subServices.create') }}">
-                        Add New
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section> --}}
+     
 
     
 
@@ -39,7 +25,7 @@
                         <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mt-3">
                              
                             <div>
-                                <a href="{{roleBasedRoute('subServices.create')}}" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
+                                <a href="{{roleBasedRoute('subServices.create')}}" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
                             </div>
                             
                             <div class="dropdown">

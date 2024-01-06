@@ -66,8 +66,9 @@ class SubServiceController extends AppBaseController
         $input = array_merge($request->all(), [
             'slug' => Str::slug($request->input('name')),
         ]);
-        $imageName = time().$request->image->getClientOriginalName();
-        $request->image->storeAs(public_path('images'), $imageName);
+        // $imageName = time().$request->image->getClientOriginalName();
+        // $request->image->storeAs(public_path('images'), $imageName);
+         
 
         $this->subServiceRepository->create($input);
 

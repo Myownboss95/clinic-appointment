@@ -2,20 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Constants\TransactionTypes;
 use App\Models\Transaction;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use App\Constants\TransactionTypes;
+use App\Constants\TransactionReasons;
+use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
 final class PendingTransactionsTable extends PowerGridComponent
 {
@@ -38,7 +39,7 @@ final class PendingTransactionsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Transaction::with('appointment.subService')->latest();
+        return Transaction::where('reason', '!=', TransactionReasons::REFERRALS)->with('appointment.subService')->latest();
     }
 
     public function relationSearch(): array

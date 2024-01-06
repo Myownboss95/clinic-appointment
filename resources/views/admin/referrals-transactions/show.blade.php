@@ -27,7 +27,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="p-1">
-                                                        @livewire('change-transaction-status-selector', ['transactionId' => $transaction->ref])
+                                                        @livewire('confirm-referral-transaction-status-selector', ['transactionId' => $transaction->ref])
                                                     </div>
                                                 </div>
                                             </div>

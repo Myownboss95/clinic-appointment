@@ -23,11 +23,9 @@
                         @foreach ($services as $service)
                             <tr>
                                 <th scope="row">{{ $service->name }}</th>
-                                <td class="btn btn-primary">{{ $service->status == 1 ? 'active':'inactive' }}</td> 
+                                <td class="btn btn-{{$service->status == 1 ? 'success':'danger'}}">{{ $service->status == 1 ? 'active':'inactive' }}</td> 
                                 <td width="120">
-                                    <form action="{{roleBasedRoute('services.destroy', $service->id)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
+                                    
                                      <div class='btn-group'>
                                         <a href="{{ roleBasedRoute('services.show', [$service->id]) }}"
                                            class='btn btn-default btn-xs'>
@@ -37,11 +35,12 @@
                                            class='btn btn-default btn-xs'>
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                         <button type="button" class="btn btn-danger btn-xs" id="deleteButton"><i class="far fa-trash-alt" ></i></button>
                                     </div>
-                                    </form>
+                                    
                                 </td>                            
                             </tr>
+                            <x-delete-modal url="services" :id="$service->id" />
                         @endforeach
                             
                         </tbody>
@@ -53,35 +52,7 @@
         <!-- end card -->
     </div>
     <!-- end col -->
-    {{-- <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Follow Up Appointments</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table mb-0">
 
-                        <thead class="table-light">
-                            <tr>
-                                <th>Appointment Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($followUpAppointments as $followUpAppointment)
-                                <tr>
-                                    <th scope="row">{{format_datetime($followUpAppointment->start_time)}}</th>
-                                   
-                                </tr>
-                            @endforeach
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- end card body -->
-        </div>
-        <!-- end card -->
-    </div> --}}
-    <!-- end col -->
+
+    
 </div>

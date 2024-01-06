@@ -12,6 +12,7 @@ use App\Traits\UploadFiles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 use Response;
 
 class SubServiceController extends AppBaseController
@@ -51,7 +52,7 @@ class SubServiceController extends AppBaseController
     {
         return view('admin.sub_services.create', [
             'services' => Service::get(),
-            'subService' => null,
+            'subService' => new SubService(),
         ]);
     }
 
@@ -63,13 +64,17 @@ class SubServiceController extends AppBaseController
      */
     public function store(CreateSubServiceRequest $request)
     {
-        $input = array_merge($request->all(), [
+        $data = array_merge($request->all(), [
             'slug' => Str::slug($request->input('name')),
         ]);
-        $imageName = time().$request->image->getClientOriginalName();
-        $request->image->storeAs(public_path('images'), $imageName);
+      
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadImage('sub_service', $request);
+        }
+         
+        SubService::create($data);
 
-        $this->subServiceRepository->create($input);
+        //$this->subServiceRepository->create($input);
 
         toastr()->addSuccess('Sub Service saved successfully.');
 
@@ -152,14 +157,24 @@ class SubServiceController extends AppBaseController
      *
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        if ($validator->fails()) {
+            toastr()->addError('Incorrect Password');
+
+            return redirect()->back();
+        }
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
             toastr()->addError('Sub Service not found');
 
-            return redirect(roleBasedRoute('subServices.index'));
+            return redirect()->back();
         }
 
         $this->subServiceRepository->delete($id);
@@ -167,5 +182,8 @@ class SubServiceController extends AppBaseController
         toastr()->addSuccess('Sub Service deleted successfully.');
 
         return redirect(roleBasedRoute('subServices.index'));
+    
+
+      
     }
 }

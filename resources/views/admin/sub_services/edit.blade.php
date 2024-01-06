@@ -16,9 +16,10 @@
         @include('adminlte-templates::common.errors')
 
         <div class="card">
-
-            {!! Form::model($subService, ['route' => ['staff.subServices.update', $subService->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
-             
+            <x-page-header title="Edit Subservice" />
+              <form action="{{roleBasedRoute('subServices.update', [$subService->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
             <div class="card-body">
                 <div class="row">
                     @include('admin.sub_services.fields')
@@ -26,11 +27,11 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                <button type="submit" class="btn btn-primary">Save</button>
                 <a href="{{ roleBasedRoute('subServices.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
-            {!! Form::close() !!}
+              </form>
 
         </div>
     </div>

@@ -17,7 +17,7 @@
 
         <div class="card">
 
-             
+            <x-page-header title="Create Subservice" />
             <form action="{{roleBasedRoute('subServices.store')}}" method="POST" enctype="multipart/form-data"> 
                 @csrf
             <div class="card-body">

@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\ReferralPayoutTransactionAction;
-use App\Constants\PaymentChannels;
 use App\Constants\TransactionReasons;
-use App\Constants\TransactionStatusTypes;
-use App\Constants\TransactionTypes;
-use App\Data\TransactionData;
 use App\Http\Controllers\Controller;
-use App\Models\PaymentChannel;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -64,7 +58,6 @@ class TransactionsController extends Controller
         ]);
     }
 
-   
     // /**
     //  * Update the specified Appointment in storage.
     //  *

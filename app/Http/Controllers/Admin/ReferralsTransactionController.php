@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Transaction;
-use Illuminate\Http\Request;
-use App\Data\TransactionData;
-use App\Models\PaymentChannel;
+use App\Actions\ReferralPayoutTransactionAction;
 use App\Constants\PaymentChannels;
-use App\Constants\TransactionTypes;
-use App\Http\Controllers\Controller;
 use App\Constants\TransactionReasons;
 use App\Constants\TransactionStatusTypes;
-use App\Actions\ReferralPayoutTransactionAction;
+use App\Constants\TransactionTypes;
+use App\Data\TransactionData;
+use App\Http\Controllers\Controller;
+use App\Models\PaymentChannel;
+use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
 
 class ReferralsTransactionController extends Controller
 {
@@ -65,7 +64,8 @@ class ReferralsTransactionController extends Controller
             'transaction' => $transaction,
         ]);
     }
-     /**
+
+    /**
      * Show the form for editing the specified Appointment.
      *
      * @param  int  $id
@@ -107,5 +107,4 @@ class ReferralsTransactionController extends Controller
 
         return redirect()->back();
     }
-
 }

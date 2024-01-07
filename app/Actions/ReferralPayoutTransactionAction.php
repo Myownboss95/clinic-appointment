@@ -2,14 +2,13 @@
 
 namespace App\Actions;
 
-use Exception;
 use App\Data\TransactionData;
-use Illuminate\Support\Facades\DB;
 use App\Notifications\PayoutReferralNotification;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ReferralPayoutTransactionAction
 {
-
     public static function execute(TransactionData $transactionData)
     {
 

@@ -49,6 +49,7 @@ Route::get('appointments/pending-appointments', [AppointmentController::class, '
 Route::resource('appointments', AppointmentController::class);
 Route::get('referrals/pending-payouts', [ReferralsTransactionController::class, 'pendingTransactions'])->name('referrals.pending');
 Route::resource('referrals', ReferralsTransactionController::class)->only(['index', 'show']);
+Route::post('referrals/pay-referrals/{transactionId}', [ReferralsTransactionController::class, 'payReferrals'])->name('referrals.pay');
 Route::get('transactions/pending-transactions', [TransactionsController::class, 'pendingTransactions'])->name('transactions.pending');
 Route::resource('transactions', TransactionsController::class);
 Route::prefix('transactions')->controller(TransactionsController::class)->group(function () {

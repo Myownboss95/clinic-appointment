@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Constants\TransactionReasons;
-use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Data\TransactionData;
+use App\Models\PaymentChannel;
+use App\Constants\PaymentChannels;
+use App\Constants\TransactionTypes;
+use App\Http\Controllers\Controller;
+use App\Constants\TransactionReasons;
+use App\Constants\TransactionStatusTypes;
+use App\Actions\ReferralPayoutTransactionAction;
+use Illuminate\Support\Facades\Validator;
+
 
 class ReferralsTransactionController extends Controller
 {
@@ -57,4 +65,47 @@ class ReferralsTransactionController extends Controller
             'transaction' => $transaction,
         ]);
     }
+     /**
+     * Show the form for editing the specified Appointment.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function payReferrals(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        if ($validator->fails()) {
+            toastr()->addError('Incorrect Password');
+
+            return redirect()->back();
+        }
+        $transaction = Transaction::find($id);
+
+        if (empty($transaction)) {
+            toastr()->addError('Transaction not found');
+
+            return redirect()->back();
+        }
+        $transaction->update([
+            'status' => TransactionStatusTypes::CONFIRMED->value,
+            'confirmed_by' => $request->user()->id,
+        ]);
+        $paymentChannel = PaymentChannel::where('bank_name', PaymentChannels::ADMIN->value)->first();
+        $transactionData = new TransactionData($transaction->amount,
+            TransactionStatusTypes::PAID_REFERRAL,
+            TransactionTypes::DEBIT,
+            $transaction->user,
+            $paymentChannel,
+            TransactionReasons::REFERRALS_PAID,
+            $request->user()
+        );
+        ReferralPayoutTransactionAction::execute($transactionData);
+        toastr()->addSuccess('Referral Balance Deducted and confirmed by you');
+
+        return redirect()->back();
+    }
+
 }

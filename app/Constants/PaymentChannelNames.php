@@ -10,5 +10,5 @@ enum PaymentChannelNames: string implements EnumToArray
     use ArrayableEnum;
 
     case BANK = 'bank';
-    case SYSTEM = 'system';
+    case ADMIN = 'admin';
 }

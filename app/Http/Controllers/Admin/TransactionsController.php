@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\ReferralPayoutTransactionAction;
+use App\Constants\PaymentChannels;
 use App\Constants\TransactionReasons;
+use App\Constants\TransactionStatusTypes;
+use App\Constants\TransactionTypes;
+use App\Data\TransactionData;
 use App\Http\Controllers\Controller;
+use App\Models\PaymentChannel;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -58,28 +64,7 @@ class TransactionsController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified Appointment.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function payReferrals($id)
-    {
-        $transaction = Transaction::find($id);
-
-        if (empty($transaction)) {
-            toastr()->addError('Transaction not found');
-
-            return redirect()->back();
-        }
-
-        return view('admin.transactions.edit',
-            [
-                'transaction' => $transaction,
-            ]);
-    }
-
+   
     // /**
     //  * Update the specified Appointment in storage.
     //  *

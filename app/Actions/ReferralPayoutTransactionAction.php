@@ -2,30 +2,32 @@
 
 namespace App\Actions;
 
-use App\Constants\TransactionTypes;
-use App\Data\TransactionData;
 use Exception;
+use App\Data\TransactionData;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\PayoutReferralNotification;
 
-class SaveReferralCreditTransactionAction
+class ReferralPayoutTransactionAction
 {
-    //TODO: needs reimplementation using DTOs
+
     public static function execute(TransactionData $transactionData)
     {
 
         DB::beginTransaction();
         try {
-            $transactionData->user->increment('balance', $transactionData->amount);
-            $transactionData->user->increment('life_time_balance', $transactionData->amount);
+            $transactionData->user->decrement('balance', $transactionData->amount);
             $transactionData->user->save();
 
             $transactionData->user->transactions()->create([
                 'amount' => $transactionData->amount,
                 'payment_channel_id' => $transactionData->channel->id,
                 'status' => $transactionData->status,
-                'type' => TransactionTypes::CREDIT->value,
+                'type' => $transactionData->type,
                 'reason' => $transactionData->reason,
+                'confirmed_by' => $transactionData->confirmedBy->id,
             ]);
+
+            $transactionData->user->notify((new PayoutReferralNotification($transactionData->user, $transactionData->amount))->afterCommit());
             DB::commit();
 
         } catch (\Throwable $th) {

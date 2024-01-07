@@ -12,6 +12,6 @@ enum TransactionReasons: string implements EnumToArray
     case NIL = '';
     case REFERRALS = 'Referral Bonus';
     case APPOINTMENT_BOOKING = 'Appointment Booking';
-    case REFERRALS_PAID ='Paid Referral Bonus';
+    case REFERRALS_PAID = 'Paid Referral Bonus';
 
 }

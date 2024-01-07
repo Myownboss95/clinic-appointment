@@ -10,9 +10,10 @@ class UserBankDetails extends Model
     use HasFactory;
 
     protected bool $hasUuidColumn = false;
+
     protected $guarded = ['id'];
 
-    public function user () : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

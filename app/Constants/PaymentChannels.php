@@ -13,14 +13,14 @@ enum PaymentChannels: string implements EnumToArray
 
     case KEYSTONE = 'keystone';
 
-    case SYSTEM = 'system';
+    case ADMIN = 'Admin';
 
     public function name(): string
     {
         return match ($this) {
             self::UBA => PaymentChannelNames::BANK->value,
             self::KEYSTONE => PaymentChannelNames::BANK->value,
-            self::SYSTEM => PaymentChannelNames::SYSTEM->value
+            self::ADMIN => PaymentChannelNames::ADMIN->value
         };
 
     }
@@ -36,19 +36,19 @@ enum PaymentChannels: string implements EnumToArray
         return match ($this) {
             self::UBA => '0596660757',
             self::KEYSTONE => '0024688049',
-            self::SYSTEM => 1
+            self::ADMIN => 1
         };
 
     }
 
     public function account_name()
     {
-        return 'Dental Clinic';
+        return config('app.name');
 
         return match ($this) {
-            self::UBA => 'Dental Clinic',
-            self::KEYSTONE => 'Dental Clinic',
-            self::SYSTEM => 'system'
+            self::UBA => config('app.name'),
+            self::KEYSTONE => config('app.name'),
+            self::ADMIN => 'Admin'
         };
 
     }

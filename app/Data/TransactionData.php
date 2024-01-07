@@ -2,12 +2,12 @@
 
 namespace App\Data;
 
-use App\Models\User;
-use Spatie\LaravelData\Data;
-use App\Models\PaymentChannel;
-use App\Constants\TransactionTypes;
 use App\Constants\TransactionReasons;
 use App\Constants\TransactionStatusTypes;
+use App\Constants\TransactionTypes;
+use App\Models\PaymentChannel;
+use App\Models\User;
+use Spatie\LaravelData\Data;
 
 class TransactionData extends Data
 {

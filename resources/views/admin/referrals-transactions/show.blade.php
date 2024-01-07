@@ -22,19 +22,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-xl-6">
-                                        <div class="product-detai-imgs">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="p-1">
-                                                        {{-- @livewire('confirm-referral-transaction-status-selector', ['transactionId' => $transaction->ref]) --}}
-<x-pay-referral-modal url="subServices" :id="$subService->id" />
-                                                    
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="col-xl-6">
                                         <div class="mt-4 mt-xl-3">
@@ -42,15 +29,17 @@
                                             </h4>
                                             <h5 class="mb-4">Amount : <b>{{ formatMoney($transaction->amount) }}</b>
                                             </h5>
+                                            <button class="btn btn-primary" id="payNow">Pay Now</button>
 
 
-                                            @if ($transaction->appointment->count()>0)
+                                            @if ($transaction->appointment->count() > 0)
                                                 <h5> <a href="{{ roleBasedRoute('appointments.show', $transaction->appointment?->first()?->id) }}"
                                                         class="btn btn-outline-info btn-sm">
                                                         View Appointment Paid For
                                                         <i class="fas fa-eye"></i> </a></h5>
                                             @endif
 
+                                            <x-pay-referrals-modal :user="$transaction->user" :id="$transaction->id" />
 
                                             <a href="{{ route('download.transaction', $transaction->ref) }}"
                                                 class="btn btn-outline-secondary btn-sm"><i class="fas fa-download"></i>
@@ -79,25 +68,25 @@
                                                             class="btn btn-outline-link btn-md">
                                                             {{ $transaction->user?->last_name }}
                                                             {{ $transaction->user?->first_name }}
-                                                              <i
-                                                                class="fas fa-eye"></i>
+                                                            <i class="fas fa-eye"></i>
                                                     </td>
                                                     </a>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row" style="width: 400px;">Confirmed By </th>
                                                     <td>
-                                                        {{ $transaction->confirmedBy?->first_name . ' '. $transaction->confirmedBy?->last_name}}
+                                                        {{ $transaction->confirmedBy?->first_name . ' ' . $transaction->confirmedBy?->last_name }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Email</th>
                                                     <td>{{ $transaction->user?->email }}</td>
                                                 </tr>
-                                                @if ($transaction->appointment->count()>0)
+                                                @if ($transaction->appointment->count() > 0)
                                                     <tr>
                                                         <th scope="row"><i
-                                                            class="bx bx-unlink font-size-16 align-middle text-primary me-1"></i>Service Paid</th>
+                                                                class="bx bx-unlink font-size-16 align-middle text-primary me-1"></i>Service
+                                                            Paid</th>
                                                         <td>{{ upperCase($transaction->appointment?->first()?->subService?->first()?->name) }}
                                                         </td>
                                                     </tr>

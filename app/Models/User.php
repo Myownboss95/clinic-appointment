@@ -76,32 +76,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'first_name' => 'nullable|string|max:255',
-        'last_name' => 'nullable|string|max:255',
-        'email' => 'required|string|max:255',
-        'dob' => 'required|string',
-        'phone_number' => 'required|string',
-        'city_id' => 'nullable|integer',
-        'state_id' => 'nullable|integer',
-        'country_id' => 'nullable|integer',
-        'role_id' => 'nullable|integer',
-        'deleted_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'created_at' => 'nullable',
-        'password' => 'nullable|string|max:255',
-        'gender' => 'nullable|string|max:255',
-        'balance' => 'nullable|integer',
-        'life_time_balance' => 'nullable|integer',
-        'referral_code' => 'nullable|string|max:255',
-        'referred_by_user_id' => 'nullable|integer',
-        'email_verified_at' => 'nullable',
-    ];
+     
 
     /**
      * Boot the model.

@@ -21,9 +21,7 @@
             <td> <img src="{{asset('storage/sub_service/' . $subService->image)}}" alt="" width="60" class="img-fluid mx-auto d-block rounded"> </td>
             {{-- <td>{{  }}</td> --}}
                 <td width="120">
-                     <form action="{{roleBasedRoute('subServices.destroy', $subService->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
+                    
                     <div class='btn-group'>
                         <a href="{{roleBasedRoute('subServices.show', $subService->id)}}"
                            class='btn btn-default btn-xs'>
@@ -39,7 +37,7 @@
                         </button>
 
                     </div>
-                     </form>
+                  
                      
                 </td>
             </tr>

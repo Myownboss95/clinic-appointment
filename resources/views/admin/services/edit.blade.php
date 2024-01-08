@@ -1,24 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1>Edit Service</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-
+   
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
 
         <div class="card">
-
-            {!! Form::model($service, ['route' => ['staff.services.update', $service->id], 'method' => 'patch']) !!}
-
+            <x-page-header title="Edit Service" />
+             <form action="{{roleBasedRoute('services.update', [$service->id])}}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="card-body">
                 <div class="row">
                     @include('admin.services.fields')
@@ -26,11 +18,11 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                <button class="btnb btn-primary" type="submit">Save</button>
                 <a href="{{ roleBasedRoute('services.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
-            {!! Form::close() !!}
+        </form>
 
         </div>
     </div>

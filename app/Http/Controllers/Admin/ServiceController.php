@@ -6,8 +6,10 @@ use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Repositories\ServiceRepository;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Service;
 use Response;
 
 class ServiceController extends AppBaseController
@@ -41,7 +43,7 @@ class ServiceController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.services.create');
+        return view('admin.services.create', ['service' => new Service()]);
     }
 
     /**
@@ -128,14 +130,25 @@ class ServiceController extends AppBaseController
      *
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        if ($validator->fails()) {
+            toastr()->addError('Incorrect Password');
+
+            return redirect()->back();
+        }
+        
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
             toastr()->addError('Service not found');
 
-            return redirect(roleBasedRoute('services.index'));
+            return redirect()->back();
         }
 
         $this->serviceRepository->delete($id);

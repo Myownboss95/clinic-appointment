@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\AdminUpdateUserRequest;
-use App\Http\Requests\CreateUserRequest;
+use Response;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
-use Response;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\AdminUpdateUserRequest;
+use App\Notifications\UserPasswordNotification;
 
 class UserController extends AppBaseController
 {
@@ -29,6 +32,7 @@ class UserController extends AppBaseController
      */
     public function index(Request $request)
     {
+        
         $users = $this->userRepository->all();
 
         return view('admin.users.index')
@@ -42,6 +46,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
+        
         return view('admin.users.create');
     }
 
@@ -53,13 +58,17 @@ class UserController extends AppBaseController
      */
     public function store(CreateUserRequest $request)
     {
-        $input = $request->all();
+         
+        $unhashedPassword = Str::random(10);
+        $hashPassword = Hash::make($unhashedPassword);
+        $input = array_merge($request->all(), ['password' => $hashPassword ]);
+        $newUser = $this->userRepository->create($input);
 
-        $user = $this->userRepository->create($input);
+        $newUser->notify(new UserPasswordNotification($newUser, $unhashedPassword));   
 
         toastr()->addSuccess('User saved successfully.');
 
-        return redirect(roleBasedRoute('users.index'));
+        return redirect(roleBasedRoute('users.index'));          
     }
 
     /**
@@ -152,4 +161,7 @@ class UserController extends AppBaseController
 
         return redirect(roleBasedRoute('users.index'));
     }
+
+
+    // public function saveUser()
 }

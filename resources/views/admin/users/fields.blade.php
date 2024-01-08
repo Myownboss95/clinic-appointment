@@ -1,87 +1,149 @@
-<!-- Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+{{-- @extends('layouts.auth')
 
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+@section('title', 'Register')
+@section('content')
 
-<!-- City Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('city_id', 'City Id:') !!}
-    {!! Form::number('city_id', null, ['class' => 'form-control']) !!}
-</div>
+    <div class="auth-content my-auto">
+        <div class="text-center">
+            <h5 class="mb-0">Register a new membership</h5>
+        </div>
+        <div class="mt-4 pt-2 text-center">
+            <div class="signin-other-title">
+                <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign up with - Or</h5>
+            </div>
 
-<!-- State Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('state_id', 'State Id:') !!}
-    {!! Form::number('state_id', null, ['class' => 'form-control']) !!}
-</div>
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a href="javascript:void()" class="social-list-item bg-primary text-white border-primary">
+                        <i class="mdi mdi-facebook"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="javascript:void()" class="social-list-item bg-info text-white border-info">
+                        <i class="mdi mdi-twitter"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="{{ route('register.google') }}" class="social-list-item bg-danger text-white border-danger">
+                        <i class="mdi mdi-google"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <form class="mt-4 pt-2" method="post" action="{{ roleBasedRoute('users.store') }}">
+            @csrf
+            <div class="form-floating form-floating-custom mb-4">
+                <input type="text" class="form-control  @error('first_name') is-invalid @enderror"
+                    value="{{ old('first_name') }}" id="input-first-name" placeholder="Enter First Name" name="first_name"
+                    required>
+                <div class="invalid-feedback">
+                    Please Enter First Name
+                </div>
+                <label for="input-first-name">First Name</label>
+                <div class="form-floating-icon">
+                    <i data-feather="users"></i>
+                </div>
+                @error('first_name')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-floating form-floating-custom mb-4">
+                <input type="text" class="form-control  @error('last_name') is-invalid @enderror"
+                    value="{{ old('last_name') }}" id="input-last-name" placeholder="Enter Last Name" name="last_name"
+                    required>
+                <div class="invalid-feedback">
+                    Please Enter Last Name
+                </div>
+                <label for="input-last-name">Last Name</label>
+                <div class="form-floating-icon">
+                    <i data-feather="users"></i>
+                </div>
+                @error('last_name')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-floating form-floating-custom mb-4">
+                <input type="text" class="form-control  @error('phone_number') is-invalid @enderror"
+                    value="{{ old('phone_number') }}" id="input-phone" placeholder="Enter Phone Number" name="phone_number"
+                    required>
+                <div class="invalid-feedback">
+                    Please Enter Phone Number
+                </div>
+                <label for="input-phone">Phone Number</label>
+                <div class="form-floating-icon">
+                    <i data-feather="phone"></i>
+                </div>
+                @error('phone_number')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-floating form-floating-custom mb-4">
+                <input type="text" class="form-control  @error('email') is-invalid @enderror" id="input-email"
+                    placeholder="Enter Email" value="{{ old('email') }}" name="email">
+                <label for="input-email">Email</label>
+                <div class="form-floating-icon">
+                    <i data-feather="mail"></i>
+                </div>
+                @error('email')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
 
-<!-- Country Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('country_id', 'Country Id:') !!}
-    {!! Form::number('country_id', null, ['class' => 'form-control']) !!}
-</div>
+            <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror" id="password-input"
+                    placeholder="Enter Password" name="password">
 
-<!-- Role Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('role_id', 'Role Id:') !!}
-    {!! Form::number('role_id', null, ['class' => 'form-control']) !!}
-</div>
+                <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0" id="password-addon">
+                    <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                </button>
+                <label for="input-password">Password</label>
+                <div class="form-floating-icon">
+                    <i data-feather="lock"></i>
+                </div>
+                @error('password')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                <input type="password" class="form-control pe-5 @error('password_confirmation') is-invalid @enderror"
+                    id="password-input_confirmation" placeholder="Confirm Password" name="password_confirmation">
 
-<!-- Password Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('password', 'Password:') !!}
-    {!! Form::password('password', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+                <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0" id="password-addon">
+                    <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                </button>
+                <label for="input-password_confirmation">Confirm Password</label>
+                <div class="form-floating-icon">
+                    <i data-feather="lock"></i>
+                </div>
+                @error('password_confirmation')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div> --}}
+            {{-- <livewire:country-state-selector/> --}}
 
-<!-- Gender Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('gender', 'Gender:') !!}
-    {!! Form::text('gender', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+            {{-- <div class="row mb-4">
+                <div class="col">
+                    <div class="form-check font-size-15">
+                        <input class="form-check-input" type="checkbox" id="remember-check" name="terms"
+                            value="agree">
+                        <label class="form-check-label font-size-13" for="remember-check">
+                            I agree to the <a href="#">terms</a>
+                        </label>
+                    </div>
+                </div>
 
-<!-- Balance Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('balance', 'Balance:') !!}
-    {!! Form::number('balance', null, ['class' => 'form-control']) !!}
-</div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Sign Up</button>
+            </div>
+        </form>
 
-<!-- Life Time Balance Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('life_time_balance', 'Life Time Balance:') !!}
-    {!! Form::number('life_time_balance', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Referral Code Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('referral_code', 'Referral Code:') !!}
-    {!! Form::text('referral_code', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+        <div class="mt-1 text-center">
+            <p class="text-muted mb-0">Have an account ? <a href="{{ route('login') }}"
+                    class="text-primary fw-semibold">
+                    Login </a> </p>
+        </div>
+    </div>
 
-<!-- Referred By User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('referred_by_user_id', 'Referred By User Id:') !!}
-    {!! Form::number('referred_by_user_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Email Verified At Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    {!! Form::text('email_verified_at', null, ['class' => 'form-control','id'=>'email_verified_at']) !!}
-</div>
-
-@push('page_scripts')
-    <script type="text/javascript">
-        $('#email_verified_at').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: true,
-            sideBySide: true
-        })
-    </script>
-@endpush
+@endsection --}}

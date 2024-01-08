@@ -34,11 +34,12 @@
                                            class='btn btn-default btn-xs'>
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                        <button type="button" class="btn btn-danger btn-xs" id="deleteButton"><i class="far fa-trash-alt"></i></button>
                                     </div>
                                     </form>
                                 </td>                            
                             </tr>
+                            <x-delete-modal url="stages" :id="$stage->id" />
                         @endforeach
                             
                         </tbody>
@@ -50,35 +51,5 @@
         <!-- end card -->
     </div>
     <!-- end col -->
-    {{-- <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Follow Up Appointments</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table mb-0">
-
-                        <thead class="table-light">
-                            <tr>
-                                <th>Appointment Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($followUpAppointments as $followUpAppointment)
-                                <tr>
-                                    <th scope="row">{{format_datetime($followUpAppointment->start_time)}}</th>
-                                   
-                                </tr>
-                            @endforeach
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- end card body -->
-        </div>
-        <!-- end card -->
-    </div> --}}
-    <!-- end col -->
+ 
 </div>

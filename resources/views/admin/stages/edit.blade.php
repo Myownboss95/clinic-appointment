@@ -7,7 +7,7 @@
 
         <div class="card">
             <x-page-header title="Edit Stage" />
-             <form action="{{roleBasedRoute('stages.update', [$stage->id])}}">
+             <form action="{{roleBasedRoute('stages.update', [$stage->id])}}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="card-body">

@@ -11,9 +11,7 @@ use App\Http\Requests\PaymentChannelRequest;
 
 class PaymentChannelController extends Controller
 {
-    public function __construct(private PaymentChannelService $paymentChannelService){
-
-    }
+   
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +19,7 @@ class PaymentChannelController extends Controller
     {
         return view('admin.payment_channel.index', 
         [
-            'paymentChannels' => $this->paymentChannelService->getAllPaymentChannel()
+            'paymentChannels' => PaymentChannel::latest()->get()
         ]
     );
 }
@@ -41,7 +39,7 @@ class PaymentChannelController extends Controller
      */
     public function store(PaymentChannelRequest $request)
     {
-        $this->paymentChannelService->savePaymentChannel($request->validated());
+        PaymentChannel::create($request->validated());
         toastr()->addSuccess('Payment Channel Created successfully.');
 
         return redirect(roleBasedRoute('paymentChannels.index'));

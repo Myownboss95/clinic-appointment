@@ -48,14 +48,7 @@ class Stage extends Model
      *
      * @var array
      */
-    public static $rules = [
-        'name' => 'required|string|max:255',
-        'slug' => 'string|max:255|unique:stage,slug',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable',
-    ];
-
+   
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_stage');

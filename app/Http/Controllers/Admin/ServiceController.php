@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
-use App\Repositories\ServiceRepository;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Models\Service;
+use App\Repositories\ServiceRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Response;
 
 class ServiceController extends AppBaseController
@@ -142,7 +142,7 @@ class ServiceController extends AppBaseController
 
             return redirect()->back();
         }
-        
+
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {

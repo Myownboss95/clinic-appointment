@@ -3,16 +3,15 @@
 namespace App\Http\Requests;
 
 use App\Models\User;
-
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateUserRequest extends FormRequest
 {
-    public function __construct(private User $user){
+    public function __construct(private User $user)
+    {
 
     }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -30,10 +29,10 @@ class CreateUserRequest extends FormRequest
      */
     public function rules()
     {
-        return  [
+        return [
             'first_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
-            'email' => ['required','string','max:255', 'unique:users,email',
+            'email' => ['required', 'string', 'max:255', 'unique:users,email'],
             'dob' => 'nullable|string',
             'phone_number' => 'required|string',
             'city' => 'nullable|integer',
@@ -51,11 +50,8 @@ class CreateUserRequest extends FormRequest
             'referred_by_user_id' => 'nullable|integer',
             'email_verified_at' => 'nullable',
             'image' => 'nullable|sometimes|mimeType:jpeg,jpg,png',
-            
+
         ];
 
-      
     }
-
-    
 }

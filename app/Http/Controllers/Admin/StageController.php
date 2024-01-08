@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateStageRequest;
 use App\Http\Requests\UpdateStageRequest;
+use App\Models\Stage;
 use App\Repositories\StageRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Stage;
+use Illuminate\Support\Str;
 use Response;
 
 class StageController extends AppBaseController

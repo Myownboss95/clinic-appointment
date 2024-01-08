@@ -4,9 +4,8 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class UserPasswordNotification extends Notification
 {
@@ -36,14 +35,14 @@ class UserPasswordNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                     ->line('Account Creation.')
-                    ->greeting("Hello {$this->user->first_name}")
-                    ->line("An Account has been created for you.")
-                    ->line("You can proceed to login with the following")
-                    ->line("email: {$this->user->email}")
-                    ->line("password: {$this->unhashedPassword}")
-                    ->action('Click here to login', url('/login'))
-                    ->line('Thank you for using our application!');
+            ->line('Account Creation.')
+            ->greeting("Hello {$this->user->first_name}")
+            ->line('An Account has been created for you.')
+            ->line('You can proceed to login with the following')
+            ->line("email: {$this->user->email}")
+            ->line("password: {$this->unhashedPassword}")
+            ->action('Click here to login', url('/login'))
+            ->line('Thank you for using our application!');
     }
 
     /**

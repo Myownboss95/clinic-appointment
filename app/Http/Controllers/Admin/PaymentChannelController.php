@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\PaymentChannel;
 use App\Http\Controllers\Controller;
-use App\Services\PaymentChannelService;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PaymentChannelRequest;
+use App\Models\PaymentChannel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentChannelController extends Controller
 {
-   
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.payment_channel.index', 
-        [
-            'paymentChannels' => PaymentChannel::latest()->get()
-        ]
-    );
-}
+        return view('admin.payment_channel.index',
+            [
+                'paymentChannels' => PaymentChannel::latest()->get(),
+            ]
+        );
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -30,8 +28,8 @@ class PaymentChannelController extends Controller
     public function create()
     {
         return view('admin.payment_channel.create', [
-            'paymentChannel' => new PaymentChannel()
-        ]); 
+            'paymentChannel' => new PaymentChannel(),
+        ]);
     }
 
     /**
@@ -59,7 +57,7 @@ class PaymentChannelController extends Controller
     public function edit(PaymentChannel $paymentChannel)
     {
         return view('admin.payment_channel.edit', [
-            'paymentChannel' => $paymentChannel
+            'paymentChannel' => $paymentChannel,
         ]);
     }
 
@@ -70,6 +68,7 @@ class PaymentChannelController extends Controller
     {
         $paymentChannel->update($request->validated());
         toastr()->addSuccess('Payment Channel updated successfully.');
+
         return redirect()->back();
     }
 
@@ -90,6 +89,7 @@ class PaymentChannelController extends Controller
 
         $paymentChannel->delete();
         toastr()->addSuccess('Payment Channel deleted successfully.');
+
         return redirect(roleBasedRoute('paymentChannels.index'));
     }
 }

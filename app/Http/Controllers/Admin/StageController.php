@@ -112,7 +112,7 @@ class StageController extends AppBaseController
      */
     public function update(UpdateStageRequest $request, $id)
     {
-        
+
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {

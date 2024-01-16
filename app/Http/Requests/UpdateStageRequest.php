@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Stage;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateStageRequest extends FormRequest
@@ -25,14 +23,13 @@ class UpdateStageRequest extends FormRequest
      */
     public function rules()
     {
-         
 
-        return  [
-        'name' => ['required', 'string', 'max:255'],
-        'slug' => 'string|max:255|unique:stage,slug',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable',
+        return [
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => 'string|max:255|unique:stage,slug',
+            'created_at' => 'nullable',
+            'updated_at' => 'nullable',
+            'deleted_at' => 'nullable',
         ];
     }
 }

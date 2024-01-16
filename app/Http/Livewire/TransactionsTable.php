@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Constants\TransactionReasons;
 use App\Constants\TransactionStatusTypes;
 use App\Constants\TransactionTypes;
 use App\Models\Transaction;
@@ -40,7 +39,7 @@ final class TransactionsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Transaction::where('reason', '', TransactionReasons::REFERRALS)->with('appointment.subService')->latest();
+        return Transaction::with('appointment.subService')->latest();
     }
 
     public function relationSearch(): array

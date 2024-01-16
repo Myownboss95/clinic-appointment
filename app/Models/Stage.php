@@ -48,7 +48,6 @@ class Stage extends Model
      *
      * @var array
      */
-   
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_stage');

@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Service;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateServiceRequest extends FormRequest
 {
@@ -25,14 +24,13 @@ class UpdateServiceRequest extends FormRequest
      */
     public function rules()
     {
-         
 
         return [
-        'name' => ['required', 'string', 'max:255', Rule::unique('services', 'name')->ignore($this->service)],
-        'slug' => 'unique:services,slug',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable',
+            'name' => ['required', 'string', 'max:255', Rule::unique('services', 'name')->ignore($this->service)],
+            'slug' => 'unique:services,slug',
+            'created_at' => 'nullable',
+            'updated_at' => 'nullable',
+            'deleted_at' => 'nullable',
         ];
     }
 }

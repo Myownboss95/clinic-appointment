@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Service;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateServiceRequest extends FormRequest

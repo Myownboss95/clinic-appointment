@@ -24,7 +24,7 @@ class PaymentChannelRequest extends FormRequest
         return [
             'bank_name' => ['required', 'string'],
             'account_name' => ['required', 'string'],
-            'account_number' => ['required', 'string']
+            'account_number' => ['required', 'string'],
         ];
     }
 }

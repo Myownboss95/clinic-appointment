@@ -100,7 +100,7 @@
 
 @can('is_admin')
     <li>
-        <a href="{{ roleBasedRoute('index') }}">
+        <a href="{{ route('admin.staff.index') }}">
             <i data-feather="home"></i>
             <span data-key="t-dashboard">Staff</span>
         </a>

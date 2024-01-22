@@ -16,7 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class UserTable extends PowerGridComponent
+final class StaffTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -37,7 +37,7 @@ final class UserTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query()->where('role_id', 1);
+        return User::query()->where('role_id', 2);
     }
 
     public function relationSearch(): array

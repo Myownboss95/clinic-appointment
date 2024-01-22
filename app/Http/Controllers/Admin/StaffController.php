@@ -149,9 +149,9 @@ class StaffController extends AppBaseController
 
         $this->userRepository->delete($id);
 
-        toastr()->addSuccess('Staff saved successfully.');
+        toastr()->addSuccess('Staff deleted successfully.');
 
-        return redirect(route('admin.staff.index'));
+        return redirect()->route('admin.staff.index');
     }
 
     /**
@@ -164,6 +164,8 @@ class StaffController extends AppBaseController
      */
     public function removeAdmin($id)
     {
+
+        dd($id);
         $staff = $this->userRepository->find($id);
 
         if (empty($staff)) {
@@ -174,9 +176,10 @@ class StaffController extends AppBaseController
 
         $this->userRepository->update(['role_id' => 1], $id);
 
-        toastr()->addSuccess('Staff saved successfully.');
+        toastr()->addSuccess('Staff removed successfully.');
 
-        return redirect(route('admin.staff.index'));
+        return redirect()->back();
+
     }
 
     /**
@@ -199,8 +202,9 @@ class StaffController extends AppBaseController
 
         $this->userRepository->update(['role_id' => 2], $id);
 
-        toastr()->addSuccess('Staff saved successfully.');
+        toastr()->addSuccess('Staff added successfully.');
 
-        return redirect(route('admin.staff.index'));
+        return redirect()->back();
+
     }
 }

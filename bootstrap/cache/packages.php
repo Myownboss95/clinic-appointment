@@ -219,6 +219,13 @@
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
+  'spatie/laravel-settings' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\LaravelSettings\\LaravelSettingsServiceProvider',
+    ),
+  ),
   'spatie/php-structure-discoverer' => 
   array (
     'providers' => 

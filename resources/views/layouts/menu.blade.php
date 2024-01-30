@@ -100,7 +100,7 @@
 
 @can('is_admin')
     <li>
-        <a href="{{ route('admin.staff.index') }}">
+        <a href="{{ route('admin.staff.index') }}" wire:navigate>
             <i data-feather="home"></i>
             <span data-key="t-dashboard">Staff</span>
         </a>
@@ -113,28 +113,28 @@
         <ul class="sub-menu" aria-expanded="false">
             <li>
                 <a href="{{ roleBasedRoute('subServices.index') }}"
-                    class="nav-link {{ Request::is('subServices*') ? 'active' : '' }}" data-key="t-subServices">
+                    class="nav-link {{ Request::is('subServices*') ? 'active' : '' }}" data-key="t-subServices" wire:navigate>
                     Sub Services
                 </a>
             </li>
 
             <li>
                 <a href="{{ roleBasedRoute('stages.index') }}"
-                    class="nav-link {{ Request::is('stages*') ? 'active' : '' }}" data-key="t-stages">
+                    class="nav-link {{ Request::is('stages*') ? 'active' : '' }}" data-key="t-stages" wire:navigate>
                     Stages
                 </a>
             </li>
 
             <li>
                 <a href="{{ roleBasedRoute('comments.index') }}"
-                    class="nav-link {{ Request::is('comments*') ? 'active' : '' }}" data-key="t-comments">
+                    class="nav-link {{ Request::is('comments*') ? 'active' : '' }}" data-key="t-comments" wire:navigate>
                     Comments
                 </a>
             </li>
 
             <li>
                 <a href="{{ roleBasedRoute('services.index') }}"
-                    class="nav-link {{ Request::is('services*') ? 'active' : '' }}" data-key="t-services">
+                    class="nav-link {{ Request::is('services*') ? 'active' : '' }}" data-key="t-services" wire:navigate>
                     Services
                 </a>
             </li>
@@ -150,7 +150,7 @@
 
 <li class="menu-title" data-key="t-apps">Account</li>
 <li>
-    <a href="{{ route('profile.index') }}">
+    <a href="{{ route('profile.index') }}" wire:navigate>
         <i data-feather="user"></i>
         <span data-key="t-user">Profile</span>
     </a>

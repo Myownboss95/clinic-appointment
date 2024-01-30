@@ -8,20 +8,20 @@ use Saloon\Contracts\Response;
 use Saloon\Helpers\OAuth2\OAuthConfig;
 use Saloon\Http\Connector;
 use Saloon\Http\Request;
-use Saloon\Traits\OAuth2\ClientCredentialsGrant;
+use Saloon\Traits\OAuth2\AuthorizationCodeGrant;
 use Saloon\Traits\Plugins\AcceptsJson;
 
 class BaseConnector extends Connector
 {
     use AcceptsJson;
-    use ClientCredentialsGrant;
+    use AuthorizationCodeGrant;
 
     /**
      * The Base URL of the API
      */
     public function resolveBaseUrl(): string
     {
-        return (string) config('https://api.calendly.com');
+        return 'https://auth.calendly.com';
     }
 
     /**
@@ -39,12 +39,9 @@ class BaseConnector extends Connector
         return OAuthConfig::make()
             ->setClientId(config('services.calendly.client_id'))
             ->setClientSecret(config('services.calendly.client_secret'))
-            ->setRedirectUri('https://clinic.test/calendly/callback')
-            ->setAuthorizeEndpoint('https://api.calendly.com/oauth/authorize')
-            ->setTokenEndpoint('https://api.calendly.com/oauth/token')
-            ->setRequestModifier(function (Request $request) {
-                dd($request);
-            });
+        ->setRedirectUri(route('admin.settings.calendly.redirect'))
+        ->setAuthorizeEndpoint('/oauth/authorize')
+        ->setTokenEndpoint('/oauth/token');
 
     }
 

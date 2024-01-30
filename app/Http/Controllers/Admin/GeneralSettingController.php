@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Response;
+use Illuminate\Http\Request;
+use App\Settings\GeneralSettings;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\GeneralSettingRepository;
 use App\Http\Requests\CreateGeneralSettingRequest;
 use App\Http\Requests\UpdateGeneralSettingRequest;
-use App\Repositories\GeneralSettingRepository;
-use Illuminate\Http\Request;
-use Response;
 
 class GeneralSettingController extends AppBaseController
 {
@@ -25,12 +26,17 @@ class GeneralSettingController extends AppBaseController
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(GeneralSettings $settings)
     {
-        $generalSettings = $this->generalSettingRepository->all();
-
-        return view('admin.general_settings.index')
-            ->with('generalSettings', $generalSettings);
+        return view('admin.general_settings.create', [
+            'ref_bonus' => $settings->ref_bonus,
+            'site_phone' => $settings->site_phone,
+            'site_email' => $settings->site_email,
+            'site_facebook' => $settings->site_facebook,
+            'site_instagram' => $settings->site_instagram,
+            'site_linkedin' => $settings->site_linkedin,
+            'site_twitter' => $settings->site_twitter,
+        ]);
     }
 
     /**
@@ -49,15 +55,19 @@ class GeneralSettingController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateGeneralSettingRequest $request)
+    public function store(CreateGeneralSettingRequest $request,GeneralSettings $settings)
     {
-        $input = $request->all();
+        $settings->ref_bonus = $request->input('ref_bonus');
+        $settings->site_phone = $request->input('site_phone');
+        $settings->site_facebook = $request->input('site_facebook');
+        $settings->site_instagram = $request->input('site_instagram');
+        $settings->site_linkedin = $request->input('site_linkedin');
+        $settings->site_twitter = $request->input('site_twitter');
 
-        $generalSetting = $this->generalSettingRepository->create($input);
-
+        $settings->save();
         toastr()->addSuccess('Appointment saved successfully.');
 
-        return redirect(roleBasedRoute('generalSettings.index'));
+        return redirect(roleBasedRoute('settings.index'));
     }
 
     /**
@@ -79,70 +89,5 @@ class GeneralSettingController extends AppBaseController
         return view('admin.general_settings.show')->with('generalSetting', $generalSetting);
     }
 
-    /**
-     * Show the form for editing the specified GeneralSetting.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $generalSetting = $this->generalSettingRepository->find($id);
-
-        if (empty($generalSetting)) {
-            toastr()->addError('General Setting not found');
-
-            return redirect(roleBasedRoute('generalSettings.index'));
-        }
-
-        return view('admin.general_settings.edit')->with('generalSetting', $generalSetting);
-    }
-
-    /**
-     * Update the specified GeneralSetting in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id, UpdateGeneralSettingRequest $request)
-    {
-        $generalSetting = $this->generalSettingRepository->find($id);
-
-        if (empty($generalSetting)) {
-            toastr()->addError('General Setting not found');
-
-            return redirect(roleBasedRoute('generalSettings.index'));
-        }
-
-        $generalSetting = $this->generalSettingRepository->update($request->all(), $id);
-
-        toastr()->addSuccess('General Setting updated successfully.');
-
-        return redirect(roleBasedRoute('generalSettings.index'));
-    }
-
-    /**
-     * Remove the specified GeneralSetting from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     *
-     * @throws \Exception
-     */
-    public function destroy($id)
-    {
-        $generalSetting = $this->generalSettingRepository->find($id);
-
-        if (empty($generalSetting)) {
-            toastr()->addError('General Setting not found');
-
-            return redirect(roleBasedRoute('generalSettings.index'));
-        }
-
-        $this->generalSettingRepository->delete($id);
-
-        toastr()->addSuccess('General Setting deleted successfully.');
-
-        return redirect(roleBasedRoute('generalSettings.index'));
-    }
+  
 }

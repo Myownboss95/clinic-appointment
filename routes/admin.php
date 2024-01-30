@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\CalendlyController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ClinicUserController;
 use App\Http\Controllers\Admin\CommentController;
@@ -41,7 +42,7 @@ Route::get('comments-destroy/{comment}', [CommentController::class, 'destroy'])-
 Route::post('comments/appointment/{appointmentId}/store', [CommentController::class, 'store'])->name('comments.appointment.store');
 Route::resource('services', ServiceController::class);
 Route::resource('passwordResets', PasswordResetController::class);
-Route::resource('generalSettings', GeneralSettingController::class);
+Route::resource('settings', GeneralSettingController::class)->only(['index', 'store']);
 Route::resource('currencyLists', CurrencyListController::class);
 Route::resource('countryPhoneCodes', CountryPhoneCodeController::class);
 Route::resource('countries', CountryController::class);
@@ -58,4 +59,11 @@ Route::prefix('transactions')->controller(TransactionsController::class)->group(
     Route::get('', 'index')->name('transactions');
     Route::get('confirmed-transactions', 'approvedTransactions')->name('confirmed.transactions');
     Route::get('rejected-transactions', 'rejectedTransactions')->name('rejected.transactions');
+});
+
+Route::prefix('settings')->as('settings.')->group(function(){
+    Route::prefix('calendly')->as('calendly.')->controller(CalendlyController::class)->group(function(){
+        Route::get('init', 'init')->name('init');
+        Route::get('callback', 'handleCallback')->name('redirect');
+    });
 });

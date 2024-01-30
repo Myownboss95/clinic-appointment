@@ -30,6 +30,7 @@
         "saloonphp/laravel-plugin": "^2.1",
         "saloonphp/saloon": "^2.0",
         "spatie/laravel-data": "^3.6",
+        "spatie/laravel-settings": "^3.2",
         "wire-elements/modal": "^2.0"
     },
     "require-dev": {

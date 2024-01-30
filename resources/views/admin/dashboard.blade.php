@@ -81,7 +81,8 @@
                         <!-- card body -->
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                @can('is_admin')
+                             @if(auth()->user()->role_id == 3)
+                                
                                     <div class="">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Transactions</span>
                                         <h5 class="mb-3">
@@ -92,8 +93,8 @@
                                             <span class="ms-1 text-muted font-size-13">Total Transactions</span>
                                         </div>
                                     </div>
-                                @endcan
-                                @can('is_staff')
+                                @endif
+                                @if(auth()->user()->role_id == 2)
                                     <div class="">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Transactions</span>
                                         <h5 class="mb-3">
@@ -103,7 +104,7 @@
                                             <span class="ms-1 text-muted font-size-13">Total Transactions</span>
                                         </div>
                                     </div>
-                                @endcan
+                                @endif
 
 
                                 <div class="flex-shrink-0 text-end dash-widget">
@@ -120,7 +121,7 @@
                     <div class="card card-h-100">
                         <!-- card body -->
                         <div class="card-body">
-                            @can('is_admin')
+                            @if(auth()->user()->role_id == 3)
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Referrals Paid</span>
@@ -138,8 +139,8 @@
                                             class="apex-charts"></div>
                                     </div>
                                 </div>
-                            @endcan
-                            @can('is_staff')
+                            @endif
+                            @if(auth()->user()->role_id == 2)
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Referrals</span>
@@ -155,11 +156,38 @@
                                             class="apex-charts"></div>
                                     </div>
                                 </div>
-                            @endcan
+                            @endif
                         </div><!-- end card body -->
                     </div><!-- end card -->
                 </div><!-- end col -->
             </div><!-- end row-->
+
+            @if(auth()->user()->role_id == 3)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Connect to Calendly</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-6">
+                                        <a class="btn btn-primary" href="{{ route('admin.settings.calendly.init') }}">
+                                            Connect to Calendly
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted">{{ $calendly_last_handshake ?? 'Not connected' }}</small>
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                </div>
+            @endif
+
 
             <div class="row">
                 <div class="col-xl-12">

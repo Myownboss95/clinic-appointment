@@ -12,18 +12,18 @@ export default defineConfig({
             refresh: true,
             detectTls: true
         }),
-        run([
-            {
-                name: "Run Pint",
-                run: ["./vendor/bin/pint"],
-                condition: (file) => [
-                    "routes", "app", "database", "lang", "config"
-                ].filter(
-                    (path) => file.includes(`/${path}`)
-                ).length,
-            }
+        // run([
+        //     {
+        //         name: "Run Pint",
+        //         run: ["./vendor/bin/pint"],
+        //         condition: (file) => [
+        //             "routes", "app", "database", "lang", "config"
+        //         ].filter(
+        //             (path) => file.includes(`/${path}`)
+        //         ).length,
+        //     }
 
-        ])
+        // ])
     ],
 
     resolve: {

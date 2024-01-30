@@ -40,7 +40,7 @@ class EventTypesRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return 'https://api.calendly.com/event_types';
+        return '/event_types';
     }
 
     /**

@@ -26,7 +26,9 @@ class BaseCalendlyConnector extends Connector
      */
     protected function defaultHeaders(): array
     {
-        return [];
+        return [
+            ''
+        ];
     }
 
     /**

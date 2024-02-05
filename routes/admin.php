@@ -65,5 +65,7 @@ Route::prefix('settings')->as('settings.')->group(function(){
     Route::prefix('calendly')->as('calendly.')->controller(CalendlyController::class)->group(function(){
         Route::get('init', 'init')->name('init');
         Route::get('callback', 'handleCallback')->name('redirect');
+        Route::get('get-event-types', 'getEventTypes')->name('event-types');
+
     });
 });

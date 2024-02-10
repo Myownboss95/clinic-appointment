@@ -3,6 +3,7 @@
 namespace App\Http\Integrations\Calendly\Requests;
 
 use App\Data\Calendly\EventTypeResponseData;
+use App\Http\Integrations\Calendly\Connectors\BaseCalendlyConnector;
 use App\Http\Integrations\Calendly\Connectors\BaseConnector;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Contracts\Response;
@@ -23,12 +24,12 @@ class EventTypesRequest extends Request implements HasBody
     /**
      * The connector class
      */
-    public string $connector = BaseConnector::class;
+    public string $connector = BaseCalendlyConnector::class;
 
     /**
      * Define the HTTP method
      */
-    protected Method $method = Method::POST;
+    protected Method $method = Method::GET;
 
     public function __construct()
     {
@@ -56,6 +57,13 @@ class EventTypesRequest extends Request implements HasBody
         //     'authorization' => "Bearer $token",
         // ];
         return [];
+    }
+
+    public function defaultQuery(): array
+    {
+        return [
+            
+        ];
     }
 
     public function defaultBody(): array

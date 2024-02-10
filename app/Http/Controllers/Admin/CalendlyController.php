@@ -29,13 +29,21 @@ class CalendlyController extends Controller
         $state = $request->input('state');
 
         $authenticator = $this->calendlyService->getAccessToken($code, $state);
+
+
         $settings = app(GeneralSettings::class);
-        $settings->calendly = serialize($authenticator);
+        $settings->calendly_access_token = $authenticator->getAccessToken();
+        $settings->calendly_refresh_token = $authenticator->getRefreshToken();
+        $settings->calendly_expires_at = $authenticator->getExpiresAt();
         $settings->calendly_created_at = now();
         $settings->save();
-        
+
         toastr()->addSuccess('Calendly Connected successfully.');
         return redirect()->route('admin.index');
+    }
 
+    public function getEventTypes()
+    {
+        dd($this->calendlyService->eventTypes());
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     
 
-    <div class="content px-3">
+    <div class="content px-3 py-3">
         <x-bread-crumb title="Service" url="services.index" />
         <div class="card">
             <div class="col-md-6">

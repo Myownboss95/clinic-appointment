@@ -1,8 +1,8 @@
 <li>
     <a href="{{ roleBasedRoute('index') }}">
-        <i data-feather="home"></i>
-        <span class="badge rounded-pill bg-success-subtle text-success float-end">9+</span>
-        <span data-key="t-dashboard">Dashboard</span>
+            <i data-feather="home"></i>                
+            <span class="badge rounded-pill bg-success-subtle text-success float-end">9+</span>
+            <span data-key="t-dashboard">Dashboard</span>    
     </a>
 </li>
 
@@ -10,9 +10,9 @@
     <li class="menu-title" data-key="t-apps">Details</li>
 
     <li>
-        <a href="{{ route('user.appointments') }}">
+        <a href="{{ route('user.appointments') }}">  
             <i data-feather="calendar"></i>
-            <span data-key="t-calendar">Appoinments</span>
+            <span data-key="t-calendar">Appoinments</span>           
         </a>
     </li>
     <li>
@@ -36,6 +36,12 @@
             <span data-key="t-calendar">Appointments</span>
         </a>
         <ul class="sub-menu" aria-expanded="false">
+        <li>
+                <a href="{{ roleBasedRoute('appointments.create') }}"
+                    class="nav-link {{ Request::is('appointments/create') ? 'active' : '' }}" key="t-products">
+                    Create Appointment
+                </a>
+            </li>
             <li>
                 <a href="{{ roleBasedRoute('appointments.pending') }}"
                     class="nav-link {{ Request::is('appointments/pending-appointments') ? 'active' : '' }}" key="t-products">
@@ -124,14 +130,6 @@
                     Stages
                 </a>
             </li>
-
-            <li>
-                <a href="{{ roleBasedRoute('comments.index') }}"
-                    class="nav-link {{ Request::is('comments*') ? 'active' : '' }}" data-key="t-comments" wire:navigate>
-                    Comments
-                </a>
-            </li>
-
             <li>
                 <a href="{{ roleBasedRoute('services.index') }}"
                     class="nav-link {{ Request::is('services*') ? 'active' : '' }}" data-key="t-services" wire:navigate>

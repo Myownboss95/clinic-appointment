@@ -8,6 +8,7 @@ use App\Http\Requests\CreateAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 use App\Models\Appointment;
 use App\Models\Stage;
+use App\Models\SubService;
 use App\Models\User;
 use App\Repositories\AppointmentRepository;
 use Carbon\Carbon;
@@ -95,6 +96,7 @@ class AppointmentController extends AppBaseController
         return view('admin.appointments.create', [
             'stages' => Stage::get(),
             'users' => User::get(),
+            'subServices' => SubService::get()
         ])->with('appointment', $appointments);
     }
 
@@ -107,6 +109,7 @@ class AppointmentController extends AppBaseController
     public function store(CreateAppointmentRequest $request)
     {
         $input = $request->all();
+         dd($input);
 
         $appointment = $this->appointmentRepository->create($input);
 

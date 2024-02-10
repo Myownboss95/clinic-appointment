@@ -3,7 +3,9 @@
 @section('content')
    
 
-    <div class="content px-3">
+    <div class="content px-3 py-3">
+    <x-bread-crumb title="Stage" url="stages.index" /> 
+
         <div class="card">
             <div class="col-md-6">
                 <div class="d-flex flex-wrap gap-2 mt-3">

@@ -6,12 +6,13 @@
         <div class="container-fluid">
 
             <!-- start page title -->
-            {{-- <x-bread-crumb title="SubServices" url="subServices" /> --}}
+           
             <!-- end page title -->
 
             
 
             <div class="row">
+            <x-bread-crumb title="SubService" url="subServices.index" /> 
                 <div class="col-lg-12">
                     <div class="card">
 

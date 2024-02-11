@@ -2,44 +2,25 @@
 
 namespace App\Http\Integrations\Calendly;
 
-use Amp\Serialization\Serializer;
 use Exception;
+use Amp\Serialization\Serializer;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use App\Data\Calendly\AuthTokenResponseData;
 use App\Data\Calendly\EventTypeResponseData;
+use App\Exceptions\FailedToFetchUriException;
+use Saloon\Http\Auth\AccessTokenAuthenticator;
+use App\Data\Calendly\FetchUserUriResponseData;
+use App\Exceptions\FailedToFetchEventException;
 use App\Http\Integrations\Calendly\Requests\LoginRequest;
 use App\Http\Integrations\Calendly\Connectors\BaseConnector;
 use App\Http\Integrations\Calendly\Requests\EventTypesRequest;
+use App\Http\Integrations\Calendly\Requests\GetUsersUriRequest;
 use App\Http\Integrations\Calendly\Connectors\BaseCalendlyConnector;
-use Saloon\Http\Auth\AccessTokenAuthenticator;
 
 class CalendlyService
 {
-    // private function getAccessToken(): AuthTokenResponseData
-    // {
-    //     $cacheKey = 'CalendlyAuthToken';
-
-    //     if (Cache::has($cacheKey)) {
-    //         return Cache::get($cacheKey);
-    //     }
-
-    //     $response = (new LoginRequest())->send();
-
-    //     if (! $response->successful()) {
-    //         throw new Exception($response->body());
-    //     }
-
-    //     /**
-    //      * @var AuthTokenResponseData
-    //      */
-    //     $authTokenData = $response->dto();
-
-    //     Cache::put($cacheKey, $authTokenData, 7000);
-
-    //     return $authTokenData;
-    // }
 
     public function __construct(protected ?BaseConnector $connector = null)
     {
@@ -59,18 +40,9 @@ class CalendlyService
 
     public function refreshAccessToken(\Saloon\Contracts\OAuthAuthenticator $authenticator)
     {
-        if ($authenticator->hasNotExpired()) {
-            return $authenticator;
-        }
-
-        $authenticator = $this->refreshAccessToken($authenticator);
-
-
-        $settings = app(GeneralSettings::class);
-        $settings->calendly = serialize($authenticator);
-        $settings->save();
-
-        return $authenticator;
+        return $authenticator->hasNotExpired()
+            ? $authenticator
+            : $this->connector->refreshAccessToken($authenticator);
     }
 
     public function getAccessToken(string $code, string $state)
@@ -85,41 +57,33 @@ class CalendlyService
         return $this->refreshAccessToken($auth);
     }
 
-    public function eventTypes()//: EventTypeResponseData
+    public function eventTypes() //: EventTypeResponseData
     {
-        // $connector = new BaseConnector();
         $accessTokenData = $this->fetchAccessToken();
 
         $connector = new BaseCalendlyConnector();
 
-        // $connector->headers()->add('Auththorization', "Bearer $accessTokenData->accessToken");
-
         $response = $connector->authenticate($accessTokenData)->send(new EventTypesRequest);
 
-        // $request = new EventTypesRequest();
+        if ($response->failed()) {
+            throw new FailedToFetchEventException($response->body());
+        }
+        // return $response->dto();
 
+        return $response->json('collection');
+    }
+    public function fetchUserURI() //: FetchUserUriResponseData
+    {
+        $accessTokenData = $this->fetchAccessToken();
 
-        // $response = $connector->send($request);
+        $connector = new BaseCalendlyConnector();
 
-        dd($response->json());
+        $response = $connector->authenticate($accessTokenData)->send(new GetUsersUriRequest);
 
+        if ($response->failed()) {
+            throw new FailedToFetchUriException($response->body());
+        }
 
-
-        // dd($connector->send(new EventTypesRequest())->body());
-
-        // return info ($accessTokenData);
-
-        // $response = (new EventTypesRequest($accessTokenData))->send();
-
-        // if (! $response->successful()) {
-        // }
-        // $response->body();
-
-        // /**
-        //  * @var EventTypeResponseData
-        //  */
-        // $eventTypeResponseData = $response->dto();
-        // info($eventTypeResponseData);
-        // return $eventTypeResponseData;
+        return $response->json();
     }
 }

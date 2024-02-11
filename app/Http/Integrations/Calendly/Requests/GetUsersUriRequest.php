@@ -2,20 +2,19 @@
 
 namespace App\Http\Integrations\Calendly\Requests;
 
+use App\Data\Calendly\FetchUserUriResponseData;
+use App\Http\Integrations\Calendly\Connectors\BaseCalendlyConnector;
+use App\Http\Integrations\Calendly\Connectors\BaseConnector;
+use Saloon\Contracts\Body\HasBody;
+use Saloon\Contracts\Response;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\Contracts\Response;
-use App\Settings\GeneralSettings;
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\Traits\Request\HasConnector;
-use App\Data\Calendly\EventTypeResponseData;
 use Saloon\Traits\RequestProperties\HasHeaders;
-use App\Http\Integrations\Calendly\Connectors\BaseConnector;
-use App\Http\Integrations\Calendly\Connectors\BaseCalendlyConnector;
 
-class EventTypesRequest extends Request implements HasBody
+class GetUsersUriRequest extends Request implements HasBody
 {
     use AcceptsJson;
     use HasConnector;
@@ -34,7 +33,6 @@ class EventTypesRequest extends Request implements HasBody
 
     public function __construct()
     {
-
     }
 
     /**
@@ -42,7 +40,7 @@ class EventTypesRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return '/event_types';
+        return "/users/me";
     }
 
     /**
@@ -52,27 +50,26 @@ class EventTypesRequest extends Request implements HasBody
      */
     protected function defaultHeaders(): array
     {
+        // $token = $this->authTokenData->accessToken;
+
+        // return [
+        //     'authorization' => "Bearer $token",
+        // ];
         return [];
     }
 
     public function defaultQuery(): array
     {
-        $settings = app(GeneralSettings::class);
-        return [
-            "active" => true,
-            "admin_managed" => false,
-            "organization" => $settings->calendly_organisation,
-        ];
+        return [];
     }
 
     public function defaultBody(): array
     {
-        return [
-        ];
+        return [];
     }
 
-    public function createDtoFromResponse(Response $response): EventTypeResponseData
+    public function createDtoFromResponse(Response $response): FetchUserUriResponseData
     {
-        return EventTypeResponseData::fromResponse($response);
+        return FetchUserUriResponseData::fromResponse($response);
     }
 }

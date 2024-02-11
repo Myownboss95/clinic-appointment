@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Response;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\GeneralSetting;
+use App\Settings\GeneralSettings;
+use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\CreateUserRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\AdminUpdateUserRequest;
-use App\Http\Requests\CreateUserRequest;
-use App\Models\GeneralSetting;
 use App\Notifications\UserPasswordNotification;
-use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Response;
 
 class UserController extends AppBaseController
 {
@@ -80,7 +81,7 @@ class UserController extends AppBaseController
     public function show($id)
     {
         $user = $this->userRepository->find($id);
-        $setting = GeneralSetting::first();
+        $setting = app(GeneralSettings::class);
 
         if (empty($user)) {
             toastr()->addError('User not found');

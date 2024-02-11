@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Response;
+use Illuminate\Http\Request;
+use App\Models\GeneralSetting;
+use App\Settings\GeneralSettings;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\UpdateUserProfileRequest;
-use App\Models\GeneralSetting;
-use Illuminate\Http\Request;
-use Response;
 
 class UserProfileController extends AppBaseController
 {
@@ -22,7 +23,7 @@ class UserProfileController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $setting = GeneralSetting::first();
+        $setting = app(GeneralSettings::class);
         $refBonus = $setting->ref_bonus ?? 0;
 
         return view('user.profile', [

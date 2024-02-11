@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\SaveCalendlyUriAction;
+use App\Constants\EventStatus;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Settings\GeneralSettings;
@@ -9,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\Http\Integrations\Calendly\CalendlyService;
 use App\Http\Integrations\Calendly\Connectors\BaseConnector;
+use App\Models\CalendlyEventType;
 
 class CalendlyController extends Controller
 {
@@ -38,12 +41,29 @@ class CalendlyController extends Controller
         $settings->calendly_created_at = now();
         $settings->save();
 
+        SaveCalendlyUriAction::execute();
+
+        $this->getEventTypes();
         toastr()->addSuccess('Calendly Connected successfully.');
         return redirect()->route('admin.index');
     }
 
-    public function getEventTypes()
+    protected function getEventTypes()
     {
-        dd($this->calendlyService->eventTypes());
+        $events = collect($this->calendlyService->eventTypes())->each(
+            function ($event) {
+                if (!CalendlyEventType::where('uri', $event['uri'])->exists()) {
+                    CalendlyEventType::create(
+                        [
+                            'uri' => $event['uri'],
+                            'status' => EventStatus::ACTIVE,
+                            'scheduling_url' => $event['scheduling_url'],
+                        ]
+                    );
+                }
+            }
+        );
+        
+        
     }
 }

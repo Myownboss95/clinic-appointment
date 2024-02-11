@@ -9,6 +9,9 @@ class GeneralSettings extends Settings
 {
 
     public int $ref_bonus;
+    public null|string $calendly_user_uri;
+    public null|string $calendly_user_email;
+    public null|string $calendly_organisation;
     public null|string $calendly_access_token;
     public null|string $calendly_refresh_token;
     public null|DateTimeImmutable $calendly_expires_at;

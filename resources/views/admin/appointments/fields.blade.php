@@ -1,25 +1,32 @@
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User:') !!}
-     {{-- {!! Form::text('user_id', $appointment->user->last_name .' '. $appointment->user->first_name , ['class' => 'form-control', 'readonly', 'disabled'])  !!} --}}
-     <select name="user_id" id="" class="form-control">
-        <option>Select Stage</option>
+    <label for="user">User</label>
+    <select name="user_id" id="" class="form-control">
+        <option>Select User</option>
         @foreach($users as $user)
-            <option {{$appointment->user?->id === $user->id ? 'selected': null}}  value="{{$user->id}}">{{$user->last_name .' '. $user->first_name}}</option>
+            <option {{$appointment->user?->id === $user->id ? 'selected': null}}  value={{$user->id}}>{{$user->last_name .' '. $user->first_name}}</option>
         @endforeach
-    </select>
+    </select> 
 </div>
 
 <!-- Sub Service Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('sub_service_id', 'Sub Service:') !!}
-    {!! Form::number('sub_service_id', null, ['class' => 'form-control']) !!}
-</div>
+<label for="user">Sub Service</label>
+    <select name="sub_service_id" id="" class="form-control">
+        <option>Select Subservice</option>
+        
+        @foreach($subServices as $subService)        
+            <option {{$appointment->subService === $subService->id ? 'selected': null}}  value={{$subService->id}}>{{$subService->name}}</option>
+        @endforeach
+    </select> 
+    
+</div> 
+
 
 <!-- Start Time Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('start_time', 'Start Time:') !!}
-    {!! Form::text('start_time', null, ['class' => 'form-control','id'=>'start_time']) !!}
+    <label for="start_time">Start Time</label>
+    <input type="date" name="start_time" id="start_time" class="form-control">
 </div>
 
 @push('page_scripts')
@@ -34,9 +41,9 @@
 
 <!-- End Time Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('end_time', 'End Time:') !!}
-    {!! Form::text('end_time', null, ['class' => 'form-control','id'=>'end_time']) !!}
- </div>
+    <label for="end_time">Start Time</label>
+    <input type="date" name="end_time" id="end_time" class="form-control">
+</div>
 
 @push('page_scripts')
     <script type="text/javascript">
@@ -50,12 +57,11 @@
 
 <!-- Stage Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('stage_id', 'Stage:') !!}
-    <select name="stage_id" id="" class="form-control">
+    <label for="stages">Stages</label>
+     <select name="stage_id" id="" class="form-control">
         <option>Select Stage</option>
         @foreach($stages as $stage)
-            <option {{$appointment->stage?->id === $stage->id ? 'selected': null}}  value="{{$stage->id}}">{{$stage->name}}</option>
+            <option {{$appointment->stage?->id === $stage->id ? 'selected': null}}  value={{$stage->id}}>{{$stage->name}}</option>
         @endforeach
     </select>
-    {{-- {!! Form::text('stage_id', $appointment->stage->name, ['class' => 'form-control','maxlength' => 11,'maxlength' => 11]) !!} --}}
-</div>
+ </div>

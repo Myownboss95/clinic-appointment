@@ -71,11 +71,16 @@
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-          <li class="dropdown"><a href="#"><span>Sign Up</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="{{route('login')}}">Login</a></li>
-              <li><a href="{{route('register')}}">Register</a></li>
-            </ul>
+          <li class="dropdown">
+            @guest
+                <a href="#"><span>Sign Up</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                </ul>
+            @else
+                <a href="{{ roleBasedRoute('index') }}">Go to Dashboard</a>
+            @endguest
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
@@ -116,7 +121,7 @@
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>

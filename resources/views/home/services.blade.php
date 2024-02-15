@@ -13,10 +13,11 @@
             helping reduce no-shows and improve overall appointment adherence.</p>
         </div>
         <div class="row">
-          <div class="col-lg-8 col-md-6 d-flex align-items-stretch">
-            
-            @if($services->subService->count() > 0)
+          @if($services->subService->count() > 0)
               @foreach ($services->subService as $subservice)
+          <div class="col-lg-4 col-md-4 d-flex align-items-stretch">
+            
+            
                 <a href="{{route('view.sub_service', $subservice->slug)}}">
                     <div class="icon-box">
                       <div class="≈icon"><i class="fas fa-heartbeat"></i></div>
@@ -24,11 +25,12 @@
                       <p>{{$subservice->description}}</p>
                     </div>                
                 </a>
-              @endforeach
+              
+          </div>
+          @endforeach
             @else
                 <p>No Subservice for this service</p>
             @endif
-          </div>
           
         </div>
  

@@ -1,6 +1,6 @@
 <li>
     <a href="{{ roleBasedRoute('index') }}">
-            <i data-feather="home"></i>                
+            <i style="width:20px; height:20px" class="me-2" data-feather="home"></i>                
             <span class="badge rounded-pill bg-success-subtle text-success float-end">9+</span>
             <span data-key="t-dashboard">Dashboard</span>    
     </a>
@@ -11,13 +11,13 @@
 
     <li>
         <a href="{{ route('user.appointments.index') }}">  
-            <i data-feather="calendar"></i>
+            <i style="width:20px; height:20px" class="me-2" data-feather="calendar"></i>
             <span data-key="t-calendar">Appoinments</span>           
         </a>
     </li>
     <li>
         <a href="{{ route('user.transactions.index') }}">
-            <i data-feather="trello"></i>
+            <i style="width:20px; height:20px" class="me-2" data-feather="trello"></i>
             <span data-key="t-tasks">Transactions</span>
         </a>
     </li>
@@ -32,7 +32,7 @@
 
     <li>
         <a href="javascript: void(0);" class="has-arrow">
-            <i data-feather="calendar"></i>
+            <i style="width:20px; height:20px" class="me-2" data-feather="calendar"></i>
             <span data-key="t-calendar">Appointments</span>
         </a>
         <ul class="sub-menu" aria-expanded="false">
@@ -59,7 +59,7 @@
 
     <li>
         <a href="javascript: void(0);" class="has-arrow">
-            <i data-feather="trello"></i>
+            <i style="width:20px; height:20px" class="me-2" data-feather="trello"></i>
             <span data-key="t-tasks">Transactions</span>
         </a>
         <ul class="sub-menu" aria-expanded="false">
@@ -80,7 +80,7 @@
 
     <li>
         <a href="javascript: void(0);" class="has-arrow">
-            <i data-feather="trello"></i>
+            <i style="width:20px; height:20px" class="me-2" data-feather="link-2"></i>
             <span data-key="t-tasks">Referrals</span>
         </a>
         <ul class="sub-menu" aria-expanded="false">
@@ -107,13 +107,13 @@
 @can('is_admin')
     <li>
         <a href="{{ route('admin.staff.index') }}" wire:navigate>
-            <i data-feather="home"></i>
+            <i style="width:20px; height:20px" class="me-2" data-feather="user-plus"></i>
             <span data-key="t-dashboard">Staff</span>
         </a>
     </li>
     <li>
         <a href="javascript: void(0);" class="has-arrow">
-            <i data-feather="shopping-cart"></i>
+            <i style="width:20px; height:20px" class="me-2" data-feather="settings"></i>
             <span data-key="t-ecommerce">Settings</span>
         </a>
         <ul class="sub-menu" aria-expanded="false">
@@ -149,7 +149,7 @@
 <li class="menu-title" data-key="t-apps">Account</li>
 <li>
     <a href="{{ route('profile.index') }}" wire:navigate>
-        <i data-feather="user"></i>
+        <i style="width:20px; height:20px" class="me-2" data-feather="user"></i>
         <span data-key="t-user">Profile</span>
     </a>
 </li>
@@ -162,7 +162,7 @@
                 @csrf
                  <a style="cursor: pointer;">
                 <button type="submit" style="border: none; background: none; cursor: pointer;">
-                    <i data-feather="power"></i>
+                    <i style="width:20px; height:20px" class="me-2" data-feather="power"></i>
                     <span data-key="t-email">Log Out</span>
                 </button>
                  </a>
@@ -173,7 +173,7 @@
 {{-- <li> 
     <form action="{{ route('logout') }}" method="post">
         @csrf
-        <button type="submit" class="dropdown-item"><i
+        <button type="submit" class="dropdown-item"><i style="width:20px; height:20px" class="me-2"
                 class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</button>
     </form>
 </li> --}}

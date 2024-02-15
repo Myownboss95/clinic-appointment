@@ -151,19 +151,19 @@
           <p>Allow patients to schedule appointments through online portals, reducing administrative workload and improving accessibility for patients and send automated reminders to patients about upcoming appointments, helping reduce no-shows and improve overall appointment adherence.</p>
         </div>
 
-        @foreach ($services as $service)
         <div class="row">
+        @foreach ($services as $service)
+        <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-between">
             <a href="{{route('services.sub_service', $service->slug)}}">
-              <div class="col-lg-6 col-md-12 d-flex align-items-center justify-content-between">
                     <div class="icon-box">
                     <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                    <h4><a href="">{{$service->name}}</a></h4>
+                    <h4><a>{{$service->name}}</a></h4>
                     <p>Provide a secure platform for communication between patients and healthcare providers, allowing for questions, updates, and shared decision-making</p>
                     </div>
-              </div>
-            </a>        
+                  </a>        
+          </div>
+            @endforeach 
         </div>
-        @endforeach 
 
       </div>
     </section><!-- End Services Section -->

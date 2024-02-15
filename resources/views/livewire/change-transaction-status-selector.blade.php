@@ -1,8 +1,8 @@
 @php
     use App\Constants\TransactionStatusTypes; 
 @endphp
-<div class="my-5">
-    <label for="status" class="form-label">Select Transaction Status</label>
+<div class="my-2">
+    <label for="status" class="form-label">Change Transaction Status</label>
     <div class=" mb-2">
         <select wire:change="updateSelectedStatus" class="form-select" id="stage" wire:model="selectedStatus">
             @foreach (TransactionStatusTypes::cases() as $status)

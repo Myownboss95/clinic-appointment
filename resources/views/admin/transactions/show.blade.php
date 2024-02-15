@@ -29,6 +29,16 @@
                                                     <div class="p-1">
                                                         @livewire('change-transaction-status-selector', ['transactionId' => $transaction->ref])
                                                     </div>
+                                                    <div class="mt-4 mt-xl-3">
+                                                        <h5 class="mb-1">Amount : <b>{{ formatMoney($transaction->amount) }}</b>
+                                                        </h5>
+                                                        @if($transaction->proof)
+                                                        <a href="{{ roleBasedRoute('download-proof', $transaction->ref) }}"
+                                                            class="btn btn-outline-primary btn-sm my-2">
+                                                            View Proof of Payment
+                                                            <i class="fas fa-eye"></i> </a>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -38,16 +48,6 @@
                                         <div class="mt-4 mt-xl-3">
                                             <h4>Trasaction status: {!! $status->labels() !!}
                                             </h4>
-                                            <h5 class="mb-4">Amount : <b>{{ formatMoney($transaction->amount) }}</b>
-                                            </h5>
-
-                                            @if($transaction->proof)
-                                            <a href="{{ roleBasedRoute('download-proof', $transaction->ref) }}"
-                                                class="btn btn-outline-primary btn-sm my-2">
-                                                View Proof of Payment
-                                                <i class="fas fa-eye"></i> </a>
-                                            @endif
-
                                             @if ($transaction->appointment->count()>0)
                                                 <h5> <a href="{{ roleBasedRoute('appointments.show', $transaction->appointment?->first()?->id) }}"
                                                         class="btn btn-outline-info btn-sm my-2">
@@ -60,12 +60,7 @@
                                                 class="btn btn-outline-secondary btn-sm"><i class="fas fa-download"></i>
                                                 Download Receipt</a>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-xl 6">
-                                        <div class="mt-4 mt-xl-3">
-
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>
                                 <!-- end row -->

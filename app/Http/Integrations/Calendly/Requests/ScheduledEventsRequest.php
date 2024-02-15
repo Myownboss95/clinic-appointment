@@ -14,7 +14,7 @@ use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\Traits\Request\HasConnector;
 use Saloon\Traits\RequestProperties\HasHeaders;
 
-class GetUsersUriRequest extends Request implements HasBody
+class ScheduledEventsRequest extends Request implements HasBody
 {
     use AcceptsJson;
     use HasConnector;
@@ -40,7 +40,7 @@ class GetUsersUriRequest extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return "/users/me";
+        return "/scheduled_events/0cc8b2e2-65ff-4a83-bddf-6567264a06dd";
     }
 
     /**
@@ -61,6 +61,8 @@ class GetUsersUriRequest extends Request implements HasBody
     public function defaultQuery(): array
     {
         return [
+            // 'user' => "https://api.calendly.com/users/c1911e59-40e9-4510-96ad-e70029fcba2c",
+            "uuid" => "0cc8b2e2-65ff-4a83-bddf-6567264a06dd"
         ];
     }
 

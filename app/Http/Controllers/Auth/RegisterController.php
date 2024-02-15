@@ -156,14 +156,15 @@ class RegisterController extends Controller
         }
         if (! $existingUser) {
             // Create a new user
+            $password = Hash::make(Str::random(10));
             $newUser = User::create([
                 'first_name' => $user->name,
                 'email' => $user->email,
-                'password' => Hash::make(Str::random(10)),
+                'password' => $password,
                 'referred_by_user_id' => $this->getReferralId(),
             ]);
 
-            $newUser->notify(new SocialRegisterationNotification($newUser, 'google'));
+            $newUser->notify(new SocialRegisterationNotification($newUser, 'google', $password));
             // Log in the new user
             auth()->login($newUser, true);
         }

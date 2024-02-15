@@ -12,7 +12,7 @@
             <div class="container-fluid">
 
                 <!-- start page title -->
-                <x-bread-crumb title="Transaction" />
+                <x-bread-crumb title="Transaction" :url = "route('user.transactions.index')"/>
                 <!-- end page title -->
 
                 <div class="row">

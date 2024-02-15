@@ -17,6 +17,7 @@ use App\Http\Integrations\Calendly\Requests\LoginRequest;
 use App\Http\Integrations\Calendly\Connectors\BaseConnector;
 use App\Http\Integrations\Calendly\Requests\EventTypesRequest;
 use App\Http\Integrations\Calendly\Requests\GetUsersUriRequest;
+use App\Http\Integrations\Calendly\Requests\ScheduledEventsRequest;
 use App\Http\Integrations\Calendly\Connectors\BaseCalendlyConnector;
 
 class CalendlyService
@@ -81,8 +82,28 @@ class CalendlyService
         $response = $connector->authenticate($accessTokenData)->send(new GetUsersUriRequest);
 
         if ($response->failed()) {
+            return $response->body();
             throw new FailedToFetchUriException($response->body());
         }
+
+        return $response->json();
+    }
+
+    public function scheduledEvents() //: FetchUserUriResponseData
+    {
+        $accessTokenData = $this->fetchAccessToken();
+
+        $connector = new BaseCalendlyConnector();
+
+        // $response = $connector->authenticate($accessTokenData)->send(new ScheduledEventsRequest);
+        $response = $connector->authenticate($accessTokenData)->send(new ScheduledEventsRequest);
+
+
+        if ($response->failed()) {
+            info($response->body());
+            throw new FailedToFetchUriException($response->body());
+        }
+        info($response->json());
 
         return $response->json();
     }

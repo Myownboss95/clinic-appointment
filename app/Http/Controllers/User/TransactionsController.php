@@ -16,7 +16,7 @@ class TransactionsController extends Controller
     {
         $user = $request->user();
 
-        return view('user.transaction', [
+        return view('user.transactions.index', [
             'user' => $user->load('transactions'),
         ]);
     }

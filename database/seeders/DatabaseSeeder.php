@@ -25,13 +25,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            // ServiceSeeder::class,
-            // SubServiceSeeder::class,
-            // StageSeeder::class,
-            // PaymentChannelsSeeder::class,
+            ServiceSeeder::class,
+            SubServiceSeeder::class,
+            StageSeeder::class,
+            PaymentChannelsSeeder::class,
 
             //this should be run to quickly seed this appointment, transaction and all the pivot tables
-            // AppointmentSeeder::class
             //seed for follow up appointments
             FollowUpAppointmentSeeder::class,
         ]);

@@ -8,6 +8,8 @@ use App\Traits\ArrayableEnum;
 enum TransactionStatusTypes: string implements EnumToArray
 {
     use ArrayableEnum;
+
+    case CREATED = 'created';
     case PENDING = 'pending';
     case FAILED = 'failed';
     case CONFIRMED = 'comfirmed';
@@ -19,7 +21,9 @@ enum TransactionStatusTypes: string implements EnumToArray
             self::PENDING => "<span class ='badge bg-warning' > pending <i class='bx bx-repost'></i> </span>",
             self::FAILED => "<span class = 'badge bg-danger' >failed <i class='bx bx-x'></i></span>",
             self::CONFIRMED => "<span class = 'badge bg-success' >confirmed <i  class='bx bx-check'></i></span>",
-            self::PAID_REFERRAL => "<span class = 'badge bg-primary' >Paid Referral <i  class='bx bx-check'></i></span>"
+            self::PAID_REFERRAL => "<span class = 'badge bg-primary' >Paid Referral <i  class='bx bx-check'></i></span>",
+            self::CREATED => "<span class = 'badge bg-secondary' >Initiated <i  class='bx bx-check'></i></span>"
+
 
         };
 

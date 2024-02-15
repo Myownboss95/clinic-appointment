@@ -2,14 +2,126 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\SubService;
+use App\Models\Appointment;
+use App\Traits\UploadFiles;
+use Illuminate\Http\Request;
+use App\Models\PaymentChannel;
+use App\Actions\CreateUserAction;
+use App\Settings\GeneralSettings;
+use App\Constants\PaymentChannels;
+use App\Actions\CreateAppointmentAction;
+use App\Constants\TransactionStatusTypes;
+use App\Data\Calendly\CalendlyRedirectData;
+use App\Notifications\AdminTransactionCreateNotification;
 
 class BookAppointmentController extends Controller
 {
+    use UploadFiles;
+
     public function index($slug)
     {
+        $settings = app(GeneralSettings::class);
+        $subService = SubService::where('slug', $slug)->first();
+        session()->put('subservice', $subService);
         return view('home.book-appointment', [
-            'service' => SubService::where('slug', $slug)->first(),
+            'service' => $subService,
+            'settings' => $settings,
+
         ]);
+    }
+
+    public function appointmentBooked(Request $request)
+    {
+        if (session()->get('subservice') == null) {
+            toastr()->addError('Please book again.');
+            return redirect()->route('home');
+        }
+        $data = new CalendlyRedirectData(
+            $request->query('event_start_time'),
+            $request->query('invitee_first_name'),
+            $request->query('invitee_last_name'),
+            $request->query('invitee_email'),
+            session()->get('subservice')
+        );
+
+        $user = CreateUserAction::execute($data);
+        $appointment = CreateAppointmentAction::execute($data, $user);
+
+        toastr()->addSuccess('Account has been created and login details sent top your mail box');
+        return redirect()->route('booking.confirm-appointment', $appointment->uuid);
+    }
+
+    public function confirmAppointmentBooking(string $uuid)
+    {
+        $settings = app(GeneralSettings::class);
+
+        $appointment = Appointment::where('uuid', $uuid)->first();
+        if (!$appointment) {
+            toastr()->addError('Please book again.');
+            return redirect()->back();
+        }
+        $transaction = $appointment->transaction()->first();
+        if ($transaction->status !== TransactionStatusTypes::CREATED->value) {
+            toastr()->addError('Please book again.');
+            return redirect()->back();
+        }
+
+        return view('home.confirm-appointment', [
+            'paymentChannels' => PaymentChannel::where('name', '!=', PaymentChannels::ADMIN)->get(),
+            'appointment' => $appointment,
+            'service' => $appointment->subService()->first(),
+            'transaction' => $appointment->transaction()->first(),
+            'settings' => $settings,
+        ]);
+    }
+
+    public function declineAppointmentBooking (string $uuid)
+    {
+        $appointment = Appointment::where('uuid', $uuid)->first();
+        if (!$appointment) {
+            toastr()->addError('not Found.');
+            return redirect()->route('home');
+        }
+        $transaction = $appointment->transaction()->first();
+        $appointment->transaction()->detach($transaction);
+        $appointment->subService()->detach($appointment->subService()->first());
+
+
+        $appointment->delete();
+        $transaction->delete();
+
+        toastr()->addSuccess('Payment Declined and Appointment Cancelled');
+        return redirect()->route('home');
+    }
+
+    public function confirmAppointmentBookingPayment (Request $request, string $uuid)
+    {
+        $data = $request->validate([
+                'payment_channel_id' => ['required', 'exists:payment_channels,id'],
+                'image' => ['nullable', 'file', 'mimes:pdf,docx,jpeg,jpg,png','max:2048'],
+            ]);
+
+        $appointment = Appointment::where('uuid', $uuid)->first();
+        if (!$appointment) {
+            toastr()->addError('not Found.');
+            return redirect()->route('home');
+        }
+        if ($request->hasFile('image')) {
+            $data['proof'] = $this->uploadImage('payment_proof', $request);
+        }
+
+        array_merge($data, ['status' => TransactionStatusTypes::CREATED->value]);
+        $transaction = $appointment->transaction()->first();
+        $transaction->update([$data]);
+
+        User::where('role_id', 3)->each(
+            function ($admin) use($transaction) {
+                $admin->notify(new AdminTransactionCreateNotification($transaction->user, $admin, $transaction));
+            });
+        
+        toastr()->addSuccess('Payment Waiting to be approved');
+        return redirect()->route('login');
     }
 }

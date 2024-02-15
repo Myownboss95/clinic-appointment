@@ -94,11 +94,11 @@ final class UserAppointmentTable extends PowerGridComponent
     public function actions(Appointment $row): array
     {
         return [
-            Button::add('edit')
+            Button::add('view')
                 ->slot('View')
-                ->id()
                 ->class('btn btn-success')
-                ->dispatch('edit', ['rowId' => $row->id]),
+                ->target('')
+                ->route('user.appointments.show', ['id' => $row->id]),
         ];
     }
 

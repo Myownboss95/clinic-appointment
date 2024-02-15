@@ -17,7 +17,7 @@
             
             @if($services->subService->count() > 0)
               @foreach ($services->subService as $subservice)
-                <a href="{{route('view.sub_service', [$subservice->slug])}}">
+                <a href="{{route('view.sub_service', $subservice->slug)}}">
                     <div class="icon-box">
                       <div class="≈icon"><i class="fas fa-heartbeat"></i></div>
                       <h4>{{$subservice->name}}</h4>

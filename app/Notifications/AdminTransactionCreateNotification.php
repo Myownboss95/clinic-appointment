@@ -8,14 +8,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserTransactionNotification extends Notification
+class AdminTransactionCreateNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(public User $user, public Transaction $transaction)
+    public function __construct(public User $user, public User $admin, public Transaction $transaction)
     {
         //
     }
@@ -37,9 +37,9 @@ class UserTransactionNotification extends Notification
     {
 
         return (new MailMessage)
-            ->subject('Transaction Status')
-            ->greeting("Hello {$this->user->first_name}")
-            ->line("Your transaction with ref {$this->transaction->ref} has been updated to {$this->transaction->status}.")
+            ->subject("Transaction Status")
+            ->greeting("Hello {$this->admin->first_name}")
+            ->line("Transaction status has been created for {$this->user->first_name} {$this->user->last_name} with ref {$this->transaction->ref}. Please confirm payment details.")
             ->line('Contact admin for more details or confirmation');
     }
 

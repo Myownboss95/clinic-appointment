@@ -26,12 +26,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
 Route::get('/service/{subservice}', [HomeController::class, 'viewService'])->name('view.sub_service');
 
 Route::get('/ref/{token}', ReferralController::class);
-Route::get('/book-appointment/{subservice}', [BookAppointmentController::class, 'index'])->name('book-appointment');
+Route::prefix('booking')->as('booking.')->group(function(){
+    Route::get('/book-appointment/{subservice}', [BookAppointmentController::class, 'index'])->name('book-appointment');
+    Route::get('appointment-date-booked', [BookAppointmentController::class, 'appointmentBooked'])->name('appointment.booked');
+    Route::get('/appointment/{uuid}', [BookAppointmentController::class, 'confirmAppointmentBooking'])->name('confirm-appointment');
+    Route::get('/decline-appointment-booking/{uuid}', [BookAppointmentController::class, 'declineAppointmentBooking'])->name('decline-appointment-booking');
+    Route::post('/confirm-appointment-booking/{uuid}', [BookAppointmentController::class, 'confirmAppointmentBookingPayment'])->name('confirm-appointment-booking');
+});
 
 Route::prefix('location')->as('location.')->controller(LocationController::class)->group(function () {
     Route::get('countries', 'countries')->name('countries');
@@ -63,6 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/update-bank-details', [UserBankDetailsController::class, 'update'])->name('bank-details.update');
     });
     Route::get('transaction/download/{ref}', TransactionReceiptController::class)->name('download.transaction');
+
 
     Route::prefix('user')->as('user.')->middleware('can:is_user')->group(fn () => require_once('user.php'));
     Route::prefix('admin')->as('admin.')->middleware('can:is_admin')->group(fn () => require_once('admin.php'));

@@ -10,13 +10,13 @@
     <li class="menu-title" data-key="t-apps">Details</li>
 
     <li>
-        <a href="{{ route('user.appointments') }}">  
+        <a href="{{ route('user.appointments.index') }}">  
             <i data-feather="calendar"></i>
             <span data-key="t-calendar">Appoinments</span>           
         </a>
     </li>
     <li>
-        <a href="{{ route('user.transactions') }}">
+        <a href="{{ route('user.transactions.index') }}">
             <i data-feather="trello"></i>
             <span data-key="t-tasks">Transactions</span>
         </a>

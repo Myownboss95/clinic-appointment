@@ -14,7 +14,7 @@ class SocialRegisterationNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public User $user, public string $media)
+    public function __construct(public User $user, public string $media, public string $password)
     {
         //
     }
@@ -38,7 +38,7 @@ class SocialRegisterationNotification extends Notification
         return (new MailMessage)
             ->subject('Registration Notification')
             ->greeting("Hello {$this->user->first_name}")
-            ->line("Thank you for signing in via {$this->media}. Your auto generated password is {$this->user->password}. Please ensure to change this once you are logged in");
+            ->line("Thank you for signing in via {$this->media}. Your auto generated password is {$this->password}. Please ensure to change this once you are logged in");
     }
 
     /**

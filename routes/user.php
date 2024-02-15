@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', DashboardController::class)->name('index');
 Route::prefix('transactions')->controller(TransactionsController::class)->group(function () {
-    Route::get('', 'index')->name('transactions');
+    Route::get('', 'index')->name('transactions.index');
     Route::get('/{id}', 'show')->name('transactions.show');
 });
 Route::prefix('appointments')->controller(AppointmentController::class)->group(function () {
-    Route::get('', 'index')->name('appointments');
+    Route::get('', 'index')->name('appointments.index');
+    Route::get('/{id}', 'show')->name('appointments.show');
 });

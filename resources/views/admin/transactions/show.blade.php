@@ -41,10 +41,16 @@
                                             <h5 class="mb-4">Amount : <b>{{ formatMoney($transaction->amount) }}</b>
                                             </h5>
 
+                                            @if($transaction->proof)
+                                            <a href="{{ roleBasedRoute('download-proof', $transaction->ref) }}"
+                                                class="btn btn-outline-primary btn-sm my-2">
+                                                View Proof of Payment
+                                                <i class="fas fa-eye"></i> </a>
+                                            @endif
 
                                             @if ($transaction->appointment->count()>0)
                                                 <h5> <a href="{{ roleBasedRoute('appointments.show', $transaction->appointment?->first()?->id) }}"
-                                                        class="btn btn-outline-info btn-sm">
+                                                        class="btn btn-outline-info btn-sm my-2">
                                                         View Appointment Paid For
                                                         <i class="fas fa-eye"></i> </a></h5>
                                             @endif

@@ -12,15 +12,6 @@
         </select>
     </div>
 
-    {{-- @if ($showPasswordField)
-        <div class="mb-2">
-            <input type="password" wire:model="password" placeholder="Enter password to confirm" class="form-control">
-        </div>
-
-        <div class="mb-4">
-            <button wire:click="updateAppointmentStage" class="btn btn-primary btn-md">Update Status</button>
-        </div>
-    @endif --}}
     <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

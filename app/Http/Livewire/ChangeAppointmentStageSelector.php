@@ -41,19 +41,21 @@ class ChangeAppointmentStageSelector extends Component
 
     public function updateAppointmentStage()
     {
-        if (Hash::check($this->password, auth()->user()->password)) {
-            $this->appointment->update([
-                'stage_id' => $this->selectedStage,
-            ]);
+        if (!Hash::check($this->password, auth()->user()->password)) {
+            toastr()->addError('Incorrect Password');
 
-            toastr()->addSuccess('Appointment Stage updated successfully.');
-            $this->appointment->user->notify(new UserAppointmentStageNotification($this->appointment->user, $this->appointment));
-
-            return redirect()->route(role(auth()->user()->role_id).'.appointments.show', $this->appointment->id);
+            return redirect()->route(role(auth()->user()->role_id) . '.appointments.show', $this->appointment->id);
         }
+        
+        $this->appointment->update([
+            'stage_id' => $this->selectedStage,
+        ]);
 
-        toastr()->addError('Incorrect Password');
+        toastr()->addSuccess('Appointment Stage updated successfully.');
+        $this->appointment->user->notify(new UserAppointmentStageNotification($this->appointment->user, $this->appointment));
 
         return redirect()->route(role(auth()->user()->role_id).'.appointments.show', $this->appointment->id);
+
+        
     }
 }

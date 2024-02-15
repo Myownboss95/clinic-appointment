@@ -2,14 +2,15 @@
 
 namespace App\Actions;
 
-use App\Constants\StageTypes;
-use App\Constants\TransactionStatusTypes;
-use App\Constants\TransactionTypes;
 use App\Models\User;
-use App\Data\Calendly\CalendlyRedirectData;
-use App\Models\Appointment;
 use App\Models\Stage;
+use App\Models\Appointment;
 use App\Models\Transaction;
+use App\Constants\StageTypes;
+use App\Constants\TransactionTypes;
+use App\Constants\TransactionStatusTypes;
+use App\Data\Calendly\CalendlyRedirectData;
+use App\Notifications\AppointmentCreatedNotification;
 
 class CreateAppointmentAction
 {
@@ -46,6 +47,7 @@ class CreateAppointmentAction
                 $appointment->transaction()->attach($transaction);
             }
 
+            self::sendNotification($user, $appointment);
             return $appointment;
         }
 
@@ -66,9 +68,22 @@ class CreateAppointmentAction
             $appointment->transaction()->attach($transaction);
             $appointment->subService()->attach($calendlyRedirectData->subService);
 
+            self::sendNotification($user, $appointment);
             return $appointment;
         } catch (\Throwable $th) {
             report($th);
         }
     }
+
+    protected static function sendNotification(User $user, Appointment $appointment)
+    {
+        $date = formatDateTime($appointment->start_time);
+        User::where('role_id', 3)->each(
+            function ($admin) use ($appointment, $user, $date) {
+                $admin->notify(new AppointmentCreatedNotification($admin, $user, $appointment, $date));
+            }
+        );
+    }
 }
+
+

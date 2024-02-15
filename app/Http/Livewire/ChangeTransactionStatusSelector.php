@@ -18,6 +18,10 @@ class ChangeTransactionStatusSelector extends Component
 
     public $password;
 
+    public $showPasswordField = false; 
+
+    public $showPasswordModal = false; 
+
     public function mount($transactionId)
     {
         $this->transactionId = $transactionId;
@@ -30,15 +34,19 @@ class ChangeTransactionStatusSelector extends Component
         return view('livewire.change-transaction-status-selector');
     }
 
-    public function updatedSelectedStatus()
+    public function updateSelectedStatus()
     {
-        if ($this->selectedStatus !== $this->transaction->status) {
-            $this->password = null;
-        }
+        $this->dispatch('toggle-password-modal', $this->selectedStatus !== $this->transaction->status);
     }
 
     public function updateTransactionStatus()
     {
+        if (!Hash::check($this->password, auth()->user()->password)) {
+            toastr()->addError('Incorrect Password');
+
+            return redirect()->route(role(auth()->user()->role_id) . '.transactions.show', $this->transaction->id);
+        }
+
         if (auth()->user()->role_id !== 3) {
             if ($this->selectedStatus == TransactionStatusTypes::PENDING->value) {
                 toastr()->addError('You can either confirm or reject transactions');
@@ -46,21 +54,18 @@ class ChangeTransactionStatusSelector extends Component
                 return redirect()->route(role(auth()->user()->role_id).'.transactions.show', $this->transaction->id);
             }
         }
-        if (Hash::check($this->password, auth()->user()->password)) {
-            $this->transaction->update([
-                'status' => $this->selectedStatus,
-                'confirmed_by' => auth()->user()->id,
-            ]);
+        
+        $this->transaction->update([
+            'status' => $this->selectedStatus,
+            'confirmed_by' => auth()->user()->id,
+        ]);
 
-            toastr()->addSuccess('Status updated successfully.');
-            $this->transaction->user->notify(new UserTransactionNotification($this->transaction->user, $this->transaction));
+        toastr()->addSuccess('Status updated successfully.');
+        $this->transaction->user->notify(new UserTransactionNotification($this->transaction->user, $this->transaction));
 
-            return redirect()->route(role(auth()->user()->role_id).'.transactions.show', $this->transaction->id);
-        }
+        return redirect()->route(role(auth()->user()->role_id) . '.transactions.show', $this->transaction->id);
 
-        toastr()->addError('Incorrect Password');
-
-        return redirect()->route(role(auth()->user()->role_id).'.transactions.show', $this->transaction->id);
+       
 
     }
 }

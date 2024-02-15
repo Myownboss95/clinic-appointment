@@ -49,7 +49,7 @@ class BookAppointmentController extends Controller
         $user = CreateUserAction::execute($data);
         $appointment = CreateAppointmentAction::execute($data, $user);
 
-        toastr()->addSuccess('Account has been created and login details sent top your mail box');
+        toastr()->addSuccess('Login details have been sent to your mail box');
         return redirect()->route('booking.confirm-appointment', $appointment->uuid);
     }
 
@@ -108,13 +108,14 @@ class BookAppointmentController extends Controller
             toastr()->addError('not Found.');
             return redirect()->route('home');
         }
+        $transaction = $appointment->transaction()->first();
         if ($request->hasFile('image')) {
-            $data['proof'] = $this->uploadImage('payment_proof', $request);
+            $transaction->proof = $this->uploadImage('payment_proof', $request);
         }
 
-        array_merge($data, ['status' => TransactionStatusTypes::CREATED->value]);
-        $transaction = $appointment->transaction()->first();
-        $transaction->update([$data]);
+        $transaction->status = TransactionStatusTypes::PENDING->value;
+        
+        $transaction->save();
 
         User::where('role_id', 3)->each(
             function ($admin) use($transaction) {

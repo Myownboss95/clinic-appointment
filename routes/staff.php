@@ -49,4 +49,6 @@ Route::prefix('transactions')->controller(TransactionsController::class)->group(
     Route::get('', 'index')->name('transactions');
     Route::get('confirmed-transactions', 'approvedTransactions')->name('confirmed.transactions');
     Route::get('rejected-transactions', 'rejectedTransactions')->name('rejected.transactions');
+    Route::get('download-proof/{uuid}', 'downloadProof')->name('download-proof');
+
 });

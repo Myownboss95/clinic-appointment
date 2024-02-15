@@ -49,7 +49,7 @@ class TransactionsController extends Controller
         if (empty($transaction)) {
             toastr()->addError('Transaction not found');
 
-            return redirect(roleBasedRoute('transactions.index'));
+            return redirect(roleBasedRoute('transactions'));
         }
 
         // dd($transaction);
@@ -57,6 +57,20 @@ class TransactionsController extends Controller
             'transaction' => $transaction,
         ]);
     }
+
+    public function downloadProof(string $ref)
+    {
+        $transaction = Transaction::where('ref', $ref)->first();
+        if (empty($transaction->proof)) {
+            toastr()->addError('File not found');
+            return redirect()->back();
+        }
+
+        $storagePath = storage_path('app/public/payment_proof/' . $transaction->proof);
+
+        return response()->download($storagePath);
+    }
+
 
     // /**
     //  * Update the specified Appointment in storage.

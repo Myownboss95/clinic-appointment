@@ -33,9 +33,11 @@ class CreateUserAction
                     'password' => $password,
                 ]);
 
+                
                 $user->notify(new SocialRegisterationNotification($user, 'calendly', $password));
                 // Log in the new user
                 auth()->login($user, true);
+                return $user;
             }
             return $user;
 

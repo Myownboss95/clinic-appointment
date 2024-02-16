@@ -25,7 +25,7 @@ class TransactionReceiptController extends Controller
             return back();
 
         }
-        if ($transaction->status != TransactionStatusTypes::CONFIRMED) {
+        if ($transaction->status != TransactionStatusTypes::CONFIRMED->value) {
             toastr()->addError('Transaction not confirmed yet. Only confirmed Transactions can have receipts');
 
             return back();

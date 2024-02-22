@@ -46,13 +46,16 @@
 </div>
 
 @push('page_scripts')
-    <script type="text/javascript">
-        $('#end_time').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: true,
-            sideBySide: true
-        })
-    </script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $('.js-example-basic-single').select2({
+        placeholder: "Search options",
+        minimumInputLength: 2,
+        caseSensitive: false
+        });
+
+</script>
 @endpush
 
 <!-- Stage Id Field -->

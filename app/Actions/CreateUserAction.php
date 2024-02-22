@@ -43,7 +43,7 @@ class CreateUserAction
 
 
         } catch (\Throwable $th) {
-
+            report($th);
         }
     }
 }

@@ -29,6 +29,6 @@ jobs:
                         cd ~/clinic.tremasaba.org/
                         git pull
                         composer install
-                        bin/console doctrine:migrations:migrate --no-interaction
-                        bin/console cache:clear        
+                        php artisan migrate
+                        php artisan o:c        
                         echo "Deployment successful!"

@@ -29,6 +29,10 @@ class GeneralSettingController extends AppBaseController
     public function index(GeneralSettings $settings)
     {
         return view('admin.general_settings.create', [
+            'app_name' => $settings->app_name,
+            'app_address' => $settings->app_address,
+            'hero' => $settings->hero,
+            'site_description' => $settings->site_description,
             'ref_bonus' => $settings->ref_bonus,
             'site_phone' => $settings->site_phone,
             'site_email' => $settings->site_email,
@@ -57,6 +61,10 @@ class GeneralSettingController extends AppBaseController
      */
     public function store(CreateGeneralSettingRequest $request,GeneralSettings $settings)
     {
+        $settings->site_description = $request->input('site_description');
+        $settings->hero = $request->input('hero');
+        $settings->app_address = $request->input('app_address');
+        $settings->site_description = $request->input('site_description');
         $settings->ref_bonus = $request->input('ref_bonus');
         $settings->site_phone = $request->input('site_phone');
         $settings->site_facebook = $request->input('site_facebook');
@@ -65,7 +73,7 @@ class GeneralSettingController extends AppBaseController
         $settings->site_twitter = $request->input('site_twitter');
 
         $settings->save();
-        toastr()->addSuccess('Appointment saved successfully.');
+        toastr()->addSuccess('Settings saved successfully.');
 
         return redirect(roleBasedRoute('settings.index'));
     }

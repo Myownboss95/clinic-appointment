@@ -25,6 +25,10 @@ class CreateGeneralSettingRequest extends FormRequest
     public function rules()
     {
         return [
+            'app_name' => 'required|string',
+            'hero' => 'required|string',
+            'site_description' => 'required|string',
+            'app_address' => 'required|string',
             'ref_bonus' => 'required|integer',
             'calendly' => 'nullable|string',
             'site_phone' => 'required|string',

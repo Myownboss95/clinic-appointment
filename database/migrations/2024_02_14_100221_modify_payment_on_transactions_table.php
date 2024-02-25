@@ -25,6 +25,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('transactions', function (Blueprint $table) {
+            $table->dropColumn('payment_channel_id');
+        });
+        Schema::table('transactions', function (Blueprint $table) {
             $table->foreignIdFor(PaymentChannel::class)->after('user_id');
         });
     }

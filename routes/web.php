@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
-Route::get('/service/{subservice}', [HomeController::class, 'viewService'])->name('view.sub_service');
 
 Route::get('/ref/{token}', ReferralController::class);
 Route::prefix('booking')->as('booking.')->group(function(){

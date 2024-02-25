@@ -10,6 +10,10 @@ class GeneralSettings extends Settings
 
     public int $ref_bonus;
     public null|string $calendly_user_uri;
+    public null|string $app_name;
+    public null|string $hero;
+    public null|string $site_description;
+    public null|string $app_address;
     public null|string $calendly_user_email;
     public null|string $calendly_organisation;
     public null|string $calendly_access_token;

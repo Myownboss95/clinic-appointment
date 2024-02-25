@@ -2,11 +2,25 @@
 
 @section("content")
 
+<style>
+  .hyphen-list {
+  list-style-type: disc; /* Use the standard disc marker for hyphens */
+}
+
+.hyphen-list li::marker { /* Target the list marker itself */
+  content: "-"; /* Replace the disc with a hyphen */
+}
+
+/* Ensure left alignment within flexbox */
+.d-flex .hyphen-list {
+  text-align: left;
+}
+</style>
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1>Welcome to {{ config('app.name')}}</h1>
-      <h2>Your Comprehensive Health Management System!</h2>
+      <h1>Welcome to {{ $settings->app_name ?? config('app.name')}}</h1>
+      <h2>{{ $settings->hero }}</h2>
       <a href="#about" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
@@ -20,11 +34,8 @@
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="content">
-              <h3>Why Choose {{ config('app.name')}}?</h3>
-              <p>
-                {{ config('app.name')}} systems centralize patient information, including medical history, test results, and treatment plans.
-                This centralized storage makes it easier for healthcare providers to access and retrieve accurate and up-to-date information quickly.
-              </p>
+              <h3>Why Choose {{ $settings->app_name ?? config('app.name')}}?</h3>
+              <p>{{ $settings->site_description }} </p>
               <div class="text-center">
                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
               </div>
@@ -34,14 +45,18 @@
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
                 @foreach ($services as $service)
-                <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="col-md-6 d-flex align-items-stretch">
                 {{-- <a href="{{route('services.sub_service', $service->slug)}}"> --}}
 
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-receipt"></i>
                     <h4>{{$service->name}}</h4>
-                    <p></p>
-                   <a href="{{route('services.sub_service', $service->slug)}}" class="more-btn">View Services <i class="bx bx-chevron-right"></i></a>
+                    <ul class="hyphen-list">
+                      @foreach($service->subService as $subService)
+                      <li>{{ $subService->name }}; {{$subService->description}}</li>
+                      @endforeach
+                    </ul>
+                   <a href="{{route('services.sub_service', $service->slug)}}" class="more-btn">View Services </a>
                   </div>
                 {{-- </a> --}}
                 </div>
@@ -62,7 +77,6 @@
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
       </div>
 
@@ -78,19 +92,19 @@
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>{{ $settings->app_address }}</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>{{ $settings->site_email }}</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p>{{ $settings->site_phone }}</p>
               </div>
 
             </div>

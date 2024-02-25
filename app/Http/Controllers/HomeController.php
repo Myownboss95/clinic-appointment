@@ -9,35 +9,29 @@ use App\Http\Integrations\Calendly\CalendlyService;
 
 class HomeController extends Controller
 {
+    protected $settings;
+
+    public function __construct(GeneralSettings $settings)
+    {
+        $this->settings = $settings;
+    }
+
     public function index()
     {
-        $settings = app(GeneralSettings::class);
         return view('home.landing', [
             'services' => Service::all(),
-            'settings' => $settings
+            'settings' => $this->settings
         ]);
     }
 
     public function getAllSubservices(string $slug)
     {
-        $settings = app(GeneralSettings::class);
-
         return view('home.services', [
             'services' => Service::where('slug', $slug)->with('subService')->first(),
-            'settings' => $settings
+            'settings' => $this->settings
         ]);
     }
 
-    public function viewService(string $slug)
-    {
-        $settings = app(GeneralSettings::class);
-
-        return view('home.subservice-page', [
-            'service' => SubService::where('slug', $slug)->first(),
-            'settings' => $settings
-
-        ]);
-    }
 
     public function calendly()
     {

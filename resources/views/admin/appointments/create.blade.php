@@ -30,42 +30,41 @@
                     <!-- User Id Field -->
                     <div class="mb-3">
                         <label for="user">User</label>
-                        <select name="user_id" id="" class="form-control">
-                            <option>Select User</option>
+                        
+                        
+                        <select name="user_id" id="user" class="form-control">
+                            {{-- <option>Select User</option> --}}
                             @foreach ($users as $user)
-                                <option {{ $appointment->user?->id === $user->id ? 'selected' : null }}
-                                    value={{ $user->id }}>{{ $user->last_name . ' ' . $user->first_name }}</option>
+                                <option value={{ $user->id }}>{{ $user->last_name . ' ' . $user->first_name }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <!-- Sub Service Id Field -->
                     <div class="mb-3">
-                        <label for="user">Sub Service</label>
-                        <select name="sub_service_id" id="" class="form-control">
-                            <option>Select Subservice</option>
+                        <label for="service">Service</label>
+                        <select name="sub_service_id" id="service" class="form-control">
+                            <option>Select Service</option>
 
-                            @foreach ($subServices as $subService)
-                                <option {{ $appointment->subService === $subService->id ? 'selected' : null }}
-                                    value={{ $subService->id }}>{{ $subService->name }}</option>
+                            @foreach ($services as $service)
+                                <option value={{ $service->id }}>{{ $service->name }}</option>
                             @endforeach
                         </select>
 
                     </div>
 
                     @push('page_scripts')
-                        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-                            rel="stylesheet" />
-                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                        
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.0/slimselect.min.css" integrity="sha512-QhrDqeRszsauAfwqszbR3mtxV3ZWp44Lfuio9t1ccs7H15+ggGbpOqaq4dIYZZS3REFLqjQEC1BjmYDxyqz0ZA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.0/slimselect.min.js" integrity="sha512-mG8eLOuzKowvifd2czChe3LabGrcIU8naD1b9FUVe4+gzvtyzSy+5AafrHR57rHB+msrHlWsFaEYtumxkC90rg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    
                         <script>
-                            $('.js-example-basic-single').select2({
-                                placeholder: "Search options",
-                                minimumInputLength: 2,
-                                caseSensitive: false
-                            });
+                        new SlimSelect({
+                            select: "#user"
+                        });
                         </script>
                     @endpush
-                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Next', ['class' => 'btn btn-primary']) !!}
                     <a href="{{ roleBasedRoute('appointments.index') }}" class="btn btn-default">Cancel</a>
                 </form>
             </div>

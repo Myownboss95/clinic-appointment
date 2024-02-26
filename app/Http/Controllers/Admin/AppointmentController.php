@@ -95,9 +95,9 @@ class AppointmentController extends AppBaseController
 
         return view('admin.appointments.create', [
             'stages' => Stage::get(),
-            'users' => User::get(),
-            'subServices' => SubService::get()
-        ])->with('appointment', $appointments);
+            'users' => User::where('role_id', 1)->get(),
+            'services' => SubService::get()
+        ]);
     }
 
     /**
@@ -106,18 +106,42 @@ class AppointmentController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateAppointmentRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
-         dd($input);
+        $validator = Validator::make($request->all(), [
+            'sub_service_id' => 'required|integer|exists:sub_services,id',
+            'user_id' => 'required|integer|exists:users,id',
+        ]);
 
-        $appointment = $this->appointmentRepository->create($input);
-
-        toastr()->addSuccess('Appointment saved successfully.');
-
-        return redirect(roleBasedRoute('appointments.index'));
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $user = User::findOrFail($request->input('user_id'));
+        $subService = SubService::findOrFail($request->input('sub_service_id'));
+        session()->put('user', $user);
+        session()->put('subservice', $subService);
+        return redirect(roleBasedRoute('appointments.book-appointment'));
     }
 
+    public function bookAppointment()
+    {
+        $user = session()->get('user');
+        $service = session()->get('subservice');
+        if (!$user && !User::where('id', $user->id)->exists()) {
+            toastr()->addError('Please select user again.');
+            return redirect()->back();
+        }
+        if (!$service && !SubService::where('id', $service->id)->exists()) {
+            toastr()->addError('Please select service again.');
+            return redirect()->back();
+        }
+
+        
+
+        return view('admin.appointments.book-appointment',
+                    ['user'=>$user,
+                    'service' => $service ]);
+    }
     /**
      * Display the specified Appointment.
      *

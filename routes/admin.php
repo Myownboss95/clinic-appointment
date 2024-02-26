@@ -49,6 +49,7 @@ Route::resource('countries', CountryController::class);
 Route::resource('clinicUsers', ClinicUserController::class);
 Route::resource('cities', CityController::class);
 Route::get('appointments/pending-appointments', [AppointmentController::class, 'pendingAppointments'])->name('appointments.pending');
+Route::get('appointments/book-appointment', [AppointmentController::class, 'bookAppointment'])->name('appointments.book-appointment');
 Route::resource('appointments', AppointmentController::class);
 Route::get('referrals/pending-payouts', [ReferralsTransactionController::class, 'pendingTransactions'])->name('referrals.pending');
 Route::resource('referrals', ReferralsTransactionController::class)->only(['index', 'show']);

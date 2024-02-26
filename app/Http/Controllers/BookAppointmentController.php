@@ -46,11 +46,19 @@ class BookAppointmentController extends Controller
             session()->get('subservice')
         );
 
-        $user = CreateUserAction::execute($data);
-        $appointment = CreateAppointmentAction::execute($data, $user);
+        $responseData = CreateUserAction::execute($data);
+        $appointment = CreateAppointmentAction::execute($data, $responseData->user);
 
+        if (auth()->check() && auth()->user()->role_id > 1) {
+            toastr()->addSuccess('Appointment Booked');
+            return redirect(roleBasedRoute('appointments.index'));
+        }
+        if($responseData->status == true){
         toastr()->addSuccess('Login details have been sent to your mail box');
+        }
         return redirect()->route('booking.confirm-appointment', $appointment->uuid);
+        
+        
     }
 
     public function confirmAppointmentBooking(string $uuid)

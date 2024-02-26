@@ -1,9 +1,12 @@
+@php
+        $settings = app(App\Settings\GeneralSettings::class);
+@endphp
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>{{ config('app.name') }}</title>
+    <title>{{ $settings->app_name ?? config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     
@@ -46,7 +49,7 @@
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
-                                <span class="logo-txt">{{ config('app.name') }}</span>
+                                <span class="logo-txt">{{ $settings->app_name ?? config('app.name') }}</span>
                             </span>
                         </a>
 
@@ -56,7 +59,7 @@
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="24">
-                                <span class="logo-txt">{{ config('app.name') }}</span>
+                                <span class="logo-txt">{{ $settings->app_name ?? config('app.name') }}</span>
                             </span>
                         </a>
                     </div>
@@ -281,12 +284,12 @@
                         <div class="col-sm-6">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> {{ config('app.name') }}.
+                            </script> {{  $settings->app_name ?? config('app.name') }}.
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
                                 Maintained by <a href="#!"
-                                    class="text-decoration-underline">{{ config('app.name') }}</a>
+                                    class="text-decoration-underline">{{ $settings->app_name ?? config('app.name') }}</a>
                             </div>
                         </div>
                     </div>

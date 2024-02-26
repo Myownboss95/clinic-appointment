@@ -9,11 +9,11 @@
         </div>
         <div class="mt-4 pt-2 text-center">
             <div class="signin-other-title">
-                <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign up with - Or</h5>
+                <h5 class="font-size-14 mb-3 text-muted fw-medium"> Sign up with </h5>
             </div>
 
             <ul class="list-inline mb-0">
-                <li class="list-inline-item">
+                {{-- <li class="list-inline-item">
                     <a href="javascript:void()" class="social-list-item bg-primary text-white border-primary">
                         <i class="mdi mdi-facebook"></i>
                     </a>
@@ -22,7 +22,7 @@
                     <a href="javascript:void()" class="social-list-item bg-info text-white border-info">
                         <i class="mdi mdi-twitter"></i>
                     </a>
-                </li>
+                </li> --}}
                 <li class="list-inline-item">
                     <a href="{{ route('register.google') }}" class="social-list-item bg-danger text-white border-danger">
                         <i class="mdi mdi-google"></i>
@@ -30,6 +30,12 @@
                 </li>
             </ul>
         </div>
+        <div class="mt-4 pt-2 text-center">
+            <div class="signin-other-title">
+                <h5 class="font-size-14 mb-3 text-muted fw-medium"> Or </h5>
+            </div>
+        </div>
+
         <form class="mt-4 pt-2" method="post" action="{{ route('register') }}">
             @csrf
             <div class="form-floating form-floating-custom mb-4">

@@ -44,17 +44,12 @@
                                             <div class="carousel-item active">
                                                 <div class="testi-contain text-center text-white">
                                                     <i class="bx bxs-quote-alt-left text-success display-6"></i>
-                                                    <h4 class="mt-4 fw-medium lh-base text-white">“I feel confident
-                                                        imposing change
-                                                        on myself. It's a lot more progressing fun than looking back.
-                                                        That's why
-                                                        I ultricies enim
-                                                        at malesuada nibh diam on tortor neaded to throw curve balls.”
+                                                    <h4 class="mt-4 fw-medium lh-base text-white">“I've always been particular about my teeth, but the cost of dental care was always a barrier. {{$settings->app_name ?? config('app.name')}} gave me  a breath of fresh air! Their prices are very reasonable, and the quality of their work is outstanding.”
                                                     </h4>
                                                     <div class="mt-4 pt-1 pb-5 mb-5">
-                                                        <h5 class="font-size-16 text-white">Richard Drews
+                                                        <h5 class="font-size-16 text-white">Elizabeth Aina
                                                         </h5>
-                                                        <p class="mb-0 text-white-50">Web Designer</p>
+                                                        <p class="mb-0 text-white-50">Civil Servant</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,16 +57,11 @@
                                             <div class="carousel-item">
                                                 <div class="testi-contain text-center text-white">
                                                     <i class="bx bxs-quote-alt-left text-success display-6"></i>
-                                                    <h4 class="mt-4 fw-medium lh-base text-white">“Our task must be to
-                                                        free ourselves by widening our circle of compassion to embrace
-                                                        all living
-                                                        creatures and
-                                                        the whole of quis consectetur nunc sit amet semper justo. nature
-                                                        and its beauty.”</h4>
+                                                    <h4 class="mt-4 fw-medium lh-base text-white">“Finding a good dentist near campus was tough. But {{$settings->app_name ?? config('app.name')}} is perfect! They're close by, have flexible appointment times, and offer student discounts. The staff is friendly and made me feel at ease. My teeth feel great, and I didn't break the bank. ”</h4>
                                                     <div class="mt-4 pt-1 pb-5 mb-5">
-                                                        <h5 class="font-size-16 text-white">Rosanna French
+                                                        <h5 class="font-size-16 text-white">Chimamanda Opara
                                                         </h5>
-                                                        <p class="mb-0 text-white-50">Web Developer</p>
+                                                        <p class="mb-0 text-white-50">Student</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -79,15 +69,10 @@
                                             <div class="carousel-item">
                                                 <div class="testi-contain text-center text-white">
                                                     <i class="bx bxs-quote-alt-left text-success display-6"></i>
-                                                    <h4 class="mt-4 fw-medium lh-base text-white">“I've learned that
-                                                        people will forget what you said, people will forget what you
-                                                        did,
-                                                        but people will never forget
-                                                        how donec in efficitur lectus, nec lobortis metus you made them
-                                                        feel.”</h4>
+                                                    <h4 class="mt-4 fw-medium lh-base text-white">“After years of neglecting my dental health, I knew I needed to find a dentist I could trust. {{$settings->app_name ?? config('app.name')}} came highly recommended by a friend, and I'm so glad I listened. They were gentle, professional, and explained everything in a way I could understand. They helped me create a personalized treatment plan that fit my budget and schedule. Now I'm on my way to a healthier smile”</h4>
                                                     <div class="mt-4 pt-1 pb-5 mb-5">
-                                                        <h5 class="font-size-16 text-white">Ilse R. Eaton</h5>
-                                                        <p class="mb-0 text-white-50">Manager
+                                                        <h5 class="font-size-16 text-white">Aisha Mohammed</h5>
+                                                        <p class="mb-0 text-white-50">Lawyer
                                                         </p>
                                                     </div>
                                                 </div>

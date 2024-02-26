@@ -13,7 +13,7 @@
             <div class="mt-4 pt-2">
                 <h5>You are Logged Out</h5>
                 <p class="text-muted font-size-15">Thank you for using <span
-                        class="fw-semibold text-dark">{{ config('app.name') }}</span></p>
+                        class="fw-semibold text-dark">{{ $settings->app_name ?? config('app.name') }}</span></p>
                 <div class="mt-4">
                     <a href="{{ route('login') }}" class="btn btn-primary w-100 waves-effect waves-light">Sign In</a>
                 </div>

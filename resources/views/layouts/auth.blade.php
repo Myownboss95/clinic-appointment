@@ -25,6 +25,9 @@
 </head>
 
 <body data-topbar="dark">
+    @php
+        $settings = app(App\Settings\GeneralSettings::class);
+    @endphp
     <!-- <body data-layout="horizontal"> -->
     <div class="auth-page">
         <div class="container-fluid p-0">
@@ -37,7 +40,7 @@
                                     <a href="{{ url('/') }}" class="d-block auth-logo">
                                         <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt=""
                                             height="28">
-                                        <span class="logo-txt">{{ config('app.name') }}</span>
+                                        <span class="logo-txt">{{ $settings->app_name ?? config('app.name') }}</span>
                                     </a>
                                 </div>
                                 @yield('content')
@@ -45,8 +48,7 @@
                                     <p class="mb-0">©
                                         <script>
                                             document.write(new Date().getFullYear())
-                                        </script> {{ config('app.name') }} . Crafted with <i
-                                            class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                        </script> {{ $settings->app_name ?? config('app.name') }} 
                                     </p>
                                 </div>
                             </div>

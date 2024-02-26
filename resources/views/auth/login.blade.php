@@ -6,7 +6,7 @@
     <div class="auth-content my-auto">
         <div class="text-center">
             <h5 class="mb-0">Welcome Back !</h5>
-            <p class="text-muted mt-2">Sign in to continue to {{ config('app.name') }}.</p>
+            <p class="text-muted mt-2">Sign in to continue to {{ $settings->app_name ?? config('app.name') }}.</p>
         </div>
         <form class="mt-4 pt-2" method="post" action="{{ url('/login') }}">
             @csrf
@@ -60,7 +60,7 @@
             </div>
 
             <ul class="list-inline mb-0">
-                <li class="list-inline-item">
+                {{-- <li class="list-inline-item">
                     <a href="javascript:void()" class="social-list-item bg-primary text-white border-primary">
                         <i class="mdi mdi-facebook"></i>
                     </a>
@@ -69,7 +69,7 @@
                     <a href="javascript:void()" class="social-list-item bg-info text-white border-info">
                         <i class="mdi mdi-twitter"></i>
                     </a>
-                </li>
+                </li> --}}
                 <li class="list-inline-item">
                     <a href="{{ route('login.google') }}" class="social-list-item bg-danger text-white border-danger">
                         <i class="mdi mdi-google"></i>

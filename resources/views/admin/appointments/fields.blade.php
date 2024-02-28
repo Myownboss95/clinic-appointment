@@ -9,18 +9,7 @@
     </select> 
 </div>
 
-<!-- Sub Service Id Field -->
-<div class="form-group col-sm-6 mb-3">
-<label for="user">Sub Service</label>
-    <select name="sub_service_id" id="" class="form-control">
-        <option>Select Subservice</option>
-        
-        @foreach($subServices as $subService)        
-            <option {{$subService_id === $subService->id ? 'selected': null}}  value={{$subService->id}}>{{$subService->name}}</option>
-        @endforeach
-    </select> 
-    
-</div> 
+
 
 
 <!-- Start Time Field -->
@@ -61,16 +50,7 @@
 </script>
 @endpush
 
-<!-- Stage Id Field -->
-<div class="form-group col-sm-6 mb-3">
-    <label for="stages">Stages</label>
-     <select name="stage_id" id="" class="form-control">
-        <option>Select Stage</option>
-        @foreach($stages as $stage)
-            <option {{$appointment->stage?->id === $stage->id ? 'selected': null}}  value={{$stage->id}}>{{$stage->name}}</option>
-        @endforeach
-    </select>
- </div>
+
  @push('page_scripts')
                         
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.0/slimselect.min.css" integrity="sha512-QhrDqeRszsauAfwqszbR3mtxV3ZWp44Lfuio9t1ccs7H15+ggGbpOqaq4dIYZZS3REFLqjQEC1BjmYDxyqz0ZA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>

@@ -26,6 +26,7 @@ class GeneralSettings extends Settings
     public string $site_instagram;
     public string $site_linkedin;
     public string $site_twitter;
+    public string $whatsapp_contact;
 
     public static function group(): string
     {

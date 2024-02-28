@@ -36,7 +36,7 @@
                                     </h4>
                                     <div class="text-nowrap">
                                         <span
-                                            class="badge bg-danger-subtle text-danger">{{ $user->appointments?->whereNotNull('end_time')->count() }}
+                                            class="badge bg-danger-subtle text-danger">{{ $completedAppointments }}
                                             Appointments</span>
                                         <span class="ms-1 text-muted font-size-13">Completed</span>
                                     </div>

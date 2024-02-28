@@ -1,8 +1,11 @@
 <?php
 
-use App\Models\User;
+use App\Constants\StageTypes;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Appointment;
 use Illuminate\Support\Str;
+use App\Constants\TransactionStatusTypes;
 
 function roleBasedRoute($routeName, $params = null)
 {
@@ -68,4 +71,18 @@ function age($age)
 function upperCase($string)
 {
     return Str::ucfirst($string) ?? '';
+}
+
+function userPendingTransactions()
+{
+    $user = User::find(auth()->user()->id);
+    return $user->transactions()->where('status', TransactionStatusTypes::CREATED->value)->count() ?? null;
+}
+
+function userPendingAppointments()
+{
+    $user = User::find(auth()->user()->id);
+    return Appointment::where('user_id', $user->id)->whereHas('stage', function ($query) {
+        $query->where('name', '!=', StageTypes::COMPLETED->value);
+    })->where('end_time', null)->count() ?? null;
 }

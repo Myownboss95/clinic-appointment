@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Carbon\Carbon;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use App\Constants\StageTypes;
 use App\Http\Controllers\Controller;
 
 class AppointmentController extends Controller
@@ -18,10 +19,14 @@ class AppointmentController extends Controller
     {
         $user = $request->user();
         $userAppointments = $user->load('appointments.subService');
+        $completedAppointments = $user->appointments()->whereHas('stage', function ($query) {
+            $query->where('name', StageTypes::COMPLETED->value);
+        })->whereNotNull('end_time')->count();
 
         return view('user.appointments.index', [
             'user' => $user->load('appointments.subService'),
             'appointments' => $userAppointments->appointments->whereNull('parent_appointment_id'),
+            'completedAppointments' => $completedAppointments,
             'followUpAppointments' => $userAppointments->appointments->whereNotNull('parent_appointment_id'),
             'nextAppointment' => Carbon::parse($user->appointments()
                 ->whereNotNull('parent_appointment_id')

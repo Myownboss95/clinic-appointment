@@ -43,7 +43,7 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
+                        <a href="{{url('/')}}" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="30">
                             </span>
@@ -53,7 +53,7 @@
                             </span>
                         </a>
 
-                        <a href="index.html" class="logo logo-light">
+                        <a href="{{url('/')}}" class="logo logo-light">
                             <span class="logo-sm">
                                 <img src="{{ asset('lineone/images/logo-sm.svg') }}" alt="" height="30">
                             </span>
@@ -136,7 +136,7 @@
 
                      
 
-                    <div class="dropdown d-inline-block">
+                    {{-- <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item noti-icon position-relative"
                             id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -232,7 +232,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- <div class="dropdown d-inline-block">
                         <a href="{{ roleBasedRoute('settings.index') }}">
@@ -284,13 +284,13 @@
                         <div class="col-sm-6">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> {{  $settings->app_name ?? config('app.name') }}.
+                            </script> 
                         </div>
                         <div class="col-sm-6">
-                            <div class="text-sm-end d-none d-sm-block">
+                            {{-- <div class="text-sm-end d-none d-sm-block">
                                 Maintained by <a href="#!"
                                     class="text-decoration-underline">{{ $settings->app_name ?? config('app.name') }}</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

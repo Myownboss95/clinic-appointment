@@ -37,6 +37,7 @@ class CreateGeneralSettingRequest extends FormRequest
             'site_instagram' => 'required|url',
             'site_linkedin' => 'required|url',
             'site_twitter' => 'required|url',
+            'whatsapp_contact' => 'required|url'
         ];
     }
 }

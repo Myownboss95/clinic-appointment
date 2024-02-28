@@ -48,14 +48,6 @@
                         @enderror
                     </div>
                     <div class="form-group col-sm-6 mb-3">
-                        <label for="site_description">Website Description</label>
-                        <textarea name="site_description" class="form-control @error('site_description') is-invalid @enderror" id="site_description">{{ old('site_description', $site_description) }}</textarea>
-
-                        @error('site_description')
-                            <span class="error invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group col-sm-6 mb-3">
                         <label for="name">Ref Bonus</label>
                         <input type="text" name="ref_bonus" class="form-control  @error('ref_bonus') is-invalid @enderror"
                             value="{{ old('ref_bonus', $ref_bonus) }}">
@@ -63,6 +55,15 @@
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="form-group col-sm-12 mb-3">
+                        <label for="site_description">Website Description</label>
+                        <textarea rows="5" name="site_description" class="form-control @error('site_description') is-invalid @enderror" id="site_description">{{ old('site_description', $site_description) }}</textarea>
+
+                        @error('site_description')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    
                     <div class="form-group col-sm-6 mb-3">
                         <label for="name">Site Phone</label>
                         <input type="text" name="site_phone" class="form-control  @error('site_phone') is-invalid @enderror"
@@ -108,6 +109,14 @@
                         <input type="text" name="site_facebook" class="form-control  @error('site_facebook') is-invalid @enderror"
                             value="{{ old('site_facebook', $site_facebook) }}">
                         @error('site_facebook')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group col-sm-6 mb-3">
+                        <label for="whatsapp_contact">Contact Whatsapp Link</label>
+                        <input type="text" name="whatsapp_contact" class="form-control  @error('whatsapp_contact') is-invalid @enderror"
+                            value="{{ old('whatsapp_contact', $whatsapp_contact) }}">
+                        @error('whatsapp_contact')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

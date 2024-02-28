@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Constants\TransactionStatusTypes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,16 @@ class TransactionsController extends Controller
         return view('user.transactions.show', [
             'user' => $user,
             'transaction' => $transaction,
+        ]);
+    }
+
+    public function initiatedTransactions(Request $request)
+    {
+        $user = $request->user();
+
+        return view('user.transactions.initiated-transactions', [
+            'user' => $user->load('transactions'),
+            'transactions' => $user->transactions()->where('status', TransactionStatusTypes::CREATED->value)
         ]);
     }
 }

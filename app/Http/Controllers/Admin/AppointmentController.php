@@ -184,7 +184,7 @@ class AppointmentController extends AppBaseController
      */
     public function edit($id)
     {
-        $appointment = $this->appointmentRepository->find($id);
+        $appointment = Appointment::where('id',$id)->with('subService')->first();
 
         if (empty($appointment)) {
             toastr()->addError('Appointment not found');
@@ -194,6 +194,8 @@ class AppointmentController extends AppBaseController
 
         return view('admin.appointments.edit',
             [
+                'subService_id' => $appointment->subService->first()->id,
+                'subServices' => SubService::get(),
                 'stages' => Stage::get(),
                 'users' => User::get(),
             ]

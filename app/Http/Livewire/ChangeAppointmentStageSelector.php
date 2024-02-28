@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Constants\StageTypes;
 use App\Models\Appointment;
 use App\Notifications\UserAppointmentStageNotification;
 use Illuminate\Support\Facades\Hash;
@@ -49,6 +50,7 @@ class ChangeAppointmentStageSelector extends Component
         
         $this->appointment->update([
             'stage_id' => $this->selectedStage,
+            'end_time' => $this->selectedStage == StageTypes::COMPLETED->value ? now() : null
         ]);
 
         toastr()->addSuccess('Appointment Stage updated successfully.');

@@ -1,7 +1,7 @@
 <li>
     <a href="{{ roleBasedRoute('index') }}">
             <i style="width:20px; height:20px" class="me-2" data-feather="home"></i>                
-            <span class="badge rounded-pill bg-success-subtle text-success float-end">9+</span>
+            {{-- <span class="badge rounded-pill bg-success-subtle text-success float-end">9+</span> --}}
             <span data-key="t-dashboard">Dashboard</span>    
     </a>
 </li>
@@ -12,13 +12,43 @@
     <li>
         <a href="{{ route('user.appointments.index') }}">  
             <i style="width:20px; height:20px" class="me-2" data-feather="calendar"></i>
+            @if(!is_null(userPendingAppointments()))
+                <span class="badge rounded-pill bg-danger-subtle text-danger float-end">{{userPendingAppointments()}}+</span>
+            @endif
             <span data-key="t-calendar">Appoinments</span>           
         </a>
     </li>
     <li>
-        <a href="{{ route('user.transactions.index') }}">
+        <a href="javascript: void(0);" class="has-arrow">
             <i style="width:20px; height:20px" class="me-2" data-feather="trello"></i>
+            @if(!is_null(userPendingTransactions()))
+                <span class="badge rounded-pill bg-danger-subtle text-danger float-end">{{userPendingTransactions()}}+</span>
+            @endif
             <span data-key="t-tasks">Transactions</span>
+        </a>
+        <ul class="sub-menu" aria-expanded="false">
+            <li>
+                <a href="{{ route('user.transactions.initiated') }}" class="nav-link {{ Request::is('user/transactions/initiated') ? 'active' : '' }}">
+                    <i style="width:20px; height:20px" class="me-2" data-feather="trello"></i>
+                    @if(!is_null(userPendingTransactions()))
+                        <span class="badge rounded-pill bg-danger-subtle text-danger float-end">{{userPendingTransactions()}}+</span>
+                    @endif
+                    <span data-key="t-tasks">Initiated Transactions</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.transactions.index') }}" class="nav-link {{ Request::is('user/transactions/') ? 'active' : '' }}">
+                    <i style="width:20px; height:20px" class="me-2" data-feather="trello"></i>
+                    <span data-key="t-tasks">All Transactions</span>
+                </a>
+            </li>
+        
+        </ul>
+    </li>
+    <li>
+        <a href="{{$settings->whatsapp_contact}}">
+            <i style="width:20px; height:20px" class="me-2" data-feather="message-circle"></i>
+            <span data-key="t-tasks">Contact Admin</span>
         </a>
     </li>
 @endcan

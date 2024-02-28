@@ -40,6 +40,7 @@ class GeneralSettingController extends AppBaseController
             'site_instagram' => $settings->site_instagram,
             'site_linkedin' => $settings->site_linkedin,
             'site_twitter' => $settings->site_twitter,
+            'whatsapp_contact' => $settings->whatsapp_contact
         ]);
     }
 
@@ -71,6 +72,7 @@ class GeneralSettingController extends AppBaseController
         $settings->site_instagram = $request->input('site_instagram');
         $settings->site_linkedin = $request->input('site_linkedin');
         $settings->site_twitter = $request->input('site_twitter');
+        $settings->whatsapp_contact = $request->input('whatsapp_contact');
 
         $settings->save();
         toastr()->addSuccess('Settings saved successfully.');

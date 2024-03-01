@@ -19,6 +19,7 @@ class TransactionsController extends Controller
 
         return view('user.transactions.index', [
             'user' => $user->load('transactions'),
+            'initiatedTransactions' => $user->transactions()->where('status', TransactionStatusTypes::CREATED->value)
         ]);
     }
 

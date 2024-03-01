@@ -28,6 +28,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
+                                    @if($appointment->subService?->first()?->image)
                                     <div class="col-xl-4">
                                         <div class="product-detai-imgs">
                                             <div class="tab-content" id="v-pills-tabContent">
@@ -46,6 +47,7 @@
 
                                         </div>
                                     </div>
+                                    @endif
 
                                     <div class="col-xl-4">
                                         <div class="mt-4 mt-xl-3">
@@ -56,11 +58,12 @@
                                                 <b>{{ $appointment->user->last_name }}
                                                     {{ $appointment->user->first_name }}</b>
                                             </h5>
-
+                                            @if($appointment->transaction?->first()?->amount)
                                             <h5 class="mb-4">Amount Paid:<span
                                                     class="badge rounded-pill bg-primary-subtle text-primary "></span>
-                                                <b>{{ formatMoney($appointment->transaction?->first()->amount) }}</b>
+                                                <b>{{ formatMoney($appointment->transaction?->first()?->amount) }}</b>
                                             </h5>
+                                            @endif
                                             <h5 class="mb-4">Stage:<span
                                                     class="badge rounded-pill bg-primary-subtle text-primary "></span>
                                                 <b>{{ $appointment->stage->name }}</b>

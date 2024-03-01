@@ -55,9 +55,6 @@ final class UserInitiatedTransactionsTable extends PowerGridComponent
             ->addColumn('status', function (Transaction $transaction) {
                 return TransactionStatusTypes::from($transaction->status)->labels();
             })
-            ->addColumn('type', function (Transaction $transaction) {
-                return TransactionTypes::from($transaction->type)->labels();
-            })
             ->addColumn('amount', fn (Transaction $transaction) => '₦ ' . number_format($transaction->amount, 2, '.', ','))
             ->addColumn('ref')
             ->addColumn('service', fn (Transaction $transaction) => $transaction->appointment?->first()?->subService?->first()?->name ?? '')
@@ -70,7 +67,6 @@ final class UserInitiatedTransactionsTable extends PowerGridComponent
             Column::make('Status', 'status'),
             Column::make('Transaction Reference', 'ref')->searchable()->sortable(),
             Column::make('Amount', 'amount')->searchable()->sortable(),
-            Column::make('Type', 'type')->sortable(),
             Column::make('Service Purchased', 'service')->searchable()->sortable(),
             Column::make('Date of Transaction', 'created_at_formatted', 'created_at')
                 ->sortable(),

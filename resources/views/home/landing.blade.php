@@ -31,13 +31,13 @@
     <section id="why-us" class="why-us">
       <div class="container">
 
-        <div class="row">
+        <div class="row" id="about">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="content">
               <h3>Why Choose {{ $settings->app_name ?? config('app.name')}}?</h3>
               <p>{{ $settings->site_description }} </p>
               <div class="text-center">
-                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+                {{-- <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a> --}}
               </div>
             </div>
           </div>
@@ -113,27 +113,35 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="{{route('contact-form')}}" method="POST"  class="php-email-form">
+              @csrf
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  @error('name')
+                      <span class="error invalid-feedback text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
                   <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  @error('email')
+                      <span class="error invalid-feedback text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
               </div>
               <div class="form-group mt-3">
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                @error('subject')
+                      <span class="error invalid-feedback text-danger">{{ $message }}</span>
+                  @enderror
               </div>
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                @error('message')
+                      <span class="error invalid-feedback text-danger">{{ $message }}</span>
+                  @enderror
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" class="">Send Message</button></div>
             </form>
 
           </div>

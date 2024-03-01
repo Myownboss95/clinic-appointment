@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/contact-form', [HomeController::class, 'contactForm'])->name('contact-form');
+
 Route::get('/category/{slug}', [HomeController::class, 'getAllSubservices'])->name('services.sub_service');
 
 Route::get('/ref/{token}', ReferralController::class);

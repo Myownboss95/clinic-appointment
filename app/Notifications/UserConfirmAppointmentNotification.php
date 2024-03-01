@@ -35,11 +35,11 @@ class UserConfirmAppointmentNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('Account Creation.')
+            ->subject('Appointment Confirmed')
             ->greeting("Hello {$this->user->first_name}")
             ->line('Thank you for booking and confirming payment. An admin will contact you shortly')
             ->line('You can proceed to login with the following')
-            ->action('Click here to login', url('/login'). 'or book again at '. url('/'))
+            ->action('Click here to book again', url('/login'))
             ->line('Thank you for your patronage!');
     }
 

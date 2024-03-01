@@ -55,7 +55,7 @@ class RoleController extends AppBaseController
 
         $role = $this->roleRepository->create($input);
 
-        toastr()->addSuccess('Role saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Role saved successfully.');
 
         return redirect(roleBasedRoute('roles.index'));
     }
@@ -71,7 +71,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            toastr()->addError('Role not found');
+            toastr()->timeOut(10000)->addError('Role not found');
 
             return redirect(roleBasedRoute('roles.index'));
         }
@@ -90,7 +90,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            toastr()->addError('Role not found');
+            toastr()->timeOut(10000)->addError('Role not found');
 
             return redirect(roleBasedRoute('roles.index'));
         }
@@ -109,14 +109,14 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            toastr()->addError('Role not found');
+            toastr()->timeOut(10000)->addError('Role not found');
 
             return redirect(roleBasedRoute('roles.index'));
         }
 
         $role = $this->roleRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Role updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Role updated successfully.');
 
         return redirect(roleBasedRoute('roles.index'));
     }
@@ -134,14 +134,14 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            toastr()->addError('Role not found');
+            toastr()->timeOut(10000)->addError('Role not found');
 
             return redirect(roleBasedRoute('roles.index'));
         }
 
         $this->roleRepository->delete($id);
 
-        toastr()->addSuccess('Role deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Role deleted successfully.');
 
         return redirect(roleBasedRoute('roles.index'));
     }

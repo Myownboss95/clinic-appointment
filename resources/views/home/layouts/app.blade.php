@@ -45,7 +45,7 @@
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
         <i class="bi bi-envelope"></i> <a href="mailto:{{ $settings->site_email }}">{{ $settings->site_email }}</a>
-        <i class="bi bi-phone"></i> {{ $settings->site_phone }}
+        <i class="bi bi-phone"></i> <a href="{{$settings->whatsapp_contact}}">{{ $settings->site_phone }}</a>
       </div>
       <div class="d-none d-lg-flex social-links align-items-center">
         <a href="{{ $settings->site_twitter }}" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -101,7 +101,7 @@
 
   <footer id="footer">
 
-    <div class="footer-top">
+    {{-- <div class="footer-top">
       <div class="container">
         <div class="row">
 
@@ -129,7 +129,7 @@
 
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <div class="container d-md-flex py-4">
 

@@ -47,7 +47,7 @@ class TransactionsController extends Controller
         $transaction = Transaction::with(['user', 'appointment.subservice', 'paymentChannel'])->where('id', $id)->first();
 
         if (empty($transaction)) {
-            toastr()->addError('Transaction not found');
+            toastr()->timeOut(10000)->addError('Transaction not found');
 
             return redirect(roleBasedRoute('transactions'));
         }
@@ -62,7 +62,7 @@ class TransactionsController extends Controller
     {
         $transaction = Transaction::where('ref', $ref)->first();
         if (empty($transaction->proof)) {
-            toastr()->addError('File not found');
+            toastr()->timeOut(10000)->addError('File not found');
             return redirect()->back();
         }
 
@@ -84,13 +84,13 @@ class TransactionsController extends Controller
 
     //     // if (empty($appointment)) {
 
-    //     //     toastr()->addError('urrency List saved successfully.');
+    //     //     toastr()->timeOut(10000)->addError('urrency List saved successfully.');
     //     //     return redirect(roleBasedRoute('appointments.index'));
     //     // }
 
     //     // $appointment = $this->appointmentRepository->update($request->all(), $id);
 
-    //     // toastr()->addSuccess('Appointment updated successfully.');
+    //     // toastr()->timeOut(10000)->addSuccess('Appointment updated successfully.');
 
     //     // return redirect(roleBasedRoute('appointments.index'));
     // }
@@ -108,13 +108,13 @@ class TransactionsController extends Controller
     //     // $appointment = $this->appointmentRepository->find($id);
 
     //     // if (empty($appointment)) {
-    //     //     toastr()->addError('Appointment not found');
+    //     //     toastr()->timeOut(10000)->addError('Appointment not found');
     //     //     return redirect(roleBasedRoute('appointments.index'));
     //     // }
 
     //     // $this->appointmentRepository->delete($id);
 
-    //     // toastr()->addSuccess('Appointment saved successfully.');
+    //     // toastr()->timeOut(10000)->addSuccess('Appointment saved successfully.');
 
     //     // return redirect(roleBasedRoute('appointments.index'));
     // }

@@ -68,7 +68,7 @@ class CommentController extends AppBaseController
         // dd($data);
         $this->commentRepository->create($data);
 
-        toastr()->addSuccess('Comment saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Comment saved successfully.');
 
         return redirect()->back();
     }
@@ -84,7 +84,7 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            toastr()->addError('Comment not found');
+            toastr()->timeOut(10000)->addError('Comment not found');
 
             return redirect(roleBasedRoute('comments.index'));
         }
@@ -103,7 +103,7 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            toastr()->addError('Comment not found');
+            toastr()->timeOut(10000)->addError('Comment not found');
 
             return redirect(roleBasedRoute('comments.index'));
         }
@@ -126,14 +126,14 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            toastr()->addError('Comment not found');
+            toastr()->timeOut(10000)->addError('Comment not found');
 
             return redirect(roleBasedRoute('comments.index'));
         }
 
         $comment = $this->commentRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Comment updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Comment updated successfully.');
 
         return back();
     }
@@ -151,14 +151,14 @@ class CommentController extends AppBaseController
         $comment = $this->commentRepository->find($id);
 
         if (empty($comment)) {
-            toastr()->addError('Comment not found');
+            toastr()->timeOut(10000)->addError('Comment not found');
 
             return redirect(roleBasedRoute('comments.index'));
         }
 
         $this->commentRepository->delete($id);
 
-        toastr()->addSuccess('Comment deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Comment deleted successfully.');
 
         return back();
     }

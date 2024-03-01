@@ -42,13 +42,13 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (\Exception $e) {
             if ($e->getPrevious() instanceof TokenMismatchException) {
-                toastr()->addError('Please submit the form again');
+                toastr()->timeOut(10000)->addError('Please submit the form again');
 
                 return back()
                     ->withInput(request()->except('_token'));
             }
             if ($e->getPrevious() instanceof AuthorizationException) {
-                toastr()->addError('You are not allowed to perform this action');
+                toastr()->timeOut(10000)->addError('You are not allowed to perform this action');
 
                 return back();
             }

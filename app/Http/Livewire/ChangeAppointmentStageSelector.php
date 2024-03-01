@@ -43,7 +43,7 @@ class ChangeAppointmentStageSelector extends Component
     public function updateAppointmentStage()
     {
         if (!Hash::check($this->password, auth()->user()->password)) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect()->route(role(auth()->user()->role_id) . '.appointments.show', $this->appointment->id);
         }
@@ -53,7 +53,7 @@ class ChangeAppointmentStageSelector extends Component
             'end_time' => $this->selectedStage == StageTypes::COMPLETED->value ? now() : null
         ]);
 
-        toastr()->addSuccess('Appointment Stage updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Appointment Stage updated successfully.');
         $this->appointment->user->notify(new UserAppointmentStageNotification($this->appointment->user, $this->appointment));
 
         return redirect()->route(role(auth()->user()->role_id).'.appointments.show', $this->appointment->id);

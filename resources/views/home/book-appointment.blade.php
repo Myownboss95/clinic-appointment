@@ -3,7 +3,7 @@
 @section('content')
     <div class="row  p-5 pt-5" style="margin-top: 100px ">
         <div class="col-xl-5 col-lg-6  py-5">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-7 offset-md-5 mt-4">
 
                     <div class="card mb-4 rounded-3 shadow-sm border-secondary">
@@ -20,13 +20,6 @@
                             <p>
                                 {{ $service->description }}
                             </p>
-                            {{-- <ul class="list-unstyled mt-3 mb-4">
-                <li>30 users included</li>
-                <li>15 GB of storage</li>
-                <li>Phone and email support</li>
-                <li>Help center access</li>
-              </ul> --}}
-                            {{-- <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button> --}}
                         </div>
                     </div>
 

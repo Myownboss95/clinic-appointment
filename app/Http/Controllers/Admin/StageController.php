@@ -61,7 +61,7 @@ class StageController extends AppBaseController
                 'slug' => Str::slug($request->input('name')),
             ]));
 
-        toastr()->addSuccess('Stage saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Stage saved successfully.');
 
         return redirect(roleBasedRoute('stages.index'));
     }
@@ -77,7 +77,7 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            toastr()->addError('Stage not found');
+            toastr()->timeOut(10000)->addError('Stage not found');
 
             return redirect(roleBasedRoute('stages.index'));
         }
@@ -96,7 +96,7 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            toastr()->addError('Stage not found');
+            toastr()->timeOut(10000)->addError('Stage not found');
 
             return redirect(roleBasedRoute('stages.index'));
         }
@@ -116,7 +116,7 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            toastr()->addError('Stage not found');
+            toastr()->timeOut(10000)->addError('Stage not found');
 
             return redirect(roleBasedRoute('stages.index'));
         }
@@ -127,7 +127,7 @@ class StageController extends AppBaseController
             ]),
             $id);
 
-        toastr()->addSuccess('Stage updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Stage updated successfully.');
 
         return redirect(roleBasedRoute('stages.index'));
     }
@@ -148,7 +148,7 @@ class StageController extends AppBaseController
         ]);
 
         if ($validator->fails()) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect()->back();
         }
@@ -156,14 +156,14 @@ class StageController extends AppBaseController
         $stage = $this->stageRepository->find($id);
 
         if (empty($stage)) {
-            toastr()->addError('Stage not found');
+            toastr()->timeOut(10000)->addError('Stage not found');
 
             return redirect()->back();
         }
 
         $this->stageRepository->delete($id);
 
-        toastr()->addSuccess('Stage deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Stage deleted successfully.');
 
         return redirect(roleBasedRoute('stages.index'));
     }

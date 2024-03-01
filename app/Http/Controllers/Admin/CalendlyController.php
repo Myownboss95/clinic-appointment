@@ -44,7 +44,7 @@ class CalendlyController extends Controller
         SaveCalendlyUriAction::execute();
 
         $this->getEventTypes();
-        toastr()->addSuccess('Calendly Connected successfully.');
+        toastr()->timeOut(10000)->addSuccess('Calendly Connected successfully.');
         return redirect()->route('admin.index');
     }
 

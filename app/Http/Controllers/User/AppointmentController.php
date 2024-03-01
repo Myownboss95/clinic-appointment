@@ -48,7 +48,7 @@ class AppointmentController extends Controller
         $appointment = Appointment::where('id', $id)->with(['comments', 'subService', 'transaction', 'stage'])->first();
 
         if (empty($appointment)) {
-            toastr()->addError('Appointment not found');
+            toastr()->timeOut(10000)->addError('Appointment not found');
 
             return redirect()->route('user.appointments.index');
         }

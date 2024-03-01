@@ -43,7 +43,7 @@ class ImageUpdate extends Component
             ]
         );
 
-        toastr()->addSuccess('Image updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Image updated successfully.');
     }
 
     public function render()

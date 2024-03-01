@@ -54,7 +54,7 @@ class ReferralsTransactionController extends Controller
         $transaction = Transaction::where('reason', TransactionReasons::REFERRALS)->with(['user', 'appointment.subservice', 'paymentChannel'])->where('id', $id)->first();
 
         if (empty($transaction)) {
-            toastr()->addError('Transaction not found');
+            toastr()->timeOut(10000)->addError('Transaction not found');
 
             return redirect(roleBasedRoute('referrals.index'));
         }
@@ -78,14 +78,14 @@ class ReferralsTransactionController extends Controller
         ]);
 
         if ($validator->fails()) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect()->back();
         }
         $transaction = Transaction::find($id);
 
         if (empty($transaction)) {
-            toastr()->addError('Transaction not found');
+            toastr()->timeOut(10000)->addError('Transaction not found');
 
             return redirect()->back();
         }
@@ -103,7 +103,7 @@ class ReferralsTransactionController extends Controller
             $request->user()
         );
         ReferralPayoutTransactionAction::execute($transactionData);
-        toastr()->addSuccess('Referral Balance Deducted and confirmed by you');
+        toastr()->timeOut(10000)->addSuccess('Referral Balance Deducted and confirmed by you');
 
         return redirect()->back();
     }

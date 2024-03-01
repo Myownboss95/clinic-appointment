@@ -54,7 +54,7 @@ class PasswordResetController extends AppBaseController
 
         $passwordReset = $this->passwordResetRepository->create($input);
 
-        toastr()->addSuccess('Password Reset saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Password Reset saved successfully.');
 
         return redirect(route('passwordResets.index'));
     }
@@ -70,7 +70,7 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            toastr()->addError('Password Reset not found');
+            toastr()->timeOut(10000)->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
@@ -89,7 +89,7 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            toastr()->addError('Password Reset not found');
+            toastr()->timeOut(10000)->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
@@ -108,14 +108,14 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            toastr()->addError('Password Reset not found');
+            toastr()->timeOut(10000)->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
 
         $passwordReset = $this->passwordResetRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Password Reset updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Password Reset updated successfully.');
 
         return redirect(route('passwordResets.index'));
     }
@@ -133,14 +133,14 @@ class PasswordResetController extends AppBaseController
         $passwordReset = $this->passwordResetRepository->find($id);
 
         if (empty($passwordReset)) {
-            toastr()->addError('Password Reset not found');
+            toastr()->timeOut(10000)->addError('Password Reset not found');
 
             return redirect(route('passwordResets.index'));
         }
 
         $this->passwordResetRepository->delete($id);
 
-        toastr()->addSuccess('Password Reset deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Password Reset deleted successfully.');
 
         return redirect(route('passwordResets.index'));
     }

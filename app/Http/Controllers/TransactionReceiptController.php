@@ -20,13 +20,13 @@ class TransactionReceiptController extends Controller
         $transaction = Transaction::where('ref', $ref)->with(['appointment.subService', 'user', 'paymentChannel'])->first();
         $user = $transaction->user;
         if (! $transaction) {
-            toastr()->addError('Transaction not found');
+            toastr()->timeOut(10000)->addError('Transaction not found');
 
             return back();
 
         }
         if ($transaction->status != TransactionStatusTypes::CONFIRMED->value) {
-            toastr()->addError('Transaction not confirmed yet. Only confirmed Transactions can have receipts');
+            toastr()->timeOut(10000)->addError('Transaction not confirmed yet. Only confirmed Transactions can have receipts');
 
             return back();
 

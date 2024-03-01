@@ -54,7 +54,7 @@ class CurrencyListController extends AppBaseController
         $input = $request->all();
 
         $currencyList = $this->currencyListRepository->create($input);
-        toastr()->addSuccess('Currency List saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Currency List saved successfully.');
 
         return redirect(roleBasedRoute('currencyLists.index'));
     }
@@ -70,7 +70,7 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            toastr()->addError('Currency List not found');
+            toastr()->timeOut(10000)->addError('Currency List not found');
 
             return redirect(roleBasedRoute('currencyLists.index'));
         }
@@ -89,7 +89,7 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            toastr()->addError('Currency List not found');
+            toastr()->timeOut(10000)->addError('Currency List not found');
 
             return redirect(roleBasedRoute('currencyLists.index'));
         }
@@ -108,14 +108,14 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            toastr()->addError('Currency List not found');
+            toastr()->timeOut(10000)->addError('Currency List not found');
 
             return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         $currencyList = $this->currencyListRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Currency List updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Currency List updated successfully.');
 
         return redirect(roleBasedRoute('currencyLists.index'));
     }
@@ -133,14 +133,14 @@ class CurrencyListController extends AppBaseController
         $currencyList = $this->currencyListRepository->find($id);
 
         if (empty($currencyList)) {
-            toastr()->addError('Currency List not found');
+            toastr()->timeOut(10000)->addError('Currency List not found');
 
             return redirect(roleBasedRoute('currencyLists.index'));
         }
 
         $this->currencyListRepository->delete($id);
 
-        toastr()->addSuccess('Currency List deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Currency List deleted successfully.');
 
         return redirect(roleBasedRoute('currencyLists.index'));
     }

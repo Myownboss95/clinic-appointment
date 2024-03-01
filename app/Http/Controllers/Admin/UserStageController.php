@@ -55,7 +55,7 @@ class UserStageController extends AppBaseController
 
         $userStage = $this->userStageRepository->create($input);
 
-        toastr()->addSuccess('User Stage saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('User Stage saved successfully.');
 
         return redirect(roleBasedRoute('userStages.index'));
     }
@@ -71,7 +71,7 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            toastr()->addError('User Stage not found');
+            toastr()->timeOut(10000)->addError('User Stage not found');
 
             return redirect(roleBasedRoute('userStages.index'));
         }
@@ -90,7 +90,7 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            toastr()->addError('User Stage not found');
+            toastr()->timeOut(10000)->addError('User Stage not found');
 
             return redirect(roleBasedRoute('userStages.index'));
         }
@@ -109,14 +109,14 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            toastr()->addError('User Stage not found');
+            toastr()->timeOut(10000)->addError('User Stage not found');
 
             return redirect(roleBasedRoute('userStages.index'));
         }
 
         $userStage = $this->userStageRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('User Stage updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('User Stage updated successfully.');
 
         return redirect(roleBasedRoute('userStages.index'));
     }
@@ -134,14 +134,14 @@ class UserStageController extends AppBaseController
         $userStage = $this->userStageRepository->find($id);
 
         if (empty($userStage)) {
-            toastr()->addError('User Stage not found');
+            toastr()->timeOut(10000)->addError('User Stage not found');
 
             return redirect(roleBasedRoute('userStages.index'));
         }
 
         $this->userStageRepository->delete($id);
 
-        toastr()->addSuccess('User Stage deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('User Stage deleted successfully.');
 
         return redirect(roleBasedRoute('userStages.index'));
     }

@@ -54,7 +54,7 @@ class CityController extends AppBaseController
         $input = $request->all();
 
         $city = $this->cityRepository->create($input);
-        toastr()->addSuccess('City saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('City saved successfully.');
 
         return redirect(roleBasedRoute('cities.index'));
     }
@@ -70,7 +70,7 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            toastr()->addError('City not found');
+            toastr()->timeOut(10000)->addError('City not found');
 
             return redirect(roleBasedRoute('cities.index'));
         }
@@ -89,7 +89,7 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            toastr()->addError('City not found');
+            toastr()->timeOut(10000)->addError('City not found');
 
             return redirect(roleBasedRoute('cities.index'));
         }
@@ -108,14 +108,14 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            toastr()->addError('City not found');
+            toastr()->timeOut(10000)->addError('City not found');
 
             return redirect(roleBasedRoute('cities.index'));
         }
 
         $city = $this->cityRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('City updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('City updated successfully.');
 
         return redirect(roleBasedRoute('cities.index'));
     }
@@ -133,14 +133,14 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            toastr()->addError('City not found');
+            toastr()->timeOut(10000)->addError('City not found');
 
             return redirect(roleBasedRoute('cities.index'));
         }
 
         $this->cityRepository->delete($id);
 
-        toastr()->addSuccess('City deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('City deleted successfully.');
 
         return redirect(roleBasedRoute('cities.index'));
     }

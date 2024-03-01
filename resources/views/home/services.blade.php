@@ -10,7 +10,7 @@
           <h2>{{$services->name}} Services</h2>
           <p>{{$settings->hero}}</p>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
           @if($services->subService->count() > 0)
               @foreach ($services->subService as $service)
               <div class="col-md-4">

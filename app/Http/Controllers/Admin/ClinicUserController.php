@@ -55,7 +55,7 @@ class ClinicUserController extends AppBaseController
 
         $clinicUser = $this->clinicUserRepository->create($input);
 
-        toastr()->addSuccess('Clinic User saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Clinic User saved successfully.');
 
         return redirect(roleBasedRoute('clinicUsers.index'));
     }
@@ -71,7 +71,7 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            toastr()->addError('Clinic User not found');
+            toastr()->timeOut(10000)->addError('Clinic User not found');
 
             return redirect(roleBasedRoute('clinicUsers.index'));
         }
@@ -90,7 +90,7 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            toastr()->addError('Clinic User not found');
+            toastr()->timeOut(10000)->addError('Clinic User not found');
 
             return redirect(roleBasedRoute('clinicUsers.index'));
         }
@@ -109,14 +109,14 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            toastr()->addError('Clinic User not found');
+            toastr()->timeOut(10000)->addError('Clinic User not found');
 
             return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         $clinicUser = $this->clinicUserRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Clinic User updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Clinic User updated successfully.');
 
         return redirect(roleBasedRoute('clinicUsers.index'));
     }
@@ -134,14 +134,14 @@ class ClinicUserController extends AppBaseController
         $clinicUser = $this->clinicUserRepository->find($id);
 
         if (empty($clinicUser)) {
-            toastr()->addError('Clinic User not found');
+            toastr()->timeOut(10000)->addError('Clinic User not found');
 
             return redirect(roleBasedRoute('clinicUsers.index'));
         }
 
         $this->clinicUserRepository->delete($id);
 
-        toastr()->addSuccess('Clinic User deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Clinic User deleted successfully.');
 
         return redirect(roleBasedRoute('clinicUsers.index'));
     }

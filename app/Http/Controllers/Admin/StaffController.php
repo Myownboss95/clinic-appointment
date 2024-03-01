@@ -62,7 +62,7 @@ class StaffController extends AppBaseController
                 'role_id' => 2,
             ]));
 
-        toastr()->addSuccess('Staff created successfully.');
+        toastr()->timeOut(10000)->addSuccess('Staff created successfully.');
 
         return redirect(route('admin.staff.index'));
     }
@@ -78,7 +78,7 @@ class StaffController extends AppBaseController
         $staff = $this->userRepository->find($id);
 
         if (empty($staff)) {
-            toastr()->addError('Staff not found');
+            toastr()->timeOut(10000)->addError('Staff not found');
 
             return redirect(route('admin.staff.index'));
         }
@@ -97,7 +97,7 @@ class StaffController extends AppBaseController
         $staff = $this->userRepository->find($id);
 
         if (empty($staff)) {
-            toastr()->addError('Staff not found');
+            toastr()->timeOut(10000)->addError('Staff not found');
 
             return redirect(route('admin.staff.index'));
         }
@@ -117,14 +117,14 @@ class StaffController extends AppBaseController
 
         if (empty($staff)) {
 
-            toastr()->addError('Not Found.');
+            toastr()->timeOut(10000)->addError('Not Found.');
 
             return redirect(route('admin.staff.index'));
         }
 
         $staff = $this->userRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Staff updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Staff updated successfully.');
 
         return redirect(route('admin.staff.index'));
     }
@@ -142,14 +142,14 @@ class StaffController extends AppBaseController
         $staff = $this->userRepository->find($id);
 
         if (empty($staff)) {
-            toastr()->addError('Staff not found');
+            toastr()->timeOut(10000)->addError('Staff not found');
 
             return redirect(route('admin.staff.index'));
         }
 
         $this->userRepository->delete($id);
 
-        toastr()->addSuccess('Staff deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Staff deleted successfully.');
 
         return redirect()->route('admin.staff.index');
     }
@@ -169,14 +169,14 @@ class StaffController extends AppBaseController
         $staff = $this->userRepository->find($id);
 
         if (empty($staff)) {
-            toastr()->addError('Staff not found');
+            toastr()->timeOut(10000)->addError('Staff not found');
 
             return redirect(route('admin.staff.index'));
         }
 
         $this->userRepository->update(['role_id' => 1], $id);
 
-        toastr()->addSuccess('Staff removed successfully.');
+        toastr()->timeOut(10000)->addSuccess('Staff removed successfully.');
 
         return redirect()->back();
 
@@ -195,14 +195,14 @@ class StaffController extends AppBaseController
         $staff = $this->userRepository->find($id);
 
         if (empty($staff)) {
-            toastr()->addError('Staff not found');
+            toastr()->timeOut(10000)->addError('Staff not found');
 
             return redirect(route('admin.staff.index'));
         }
 
         $this->userRepository->update(['role_id' => 2], $id);
 
-        toastr()->addSuccess('Staff added successfully.');
+        toastr()->timeOut(10000)->addSuccess('Staff added successfully.');
 
         return redirect()->back();
 

@@ -38,7 +38,7 @@ class UserProfileController extends AppBaseController
 
         $user->update($request->all());
 
-        toastr()->addSuccess('Profile updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Profile updated successfully.');
 
         return redirect(roleBasedRoute('profile.index'));
     }

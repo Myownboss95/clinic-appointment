@@ -40,6 +40,11 @@ class CreateUserAction
                 auth()->login($user, true);
                 return new CreateUserResponseData($user, true);
             }
+            
+            $user->first_name = $calendlyRedirectData->firstName;
+            $user->last_name = $calendlyRedirectData->lastName;
+            $user->save();
+            $user->refresh();
             return new CreateUserResponseData($user, false);
 
         } catch (\Throwable $th) {

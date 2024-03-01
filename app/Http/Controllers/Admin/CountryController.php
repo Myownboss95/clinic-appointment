@@ -55,7 +55,7 @@ class CountryController extends AppBaseController
 
         $country = $this->countryRepository->create($input);
 
-        toastr()->addSuccess('Country saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Country saved successfully.');
 
         return redirect(roleBasedRoute('countries.index'));
     }
@@ -71,7 +71,7 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            toastr()->addError('Country not found');
+            toastr()->timeOut(10000)->addError('Country not found');
 
             return redirect(roleBasedRoute('countries.index'));
         }
@@ -90,7 +90,7 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            toastr()->addError('Country not found');
+            toastr()->timeOut(10000)->addError('Country not found');
 
             return redirect(roleBasedRoute('countries.index'));
         }
@@ -109,14 +109,14 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            toastr()->addError('Country not found');
+            toastr()->timeOut(10000)->addError('Country not found');
 
             return redirect(roleBasedRoute('countries.index'));
         }
 
         $country = $this->countryRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Country updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Country updated successfully.');
 
         return redirect(roleBasedRoute('countries.index'));
     }
@@ -134,14 +134,14 @@ class CountryController extends AppBaseController
         $country = $this->countryRepository->find($id);
 
         if (empty($country)) {
-            toastr()->addError('Country not found');
+            toastr()->timeOut(10000)->addError('Country not found');
 
             return redirect(roleBasedRoute('countries.index'));
         }
 
         $this->countryRepository->delete($id);
 
-        toastr()->addSuccess('Country deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Country deleted successfully.');
 
         return redirect(roleBasedRoute('countries.index'));
     }

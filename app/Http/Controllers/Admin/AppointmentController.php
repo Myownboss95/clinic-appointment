@@ -128,11 +128,11 @@ class AppointmentController extends AppBaseController
         $user = session()->get('user');
         $service = session()->get('subservice');
         if (!$user && !User::where('id', $user->id)->exists()) {
-            toastr()->addError('Please select user again.');
+            toastr()->timeOut(10000)->addError('Please select user again.');
             return redirect()->back();
         }
         if (!$service && !SubService::where('id', $service->id)->exists()) {
-            toastr()->addError('Please select service again.');
+            toastr()->timeOut(10000)->addError('Please select service again.');
             return redirect()->back();
         }
 
@@ -153,7 +153,7 @@ class AppointmentController extends AppBaseController
         $appointment = Appointment::where('id', $id)->with(['comments', 'subService', 'transaction', 'stage'])->first();
 
         if (empty($appointment)) {
-            toastr()->addError('Appointment not found');
+            toastr()->timeOut(10000)->addError('Appointment not found');
 
             return redirect(roleBasedRoute('appointments.index'));
         }
@@ -187,7 +187,7 @@ class AppointmentController extends AppBaseController
         $appointment = Appointment::where('id',$id)->with('subService')->first();
 
         if (empty($appointment)) {
-            toastr()->addError('Appointment not found');
+            toastr()->timeOut(10000)->addError('Appointment not found');
 
             return redirect(roleBasedRoute('appointments.index'));
         }
@@ -214,14 +214,14 @@ class AppointmentController extends AppBaseController
 
         if (empty($appointment)) {
 
-            toastr()->addError('Appointment saved successfully.');
+            toastr()->timeOut(10000)->addError('Appointment saved successfully.');
 
             return redirect(roleBasedRoute('appointments.index'));
         }
 
         $appointment = $this->appointmentRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Appointment updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Appointment updated successfully.');
 
         return redirect(roleBasedRoute('appointments.index'));
     }
@@ -241,21 +241,21 @@ class AppointmentController extends AppBaseController
         ]);
 
         if ($validator->fails()) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect(roleBasedRoute('appointments.show', $id));
         }
         $appointment = $this->appointmentRepository->find($id);
 
         if (empty($appointment)) {
-            toastr()->addError('Appointment not found');
+            toastr()->timeOut(10000)->addError('Appointment not found');
 
             return redirect(roleBasedRoute('appointments.index'));
         }
 
         $this->appointmentRepository->delete($id);
 
-        toastr()->addSuccess('Appointment saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Appointment saved successfully.');
 
         return redirect(roleBasedRoute('appointments.index'));
     }

@@ -55,7 +55,7 @@ class CountryPhoneCodeController extends AppBaseController
 
         $countryPhoneCode = $this->countryPhoneCodeRepository->create($input);
 
-        toastr()->addSuccess('Country Phone Code saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Country Phone Code saved successfully.');
 
         return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
@@ -71,7 +71,7 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            toastr()->addError('Country Phone Code not found');
+            toastr()->timeOut(10000)->addError('Country Phone Code not found');
 
             return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
@@ -90,7 +90,7 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            toastr()->addError('Country Phone Code not found');
+            toastr()->timeOut(10000)->addError('Country Phone Code not found');
 
             return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
@@ -109,14 +109,14 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            toastr()->addError('Country Phone Code not found');
+            toastr()->timeOut(10000)->addError('Country Phone Code not found');
 
             return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         $countryPhoneCode = $this->countryPhoneCodeRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Country Phone Code updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Country Phone Code updated successfully.');
 
         return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }
@@ -134,14 +134,14 @@ class CountryPhoneCodeController extends AppBaseController
         $countryPhoneCode = $this->countryPhoneCodeRepository->find($id);
 
         if (empty($countryPhoneCode)) {
-            toastr()->addError('Country Phone Code not found');
+            toastr()->timeOut(10000)->addError('Country Phone Code not found');
 
             return redirect(roleBasedRoute('countryPhoneCodes.index'));
         }
 
         $this->countryPhoneCodeRepository->delete($id);
 
-        toastr()->addSuccess('Country Phone Code deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Country Phone Code deleted successfully.');
 
         return redirect(roleBasedRoute('countryPhoneCodes.index'));
     }

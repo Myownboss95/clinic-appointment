@@ -55,7 +55,7 @@ class StateController extends AppBaseController
 
         $state = $this->stateRepository->create($input);
 
-        toastr()->addSuccess('State saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('State saved successfully.');
 
         return redirect(roleBasedRoute('states.index'));
     }
@@ -71,7 +71,7 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            toastr()->addError('State not found');
+            toastr()->timeOut(10000)->addError('State not found');
 
             return redirect(roleBasedRoute('states.index'));
         }
@@ -90,7 +90,7 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            toastr()->addError('State not found');
+            toastr()->timeOut(10000)->addError('State not found');
 
             return redirect(roleBasedRoute('states.index'));
         }
@@ -109,14 +109,14 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            toastr()->addError('State not found');
+            toastr()->timeOut(10000)->addError('State not found');
 
             return redirect(roleBasedRoute('states.index'));
         }
 
         $state = $this->stateRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('State updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('State updated successfully.');
 
         return redirect(roleBasedRoute('states.index'));
     }
@@ -134,14 +134,14 @@ class StateController extends AppBaseController
         $state = $this->stateRepository->find($id);
 
         if (empty($state)) {
-            toastr()->addError('State not found');
+            toastr()->timeOut(10000)->addError('State not found');
 
             return redirect(roleBasedRoute('states.index'));
         }
 
         $this->stateRepository->delete($id);
 
-        toastr()->addSuccess('State deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('State deleted successfully.');
 
         return redirect(roleBasedRoute('states.index'));
     }

@@ -26,7 +26,7 @@ class UpdatePasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        toastr()->addSuccess('Password updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Password updated successfully.');
 
         return back();
     }

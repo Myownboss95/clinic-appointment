@@ -67,7 +67,7 @@ class UserController extends AppBaseController
 
         $newUser->notify(new UserPasswordNotification($newUser, $unhashedPassword));
 
-        toastr()->addSuccess('User saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('User saved successfully.');
 
         return redirect(roleBasedRoute('users.index'));
     }
@@ -84,7 +84,7 @@ class UserController extends AppBaseController
         $setting = app(GeneralSettings::class);
 
         if (empty($user)) {
-            toastr()->addError('User not found');
+            toastr()->timeOut(10000)->addError('User not found');
 
             return redirect(roleBasedRoute('users.index'));
         }
@@ -107,7 +107,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            toastr()->addError('User not found');
+            toastr()->timeOut(10000)->addError('User not found');
 
             return redirect(roleBasedRoute('users.index'));
         }
@@ -126,14 +126,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            toastr()->addError('User not found');
+            toastr()->timeOut(10000)->addError('User not found');
 
             return redirect(roleBasedRoute('users.index'));
         }
 
         $user = $this->userRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('User updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('User updated successfully.');
 
         return back();
     }
@@ -151,14 +151,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            toastr()->addError('User not found');
+            toastr()->timeOut(10000)->addError('User not found');
 
             return redirect(roleBasedRoute('users.index'));
         }
 
         $this->userRepository->delete($id);
 
-        toastr()->addSuccess('User deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('User deleted successfully.');
 
         return redirect(roleBasedRoute('users.index'));
     }

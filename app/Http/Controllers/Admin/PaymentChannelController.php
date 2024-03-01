@@ -38,7 +38,7 @@ class PaymentChannelController extends Controller
     public function store(PaymentChannelRequest $request)
     {
         PaymentChannel::create($request->validated());
-        toastr()->addSuccess('Payment Channel Created successfully.');
+        toastr()->timeOut(10000)->addSuccess('Payment Channel Created successfully.');
 
         return redirect(roleBasedRoute('paymentChannels.index'));
     }
@@ -67,7 +67,7 @@ class PaymentChannelController extends Controller
     public function update(PaymentChannelRequest $request, PaymentChannel $paymentChannel)
     {
         $paymentChannel->update($request->validated());
-        toastr()->addSuccess('Payment Channel updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Payment Channel updated successfully.');
 
         return redirect()->back();
     }
@@ -82,13 +82,13 @@ class PaymentChannelController extends Controller
         ]);
 
         if ($validator->fails()) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect()->back();
         }
 
         $paymentChannel->delete();
-        toastr()->addSuccess('Payment Channel deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Payment Channel deleted successfully.');
 
         return redirect(roleBasedRoute('paymentChannels.index'));
     }

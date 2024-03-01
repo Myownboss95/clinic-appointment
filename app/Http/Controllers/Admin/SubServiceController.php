@@ -76,7 +76,7 @@ class SubServiceController extends AppBaseController
 
         //$this->subServiceRepository->create($input);
 
-        toastr()->addSuccess('Sub Service saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Sub Service saved successfully.');
 
         return redirect(roleBasedRoute('subServices.index'));
     }
@@ -92,7 +92,7 @@ class SubServiceController extends AppBaseController
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
-            toastr()->addError('Sub Service not found');
+            toastr()->timeOut(10000)->addError('Sub Service not found');
 
             return redirect(roleBasedRoute('subServices.index'));
         }
@@ -111,7 +111,7 @@ class SubServiceController extends AppBaseController
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
-            toastr()->addError('Sub Service not found');
+            toastr()->timeOut(10000)->addError('Sub Service not found');
 
             return redirect(roleBasedRoute('subServices.index'));
         }
@@ -132,7 +132,7 @@ class SubServiceController extends AppBaseController
         $subService = SubService::find($id);
 
         if (empty($subService)) {
-            toastr()->addError('Sub Service not found');
+            toastr()->timeOut(10000)->addError('Sub Service not found');
 
             return redirect(roleBasedRoute('subServices.index'));
         }
@@ -144,7 +144,7 @@ class SubServiceController extends AppBaseController
         }
 
         $subService->update($data);
-        toastr()->addSuccess('Sub Service updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Sub Service updated successfully.');
 
         return redirect(roleBasedRoute('subServices.index'));
     }
@@ -165,21 +165,21 @@ class SubServiceController extends AppBaseController
         ]);
 
         if ($validator->fails()) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect()->back();
         }
         $subService = $this->subServiceRepository->find($id);
 
         if (empty($subService)) {
-            toastr()->addError('Sub Service not found');
+            toastr()->timeOut(10000)->addError('Sub Service not found');
 
             return redirect()->back();
         }
 
         $this->subServiceRepository->delete($id);
 
-        toastr()->addSuccess('Sub Service deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Sub Service deleted successfully.');
 
         return redirect(roleBasedRoute('subServices.index'));
 

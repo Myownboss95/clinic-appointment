@@ -163,7 +163,7 @@
             </div><!-- end row-->
 
             @if(auth()->user()->role_id == 3)
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6">
                         <div class="row">
                             <div class="card">
@@ -185,7 +185,7 @@
                         </div>
                         <!-- end card -->
                     </div>
-                </div>
+                </div> --}}
             @endif
 
 

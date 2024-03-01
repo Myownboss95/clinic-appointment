@@ -19,12 +19,12 @@ class UserBankDetailsController extends Controller
         $user = $request->user();
         if (! $user->bankDetail()->first()) {
             $user->bankDetail()->create($data);
-            toastr()->addSuccess('Details saved successfully.');
+            toastr()->timeOut(10000)->addSuccess('Details saved successfully.');
 
             return back();
         }
         $user->bankDetail()->update($data);
-        toastr()->addSuccess('Details updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Details updated successfully.');
 
         return back();
     }

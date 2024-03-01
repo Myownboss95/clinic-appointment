@@ -75,7 +75,7 @@ class GeneralSettingController extends AppBaseController
         $settings->whatsapp_contact = $request->input('whatsapp_contact');
 
         $settings->save();
-        toastr()->addSuccess('Settings saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Settings saved successfully.');
 
         return redirect(roleBasedRoute('settings.index'));
     }
@@ -91,7 +91,7 @@ class GeneralSettingController extends AppBaseController
         $generalSetting = $this->generalSettingRepository->find($id);
 
         if (empty($generalSetting)) {
-            toastr()->addError('General Setting not found');
+            toastr()->timeOut(10000)->addError('General Setting not found');
 
             return redirect(roleBasedRoute('generalSettings.index'));
         }

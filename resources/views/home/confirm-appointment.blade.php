@@ -1,9 +1,10 @@
 @extends('home.layouts.app')
 
 @section('content')
-    <div class="row  p-5 pt-5" style="margin-top: 100px ">
+    <div class="row justify-content-center p-5 pt-5" style="margin-top: 100px ">
         <div class="col-xl-4 col-lg-4  py-5">
             <div class="card p-5">
+                <h4>{{ $service->name }}</h4>
                 <p class="text-muted">
                     You are to pay into any of these accounts the sum of {{ formatMoney($service->price) }}, and upload
                     proof of payment.
@@ -49,34 +50,16 @@
                             Payment</button>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div class="col-xl-4 col-lg-4  py-5">
-            <div class="card p-5">
 
-                <h3>{{ $service->name }}</h3>
-                <p>
-                    {{ $service->description }}
-                </p>
-
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bx-fingerprint" style="font-size: 20px"></i></div>
-                    <h5 class="title"><a href="">Price</a></h5>
-                    <p class="description">{{ formatMoney($service->price) }}</p>
-                </div>
             </div>
         </div>
 
         <div class="col-lg-4  py-5">
             <div class="card p-5">
-
+                <h4>Client Information</h4>
                 <p class="mb-4">Client:<span class="badge rounded-pill bg-primary-subtle text-primary"></span>
                     <b>{{ $appointment->user->last_name }}
                         {{ $appointment->user->first_name }}</b>
-                </p>
-
-                <p class="mb-4">Amount to be Paid:<span class="badge rounded-pill bg-primary-subtle text-primary "></span>
-                    <b>{{ formatMoney($transaction->amount) }}</b>
                 </p>
                 <div class="row mb-3">
                     <div class="col-md-12">
@@ -85,6 +68,13 @@
                                     class="bx bx-calendar-event font-size-16 align-middle text-primary me-1"></i>Booking
                                 for: {{ date_format($appointment->start_time, 'l jS \of F Y h:i:s A') }}
                             </p>
+                            <p class="text-muted">
+                            <i class="bi bi-geo-alt" style="font-size: 18px;"></i>
+                                Please visit our clinic at {{ $settings->app_address}}. Thank you
+                        </p>
+                        <a href="{{ $settings->whatsapp_contact}}" target="_blank" class="btn btn-link" style="margin-left: -5px;">
+                            <i class="bi bi-whatsapp" style="font-size: 18px;"></i> Chat with an Admin</a>
+
                         </div>
                     </div>
                 </div>

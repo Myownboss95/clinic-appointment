@@ -56,7 +56,7 @@ class ServiceController extends AppBaseController
     {
         $input = array_merge($request->all(), ['slug' => Str::slug($request->input('name'))]);
         $service = $this->serviceRepository->create($input);
-        toastr()->addSuccess('Service saved successfully.');
+        toastr()->timeOut(10000)->addSuccess('Service saved successfully.');
 
         return redirect(roleBasedRoute('services.index'));
     }
@@ -72,7 +72,7 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            toastr()->addError('Service not found');
+            toastr()->timeOut(10000)->addError('Service not found');
 
             return redirect(roleBasedRoute('services.index'));
         }
@@ -91,7 +91,7 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            toastr()->addError('Service not found');
+            toastr()->timeOut(10000)->addError('Service not found');
 
             return redirect(roleBasedRoute('services.index'));
         }
@@ -110,14 +110,14 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            toastr()->addError('Service not found');
+            toastr()->timeOut(10000)->addError('Service not found');
 
             return redirect(roleBasedRoute('services.index'));
         }
 
         $service = $this->serviceRepository->update($request->all(), $id);
 
-        toastr()->addSuccess('Service updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Service updated successfully.');
 
         return redirect(roleBasedRoute('services.index'));
     }
@@ -138,7 +138,7 @@ class ServiceController extends AppBaseController
         ]);
 
         if ($validator->fails()) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect()->back();
         }
@@ -146,14 +146,14 @@ class ServiceController extends AppBaseController
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
-            toastr()->addError('Service not found');
+            toastr()->timeOut(10000)->addError('Service not found');
 
             return redirect()->back();
         }
 
         $this->serviceRepository->delete($id);
 
-        toastr()->addSuccess('Service deleted successfully.');
+        toastr()->timeOut(10000)->addSuccess('Service deleted successfully.');
 
         return redirect(roleBasedRoute('services.index'));
     }

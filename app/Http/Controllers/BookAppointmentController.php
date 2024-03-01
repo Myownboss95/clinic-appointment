@@ -15,6 +15,7 @@ use App\Actions\CreateAppointmentAction;
 use App\Constants\TransactionStatusTypes;
 use App\Data\Calendly\CalendlyRedirectData;
 use App\Notifications\AdminTransactionCreateNotification;
+use App\Notifications\UserConfirmAppointmentNotification;
 
 class BookAppointmentController extends Controller
 {
@@ -35,7 +36,7 @@ class BookAppointmentController extends Controller
     public function appointmentBooked(Request $request)
     {
         if (session()->get('subservice') == null) {
-            toastr()->addError('Please book again.');
+            toastr()->timeOut(10000)->addError('Please book again.');
             return redirect()->route('home');
         }
         $data = new CalendlyRedirectData(
@@ -50,11 +51,11 @@ class BookAppointmentController extends Controller
         $appointment = CreateAppointmentAction::execute($data, $responseData->user);
 
         if (auth()->check() && auth()->user()->role_id > 1) {
-            toastr()->addSuccess('Appointment Booked');
+            toastr()->timeOut(10000)->addSuccess('Appointment Booked');
             return redirect(roleBasedRoute('appointments.index'));
         }
         if($responseData->status == true){
-        toastr()->addSuccess('Login details have been sent to your mail box');
+            toastr()->timeOut(10000)->addSuccess('Login details have been sent to your mail box');
         }
         return redirect()->route('booking.confirm-appointment', $appointment->uuid);
         
@@ -67,12 +68,12 @@ class BookAppointmentController extends Controller
 
         $appointment = Appointment::where('uuid', $uuid)->first();
         if (!$appointment) {
-            toastr()->addError('Please book again.');
+            toastr()->timeOut(10000)->addError('Please book again.');
             return redirect()->back();
         }
         $transaction = $appointment->transaction()->first();
         if ($transaction->status !== TransactionStatusTypes::CREATED->value) {
-            toastr()->addError('Please book again.');
+            toastr()->timeOut(10000)->addError('Please book again.');
             return redirect()->back();
         }
 
@@ -89,7 +90,7 @@ class BookAppointmentController extends Controller
     {
         $appointment = Appointment::where('uuid', $uuid)->first();
         if (!$appointment) {
-            toastr()->addError('not Found.');
+            toastr()->timeOut(10000)->addError('not Found.');
             return redirect()->route('home');
         }
         $transaction = $appointment->transaction()->first();
@@ -100,7 +101,7 @@ class BookAppointmentController extends Controller
         $appointment->delete();
         $transaction->delete();
 
-        toastr()->addSuccess('Payment Declined and Appointment Cancelled');
+        toastr()->timeOut(10000)->addSuccess('Payment Declined and Appointment Cancelled');
         return redirect()->route('home');
     }
 
@@ -113,7 +114,7 @@ class BookAppointmentController extends Controller
 
         $appointment = Appointment::where('uuid', $uuid)->first();
         if (!$appointment) {
-            toastr()->addError('not Found.');
+            toastr()->timeOut(10000)->addError('not Found.');
             return redirect()->route('home');
         }
         $transaction = $appointment->transaction()->first();
@@ -129,8 +130,8 @@ class BookAppointmentController extends Controller
             function ($admin) use($transaction) {
                 $admin->notify(new AdminTransactionCreateNotification($transaction->user, $admin, $transaction));
             });
-        
-        toastr()->addSuccess('Payment Waiting to be approved');
+        $transaction->user->notify(new UserConfirmAppointmentNotification($transaction->user));
+        toastr()->timeOut(10000)->addSuccess('Payment Waiting to be approved');
         return redirect()->route('login');
     }
 }

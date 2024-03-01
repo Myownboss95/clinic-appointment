@@ -42,14 +42,14 @@ class ChangeTransactionStatusSelector extends Component
     public function updateTransactionStatus()
     {
         if (!Hash::check($this->password, auth()->user()->password)) {
-            toastr()->addError('Incorrect Password');
+            toastr()->timeOut(10000)->addError('Incorrect Password');
 
             return redirect()->route(role(auth()->user()->role_id) . '.transactions.show', $this->transaction->id);
         }
 
         if (auth()->user()->role_id !== 3) {
             if ($this->selectedStatus == TransactionStatusTypes::PENDING->value) {
-                toastr()->addError('You can either confirm or reject transactions');
+                toastr()->timeOut(10000)->addError('You can either confirm or reject transactions');
 
                 return redirect()->route(role(auth()->user()->role_id).'.transactions.show', $this->transaction->id);
             }
@@ -60,7 +60,7 @@ class ChangeTransactionStatusSelector extends Component
             'confirmed_by' => auth()->user()->id,
         ]);
 
-        toastr()->addSuccess('Status updated successfully.');
+        toastr()->timeOut(10000)->addSuccess('Status updated successfully.');
         $this->transaction->user->notify(new UserTransactionNotification($this->transaction->user, $this->transaction));
 
         return redirect()->route(role(auth()->user()->role_id) . '.transactions.show', $this->transaction->id);

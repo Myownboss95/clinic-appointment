@@ -12,6 +12,7 @@ class CalendlyRedirectData extends Data
         public readonly string $lastName,
         public readonly string $firstName,
         public readonly string $email,
+        public readonly string $phone_number,
         public readonly SubService $subService,
 
     ) {

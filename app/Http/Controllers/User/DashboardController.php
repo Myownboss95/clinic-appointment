@@ -30,8 +30,8 @@ class DashboardController extends Controller
             'user' => $user->load('appointments.subService', 'appointments.transaction'),
             'appointments' => $userAppointments->appointments->whereNull('parent_appointment_id'),
             'followUpAppointments' => $userAppointments->appointments->whereNotNull('parent_appointment_id'),
-            'nextAppointment' => $nextAppointment,
-            'nextAppointmentDate' => Carbon::parse($nextAppointment->start_time)->format('D, jS M, Y'),
+            'nextAppointment' => $nextAppointment ?? null,
+            'nextAppointmentDate' => Carbon::parse($nextAppointment?->start_time)->format('D, jS M, Y')?? '',
             'transactions' => $userTransactions->transactions,
             'initiatedTransactions' => $user->transactions()->where('status', TransactionStatusTypes::CREATED->value)
         ]);

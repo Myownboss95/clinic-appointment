@@ -52,6 +52,7 @@
                                 firstName: "{{ auth()->user()?->first_name ?? ''}}",
                                 lastName: "{{ auth()->user()?->last_name ?? ''}}",
                                 email: "{{ auth()->user()?->email ?? ''}}",
+                                phoneNumber: "{{ auth()->user()?->phone_number ?? ''}}",
                             }
                         });
                     }

@@ -30,6 +30,7 @@ class CreateUserAction
                     'first_name' => $calendlyRedirectData->firstName,
                     'last_name' => $calendlyRedirectData->lastName,
                     'email' => $calendlyRedirectData->email,
+                    'phone_number' => $calendlyRedirectData->phone_number,
                     'password' => $password,
                     'role_id' => 1
                 ]);
@@ -43,6 +44,7 @@ class CreateUserAction
             
             $user->first_name = $calendlyRedirectData->firstName;
             $user->last_name = $calendlyRedirectData->lastName;
+            $user->phone_number = $calendlyRedirectData->phone_number;
             $user->save();
             $user->refresh();
             return new CreateUserResponseData($user, false);

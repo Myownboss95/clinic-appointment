@@ -54,7 +54,26 @@ final class AppointmentsTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('stage_id', fn (Appointment $appointment) => $appointment->stage->name)
-            ->addColumn('user', fn (Appointment $appointment) => $appointment->user->first_name.' '.$appointment->user->last_name)
+            ->addColumn('user', fn (Appointment $appointment) => $appointment->user->first_name.' '.$appointment->user->last_name 
+                                                                .'<br/>'. $appointment->user->email
+                                                                .'<br/>'.
+                                                                '<br/>' .
+
+                                                                '<div class="d-flex align-items-center">
+                                                                    <a href="tel:' . $appointment->user->phone_number . '">'
+                                                                    . $appointment->user->phone_number .
+                                                                    '</a>
+                                                                    &nbsp;
+                                                                    &nbsp;
+                                                                    &nbsp;
+                                                                    &nbsp;
+                                                                    &nbsp;
+                                                                      <a href="https://wa.me/' . $appointment->user->phone_number . '">
+                                                                        <i class="fab fa-whatsapp"></i>
+                                                                    </a>
+                                                                </div>'
+                                                                
+                                                                )
             ->addColumn('service', fn (Appointment $appointment) => $appointment->subService->first()->name)
             ->addColumn('created_at_formatted', fn (Appointment $appointment) => Carbon::parse($appointment->created_at)->format('jS \of F, Y, \b\y g.ia'));
     }

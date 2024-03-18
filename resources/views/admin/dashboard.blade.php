@@ -53,12 +53,13 @@
                     <!-- card -->
                     <div class="card card-h-100">
                         <!-- card body -->
+                <a href="{{ roleBasedRoute('appointments.index') }}">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">Appointments</span>
                                     <h4 class="mb-3">
-                                        <span class="counter-value" data-target={{ $appointment_count }}>0</span>
+                                        <span class="counter-value text-dark" data-target={{ $appointment_count }}>0</span>
                                     </h4>
                                     <div class="text-nowrap">
                                         <span
@@ -72,6 +73,7 @@
                                 </div>
                             </div>
                         </div><!-- end card body -->
+                </a>
                     </div><!-- end card -->
                 </div><!-- end col-->
 
@@ -79,6 +81,7 @@
                     <!-- card -->
                     <div class="card ">
                         <!-- card body -->
+                <a href="{{ roleBasedRoute('transactions') }}">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                              @if(auth()->user()->role_id == 3)
@@ -86,7 +89,7 @@
                                     <div class="">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Transactions</span>
                                         <h5 class="mb-3">
-                                            <span>{{ formatMoney($total_transactions) }}</span>
+                                            <span class="text-dark">{{ formatMoney($total_transactions) }}</span>
                                         </h5>
                                         <div class="text-nowrap">
                                             <span class="badge bg-success-subtle text-success">{{ $transactions_count }}</span>
@@ -113,6 +116,7 @@
                                 </div>
                             </div>
                         </div><!-- end card body -->
+                </a>
                     </div><!-- end card -->
                 </div><!-- end col -->
 
@@ -120,13 +124,14 @@
                     <!-- card -->
                     <div class="card card-h-100">
                         <!-- card body -->
+                <a href="{{ roleBasedRoute('referrals.index') }}">
                         <div class="card-body">
                             @if(auth()->user()->role_id == 3)
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Referrals Paid</span>
                                         <h4 class="mb-3">
-                                            <span>{{ formatMoney($total_referral_transactions) }}</span>
+                                            <span class="text-dark">{{ formatMoney($total_referral_transactions) }}</span>
                                         </h4>
                                         <div class="text-nowrap">
                                             <span
@@ -158,6 +163,7 @@
                                 </div>
                             @endif
                         </div><!-- end card body -->
+                </a>
                     </div><!-- end card -->
                 </div><!-- end col -->
             </div><!-- end row-->

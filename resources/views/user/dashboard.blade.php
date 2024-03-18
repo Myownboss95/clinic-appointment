@@ -115,6 +115,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <!-- card -->
+                    @if($nextAppointment)
                     <a href="{{route('user.appointments.show', $nextAppointment->id)}}">
                     <div class="card card-h-100">
                         <!-- card body -->
@@ -134,6 +135,7 @@
                         </div><!-- end card body -->
                     </div><!-- end card -->
                 </a>
+                @endif
                 </div><!-- end col -->
 
                 <div class="col-xl-3 col-md-6">

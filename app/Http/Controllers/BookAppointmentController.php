@@ -44,6 +44,7 @@ class BookAppointmentController extends Controller
             $request->query('invitee_first_name'),
             $request->query('invitee_last_name'),
             $request->query('invitee_email'),
+            $request->query('answer_1'),
             session()->get('subservice')
         );
 

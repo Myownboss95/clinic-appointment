@@ -2,13 +2,17 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col-md-6">
-            <div class="avatar-xxxl me-3">
-                <img src="{{ Storage::url($user->image) }}" width="200"alt="image"
-                    class="img-fluid d-block img-thumbnail">
-            </div>
-        </div>
-        <div class="col-md-6">
+       
+                @if ($user->image)
+                <div class="col-md-4">
+                    <div class="avatar-xxxl me-3">
+                        <img src="{{ Storage::url($user->image) }}" width="200"alt="image"
+                             class="img-fluid d-block img-thumbnail">
+                    </div>
+                </div>
+                @endif
+                
+        <div class="col-md-8">
             <input type="file" wire:model="image" name="image"
                 class="form-control @error('image') is-invalid @enderror">
             @error('image')

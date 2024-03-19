@@ -233,7 +233,10 @@
                                             <tr>
                                                 <th scope="row">
                                                     {{ '₦' . number_format($transaction->amount, 2, '.', ',') }}</th>
-                                                <td>{{ $transaction->appointment->first()->subService->first()->name }}
+                                                <td>    
+                                                    @if($transaction->appointment)
+                                                     {{ $transaction->appointment?->first()?->subService?->first()?->name ?? ''}}
+                                                    @endif
                                                 </td>
                                                 <td>{{ formatDateTime($transaction->created_at) }}</td>
                                             </tr>

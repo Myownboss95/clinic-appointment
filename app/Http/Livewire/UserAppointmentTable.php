@@ -2,20 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Appointment;
 use App\Models\Stage;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Appointment;
+use App\Constants\StageTypes;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
 final class UserAppointmentTable extends PowerGridComponent
 {
@@ -56,7 +57,7 @@ final class UserAppointmentTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('stage_id', fn (Appointment $appointment) => $appointment->stage->name)
+            ->addColumn('stage_id', fn (Appointment $appointment) => StageTypes::from($appointment->stage->name)->labels())
             ->addColumn('service', fn (Appointment $appointment) => $appointment->subService->first()->name)
             ->addColumn('created_at_formatted', fn (Appointment $appointment) => Carbon::parse($appointment->created_at)->format('jS \of F, Y, \b\y g.ia'));
     }

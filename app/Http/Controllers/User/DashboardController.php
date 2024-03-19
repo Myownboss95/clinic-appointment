@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Constants\TransactionStatusTypes;
+use App\Models\Transaction;
 
 class DashboardController extends Controller
 {
@@ -32,7 +33,7 @@ class DashboardController extends Controller
             'followUpAppointments' => $userAppointments->appointments->whereNotNull('parent_appointment_id'),
             'nextAppointment' => $nextAppointment ?? null,
             'nextAppointmentDate' => Carbon::parse($nextAppointment?->start_time)->format('D, jS M, Y')?? '',
-            'transactions' => $userTransactions->transactions,
+            'transactions' => Transaction::where('user_id', $user->id)->with('appointment.subService')->latest()->get(),
             'initiatedTransactions' => $user->transactions()->where('status', TransactionStatusTypes::CREATED->value)
         ]);
     }

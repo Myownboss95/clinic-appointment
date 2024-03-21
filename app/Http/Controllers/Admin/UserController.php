@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use Response;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Appointment;
+use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Settings\GeneralSettings;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
+use App\Constants\TransactionReasons;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\AdminUpdateUserRequest;
@@ -31,13 +36,27 @@ class UserController extends AppBaseController
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request, GeneralSettings $generalSettings)
     {
 
-        $users = $this->userRepository->all();
 
-        return view('admin.users.index')
-            ->with('users', $users);
+        return view('admin.users.index', [
+            'customers' => User::where('role_id', 1)->latest(),
+            'customers_count' => User::where('role_id', 1)->count(),
+            'new_customers_count' => User::where('role_id', 1)
+            ->where('created_at', '>=', Carbon::now()->subWeek())
+                ->count(),
+            'appointment' => Appointment::with(['subService', 'stage'])->latest(),
+            'follow_up_appointment_count' => Appointment::whereNotNull('parent_appointment_id')->count(),
+            'appointment_count' => Appointment::all()->count(),
+            'transactions' => Transaction::with(['user', 'appointment.subservice'])->latest(),
+            'transactions_count' => Transaction::count(),
+            'total_transactions' => Transaction::sum('amount'),
+            'calendly_last_handshake' => 'Last handshake perfomed at' . ' ' . Carbon::parse($generalSettings->calendly_created_at)->format('l, F j, Y, g:i A'),
+            'total_referral_transactions' => Transaction::where('reason', TransactionReasons::REFERRALS->value)->sum('amount'),
+            'referral_transactions_count' => Transaction::where('reason', TransactionReasons::REFERRALS->value)->count(),
+
+        ]);
     }
 
     /**

@@ -43,9 +43,9 @@
                     </div>
                     </p>
                     <div class="d-flex">
-                        <a class="btn btn-danger waves-effect mt-2 waves-light me-3"
-                            href="{{ route('booking.decline-appointment-booking', $appointment->uuid) }}">Decline
-                            Payment</a>
+                        {{-- <a class="btn btn-danger waves-effect mt-2 waves-light me-3"
+                            href="{{ route('booking.decline-appointment-booking', $appointment->uuid) }}">Cancel
+                            Appointment</a> --}}
                         <button class="btn btn-primary waves-effect mt-2 waves-light" id="payNow">Confirm
                             Payment</button>
                     </div>
@@ -72,7 +72,7 @@
                             <i class="bi bi-geo-alt" style="font-size: 18px;"></i>
                                 Please visit our clinic at {{ $settings->app_address}}. Thank you
                         </p>
-                        <a href="{{ $settings->whatsapp_contact}}" target="_blank" class="btn btn-link" style="margin-left: -5px;">
+                        <a href="{{ $settings->whatsapp_contact}}" target="_blank" class="btn btn-success" style="margin-left: -5px;">
                             <i class="bi bi-whatsapp" style="font-size: 18px;"></i> Chat with an Admin</a>
 
                         </div>

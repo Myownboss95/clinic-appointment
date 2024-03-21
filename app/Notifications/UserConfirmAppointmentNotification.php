@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\GeneralSetting;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -14,7 +15,7 @@ class UserConfirmAppointmentNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public User $user)
+    public function __construct(public User $user, public GeneralSetting $generalSetting)
     {
         //
     }
@@ -40,6 +41,7 @@ class UserConfirmAppointmentNotification extends Notification
             ->line('Thank you for booking and confirming payment. An admin will contact you shortly')
             ->line('You can proceed to login with the following')
             ->action('Click here to book again', url('/login'))
+            ->action('Click to Chat with Admin', url($this->generalSetting->whatsapp_contact) )
             ->line('Thank you for your patronage!');
     }
 

@@ -202,6 +202,7 @@
                             <h4 class="card-title">Users</h4>
                         </div>
                         <div class="card-body">
+                            <livewire:appointments-table />
                             <livewire:customers-table />
                         </div>
                         <!-- end card body -->

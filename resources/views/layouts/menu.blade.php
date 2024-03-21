@@ -142,6 +142,12 @@
         </a>
     </li>
     <li>
+        <a href="{{ route('admin.users.index') }}" wire:navigate>
+            <i style="width:20px; height:20px" class="me-2" data-feather="user-plus"></i>
+            <span data-key="t-dashboard">Users</span>
+        </a>
+    </li>
+    <li>
         <a href="javascript: void(0);" class="has-arrow">
             <i style="width:20px; height:20px" class="me-2" data-feather="settings"></i>
             <span data-key="t-ecommerce">Settings</span>

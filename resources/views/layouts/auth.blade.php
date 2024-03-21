@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -14,7 +15,10 @@
 
     <!-- preloader css -->
     <link rel="stylesheet" href="{{ asset('lineone/css/preloader.min.css') }}" type="text/css" />
-
+    <link href="{{ asset('clinic/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('clinic/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('clinic/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('clinic/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
     <!-- Bootstrap Css -->
     <link href="{{ asset('lineone/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -44,6 +48,8 @@
                                     </a>
                                 </div>
                                 @yield('content')
+                                <a href="{{ $settings->whatsapp_contact}}" target="_blank" class="btn btn-success" style="margin-left: -5px;">
+                                    <i class="bi bi-whatsapp" style="font-size: 18px;"></i> Chat with an Admin</a>
                                  <div class="mt-4 mt-md-5 text-center">
                                     <p class="mb-0">©
                                         <script>

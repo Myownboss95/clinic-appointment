@@ -87,6 +87,9 @@
                     class="text-primary fw-semibold">
                     Signup now </a> </p>
         </div>
+        <div class="mt-1 text-center">
+            
+        </div>
     </div>
 
 

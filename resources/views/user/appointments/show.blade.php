@@ -74,7 +74,7 @@
                                                         <p class="text-muted"><i
                                                                 class="bx bx-calendar-event font-size-16 align-middle text-primary me-1"></i>Start
                                                             Time: <span
-                                                                class="btn btn-info">{{ date_format($appointment->start_time, 'l jS \of F Y h:i:s A') }}</span>
+                                                                class="btn btn-primary">{{ date_format($appointment->start_time, 'l jS \of F Y h:i:s A') }}</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -83,7 +83,7 @@
                                                         <p class="text-muted"><i
                                                                 class="bx bx-calendar-event font-size-16 align-middle text-primary me-1"></i>
                                                             End Time: <span
-                                                                class="btn btn-info">{{ $appointment->end_time ? date_format($appointment->end_time, 'l jS \of F Y h:i:s A') : 'No end time specified' }}</span>
+                                                                class="btn btn-primary">{{ $appointment->end_time ? date_format($appointment->end_time, 'l jS \of F Y h:i:s A') : 'No end time specified' }}</span>
                                                         </p>
                                                     </div>
                                                 </div>

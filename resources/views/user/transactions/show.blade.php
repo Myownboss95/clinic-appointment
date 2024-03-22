@@ -50,7 +50,7 @@
                                                         <p class="text-muted"><i
                                                                 class="bx bx-calendar-event font-size-16 align-middle text-primary me-1"></i>Transaction
                                                             Date: <span
-                                                                class="btn btn-info btn-sm">{{ $transaction->created_at }}</span>
+                                                                class="btn btn-primary btn-sm">{{ $transaction->created_at }}</span>
                                                         </p>
                                                         <p class="text-muted"><i
                                                                 class="bx bx-money font-size-16 align-middle text-primary me-1"></i>Payment

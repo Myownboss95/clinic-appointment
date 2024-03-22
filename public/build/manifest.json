@@ -112,7 +112,7 @@
     "src": "public/lineone/fonts/materialdesignicons-webfont.woff2"
   },
   "public/lineone/images/auth-bg.jpg": {
-    "file": "assets/auth-bg-MMVFEy_x.jpg",
+    "file": "assets/auth-bg-E1EudGGR.jpg",
     "src": "public/lineone/images/auth-bg.jpg"
   },
   "public/lineone/images/profile-bg-1.jpg": {
@@ -154,13 +154,13 @@
       "assets/dripicons-v2-0WeN6bBI.woff",
       "assets/dripicons-v2-Dpng9juI.ttf",
       "assets/dripicons-v2-y8F7Tl1F.svg",
-      "assets/auth-bg-MMVFEy_x.jpg",
+      "assets/auth-bg-E1EudGGR.jpg",
       "assets/profile-bg-1-YjZ-qVvx.jpg"
     ],
     "css": [
-      "assets/app-xll45B7U.css"
+      "assets/app-W-62wwh0.css"
     ],
-    "file": "assets/app-WmJWGI5a.js",
+    "file": "assets/app--BVh7wg0.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

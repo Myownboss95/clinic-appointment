@@ -20,7 +20,8 @@ jobs:
             -   name: Deploy Website1.com
                 uses: appleboy/ssh-action@v0.1.4
                 with:
-                    host: ${{ secrets.W1_HOST }}
+                    # host: ${{ secrets.W1_HOST }}
+                    host: "https://dk4.host-ww.net:2083/"
                     port: ${{ secrets.W1_PORT }}
                     username: ${{ secrets.W1_USERNAME }}
                     password: ${{ secrets.W1_PASSWORD }}

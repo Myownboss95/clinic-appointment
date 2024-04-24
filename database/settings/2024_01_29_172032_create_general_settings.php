@@ -6,6 +6,7 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
+        
         $this->migrator->add('general.ref_bonus', 100);
         $this->migrator->add('general.calendly_user_uri', null);
         $this->migrator->add('general.calendly_user_email', null);

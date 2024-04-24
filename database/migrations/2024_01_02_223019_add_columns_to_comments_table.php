@@ -14,7 +14,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
         Schema::table('comments', function (Blueprint $table) {
             $table->dropColumn([
                 'model_name',

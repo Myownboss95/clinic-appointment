@@ -26,7 +26,7 @@ jobs:
                     password: ${{ secrets.W1_PASSWORD }}
 
                     script: |
-                        cd clinic.tremasaba.org/
+                        cd public_html/
                         git pull
                         composer install
                         php artisan migrate
